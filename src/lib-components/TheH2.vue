@@ -1,12 +1,12 @@
 <template>
-  <header class="header">
+  <h1 class="h2">
     <slot></slot>
-  </header>
+  </h1>
 </template>
 
 <script>
   export default {
-    name: "d-header",
+    name: "TheH1",
   };
 </script>
 

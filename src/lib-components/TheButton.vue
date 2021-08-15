@@ -6,7 +6,7 @@
 
 <script>
   export default {
-    name: "d-button",
+    name: "TheButton",
   };
 </script>
 
@@ -15,7 +15,7 @@
     display: flex;
     text-decoration: none;
     cursor: pointer;
-    background-color: #ed0d0d;
+    background-color: var(--color-primary);
     border: none;
     color: #fff;
     padding: 12px 24px;
