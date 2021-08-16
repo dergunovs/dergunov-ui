@@ -46,16 +46,17 @@ const baseConfig = {
     },
     vue: {
       css: true,
-      template: {
-        isProduction: true,
-      },
+      template: { isProduction: true },
     },
     postVue: [
       resolve({
         extensions: [".js", ".jsx", ".ts", ".tsx", ".vue"],
       }),
       commonjs(),
-      styles({ mode: "extract" }),
+      styles({
+        mode: ["extract", "styles.css"],
+        minimize: process.env.NODE_ENV === "production",
+      }),
     ],
     babel: {
       exclude: "node_modules/**",
@@ -92,6 +93,7 @@ if (!argv.format || argv.format === "es") {
       file: "dist/dergunov-ui.esm.js",
       format: "esm",
       exports: "named",
+      assetFileNames: "assets/[name].[ext]",
     },
     plugins: [
       replace(baseConfig.plugins.replace),
@@ -125,6 +127,7 @@ if (!argv.format || argv.format === "cjs") {
       format: "cjs",
       name: "DergunovUi",
       exports: "auto",
+      assetFileNames: "assets/[name].[ext]",
       globals,
     },
     plugins: [
@@ -154,6 +157,7 @@ if (!argv.format || argv.format === "iife") {
       format: "iife",
       name: "DergunovUi",
       exports: "auto",
+      assetFileNames: "assets/[name].[ext]",
       globals,
     },
     plugins: [

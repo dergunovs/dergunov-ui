@@ -15,6 +15,8 @@
   import TheH2 from "../src/lib-components/TheH2.vue";
   import TheH3 from "../src/lib-components/TheH3.vue";
 
+  import "../src/lib-components/assets/ui-styles.css";
+
   export default Vue.extend({
     name: "Components",
 
