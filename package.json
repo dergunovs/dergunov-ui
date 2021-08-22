@@ -46,5 +46,9 @@
     "node": ">=12"
   },
   "author": "Aleksandr Dergunov <a@dergunov.com> (https://dergunov.com)",
-  "license": "ISC"
+  "license": "ISC",
+  "np": {
+    "yolo": true,
+    "yarn": false
+  }
 }
