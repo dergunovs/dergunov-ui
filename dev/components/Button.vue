@@ -9,7 +9,8 @@
   import TheButton from "@/lib-components/TheButton.vue";
 
   export default {
-    name: "ButtonList",
+    name: "Button",
+    description: "Кнопка",
 
     components: { TheButton },
 
@@ -20,5 +21,3 @@
     },
   };
 </script>
-
-<style></style>

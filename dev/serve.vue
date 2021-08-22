@@ -1,7 +1,21 @@
 <template>
   <div id="app">
     <div class="center">
-      <component v-for="(component, index) in components" :key="`component${index}`" :is="component" />
+      <nav>
+        <TheList direction="horizontal" design="hidden">
+          <li v-for="component in Object.values(components)" :key="component.name">
+            <TheButton
+              :class="{ active: componentCurrent === component.name }"
+              @ui-click="componentCurrent = component.name"
+            >
+              {{ component.description }}
+            </TheButton>
+          </li>
+        </TheList>
+      </nav>
+
+      <div v-if="!componentCurrent">123</div>
+      <div v-else><component :is="componentCurrent" /></div>
     </div>
   </div>
 </template>
@@ -25,6 +39,7 @@
     data() {
       return {
         components: components,
+        componentCurrent: "",
       };
     },
 

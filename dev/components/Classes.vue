@@ -62,6 +62,12 @@
         <div class="border-gray-light p-8">flex + flex-se</div>
       </div>
 
+      <div class="flex flex-column mb-16">
+        <div class="border-gray-light p-8">flex + column</div>
+        <div class="border-gray-light p-8">flex + column</div>
+        <div class="border-gray-light p-8">flex + column</div>
+      </div>
+
       <div class="flex">
         <div class="flex-grow border-gray-light p-8">flex grow</div>
         <div class="flex-shrink border-gray-light p-8">flex-shrink</div>
@@ -79,8 +85,7 @@
       <p class="text-small">text-small, font-size: 14px</p>
       <p class="text-medium">text-medium, font-size: 18px</p>
       <p class="text-big">text-big, font-size: 24px</p>
-      <p class="text-underline-thin">text-underline-thin</p>
-      <p class="text-underline-medium">text-underline-medium</p>
+      <p class="text-underline">text-underline</p>
       <p class="text-underline-bold">text-underline-bold</p>
       <a href="#">Ссылка</a>
     </section>
@@ -96,8 +101,7 @@
 
 <script>
   export default {
-    name: "ClassList",
+    name: "Classes",
+    description: "Классы",
   };
 </script>
-
-<style></style>
