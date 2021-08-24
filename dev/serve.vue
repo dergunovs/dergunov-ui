@@ -1,21 +1,52 @@
 <template>
   <div id="app">
-    <div class="center">
-      <nav>
-        <TheList direction="horizontal" design="hidden">
+    <div class="flex flex-top">
+      <nav class="p-16">
+        <TheButton design="none" @ui-click="componentCurrent = ''" :active="componentCurrent === ''" class="mb-16">
+          Описание
+        </TheButton>
+
+        <p><b>Компоненты:</b></p>
+        <TheList design="none">
           <li v-for="component in Object.values(components)" :key="component.name">
             <TheButton
-              :class="{ active: componentCurrent === component.name }"
+              design="none"
+              :active="componentCurrent === component.name"
               @ui-click="componentCurrent = component.name"
             >
-              {{ component.description }}
+              {{ component.name }}
             </TheButton>
           </li>
         </TheList>
       </nav>
 
-      <div v-if="!componentCurrent">123</div>
-      <div v-else><component :is="componentCurrent" /></div>
+      <div>
+        <div v-if="!componentCurrent">
+          <section>
+            <h1>Установка в Nuxt.js</h1>
+            <TheList>
+              <li>
+                <b>установить пакет:</b><br />
+                npm i dergunov-ui
+              </li>
+              <li>создать файл ui.js в папке /plugins/</li>
+              <li>
+                <b>внутри ui.js прописать:</b><br />
+                import Vue from "vue";<br />
+                import ui from "dergunov-ui";<br />
+                import "dergunov-ui/dist/assets/styles.css";<br />
+                Vue.use(ui);
+              </li>
+              <li>
+                <b>в nuxt.config.js подключить плагин:</b><br />
+                plugins: [{ src: "~plugins/ui" }],
+              </li>
+            </TheList>
+          </section>
+        </div>
+
+        <div v-else><component :is="componentCurrent" /></div>
+      </div>
     </div>
   </div>
 </template>

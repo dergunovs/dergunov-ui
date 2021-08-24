@@ -1,5 +1,5 @@
 <template>
-  <component :is="type" :class="[direction, design]">
+  <component :is="type" :class="[`list-direction-${direction}`, `list-design-${design}`]">
     <slot></slot>
   </component>
 </template>
@@ -21,54 +21,54 @@
 </script>
 
 <style>
-  .horizontal {
+  .list-direction-horizontal {
     display: flex;
   }
-  .horizontal li {
+  .list-direction-horizontal li {
     padding-right: 32px;
   }
-  .horizontal li:last-child {
+  .list-direction-horizontal li:last-child {
     padding-right: 0;
   }
 
-  .regular {
+  .list-design-regular {
     margin: 16px 0;
     padding-left: 20px;
   }
 
-  .hidden {
+  .list-design-none {
     list-style: none;
   }
-  .hidden li {
+  .list-design-none li {
     padding: 0;
   }
 
-  .styled {
+  .list-design-styled {
     margin: 16px 0;
     list-style: none;
   }
-  ul.styled li {
+  ul.list-design-styled li {
     border-left: 6px solid var(--color-primary);
     margin-bottom: 8px;
     padding-left: 6px;
   }
-  ol.styled {
+  ol.list-design-styled {
     margin: 24px 0;
     counter-reset: num;
   }
-  ol.styled li {
+  ol.list-design-styled li {
     position: relative;
     margin-left: 40px;
     margin-bottom: 16px;
   }
-  ol.styled.horizontal li {
+  ol.list-design-styled.horizontal li {
     margin-bottom: 0;
     padding-right: 16px;
   }
-  ol.styled li:last-child {
+  ol.list-design-styled li:last-child {
     margin-bottom: 0;
   }
-  ol.styled li::before {
+  ol.list-design-styled li::before {
     content: counter(num);
     counter-increment: num;
     position: absolute;

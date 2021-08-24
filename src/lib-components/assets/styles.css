@@ -245,6 +245,10 @@ h3 {
   justify-content: center;
 }
 
+.flex-top {
+  align-items: flex-start;
+}
+
 .flex-sb {
   justify-content: space-between;
 }

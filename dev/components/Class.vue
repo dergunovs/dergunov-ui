@@ -1,7 +1,8 @@
 <template>
   <div>
     <section>
-      <h1>Общие классы и стили</h1>
+      <h1>{{ $options.name }}</h1>
+      <p>Встроенные в библиотеку утилитарные и общие классы.</p>
       <p>
         * - font-family: "font"; box-sizing: border-box; margin: 0; padding: 0; font-weight: 400; font-size: 18px;
         line-height: 1.5
@@ -101,7 +102,6 @@
 
 <script>
   export default {
-    name: "Classes",
-    description: "Классы",
+    name: "Class",
   };
 </script>
