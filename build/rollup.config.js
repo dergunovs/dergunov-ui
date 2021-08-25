@@ -51,7 +51,7 @@ const baseConfig = {
     },
     postVue: [
       resolve({
-        extensions: [".js", ".jsx", ".ts", ".tsx", ".vue", ".svg"],
+        extensions: [".js", ".jsx", ".ts", ".tsx", ".vue"],
       }),
       commonjs(),
       styles({
@@ -62,7 +62,7 @@ const baseConfig = {
     ],
     babel: {
       exclude: "node_modules/**",
-      extensions: [".js", ".jsx", ".ts", ".tsx", ".vue", ".svg"],
+      extensions: [".js", ".jsx", ".ts", ".tsx", ".vue"],
       babelHelpers: "bundled",
     },
   },
