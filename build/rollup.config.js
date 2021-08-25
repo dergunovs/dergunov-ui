@@ -11,7 +11,6 @@ import { terser } from "rollup-plugin-terser";
 import minimist from "minimist";
 import styles from "rollup-plugin-styles";
 import images from "rollup-plugin-image-files";
-import dynamicImportVars from "@rollup/plugin-dynamic-import-vars";
 
 // Get browserslist config and remove ie from es build targets
 const esbrowserslist = fs
@@ -60,7 +59,6 @@ const baseConfig = {
         minimize: process.env.NODE_ENV === "production",
       }),
       images(),
-      dynamicImportVars(),
     ],
     babel: {
       exclude: "node_modules/**",

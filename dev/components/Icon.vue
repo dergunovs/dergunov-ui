@@ -6,7 +6,14 @@
       <p><b>size:</b> small, medium, big, default: <b>medium</b></p>
       <p><b>type:</b> regular, round, inverted: <b>regular</b></p>
 
-      <div><TheIcon title="vk" /></div>
+      <div class="flex">
+        <TheIcon title="download" />
+        <TheIcon title="facebook" />
+        <TheIcon title="instagram" />
+        <TheIcon title="count" />
+        <TheIcon title="vk" />
+        <TheIcon title="youtube" />
+      </div>
     </section>
   </div>
 </template>
