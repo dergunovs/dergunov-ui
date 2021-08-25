@@ -1,4 +1,5 @@
 import plugin, * as components from "@/entry.esm";
+
 import "@/lib-components/assets/styles.css";
 
 Object.entries(components).forEach(([componentName, component]) => {

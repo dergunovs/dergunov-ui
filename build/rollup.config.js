@@ -10,6 +10,7 @@ import babel from "@rollup/plugin-babel";
 import { terser } from "rollup-plugin-terser";
 import minimist from "minimist";
 import styles from "rollup-plugin-styles";
+import images from "rollup-plugin-image-files";
 
 // Get browserslist config and remove ie from es build targets
 const esbrowserslist = fs
@@ -50,17 +51,18 @@ const baseConfig = {
     },
     postVue: [
       resolve({
-        extensions: [".js", ".jsx", ".ts", ".tsx", ".vue"],
+        extensions: [".js", ".jsx", ".ts", ".tsx", ".vue", ".svg"],
       }),
       commonjs(),
       styles({
         mode: ["extract", "styles.css"],
         minimize: process.env.NODE_ENV === "production",
       }),
+      images(),
     ],
     babel: {
       exclude: "node_modules/**",
-      extensions: [".js", ".jsx", ".ts", ".tsx", ".vue"],
+      extensions: [".js", ".jsx", ".ts", ".tsx", ".vue", ".svg"],
       babelHelpers: "bundled",
     },
   },

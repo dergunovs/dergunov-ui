@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <div class="flex flex-top">
-      <nav class="p-16">
+    <div class="center flex flex-top">
+      <nav class="w-20 pt-32">
         <TheButton design="none" @ui-click="componentCurrent = ''" :active="componentCurrent === ''" class="mb-16">
           Описание
         </TheButton>
@@ -20,33 +20,31 @@
         </TheList>
       </nav>
 
-      <div>
-        <div v-if="!componentCurrent">
-          <section>
-            <h1>Установка в Nuxt.js</h1>
-            <TheList>
-              <li>
-                <b>установить пакет:</b><br />
-                npm i dergunov-ui
-              </li>
-              <li>создать файл ui.js в папке /plugins/</li>
-              <li>
-                <b>внутри ui.js прописать:</b><br />
-                import Vue from "vue";<br />
-                import ui from "dergunov-ui";<br />
-                import "dergunov-ui/dist/assets/styles.css";<br />
-                Vue.use(ui);
-              </li>
-              <li>
-                <b>в nuxt.config.js подключить плагин:</b><br />
-                plugins: [{ src: "~plugins/ui" }],
-              </li>
-            </TheList>
-          </section>
-        </div>
-
-        <div v-else><component :is="componentCurrent" /></div>
+      <div v-if="!componentCurrent" class="w-80">
+        <section>
+          <h1>Установка в Nuxt.js</h1>
+          <TheList>
+            <li>
+              <b>установить пакет:</b><br />
+              npm i dergunov-ui
+            </li>
+            <li>создать файл ui.js в папке /plugins/</li>
+            <li>
+              <b>внутри ui.js прописать:</b><br />
+              import Vue from "vue";<br />
+              import ui from "dergunov-ui";<br />
+              import "dergunov-ui/dist/assets/styles.css";<br />
+              Vue.use(ui);
+            </li>
+            <li>
+              <b>в nuxt.config.js подключить плагин:</b><br />
+              plugins: [{ src: "~plugins/ui" }],
+            </li>
+          </TheList>
+        </section>
       </div>
+
+      <div v-else class="w-80"><component :is="componentCurrent" /></div>
     </div>
   </div>
 </template>

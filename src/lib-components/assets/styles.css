@@ -36,6 +36,11 @@ section {
   margin: 64px 0;
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 h1 {
   font-weight: 700;
   font-size: 36px;
@@ -284,6 +289,48 @@ h3 {
 
 .flex-shrink {
   flex-shrink: 1;
+}
+
+/* Ширина */
+
+.w-100 {
+  width: 100%;
+}
+
+.w-80 {
+  width: 80%;
+}
+
+.w-75 {
+  width: 75%;
+}
+
+.w-66 {
+  width: 66.666%;
+}
+
+.w-60 {
+  width: 60%;
+}
+
+.w-50 {
+  width: 50%;
+}
+
+.w-40 {
+  width: 40%;
+}
+
+.w-33 {
+  width: 33.333%;
+}
+
+.w-25 {
+  width: 25%;
+}
+
+.w-20 {
+  width: 20%;
 }
 
 /* Текст */

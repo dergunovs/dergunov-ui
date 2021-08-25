@@ -4,11 +4,12 @@
       <h1>{{ $options.name }}</h1>
       <p>Встроенные в библиотеку утилитарные и общие классы.</p>
       <p>
-        * - font-family: "font"; box-sizing: border-box; margin: 0; padding: 0; font-weight: 400; font-size: 18px;
-        line-height: 1.5
+        * - font-family:"font"; box-sizing:border-box; margin:0; padding:0; font-weight:400; font-size:18px;
+        line-height:1.5
       </p>
-      <p>section - margin: 64px 0</p>
-      <p>.center - общий класс для выравнивания по центру контента сайта</p>
+      <p>section - margin:64px 0</p>
+      <p>img - max-width:100%, height: auto</p>
+      <p>.center - width:calc(100% - 80px); margin:0 auto; max-width:1600px</p>
     </section>
 
     <section>
@@ -76,6 +77,34 @@
     </section>
 
     <section>
+      <h1>Ширина</h1>
+      <div class="flex mb-16">
+        <div class="bg-gray-light w-20">w-20</div>
+        <div class="bg-gray w-80">w-80</div>
+      </div>
+
+      <div class="flex mb-16">
+        <div class="bg-gray-light w-25">w-25</div>
+        <div class="bg-gray w-75">w-75</div>
+      </div>
+
+      <div class="flex mb-16">
+        <div class="bg-gray-light w-33">w-33</div>
+        <div class="bg-gray w-66">w-66</div>
+      </div>
+
+      <div class="flex mb-16">
+        <div class="bg-gray-light w-40">w-40</div>
+        <div class="bg-gray w-60">w-60</div>
+      </div>
+
+      <div class="flex">
+        <div class="bg-gray-light w-50">w-50</div>
+        <div class="bg-gray w-50">w-50</div>
+      </div>
+    </section>
+
+    <section>
       <h1>Текст</h1>
       <p>Обычный шрифт с font-weight: 400 внутри тега p</p>
       <p><b>Жирный шрифт с font-weight: 700</b></p>
@@ -86,9 +115,9 @@
       <p class="text-small">text-small, font-size: 14px</p>
       <p class="text-medium">text-medium, font-size: 18px</p>
       <p class="text-big">text-big, font-size: 24px</p>
-      <p class="text-underline">text-underline</p>
-      <p class="text-underline-bold">text-underline-bold</p>
-      <a href="#">Ссылка</a>
+      <p><a href="#">Ссылка</a></p>
+      <p><span class="text-underline">text-underline</span></p>
+      <p><span class="text-underline-bold">text-underline-bold</span></p>
     </section>
 
     <section>
