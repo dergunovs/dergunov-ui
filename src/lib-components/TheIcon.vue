@@ -23,7 +23,7 @@
 
     computed: {
       icon: function() {
-        return require("@/lib-components/assets/" + this.title + ".svg");
+        return require(`@/lib-components/assets/${this.title}.svg`);
       },
     },
   };
