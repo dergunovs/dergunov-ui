@@ -1,4 +1,3 @@
-// rollup.config.js
 import fs from "fs";
 import path from "path";
 import vue from "rollup-plugin-vue";
@@ -12,14 +11,12 @@ import minimist from "minimist";
 import styles from "rollup-plugin-styles";
 import images from "rollup-plugin-image-files";
 
-// Get browserslist config and remove ie from es build targets
 const esbrowserslist = fs
   .readFileSync("./.browserslistrc")
   .toString()
   .split("\n")
   .filter((entry) => entry && entry.substring(0, 2) !== "ie");
 
-// Extract babel preset-env config, to combine with esbrowserslist
 const babelPresetEnvConfig = require("../babel.config").presets.filter(
   (entry) => entry[0] === "@babel/preset-env"
 )[0][1];
@@ -31,33 +28,13 @@ const projectRoot = path.resolve(__dirname, "..");
 const baseConfig = {
   input: "src/entry.js",
   plugins: {
-    preVue: [
-      alias({
-        entries: [
-          {
-            find: "@",
-            replacement: `${path.resolve(projectRoot, "src")}`,
-          },
-        ],
-      }),
-    ],
-    replace: {
-      "process.env.NODE_ENV": JSON.stringify("production"),
-      preventAssignment: true,
-    },
-    vue: {
-      css: true,
-      template: { isProduction: true },
-    },
+    preVue: [alias({ entries: [{ find: "@", replacement: `${path.resolve(projectRoot, "src")}` }] })],
+    replace: { "process.env.NODE_ENV": JSON.stringify("production"), preventAssignment: true },
+    vue: { css: true, template: { isProduction: true } },
     postVue: [
-      resolve({
-        extensions: [".js", ".jsx", ".ts", ".tsx", ".vue"],
-      }),
+      resolve({ extensions: [".js", ".jsx", ".ts", ".tsx", ".vue"] }),
       commonjs(),
-      styles({
-        mode: ["extract", "styles.css"],
-        minimize: process.env.NODE_ENV === "production",
-      }),
+      styles({ mode: ["extract", "styles.css"], minimize: process.env.NODE_ENV === "production" }),
       images(),
     ],
     babel: {
@@ -68,23 +45,9 @@ const baseConfig = {
   },
 };
 
-// ESM/UMD/IIFE shared settings: externals
-// Refer to https://rollupjs.org/guide/en/#warning-treating-module-as-external-dependency
-const external = [
-  // list external dependencies, exactly the way it is written in the import statement.
-  // eg. 'jquery'
-  "vue",
-];
+const external = ["vue"];
+const globals = { vue: "Vue" };
 
-// UMD/IIFE shared settings: output.globals
-// Refer to https://rollupjs.org/guide/en#output-globals for details
-const globals = {
-  // Provide global variable names to replace your external imports
-  // eg. jquery: '$'
-  vue: "Vue",
-};
-
-// Customize configs for individual targets
 const buildFormats = [];
 if (!argv.format || argv.format === "es") {
   const esConfig = {
@@ -104,15 +67,7 @@ if (!argv.format || argv.format === "es") {
       ...baseConfig.plugins.postVue,
       babel({
         ...baseConfig.plugins.babel,
-        presets: [
-          [
-            "@babel/preset-env",
-            {
-              ...babelPresetEnvConfig,
-              targets: esbrowserslist,
-            },
-          ],
-        ],
+        presets: [["@babel/preset-env", { ...babelPresetEnvConfig, targets: esbrowserslist }]],
       }),
     ],
   };
@@ -137,10 +92,7 @@ if (!argv.format || argv.format === "cjs") {
       ...baseConfig.plugins.preVue,
       vue({
         ...baseConfig.plugins.vue,
-        template: {
-          ...baseConfig.plugins.vue.template,
-          optimizeSSR: true,
-        },
+        template: { ...baseConfig.plugins.vue.template, optimizeSSR: true },
       }),
       ...baseConfig.plugins.postVue,
       babel(baseConfig.plugins.babel),
@@ -168,15 +120,10 @@ if (!argv.format || argv.format === "iife") {
       vue(baseConfig.plugins.vue),
       ...baseConfig.plugins.postVue,
       babel(baseConfig.plugins.babel),
-      terser({
-        output: {
-          ecma: 5,
-        },
-      }),
+      terser({ output: { ecma: 5 } }),
     ],
   };
   buildFormats.push(unpkgConfig);
 }
 
-// Export config
 export default buildFormats;
