@@ -382,7 +382,7 @@ a:hover {
   color: var(--color-primary-dark);
 }
 
-/* Фон и границы */
+/* Фон, границы, прозрачность */
 
 .bg-primary {
   background-color: var(--color-primary);
@@ -466,4 +466,20 @@ a:hover {
 
 .color-white {
   color: var(--color-white);
+}
+
+.opacity-0 {
+  opacity: 0;
+}
+
+.opacity-25 {
+  opacity: 0.25;
+}
+
+.opacity-50 {
+  opacity: 0.5;
+}
+
+.opacity-100 {
+  opacity: 1;
 }

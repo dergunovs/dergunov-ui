@@ -121,10 +121,14 @@
     </section>
 
     <section>
-      <h1>Фон и границы</h1>
+      <h1>Фон, границы, прозрачность</h1>
       <p>background-color: <span class="bg-primary">bg-primary</span></p>
       <p>border: <span class="border-gray">border-gray</span></p>
       <p>color: <span class="color-gray-light">color-gray-light</span></p>
+      <p>
+        opacity: <span class="opacity-100">opacity-100</span>, <span class="opacity-50">opacity-50</span>,
+        <span class="opacity-25">opacity-25</span>, <span class="opacity-0">opacity-0</span> - тут есть opacity-0
+      </p>
     </section>
   </div>
 </template>

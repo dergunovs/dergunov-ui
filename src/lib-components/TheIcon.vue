@@ -1,8 +1,8 @@
 <template>
   <img
     :src="$options.components[title]"
-    class="icon"
-    :class="[`icon-size-${size}`, `icon-type-${type}`]"
+    class="ui-icon"
+    :class="[`ui-icon-size-${size}`, `ui-icon-type-${type}`]"
     :alt="title"
   />
 </template>
@@ -29,7 +29,35 @@
 </script>
 
 <style>
-  .icon {
+  .ui-icon {
     display: inline-block;
+    width: 32px;
+    height: 32px;
+  }
+
+  .ui-icon-size-small {
+    width: 16px;
+    height: 16px;
+  }
+
+  .ui-icon-size-big {
+    width: 48px;
+    height: 48px;
+  }
+
+  .ui-icon-type-round {
+    width: 48px;
+    height: 48px;
+    background-color: var(--color-gray-light);
+    padding: 8px;
+    border-radius: 50%;
+  }
+
+  .ui-icon-type-round:hover {
+    background-color: var(--color-primary);
+  }
+
+  .ui-icon-type-inverted {
+    filter: invert(1);
   }
 </style>

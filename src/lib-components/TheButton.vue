@@ -1,7 +1,7 @@
 <template>
   <button
-    class="button"
-    :class="[`button-fit-${fit}`, `button-design-${design}`, `button-active-${active}`]"
+    class="ui-button"
+    :class="[`ui-button-fit-${fit}`, `ui-button-design-${design}`, `ui-button-active-${active}`]"
     @click="$emit('ui-click')"
   >
     <slot></slot>
@@ -21,7 +21,7 @@
 </script>
 
 <style>
-  .button {
+  .ui-button {
     display: flex;
     text-decoration: none;
     cursor: pointer;
@@ -33,29 +33,29 @@
     transition-duration: 300ms;
   }
 
-  .button-fit-grow {
+  .ui-button-fit-grow {
     width: 100%;
   }
 
-  .button-design-regular:hover {
+  .ui-button-design-regular:hover {
     background-color: var(--color-primary-dark);
   }
 
-  .button-design-regular.button-active-true {
+  .ui-button-design-regular.button-active-true {
     background-color: var(--color-primary-dark);
   }
 
-  .button-design-none {
+  .ui-button-design-none {
     background: none;
     color: var(--color-black);
     padding: 0;
   }
 
-  .button-design-none:hover {
+  .ui-button-design-none:hover {
     text-decoration: underline;
   }
 
-  .button-design-none.button-active-true {
+  .ui-button-design-none.button-active-true {
     text-decoration: underline;
   }
 </style>
