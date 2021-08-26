@@ -13,6 +13,8 @@
       <div class="mb-16"><TheButton design="none">design: none</TheButton></div>
       <div class="mb-16"><TheButton design="none" active>design: none, active: true</TheButton></div>
 
+      <TheButton><TheIcon title="download" type="inverted" class="mr-8" />TheIcon внутри TheButton</TheButton>
+
       <h2>Actions</h2>
       <div>
         @ui-click: <TheButton @ui-click="TheButtonClick">clicks: {{ clickCount }}</TheButton>
@@ -23,6 +25,7 @@
 
 <script>
   import TheButton from "@/lib-components/TheButton.vue";
+  import TheIcon from "@/lib-components/TheIcon.vue";
 
   export default {
     name: "Button",
@@ -33,7 +36,7 @@
       };
     },
 
-    components: { TheButton },
+    components: { TheButton, TheIcon },
 
     methods: {
       TheButtonClick() {

@@ -23,6 +23,7 @@
 <style>
   .ui-button {
     display: flex;
+    align-items: center;
     text-decoration: none;
     cursor: pointer;
     background-color: var(--color-primary);
@@ -41,7 +42,7 @@
     background-color: var(--color-primary-dark);
   }
 
-  .ui-button-design-regular.button-active-true {
+  .ui-button-design-regular.ui-button-active-true {
     background-color: var(--color-primary-dark);
   }
 
@@ -55,7 +56,7 @@
     text-decoration: underline;
   }
 
-  .ui-button-design-none.button-active-true {
+  .ui-button-design-none.ui-button-active-true {
     text-decoration: underline;
   }
 </style>
