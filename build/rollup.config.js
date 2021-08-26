@@ -80,11 +80,13 @@ if (!argv.format || argv.format === "cjs") {
     external,
     output: {
       compact: true,
-      file: "dist/dergunov-ui.ssr.js",
+      dir: "dist/",
       format: "cjs",
       name: "DergunovUi",
       exports: "auto",
       assetFileNames: "assets/[name].[ext]",
+      preserveModules: true,
+      exports: "named",
       globals,
     },
     plugins: [
