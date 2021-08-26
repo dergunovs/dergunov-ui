@@ -3,6 +3,7 @@
   "version": "0.0.17-2",
   "description": "test ui-kit",
   "main": "dist/dergunov-ui.ssr.js",
+  "style": "dist/css/styles.css",
   "browser": "dist/dergunov-ui.esm.js",
   "module": "dist/dergunov-ui.esm.js",
   "unpkg": "dist/dergunov-ui.min.js",
