@@ -55,10 +55,12 @@ if (!argv.format || argv.format === "es") {
     input: "src/entry.esm.js",
     external,
     output: {
-      file: "dist/dergunov-ui.esm.js",
+      dir: "./dist",
       format: "esm",
       exports: "named",
       assetFileNames: "assets/[name].[ext]",
+      preserveModules: true,
+      exports: "named",
     },
     plugins: [
       replace(baseConfig.plugins.replace),
@@ -80,7 +82,7 @@ if (!argv.format || argv.format === "cjs") {
     external,
     output: {
       compact: true,
-      dir: "dist/",
+      dir: "./dist/cjs/",
       format: "cjs",
       name: "DergunovUi",
       exports: "auto",
