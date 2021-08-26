@@ -1,4 +1,4 @@
-## Установка в Nuxt.js
+## Глобальная установка в Nuxt.js
 
 1. Установить пакет:
 
@@ -13,12 +13,22 @@ npm i dergunov-ui
 ```sh
 import Vue from "vue";
 import ui from "dergunov-ui";
-import "dergunov-ui/dist/assets/styles.css";
+
 Vue.use(ui);
 ```
 
 4. В nuxt.config.js подключить плагин:
 
 ```sh
-plugins: [{ src: "~plugins/ui" }]
+plugins: [ { src: "~plugins/ui" } ]
+```
+
+```sh
+build: { transpile: ["dergunov-ui"] }
+```
+
+5. Подключить общие стили и утилитарные классы в самом начале вашего css файла:
+
+```sh
+@import "dergunov-ui";
 ```
