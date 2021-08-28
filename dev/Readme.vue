@@ -1,6 +1,6 @@
 <template>
   <section>
-    <h1>Установка в Nuxt.js</h1>
+    <h1>Глобальная установка в Nuxt.js</h1>
     <TheList>
       <li>Установить пакет:</li>
       <pre>npm i dergunov-ui</pre>
