@@ -2,7 +2,7 @@
   <div>
     <section>
       <h1>{{ $options.name }}</h1>
-      <p><b>name:</b> download, facebook, instagram, view, vk, youtube</p>
+      <p><b>title:</b> download, facebook, instagram, view, vk, youtube</p>
       <p><b>size:</b> small, medium, big, default: <b>medium</b></p>
       <p class="mb-32"><b>type:</b> regular, round, inverted: <b>regular</b></p>
 
@@ -38,12 +38,6 @@
 
   export default {
     name: "Icon",
-
-    data() {
-      return {
-        clickCount: 0,
-      };
-    },
 
     components: { TheIcon },
   };

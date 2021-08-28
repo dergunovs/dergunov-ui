@@ -2,14 +2,20 @@
   <div>
     <section>
       <h1>{{ $options.name }}</h1>
-      <p>Встроенные в библиотеку утилитарные и общие классы.</p>
-      <p>
-        * - font-family:"font"; box-sizing:border-box; margin:0; padding:0; font-weight:400; font-size:18px;
-        line-height:1.5
+      <p>Встроенные в библиотеку утилитарные классы и общие стили. Работают после импорта внутри вашего CSS файла:
+<pre>@import "dergunov-ui";</pre>
       </p>
-      <p>section - margin:64px 0</p>
-      <p>img - max-width:100%, height: auto</p>
-      <p>.center - width:calc(100% - 80px); margin:0 auto; max-width:1600px</p>
+      <p>
+        * { font-family: "font"; box-sizing: border-box; margin: 0; padding: 0; font-weight: 400; font-size: 18px;
+        line-height: 1.5 }
+      </p>
+      <p>section { margin: 64px 0 }</p>
+      <p>img { max-width: 100%, height: auto}</p>
+      <p>
+        pre { background-color: var(--color-gray-light); border-radius: 8px; padding: 4px 8px; white-space:
+        break-spaces; overflow-x: auto; }
+      </p>
+      <p>.center {width: calc(100% - 80px); margin: 0 auto; max-width: 1600px }</p>
     </section>
 
     <section>
@@ -50,6 +56,22 @@
         <div class="border-gray-light p-8">flex + flex-center</div>
         <div class="border-gray-light p-8">flex + flex-center</div>
         <div class="border-gray-light p-8">flex + flex-center</div>
+      </div>
+
+      <div class="flex flex-left mb-16">
+        <div class="border-gray-light p-8">flex + flex-left</div>
+      </div>
+
+      <div class="flex flex-right mb-16">
+        <div class="border-gray-light p-8">flex + flex-right</div>
+      </div>
+
+      <div class="flex flex-top mb-16">
+        <div class="border-gray-light p-8">flex + flex-top</div>
+      </div>
+
+      <div class="flex flex-bottom mb-16">
+        <div class="border-gray-light p-8">flex + flex-bottom</div>
       </div>
 
       <div class="flex flex-sb mb-16">
@@ -111,11 +133,14 @@
       <h1>Заголовок H1</h1>
       <h2>Заголовок H2</h2>
       <h3>Заголовок H3</h3>
+      <p class="text-left">text-left</p>
       <p class="text-center">text-center</p>
+      <p class="text-right">text-right</p>
       <p class="text-small">text-small, font-size: 14px</p>
       <p class="text-medium">text-medium, font-size: 18px</p>
       <p class="text-big">text-big, font-size: 24px</p>
       <p><a href="#">Ссылка</a></p>
+      <p><span class="text-line">text-line</span></p>
       <p><span class="text-underline">text-underline</span></p>
       <p><span class="text-underline-bold">text-underline-bold</span></p>
     </section>
@@ -135,6 +160,6 @@
 
 <script>
   export default {
-    name: "Class",
+    name: "CSS",
   };
 </script>

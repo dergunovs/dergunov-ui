@@ -2,19 +2,33 @@
 
 @font-face {
   font-family: "font";
-  src: url("4.woff2") format("woff2");
+  src: url("400.woff2") format("woff2");
   font-weight: 400;
   font-display: swap;
 }
 
 @font-face {
   font-family: "font";
-  src: url("7.woff2") format("woff2");
+  src: url("700.woff2") format("woff2");
   font-weight: 700;
   font-display: swap;
 }
 
-/* Общие классы */
+/* Цвет */
+
+:root {
+  --color-primary: #ff5050;
+  --color-primary-dark: #ed0d0d;
+  --color-primary-light: #db9090;
+
+  --color-black: #000;
+  --color-gray-dark: #444;
+  --color-gray: #888;
+  --color-gray-light: #ddd;
+  --color-white: #fff;
+}
+
+/* Общие стили */
 
 * {
   font-family: "font";
@@ -41,6 +55,14 @@ img {
   height: auto;
 }
 
+pre {
+  background-color: var(--color-gray-light);
+  border-radius: 8px;
+  padding: 4px 8px;
+  white-space: break-spaces;
+  overflow-x: auto;
+}
+
 h1 {
   font-weight: 700;
   font-size: 36px;
@@ -60,20 +82,6 @@ h3 {
   font-size: 24px;
   text-align: left;
   margin: 24px 0;
-}
-
-/* Цвет */
-
-:root {
-  --color-primary: #ff5050;
-  --color-primary-dark: #ed0d0d;
-  --color-primary-light: #db9090;
-
-  --color-black: #000;
-  --color-gray-dark: #444;
-  --color-gray: #888;
-  --color-gray-light: #ddd;
-  --color-white: #fff;
 }
 
 /* Отступы */
@@ -250,8 +258,20 @@ h3 {
   justify-content: center;
 }
 
+.flex-left {
+  justify-content: flex-start;
+}
+
+.flex-right {
+  justify-content: flex-end;
+}
+
 .flex-top {
   align-items: flex-start;
+}
+
+.flex-bottom {
+  align-items: flex-end;
 }
 
 .flex-sb {
@@ -351,6 +371,14 @@ strong {
   text-align: center;
 }
 
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
 .text-small {
   font-size: 14px;
 }
@@ -361,6 +389,10 @@ strong {
 
 .text-big {
   font-size: 24px;
+}
+
+.text-line {
+  text-decoration: line-through;
 }
 
 .text-underline {
