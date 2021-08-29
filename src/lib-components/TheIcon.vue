@@ -1,6 +1,6 @@
 <template>
   <img
-    :src="$options.components[title]"
+    :src="src ? src : $options.components[title]"
     class="ui-icon"
     :class="[`ui-icon-size-${size}`, `ui-icon-type-${type}`]"
     :alt="alt ? alt : title"
