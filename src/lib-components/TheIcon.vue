@@ -22,10 +22,11 @@
     components: { download, facebook, instagram, count, vk, youtube },
 
     props: {
-      title: { type: String, required: true },
+      title: { type: String, default: "download" },
       size: { type: String, default: "medium" },
       type: { type: String, default: "regular" },
       alt: { type: String },
+      src: { type: String },
     },
   };
 </script>
