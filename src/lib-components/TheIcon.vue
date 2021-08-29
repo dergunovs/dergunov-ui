@@ -9,6 +9,7 @@
 </template>
 
 <script>
+  import copy from "@/lib-components/assets/icons/copy.svg";
   import download from "@/lib-components/assets/icons/download.svg";
   import facebook from "@/lib-components/assets/icons/facebook.svg";
   import instagram from "@/lib-components/assets/icons/instagram.svg";
@@ -19,7 +20,7 @@
   export default {
     name: "TheIcon",
 
-    components: { download, facebook, instagram, count, vk, youtube },
+    components: { copy, download, facebook, instagram, count, vk, youtube },
 
     props: {
       title: { type: String, default: "download" },
