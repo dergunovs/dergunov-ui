@@ -2,6 +2,7 @@
   <div>
     <section>
       <h1>{{ $options.name }}</h1>
+
       <p><b>fit:</b> regular, grow. default: <b>regular</b></p>
       <p><b>design:</b> regular, none. default: <b>regular</b></p>
       <p class="mb-16"><b>active:</b> true, false. default: <b>false</b></p>

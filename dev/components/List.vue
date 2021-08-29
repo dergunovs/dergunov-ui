@@ -2,6 +2,7 @@
   <div>
     <section>
       <h1>{{ $options.name }}</h1>
+
       <p><b>type:</b> ul, ol. default: <b>ul</b></p>
       <p><b>direction:</b> vertical, horizontal. default: <b>vertical</b></p>
       <p><b>design:</b> regular, none, styled. default: <b>regular</b></p>

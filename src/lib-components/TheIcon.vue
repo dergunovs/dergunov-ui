@@ -3,7 +3,8 @@
     :src="$options.components[title]"
     class="ui-icon"
     :class="[`ui-icon-size-${size}`, `ui-icon-type-${type}`]"
-    :alt="title"
+    :alt="alt ? alt : title"
+    loading="lazy"
   />
 </template>
 
@@ -24,6 +25,7 @@
       title: { type: String, required: true },
       size: { type: String, default: "medium" },
       type: { type: String, default: "regular" },
+      alt: { type: String },
     },
   };
 </script>

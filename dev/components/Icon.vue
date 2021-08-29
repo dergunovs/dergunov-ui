@@ -2,12 +2,14 @@
   <div>
     <section>
       <h1>{{ $options.name }}</h1>
+
       <p><b>title:</b> download, facebook, instagram, view, vk, youtube</p>
       <p><b>size:</b> small, medium, big, default: <b>medium</b></p>
-      <p class="mb-32"><b>type:</b> regular, round, inverted: <b>regular</b></p>
+      <p><b>type:</b> regular, round, inverted: <b>regular</b></p>
+      <p class="mb-16"><b>alt:</b> если не используется, что подставляется title</p>
 
       <div class="flex mb-16">
-        <div class="flex mr-16"><TheIcon title="download" />download</div>
+        <div class="flex mr-16"><TheIcon title="download" alt="Загрузка" />download</div>
         <div class="flex mr-16"><TheIcon title="facebook" />facebook</div>
         <div class="flex mr-16"><TheIcon title="instagram" />instagram</div>
         <div class="flex mr-16"><TheIcon title="count" />count</div>
