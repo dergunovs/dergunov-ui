@@ -3,28 +3,32 @@
     <h1>Глобальная установка в Nuxt.js</h1>
     <TheList>
       <li>Установить пакет:</li>
-      <pre>npm i dergunov-ui</pre>
+      <TheCode>npm i dergunov-ui</TheCode>
 
       <li>Создать файл ui.js в папке /plugins/</li>
 
       <li>Внутри ui.js прописать:</li>
-      <pre>
+      <TheCode>
+        <pre>
 import Vue from "vue";
 import ui from "dergunov-ui";
 Vue.use(ui);</pre
-      >
+        >
+      </TheCode>
 
       <li>В nuxt.config.js подключить плагин:</li>
-      <pre>
-plugins: [ { src: "~plugins/ui" } ]
+      <TheCode>
+        <pre>
+plugins: [ { src: "~plugins/ui" } ],
 build: { transpile: ["dergunov-ui"] }</pre
-      >
+        >
+      </TheCode>
 
       <h2>CSS</h2>
       <p>
         Опционально можно подключить общие стили и утилитарные классы. В самом начале вашего css файла допишите:
       </p>
-      <pre>@import "dergunov-ui";</pre>
+      <TheCode>@import "dergunov-ui";</TheCode>
       <p>
         Внутри компонентов данные стили не используются, то есть подключать css из библиотеки компонентов не
         обязательно.
@@ -34,7 +38,8 @@ build: { transpile: ["dergunov-ui"] }</pre
         значения по-умолчанию.
       </p>
 
-      <pre>
+      <TheCode>
+        <pre>
 :root {
 --color-primary: #ff5050;
 --color-primary-dark: #ed0d0d;
@@ -46,7 +51,8 @@ build: { transpile: ["dergunov-ui"] }</pre
 --color-gray-light: #ddd;
 --color-white: #fff;
 }</pre
-      >
+        >
+      </TheCode>
     </TheList>
   </section>
 </template>

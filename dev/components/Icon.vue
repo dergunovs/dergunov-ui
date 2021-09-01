@@ -7,7 +7,10 @@
       <p><b>size:</b> small, medium, big, default: <b>medium</b></p>
       <p><b>type:</b> regular, round, inverted: <b>regular</b></p>
       <p><b>alt:</b> если не используется, что подставляется title</p>
-      <p class="mb-16"><b>src:</b> для подключения внешних изображений</p>
+      <p class="mb-16">
+        <b>src:</b> для подключения внешних изображений, например
+        <TheIcon src="https://dergunov.com/uploads/service/1618085014591-sozdanie-saitov.svg" size="small" />
+      </p>
 
       <div class="flex mb-16">
         <div class="flex mr-16"><TheIcon title="copy" />copy</div>
@@ -16,12 +19,8 @@
         <div class="flex mr-16"><TheIcon title="instagram" />instagram</div>
         <div class="flex mr-16"><TheIcon title="count" />count</div>
         <div class="flex mr-16"><TheIcon title="vk" />vk</div>
-        <div class="flex">
-          <TheIcon
-            title="youtube"
-            src="https://dergunov.com/uploads/service/1618085014591-sozdanie-saitov.svg"
-          />youtube
-        </div>
+        <div class="flex mr-16"><TheIcon title="youtube" />youtube</div>
+        <div class="flex"></div>
       </div>
 
       <div class="flex mb-8">

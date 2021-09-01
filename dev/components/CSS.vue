@@ -12,10 +12,6 @@
       </p>
       <p>section { margin: 64px 0 }</p>
       <p>img { max-width: 100%, height: auto}</p>
-      <p>
-        pre { background-color: var(--color-gray-light); border-radius: 8px; padding: 4px 8px; white-space:
-        break-spaces; overflow-x: auto; }
-      </p>
       <p>.center {width: calc(100% - 80px); margin: 0 auto; max-width: 1600px }</p>
     </section>
 
