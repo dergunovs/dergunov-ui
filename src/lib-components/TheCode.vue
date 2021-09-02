@@ -6,6 +6,7 @@
         <img
           :src="$options.components.copy"
           class="ui-image"
+          :class="{ 'ui-image-copy': copied }"
           alt="Копировать код"
           title="Копировать код"
           loading="lazy"
@@ -19,21 +20,36 @@
 
 <script>
   import copy from "@/lib-components/assets/icons/copy.svg";
-  import Button from "../../dev/components/Button.vue";
 
   export default {
     name: "TheCode",
+
+    data() {
+      return {
+        copied: false,
+      };
+    },
 
     components: { copy },
 
     methods: {
       copyToClipboard() {
         navigator.clipboard.writeText(this.$refs.code.textContent);
+        this.copied = true;
+        setTimeout(() => {
+          this.copied = false;
+        }, 200);
       },
     },
-  };
 
-  Button;
+    mounted() {
+      this.$refs.code.innerHTML = this.$refs.code.innerHTML
+        .replaceAll("<pre>", "")
+        .replaceAll("</pre>", "")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;");
+    },
+  };
 </script>
 
 <style>
@@ -59,9 +75,15 @@
     opacity: 0.5;
     transition-duration: 300ms;
     display: block;
+    padding: 2px;
+    border: 1px solid transparent;
+    border-radius: 4px;
   }
   .ui-image:hover {
     opacity: 1;
+  }
+  .ui-image-copy {
+    border: 1px solid var(--color-gray-dark);
   }
   .ui-code {
     white-space: break-spaces;

@@ -17,12 +17,8 @@ Vue.use(ui);</pre
       </TheCode>
 
       <li>В nuxt.config.js подключить плагин:</li>
-      <TheCode>
-        <pre>
-plugins: [ { src: "~plugins/ui" } ],
-build: { transpile: ["dergunov-ui"] }</pre
-        >
-      </TheCode>
+      <TheCode>plugins: [ { src: "~plugins/ui" } ]</TheCode>
+      <TheCode>build: { transpile: ["dergunov-ui"] }</TheCode>
 
       <h2>CSS</h2>
       <p>
@@ -41,15 +37,15 @@ build: { transpile: ["dergunov-ui"] }</pre
       <TheCode>
         <pre>
 :root {
---color-primary: #ff5050;
---color-primary-dark: #ed0d0d;
---color-primary-light: #db9090;
+  --color-primary: #ff5050;
+  --color-primary-dark: #ed0d0d;
+  --color-primary-light: #db9090;
 
---color-black: #000;
---color-gray-dark: #444;
---color-gray: #888;
---color-gray-light: #ddd;
---color-white: #fff;
+  --color-black: #000;
+  --color-gray-dark: #444;
+  --color-gray: #888;
+  --color-gray-light: #ddd;
+  --color-white: #fff;
 }</pre
         >
       </TheCode>
