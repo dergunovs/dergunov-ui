@@ -42,11 +42,7 @@
 </template>
 
 <script>
-  import TheIcon from "@/lib-components/TheIcon.vue";
-
   export default {
     name: "Icon",
-
-    components: { TheIcon },
   };
 </script>

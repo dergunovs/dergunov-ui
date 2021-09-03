@@ -25,9 +25,6 @@
 </template>
 
 <script>
-  import TheButton from "@/lib-components/TheButton.vue";
-  import TheIcon from "@/lib-components/TheIcon.vue";
-
   export default {
     name: "Button",
 
@@ -36,8 +33,6 @@
         clickCount: 0,
       };
     },
-
-    components: { TheButton, TheIcon },
 
     methods: {
       TheButtonClick() {

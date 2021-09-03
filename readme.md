@@ -47,7 +47,7 @@ build: { transpile: ["dergunov-ui"] }
 
 --color-black: #000;
 --color-gray-dark: #333;
---color-gray: #999;
+--color-gray: #ccc;
 --color-gray-light: #eee;
 --color-white: #fff;
 }

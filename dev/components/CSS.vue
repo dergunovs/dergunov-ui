@@ -12,7 +12,7 @@
       </p>
       <p>section { margin: 64px 0 }</p>
       <p>img { max-width: 100%, height: auto}</p>
-      <p>.center {width: calc(100% - 80px); margin: 0 auto; max-width: 1600px }</p>
+      <p>.center {width: calc(100% - 120px); margin: 0 auto; max-width: 1600px }</p>
     </section>
 
     <section>
@@ -44,54 +44,54 @@
     <section>
       <h1>Блоки</h1>
       <div class="flex mb-16">
-        <div class="border-gray-light p-8">flex</div>
-        <div class="border-gray-light p-8">flex</div>
-        <div class="border-gray-light p-8">flex</div>
+        <div class="border-gray p-8">flex</div>
+        <div class="border-gray p-8">flex</div>
+        <div class="border-gray p-8">flex</div>
       </div>
 
       <div class="flex flex-center mb-16">
-        <div class="border-gray-light p-8">flex + flex-center</div>
-        <div class="border-gray-light p-8">flex + flex-center</div>
-        <div class="border-gray-light p-8">flex + flex-center</div>
+        <div class="border-gray p-8">flex + flex-center</div>
+        <div class="border-gray p-8">flex + flex-center</div>
+        <div class="border-gray p-8">flex + flex-center</div>
       </div>
 
       <div class="flex flex-left mb-16">
-        <div class="border-gray-light p-8">flex + flex-left</div>
+        <div class="border-gray p-8">flex + flex-left</div>
       </div>
 
       <div class="flex flex-right mb-16">
-        <div class="border-gray-light p-8">flex + flex-right</div>
+        <div class="border-gray p-8">flex + flex-right</div>
       </div>
 
       <div class="flex flex-top mb-16">
-        <div class="border-gray-light p-8">flex + flex-top</div>
+        <div class="border-gray p-8">flex + flex-top</div>
       </div>
 
       <div class="flex flex-bottom mb-16">
-        <div class="border-gray-light p-8">flex + flex-bottom</div>
+        <div class="border-gray p-8">flex + flex-bottom</div>
       </div>
 
       <div class="flex flex-sb mb-16">
-        <div class="border-gray-light p-8">flex + flex-sb</div>
-        <div class="border-gray-light p-8">flex + flex-sb</div>
-        <div class="border-gray-light p-8">flex + flex-sb</div>
+        <div class="border-gray p-8">flex + flex-sb</div>
+        <div class="border-gray p-8">flex + flex-sb</div>
+        <div class="border-gray p-8">flex + flex-sb</div>
       </div>
 
       <div class="flex flex-se mb-16">
-        <div class="border-gray-light p-8">flex + flex-se</div>
-        <div class="border-gray-light p-8">flex + flex-se</div>
-        <div class="border-gray-light p-8">flex + flex-se</div>
+        <div class="border-gray p-8">flex + flex-se</div>
+        <div class="border-gray p-8">flex + flex-se</div>
+        <div class="border-gray p-8">flex + flex-se</div>
       </div>
 
       <div class="flex flex-column mb-16">
-        <div class="border-gray-light p-8">flex + column</div>
-        <div class="border-gray-light p-8">flex + column</div>
-        <div class="border-gray-light p-8">flex + column</div>
+        <div class="border-gray p-8">flex + column</div>
+        <div class="border-gray p-8">flex + column</div>
+        <div class="border-gray p-8">flex + column</div>
       </div>
 
       <div class="flex">
-        <div class="flex-grow border-gray-light p-8">flex grow</div>
-        <div class="flex-shrink border-gray-light p-8">flex-shrink</div>
+        <div class="flex-grow border-gray p-8">flex grow</div>
+        <div class="flex-shrink border-gray p-8">flex-shrink</div>
       </div>
     </section>
 

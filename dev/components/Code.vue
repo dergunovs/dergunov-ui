@@ -21,11 +21,7 @@
 </template>
 
 <script>
-  import TheCode from "@/lib-components/TheCode.vue";
-
   export default {
     name: "Code",
-
-    components: { TheCode },
   };
 </script>

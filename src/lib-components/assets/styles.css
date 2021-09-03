@@ -23,7 +23,7 @@
 
   --color-black: #000;
   --color-gray-dark: #333;
-  --color-gray: #999;
+  --color-gray: #ccc;
   --color-gray-light: #eee;
   --color-white: #fff;
 }
@@ -41,7 +41,7 @@
 }
 
 .center {
-  width: calc(100% - 80px);
+  width: calc(100% - 120px);
   margin: 0 auto;
   max-width: 1600px;
 }

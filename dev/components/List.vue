@@ -20,9 +20,9 @@
       </TheList>
 
       <TheList type="ul" direction="horizontal" design="none">
-        <li class="border-gray-light">ul, horizontal, none + border-gray-light</li>
-        <li class="border-gray-light">ul, horizontal, none + border-gray-light</li>
-        <li class="border-gray-light">ul, horizontal, none + border-gray-light</li>
+        <li class="border-gray">ul, horizontal, none + border-gray</li>
+        <li class="border-gray">ul, horizontal, none + border-gray</li>
+        <li class="border-gray">ul, horizontal, none + border-gray</li>
       </TheList>
 
       <TheList type="ul" direction="vertical" design="styled">
@@ -47,11 +47,7 @@
 </template>
 
 <script>
-  import TheList from "@/lib-components/TheList.vue";
-
   export default {
     name: "List",
-
-    components: { TheList },
   };
 </script>

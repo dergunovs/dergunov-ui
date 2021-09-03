@@ -42,9 +42,9 @@ Vue.use(ui);</pre
   --color-primary-light: #db9090;
 
   --color-black: #000;
-  --color-gray-dark: #444;
-  --color-gray: #888;
-  --color-gray-light: #ddd;
+  --color-gray-dark: #333;
+  --color-gray: #ccc;
+  --color-gray-light: #eee;
   --color-white: #fff;
 }</pre
         >
