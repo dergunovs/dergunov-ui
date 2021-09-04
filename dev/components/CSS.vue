@@ -49,6 +49,24 @@
         <div class="border-gray p-8">flex</div>
       </div>
 
+      <div class="flex flex-wrap mb-32">
+        <div class="border-gray w-50 p-8">flex + flex-wrap</div>
+        <div class="border-gray w-50 p-8">flex + flex-wrap</div>
+        <div class="border-gray w-50 p-8">flex + flex-wrap</div>
+      </div>
+
+      <div class="flex flex-wrap gap-16 mb-32">
+        <div class="border-gray w-50 p-8">flex + flex-wrap + gap-16</div>
+        <div class="border-gray w-50 p-8">flex + flex-wrap + gap-16</div>
+        <div class="border-gray w-50 p-8">flex + flex-wrap + gap-16</div>
+      </div>
+
+      <div class="flex flex-wrap gap-32 mb-16">
+        <div class="border-gray w-50 p-8">flex + flex-wrap + gap-32</div>
+        <div class="border-gray w-50 p-8">flex + flex-wrap + gap-32</div>
+        <div class="border-gray w-50 p-8">flex + flex-wrap + gap-32</div>
+      </div>
+
       <div class="flex flex-center mb-16">
         <div class="border-gray p-8">flex + flex-center</div>
         <div class="border-gray p-8">flex + flex-center</div>
@@ -97,6 +115,7 @@
 
     <section>
       <h1>Ширина</h1>
+
       <div class="flex mb-16">
         <div class="bg-gray-light w-20">w-20</div>
         <div class="bg-gray w-80">w-80</div>
@@ -117,10 +136,12 @@
         <div class="bg-gray w-60">w-60</div>
       </div>
 
-      <div class="flex">
+      <div class="flex mb-16">
         <div class="bg-gray-light w-50">w-50</div>
-        <div class="bg-gray w-50">w-50</div>
+        <div class="bg-gray w-50-32">w-50-32</div>
       </div>
+
+      <p>Можно вычесть 16 или 32 пикселей из каждой ширины, например w-50-16 или w25-32.</p>
     </section>
 
     <section>
@@ -137,7 +158,9 @@
       <p class="text-medium">text-medium, font-size: 18px</p>
       <p class="text-big">text-big, font-size: 24px</p>
       <p><a href="#">Ссылка</a></p>
+      <p><a href="#" class="no-hover-color">Ссылка + no-hover-color</a></p>
       <p><span class="text-line">text-line</span></p>
+      <p><span class="text-no-line">text-no-line</span></p>
       <p><span class="text-underline">text-underline</span></p>
       <p><span class="text-underline-bold">text-underline-bold</span></p>
     </section>

@@ -246,6 +246,10 @@ h3 {
   justify-content: flex-start;
 }
 
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
 .flex-center {
   justify-content: center;
 }
@@ -303,6 +307,14 @@ h3 {
   flex-shrink: 1;
 }
 
+.gap-32 {
+  gap: 32px;
+}
+
+.gap-16 {
+  gap: 16px;
+}
+
 /* Ширина */
 
 .w-100 {
@@ -345,6 +357,86 @@ h3 {
   width: 20%;
 }
 
+.w-100-16 {
+  width: calc(100% - 16px);
+}
+
+.w-80-16 {
+  width: calc(80% - 16px);
+}
+
+.w-75-16 {
+  width: calc(75% - 16px);
+}
+
+.w-66-16 {
+  width: calc(66.666% - 16px);
+}
+
+.w-60-16 {
+  width: calc(60% - 16px);
+}
+
+.w-50-16 {
+  width: calc(50% - 16px);
+}
+
+.w-40-16 {
+  width: calc(40% - 16px);
+}
+
+.w-33-16 {
+  width: calc(33.333% - 16px);
+}
+
+.w-25-16 {
+  width: calc(25% - 16px);
+}
+
+.w-20-16 {
+  width: calc(20% - 16px);
+}
+
+.w-100-32 {
+  width: calc(100% - 32px);
+}
+
+.w-80-32 {
+  width: calc(80% - 32px);
+}
+
+.w-75-32 {
+  width: calc(75% - 32px);
+}
+
+.w-66-32 {
+  width: calc(66.666% - 32px);
+}
+
+.w-60-32 {
+  width: calc(60% - 32px);
+}
+
+.w-50-32 {
+  width: calc(50% - 32px);
+}
+
+.w-40-32 {
+  width: calc(40% - 32px);
+}
+
+.w-33-32 {
+  width: calc(33.333% - 32px);
+}
+
+.w-25-32 {
+  width: calc(25% - 32px);
+}
+
+.w-20-32 {
+  width: calc(20% - 32px);
+}
+
 /* Текст */
 
 p {
@@ -383,6 +475,10 @@ strong {
   font-size: 24px;
 }
 
+.text-no-line {
+  text-decoration: none;
+}
+
 .text-line {
   text-decoration: line-through;
 }
@@ -404,6 +500,10 @@ a {
 
 a:hover {
   color: var(--color-primary-dark);
+}
+
+a.no-hover-color:hover {
+  color: initial;
 }
 
 /* Фон, границы, прозрачность */

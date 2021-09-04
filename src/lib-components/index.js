@@ -4,3 +4,4 @@ export { default as TheIcon } from "./TheIcon.vue";
 export { default as TheCode } from "./TheCode.vue";
 export { default as TheInput } from "./TheInput.vue";
 export { default as TheMap } from "./TheMap.vue";
+export { default as TheCard } from "./TheCard.vue";
