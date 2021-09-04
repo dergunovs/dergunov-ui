@@ -1,6 +1,6 @@
 <template>
   <div class="ui-code-block">
-    <pre ref="code" class="ui-code"><slot></slot></pre>
+    <code ref="code" class="ui-code"><slot></slot></code>
     <div class="ui-image-block">
       <button @click="copyToClipboard" class="ui-image-button">
         <img
