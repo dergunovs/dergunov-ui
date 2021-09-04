@@ -18,12 +18,19 @@
     border: 1px solid var(--color-gray);
     outline: none !important;
     border-radius: 4px;
-    padding: 4px 8px;
-    height: 36px;
+    padding: 0 8px;
+    height: 44px;
+    line-height: 44px;
     transition-duration: 300ms;
   }
   .ui-input:focus {
     border: 1px solid var(--color-gray-dark);
+  }
+  .ui-input:disabled {
+    background-color: var(--color-gray);
+  }
+  .ui-input:invalid {
+    border: 1px solid var(--color-primary);
   }
   .ui-input-fit-grow {
     width: 100%;

@@ -30,7 +30,9 @@
     border: none;
     border-radius: 4px;
     color: #fff;
-    padding: 12px 24px;
+    padding: 0 24px;
+    height: 44px;
+    font-weight: 700;
     transition-duration: 300ms;
   }
 
@@ -50,6 +52,8 @@
     background: none;
     color: var(--color-black);
     padding: 0;
+    font-weight: 400;
+    height: auto;
   }
 
   .ui-button-design-none:hover {
