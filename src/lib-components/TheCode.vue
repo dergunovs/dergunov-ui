@@ -1,12 +1,12 @@
 <template>
   <div class="ui-code-block">
     <code ref="code" class="ui-code"><slot></slot></code>
-    <div class="ui-image-block">
-      <button @click="copyToClipboard" class="ui-image-button">
+    <div class="ui-code-image-block">
+      <button @click="copyToClipboard" class="ui-code-image-button">
         <img
           :src="$options.components.copy"
-          class="ui-image"
-          :class="{ 'ui-image-copy': copied }"
+          class="ui-code-image"
+          :class="{ 'ui-code-image-copy': copied }"
           alt="Копировать код"
           title="Копировать код"
           loading="lazy"
@@ -61,17 +61,22 @@
     margin: 8px 0;
     padding: 16px;
   }
-  .ui-image-block {
+  .ui-code {
+    white-space: break-spaces;
+    overflow-x: auto;
+    flex-grow: 1;
+  }
+  .ui-code-image-block {
     display: flex;
     justify-content: flex-end;
     align-items: flex-start;
   }
-  .ui-image-button {
+  .ui-code-image-button {
     background: none;
     border: none;
     cursor: pointer;
   }
-  .ui-image {
+  .ui-code-image {
     opacity: 0.5;
     transition-duration: 300ms;
     display: block;
@@ -79,15 +84,10 @@
     border: 1px solid transparent;
     border-radius: 4px;
   }
-  .ui-image:hover {
+  .ui-code-image:hover {
     opacity: 1;
   }
-  .ui-image-copy {
+  .ui-code-image-copy {
     border: 1px solid var(--color-gray-dark);
-  }
-  .ui-code {
-    white-space: break-spaces;
-    overflow-x: auto;
-    flex-grow: 1;
   }
 </style>

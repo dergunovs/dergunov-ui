@@ -17,7 +17,7 @@
         <div class="flex mr-16"><TheIcon title="download" />download</div>
         <div class="flex mr-16"><TheIcon title="facebook" />facebook</div>
         <div class="flex mr-16"><TheIcon title="instagram" />instagram</div>
-        <div class="flex mr-16"><TheIcon title="count" />count</div>
+        <div class="flex mr-16"><TheIcon title="views" />views</div>
         <div class="flex mr-16"><TheIcon title="vk" />vk</div>
         <div class="flex mr-16"><TheIcon title="youtube" />youtube</div>
         <div class="flex"></div>

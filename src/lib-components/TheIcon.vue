@@ -13,14 +13,14 @@
   import download from "@/lib-components/assets/icons/download.svg";
   import facebook from "@/lib-components/assets/icons/facebook.svg";
   import instagram from "@/lib-components/assets/icons/instagram.svg";
-  import count from "@/lib-components/assets/icons/count.svg";
+  import views from "@/lib-components/assets/icons/views.svg";
   import vk from "@/lib-components/assets/icons/vk.svg";
   import youtube from "@/lib-components/assets/icons/youtube.svg";
 
   export default {
     name: "TheIcon",
 
-    components: { copy, download, facebook, instagram, count, vk, youtube },
+    components: { copy, download, facebook, instagram, views, vk, youtube },
 
     props: {
       title: { type: String, default: "download" },
