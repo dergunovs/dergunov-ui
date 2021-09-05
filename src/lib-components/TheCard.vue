@@ -28,13 +28,19 @@
       <div v-if="card.tags" class="ui-card-tag-block">
         <div v-for="(tag, index) in card.tags" :key="`tag${index}`" class="ui-card-tag">{{ tag }}</div>
       </div>
+
+      <div v-if="card.level" class="ui-card-level-block">
+        <span>Сложность:</span>
+        <div class="ui-card-level" :class="{ 'ui-card-level-active': card.level > 0 }"></div>
+        <div class="ui-card-level" :class="{ 'ui-card-level-active': card.level > 1 }"></div>
+        <div class="ui-card-level" :class="{ 'ui-card-level-active': card.level > 2 }"></div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
   import views from "@/lib-components/assets/icons/views.svg";
-  import youtube from "@/lib-components/assets/icons/youtube.svg";
 
   export default {
     name: "TheCard",
@@ -48,11 +54,10 @@
         theme: { type: Object },
         views: { type: Number },
         level: { type: Number },
-        youtube: { type: String },
       },
     },
 
-    components: { views, youtube },
+    components: { views },
   };
 </script>
 
@@ -83,7 +88,6 @@
   }
   .ui-card-h1 {
     font-size: 20px;
-    color: var(--color-primary);
     font-weight: 700;
     line-height: 1.3;
   }
@@ -121,5 +125,21 @@
   }
   .ui-card-views {
     font-size: 16px;
+  }
+
+  .ui-card-level-block {
+    display: flex;
+    align-items: center;
+  }
+  .ui-card-level {
+    width: 12px;
+    height: 12px;
+    background-color: var(--color-gray-light);
+    margin-top: 2px;
+    margin-left: 4px;
+    border-radius: 50%;
+  }
+  .ui-card-level-active {
+    background-color: var(--color-primary);
   }
 </style>
