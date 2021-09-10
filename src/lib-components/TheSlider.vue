@@ -1,28 +1,26 @@
 <template>
   <div>
-    <div class="slider-container" @mousedown="slideSwipe" @touchstart="slideSwipe">
-      <div class="slider-wrapper" ref="sliderWrapper">
+    <div class="ui-slider-container" @mousedown="slideSwipe" @touchstart="slideSwipe">
+      <div class="ui-slider-wrapper" ref="sliderWrapper">
         <div
-          class="slider-slide"
+          class="ui-slider-slide"
           :ref="`slide-${index}`"
           v-for="(slide, index) in slides"
           :key="`client` + index"
-          :class="{ 'slider-slide-active': slideCurrent === index }"
+          :class="{ 'ui-slider-slide-active': slideCurrent === index }"
         >
-          <div class="slider-slide-arrow slider-slide-arrow-prev"></div>
           <slot :slide="slide"></slot>
-          <div class="slider-slide-arrow slider-slide-arrow-next"></div>
         </div>
       </div>
     </div>
 
-    <div class="slider-bullets">
+    <div class="ui-slider-bullets">
       <div
         v-for="(number, index) in slides"
         :key="`number-${index}`"
         @click="setslideCurrent(index)"
-        class="slider-bullet"
-        :class="{ 'slider-bullet-active': slideCurrent === index }"
+        class="ui-slider-bullet"
+        :class="{ 'ui-slider-bullet-active': slideCurrent === index }"
       ></div>
     </div>
   </div>
@@ -83,11 +81,11 @@
 </script>
 
 <style>
-  .slider-container {
+  .ui-slider-container {
     position: relative;
     overflow: hidden;
   }
-  .slider-wrapper {
+  .ui-slider-wrapper {
     position: relative;
     overflow: visible;
     display: flex;
@@ -100,7 +98,7 @@
     transition-property: transform;
     transition-duration: 600ms;
   }
-  .slider-slide {
+  .ui-slider-slide {
     width: 100%;
     position: relative;
     transition-property: transform;
@@ -110,12 +108,12 @@
     pointer-events: none;
   }
 
-  .slider-bullets {
+  .ui-slider-bullets {
     display: flex;
     justify-content: center;
     margin-top: 24px;
   }
-  .slider-bullet {
+  .ui-slider-bullet {
     margin: 4px;
     width: 16px;
     height: 16px;
@@ -124,13 +122,13 @@
     transition-duration: 300ms;
     background-color: var(--color-gray-light);
   }
-  .slider-bullet:hover {
+  .ui-slider-bullet:hover {
     background-color: var(--color-gray);
   }
-  .slider-bullet-active {
+  .ui-slider-bullet-active {
     background-color: var(--color-primary);
   }
-  .slider-bullet-active:hover {
+  .ui-slider-bullet-active:hover {
     background-color: var(--color-primary-dark);
   }
 </style>

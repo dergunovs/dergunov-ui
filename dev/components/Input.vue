@@ -3,7 +3,6 @@
     <section>
       <h1>{{ $options.name }}</h1>
 
-      <p><b>type:</b> text, password, email, search, tel. default: <b>text</b></p>
       <p class="mb-16"><b>fit:</b> regular, grow. default: <b>regular</b></p>
 
       <p>

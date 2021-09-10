@@ -1,10 +1,11 @@
 <template>
-  <input class="ui-input" :class="[`ui-input-fit-${fit}`]" @input="$emit('input', $event.target.value)" />
+  <textarea class="ui-textarea" :class="[`ui-textarea-fit-${fit}`]" @input="$emit('input', $event.target.value)">
+  </textarea>
 </template>
 
 <script>
   export default {
-    name: "TheInput",
+    name: "TheTextarea",
 
     props: {
       fit: { type: String, default: "regular" },
@@ -13,25 +14,24 @@
 </script>
 
 <style>
-  .ui-input {
+  .ui-textarea {
     border: 1px solid var(--color-gray);
     outline: none !important;
     border-radius: 4px;
-    padding: 0 8px;
-    height: 44px;
-    line-height: 44px;
+    padding: 8px;
     transition-duration: 300ms;
+    resize: none;
   }
-  .ui-input:focus {
+  .ui-textarea:focus {
     border: 1px solid var(--color-gray-dark);
   }
-  .ui-input:disabled {
+  .ui-textarea:disabled {
     background-color: var(--color-gray);
   }
-  .ui-input:invalid {
+  .ui-textarea:invalid {
     border: 1px solid var(--color-primary);
   }
-  .ui-input-fit-grow {
+  .ui-textarea-fit-grow {
     width: 100%;
   }
 </style>
