@@ -18,7 +18,7 @@
       <div
         v-for="(number, index) in slides"
         :key="`number-${index}`"
-        @click="setslideCurrent(index)"
+        @click="setSlideCurrent(index)"
         class="ui-slider-bullet"
         :class="{ 'ui-slider-bullet-active': slideCurrent === index }"
       ></div>
@@ -42,7 +42,7 @@
     },
 
     methods: {
-      setslideCurrent(index) {
+      setSlideCurrent(index) {
         this.$refs.sliderWrapper.style.transform = `translate3d(-${index * this.slideWidth}px, 0px, 0px)`;
         this.slideCurrent = index;
       },

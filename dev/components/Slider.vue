@@ -5,8 +5,7 @@
 
       <div class="mb-16">
         <p><b>slides:</b> массив слайдов для отображения.</p>
-        <p>Работа со слайдером идёт через scoped slots. Нужно сделать bind элемента в слоте.</p>
-        <TheCode>v-slot="client"</TheCode>
+        <p>Работа со слайдером идёт через scoped slots. Нужно сделать bind элемента в слоте v-slot="client".</p>
         <p>После это внутри слайда можно использовать данные в вашем шаблоне, например, client.slide.image.</p>
       </div>
 
@@ -21,6 +20,7 @@
               loading="lazy"
             />
           </div>
+
           <div class="w-60-16">
             <div class="mb-16">
               <b class="text-big text-underline-bold">{{ client.slide.company }}</b>

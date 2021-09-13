@@ -1,6 +1,8 @@
 export { default as TheButton } from "./TheButton.vue";
 export { default as TheCard } from "./TheCard.vue";
 export { default as TheCode } from "./TheCode.vue";
+export { default as TheField } from "./TheField.vue";
+export { default as TheForm } from "./TheForm.vue";
 export { default as TheIcon } from "./TheIcon.vue";
 export { default as TheInput } from "./TheInput.vue";
 export { default as TheList } from "./TheList.vue";
