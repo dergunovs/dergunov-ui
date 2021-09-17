@@ -9,9 +9,7 @@
       <p>Поле является частью компонента формы.</p>
       <p class="mb-16">Имеет встроенные правила валидации.</p>
 
-      <TheField label="Ваше имя" class="w-50-8">
-        <TheInput v-model="min" />
-      </TheField>
+      <TheField label="Ваше имя" :tel="true" v-model="test" class="w-50-8" />
     </section>
   </div>
 </template>
@@ -22,7 +20,7 @@
 
     data() {
       return {
-        min: "",
+        test: "",
       };
     },
   };

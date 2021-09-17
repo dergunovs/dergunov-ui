@@ -1,5 +1,11 @@
 <template>
-  <input class="ui-input" :class="[`ui-input-fit-${fit}`]" @input="$emit('input', $event.target.value)" />
+  <input
+    class="ui-input"
+    :class="[`ui-input-fit-${fit}`]"
+    :value="value"
+    @input="emitValue($event.target.value)"
+    :maxlength="this.type === 'tel' ? '18' : ''"
+  />
 </template>
 
 <script>
@@ -7,7 +13,20 @@
     name: "TheInput",
 
     props: {
+      value: { type: String, default: "" },
+      type: { type: String, default: "text" },
       fit: { type: String, default: "regular" },
+    },
+
+    methods: {
+      emitValue(inputValue) {
+        this.type === "tel" ? this.$emit("input", this.maskToTel(inputValue)) : this.$emit("input", inputValue);
+      },
+
+      maskToTel(inputValue) {
+        let x = inputValue.replace(/\D/g, "").match(/(\d{0,1})(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,2})/);
+        return !x[3] ? `+7 (${x[2]}` : `+7 (${x[2]}) ${x[3]}` + (x[4] ? `-${x[4]}` : "") + (x[5] ? `-${x[5]}` : "");
+      },
     },
   };
 </script>

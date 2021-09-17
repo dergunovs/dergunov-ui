@@ -5,10 +5,9 @@
 
       <p class="mb-16"><b>fit:</b> regular, grow. default: <b>regular</b></p>
 
-      <p>
-        Можно дополнить атрибутами текстовых инпутов, например, placeholder="test". Высота инпута равна высоте кнопки.
-      </p>
+      <p>Можно дополнить атрибутами инпутов, например, placeholder="test". Высота инпута равна высоте кнопки.</p>
       <p>Директива v-model добавляет компоненту input двустороннее связывание с data.</p>
+      <p class="mb-16">Атрибут type="tel" добавляет маску.</p>
 
       <p><TheInput v-model="regular" /> data: {{ regular }}</p>
       <p><TheInput fit="grow" placeholder="fit='grow'" /></p>
@@ -17,7 +16,7 @@
         <TheInput type="password" placeholder="password" class="mr-8" />
         <TheInput type="email" placeholder="email" class="mr-8" />
         <TheInput type="search" placeholder="search" class="mr-8" />
-        <TheInput type="tel" placeholder="tel" />
+        <TheInput type="tel" placeholder="tel" v-model="tel" />
       </p>
 
       <div class="flex mb-16">
@@ -34,6 +33,7 @@
     data() {
       return {
         regular: "",
+        tel: "",
       };
     },
   };
