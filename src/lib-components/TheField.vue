@@ -1,8 +1,13 @@
 <template>
   <label class="ui-field-label-block">
-    <div class="ui-field-label">{{ label }}</div>
+    <div class="ui-field-label">
+      {{ label }}
+      <span v-if="required" class="ui-field-label-required">*</span>
+    </div>
+
     <TheInput :value="value" @input="check" :type="this.tel ? 'tel' : 'text'" ref="input" />
-    <span class="ui-field-error">{{ errorMessage }}</span>
+
+    <span class="ui-field-error" v-if="errorMessage">{{ errorMessage }}</span>
   </label>
 </template>
 
@@ -19,19 +24,19 @@
         rules: {
           required: {
             check(data, required) {
-              return required && !data.length ? true : false;
+              return required && !data?.length ? true : false;
             },
             message: "Данное поле обязательное",
           },
           min: {
             check(data, min) {
-              return data.length < min ? true : false;
+              return data?.length < min ? true : false;
             },
             message: "Слишком мало символов",
           },
           max: {
             check(data, max) {
-              return data.length > max ? true : false;
+              return data?.length > max ? true : false;
             },
             message: "Слишком много символов",
           },
@@ -43,7 +48,7 @@
           },
           tel: {
             check(data, tel, value) {
-              return tel && data.length < 18 && value.length ? true : false;
+              return tel && data?.length < 18 && value?.length ? true : false;
             },
             message: "Введите корректный телефон",
           },

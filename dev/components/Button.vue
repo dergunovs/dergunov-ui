@@ -5,7 +5,8 @@
 
       <p><b>fit:</b> regular, grow. default: <b>regular</b></p>
       <p><b>design:</b> regular, none. default: <b>regular</b></p>
-      <p class="mb-16"><b>active:</b> true, false. default: <b>false</b></p>
+      <p><b>disabled:</b> Boolean. default: <b>false</b></p>
+      <p class="mb-16"><b>active:</b> Boolean. default: <b>false</b></p>
 
       <div class="mb-16"><TheButton fit="regular">fit: regular, design: regular</TheButton></div>
       <div class="mb-16"><TheButton fit="regular" active>fit: regular, active: true</TheButton></div>

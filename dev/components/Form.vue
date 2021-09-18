@@ -11,21 +11,14 @@
       <p><b>formData:</b> {{ formData }}</p>
       <p class="mb-16"><b>formStatus:</b> {{ formStatus }}</p>
 
-      <TheForm :formStatus="formStatus">
+      <TheForm :formStatus="formStatus" @validate="formValidate">
         <h2>Заказать услуги</h2>
-        <div class="flex flex-sb mb-16">
-          <TheField label="Ваше имя" class="w-50-8">
-            <TheInput v-model="formData.customer" />
-          </TheField>
-          <TheField label="Электронная почта" class="w-50-8">
-            <TheInput v-model="formData.email" />
-          </TheField>
+        <div class="flex flex-sb flex-top mb-16">
+          <TheField label="Ваше имя" v-model="formData.customer" required class="w-50-8" />
+          <TheField label="Электронная почта" v-model="formData.email" required email class="w-50-8" />
         </div>
-        <TheField label="Сообщение" class="mb-16">
-          <TheTextarea v-model="formData.message" rows="4" />
-        </TheField>
-
-        <TheButton @ui-click="formSubmit">Отправить сообщение</TheButton>
+        <TheField label="Сообщение" v-model="formData.message" :min="5" class="mb-16" />
+        <TheButton @ui-click="formSubmit" :disabled="formErrors">Отправить сообщение</TheButton>
       </TheForm>
     </section>
   </div>
@@ -43,12 +36,16 @@
           message: "",
         },
         formStatus: "",
+        formErrors: false,
       };
     },
 
     methods: {
       formSubmit() {
         this.formStatus = "success";
+      },
+      formValidate(result) {
+        this.formErrors = result;
       },
     },
   };

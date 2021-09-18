@@ -1,8 +1,14 @@
 <template>
   <button
     class="ui-button"
-    :class="[`ui-button-fit-${fit}`, `ui-button-design-${design}`, `ui-button-active-${active}`]"
+    :class="[
+      `ui-button-fit-${fit}`,
+      `ui-button-design-${design}`,
+      `ui-button-active-${active}`,
+      `ui-button-disabled-${disabled}`,
+    ]"
     @click="$emit('ui-click')"
+    :disabled="disabled"
   >
     <slot></slot>
   </button>
@@ -16,6 +22,7 @@
       fit: { type: String, default: "regular" },
       design: { type: String, default: "regular" },
       active: { type: Boolean, default: false },
+      disabled: { type: Boolean, default: false },
     },
   };
 </script>
@@ -62,5 +69,10 @@
 
   .ui-button-design-none.ui-button-active-true {
     text-decoration: underline;
+  }
+
+  .ui-button-disabled-true {
+    pointer-events: none;
+    background-color: var(--color-primary-light);
   }
 </style>

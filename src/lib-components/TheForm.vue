@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent>
+  <form @submit.prevent @input="formCheck">
     <slot v-if="formStatus !== 'success'"></slot>
 
     <div v-if="formStatus === 'success'" class="ui-form-message">
@@ -20,6 +20,28 @@
 
     props: {
       formStatus: { type: String },
+    },
+
+    methods: {
+      formCheck() {
+        this.$el.querySelectorAll(".ui-field-error").length
+          ? this.$emit("validate", true)
+          : this.$emit("validate", false);
+
+        this.formValidate();
+      },
+
+      formValidate() {
+        this.$children.forEach((element) => {
+          if (element.required && !element.value) {
+            this.$emit("validate", true);
+          }
+        });
+      },
+    },
+
+    mounted() {
+      this.formValidate();
     },
   };
 </script>
