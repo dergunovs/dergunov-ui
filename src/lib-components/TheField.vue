@@ -2,10 +2,11 @@
   <label class="ui-field-label-block">
     <div class="ui-field-label">
       {{ label }}
-      <span v-if="required" class="ui-field-label-required">*</span>
+      <span v-if="required">*</span>
     </div>
 
-    <TheInput :value="value" @input="check" :type="this.tel ? 'tel' : 'text'" ref="input" />
+    <TheInput v-if="type === 'text'" :value="value" @input="check" :type="this.tel ? 'tel' : 'text'" ref="input" />
+    <TheTextarea v-if="type === 'textarea'" :value="value" @input="check" />
 
     <span class="ui-field-error" v-if="errorMessage">{{ errorMessage }}</span>
   </label>
@@ -23,8 +24,8 @@
         errorMessage: "",
         rules: {
           required: {
-            check(data, required) {
-              return required && !data?.length ? true : false;
+            check(data, required, tel) {
+              return (required && !data?.length) || (required && data === "+7 (" && tel) ? true : false;
             },
             message: "Данное поле обязательное",
           },
@@ -59,6 +60,7 @@
     props: {
       value: { type: String },
       label: { type: String },
+      type: { type: String, default: "text" },
       required: { type: Boolean },
       min: { type: Number },
       max: { type: Number },
@@ -70,14 +72,16 @@
       check(data) {
         this.$emit("input", data);
 
+        let telInputValue = this.tel ? this.$refs.input.$el.value : false;
+
         this.error =
-          this.rules.required.check(data, this.required) ||
+          this.rules.required.check(data, this.required, this.tel) ||
           this.rules.min.check(data, this.min) ||
           this.rules.max.check(data, this.max) ||
           this.rules.email.check(data, this.email) ||
-          this.rules.tel.check(data, this.tel, this.$refs.input.$el.value);
+          this.rules.tel.check(data, this.tel, telInputValue);
 
-        if (this.rules.required.check(data, this.required)) {
+        if (this.rules.required.check(data, this.required, this.tel)) {
           this.errorMessage = this.rules.required.message;
         } else if (this.rules.min.check(data, this.min)) {
           this.errorMessage = this.rules.min.message;
@@ -85,7 +89,7 @@
           this.errorMessage = this.rules.max.message;
         } else if (this.rules.email.check(data, this.email)) {
           this.errorMessage = this.rules.email.message;
-        } else if (this.rules.tel.check(data, this.tel, this.$refs.input.$el.value)) {
+        } else if (this.rules.tel.check(data, this.tel, telInputValue)) {
           this.errorMessage = this.rules.tel.message;
         } else {
           this.errorMessage = "";
