@@ -47,9 +47,6 @@
   .ui-input:disabled {
     background-color: var(--color-gray);
   }
-  .ui-input:invalid {
-    border: 1px solid var(--color-primary);
-  }
   .ui-input-fit-grow {
     width: 100%;
   }

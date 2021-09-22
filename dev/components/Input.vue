@@ -6,7 +6,7 @@
       <p class="mb-16"><b>fit:</b> regular, grow. default: <b>regular</b></p>
 
       <p>Можно дополнить атрибутами инпутов, например, placeholder="test". Высота инпута равна высоте кнопки.</p>
-      <p>Директива v-model добавляет компоненту input двустороннее связывание с data.</p>
+      <p>Директива v-model добавляет компоненту двустороннее связывание с data.</p>
       <p class="mb-16">Атрибут type="tel" добавляет маску.</p>
 
       <p><TheInput v-model="regular" /> data: {{ regular }}</p>

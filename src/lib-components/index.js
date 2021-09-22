@@ -7,5 +7,6 @@ export { default as TheIcon } from "./TheIcon.vue";
 export { default as TheInput } from "./TheInput.vue";
 export { default as TheList } from "./TheList.vue";
 export { default as TheMap } from "./TheMap.vue";
+export { default as TheSelect } from "./TheSelect.vue";
 export { default as TheSlider } from "./TheSlider.vue";
 export { default as TheTextarea } from "./TheTextarea.vue";

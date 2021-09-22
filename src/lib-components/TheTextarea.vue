@@ -28,9 +28,6 @@
   .ui-textarea:disabled {
     background-color: var(--color-gray);
   }
-  .ui-textarea:invalid {
-    border: 1px solid var(--color-primary);
-  }
   .ui-textarea-fit-grow {
     width: 100%;
   }
