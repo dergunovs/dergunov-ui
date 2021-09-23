@@ -13,6 +13,7 @@
       </p>
 
       <div class="flex mb-16">
+        <div class="flex mr-16"><TheIcon title="arrow" />arrow</div>
         <div class="flex mr-16"><TheIcon title="copy" />copy</div>
         <div class="flex mr-16"><TheIcon title="download" />download</div>
         <div class="flex mr-16"><TheIcon title="facebook" />facebook</div>

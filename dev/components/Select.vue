@@ -4,8 +4,7 @@
       <h1>{{ $options.name }}</h1>
 
       <p>Директива v-model добавляет компоненту двустороннее связывание с data.</p>
-      <p><b>options:</b> массив объектов [{ value: значение, name: название для отображения }, ...]</p>
-      <p class="mb-16"><b>fit:</b> regular, grow. default: <b>regular</b></p>
+      <p class="mb-16"><b>options:</b> массив объектов [{ value: значение, name: название для отображения }, ...]</p>
 
       <p><TheSelect v-model="currentOption" :options="options" /></p>
       <p>currentOption: {{ currentOption }}</p>
