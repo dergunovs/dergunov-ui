@@ -2,8 +2,11 @@
   <div @click.stop class="ui-select-block">
     <div
       @click="showOptions = !showOptions"
+      @keydown.space="showOptions = !showOptions"
+      @keydown.esc="hideOptions"
       class="ui-select-current"
       :class="{ 'ui-select-current-active': showOptions }"
+      tabindex="0"
     >
       {{ currentOption.name || "Выбрать" }}
       <img
@@ -62,8 +65,20 @@
       },
     },
 
+    methods: {
+      hideOptions() {
+        this.showOptions = false;
+      },
+    },
+
     mounted() {
       this.currentOption = this.value ? this.options.find((option) => option.value === this.value) : "";
+
+      document.addEventListener("click", this.hideOptions);
+    },
+
+    beforeDestroy() {
+      document.removeEventListener("click", this.hideOptions);
     },
   };
 </script>
@@ -76,7 +91,6 @@
     display: flex;
     justify-content: space-between;
     border: 1px solid var(--color-gray);
-    outline: none !important;
     border-radius: 4px;
     padding: 0 8px;
     height: 44px;
