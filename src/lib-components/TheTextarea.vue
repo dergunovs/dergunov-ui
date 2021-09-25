@@ -1,15 +1,10 @@
 <template>
-  <textarea class="ui-textarea" :class="[`ui-textarea-fit-${fit}`]" @input="$emit('input', $event.target.value)">
-  </textarea>
+  <textarea class="ui-textarea" @input="$emit('input', $event.target.value)"> </textarea>
 </template>
 
 <script>
   export default {
     name: "TheTextarea",
-
-    props: {
-      fit: { type: String, default: "regular" },
-    },
   };
 </script>
 
@@ -27,8 +22,5 @@
   }
   .ui-textarea:disabled {
     background-color: var(--color-gray);
-  }
-  .ui-textarea-fit-grow {
-    width: 100%;
   }
 </style>

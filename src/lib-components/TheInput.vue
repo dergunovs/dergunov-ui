@@ -1,8 +1,8 @@
 <template>
   <input
     class="ui-input"
-    :class="[`ui-input-fit-${fit}`]"
     :value="value"
+    :type="type"
     @input="emitValue($event.target.value)"
     :maxlength="this.type === 'tel' ? '18' : ''"
   />
@@ -15,7 +15,6 @@
     props: {
       value: { type: String, default: "" },
       type: { type: String, default: "text" },
-      fit: { type: String, default: "regular" },
     },
 
     methods: {
@@ -46,8 +45,5 @@
   }
   .ui-input:disabled {
     background-color: var(--color-gray);
-  }
-  .ui-input-fit-grow {
-    width: 100%;
   }
 </style>

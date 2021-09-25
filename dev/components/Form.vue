@@ -14,7 +14,7 @@
       <TheForm :formStatus="formStatus" @validate="formValidate">
         <h2>Заказать услуги</h2>
         <div class="flex flex-sb flex-top mb-16">
-          <TheField label="Ваше имя" v-model="formData.customer" tel required class="w-50-8" />
+          <TheField label="Ваше имя" v-model="formData.customer" required class="w-50-8" />
           <TheField label="Электронная почта" v-model="formData.email" required email class="w-50-8" />
         </div>
         <TheField

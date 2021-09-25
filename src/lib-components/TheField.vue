@@ -27,7 +27,7 @@
             check(data, required, tel) {
               return (required && !data?.length) || (required && data === "+7 (" && tel) ? true : false;
             },
-            message: "Данное поле обязательное",
+            message: "Заполните это поле",
           },
           min: {
             check(data, min) {

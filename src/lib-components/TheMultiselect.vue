@@ -161,8 +161,7 @@
     font-size: 16px;
     font-weight: 700;
     color: var(--color-white);
-    width: 24px;
-    height: 24px;
+    padding: 0px 7px;
   }
   .ui-multiselect-current-option-remove:hover {
     background-color: var(--color-primary);
