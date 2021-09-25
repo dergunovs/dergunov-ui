@@ -17,7 +17,9 @@
           class="ui-multiselect-current-option"
         >
           <span class="ui-multiselect-current-option-name">{{ option.name }}</span>
-          <button @click="removeOption(option)" class="ui-multiselect-current-option-remove">×</button>
+          <span @click="removeOption(option.value)" class="ui-multiselect-current-option-remove">
+            ×
+          </span>
         </div>
       </div>
 
@@ -63,7 +65,7 @@
     },
 
     props: {
-      value: { type: Array },
+      value: { type: [Array, String] },
       options: { type: Array },
     },
 
@@ -81,10 +83,8 @@
 
     watch: {
       currentOptions() {
-        this.$emit(
-          "input",
-          this.currentOptions.map((option) => option.value)
-        );
+        let udpatedValues = this.currentOptions.map((option) => option.value);
+        this.$emit("input", udpatedValues);
       },
     },
 
@@ -96,8 +96,8 @@
         }
       },
 
-      removeOption(optionToRemove) {
-        this.currentOptions = this.currentOptions.filter((option) => option.value !== optionToRemove.value);
+      removeOption(optionValueToRemove) {
+        this.currentOptions = this.currentOptions.filter((option) => option.value !== optionValueToRemove);
       },
 
       hideOptions() {
@@ -106,7 +106,9 @@
     },
 
     mounted() {
-      this.currentOptions = this.value ? this.value : [];
+      if (this.value) {
+        this.currentOptions = this.options.filter((option) => this.value.includes(option.value));
+      }
 
       document.addEventListener("click", this.hideOptions);
     },
@@ -169,7 +171,8 @@
     font-size: 16px;
     font-weight: 700;
     color: var(--color-white);
-    padding: 0px 7px;
+    width: 24px;
+    text-align: center;
   }
   .ui-multiselect-current-option-remove:hover {
     background-color: var(--color-primary);

@@ -6,7 +6,7 @@
       <p>Директива v-model добавляет компоненту двустороннее связывание с data.</p>
       <p class="mb-16"><b>options:</b> массив объектов [{ value: значение, name: название для отображения }, ...]</p>
 
-      <p>currentOption: {{ currentOptions }}</p>
+      <p>currentOptions: {{ currentOptions }}</p>
       <p><TheMultiselect v-model="currentOptions" :options="options" /></p>
     </section>
   </div>

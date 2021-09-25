@@ -7,6 +7,8 @@
 
     <TheInput v-if="type === 'text'" :value="value" @input="check" :type="this.tel ? 'tel' : 'text'" ref="input" />
     <TheTextarea v-if="type === 'textarea'" :value="value" @input="check" />
+    <TheSelect v-if="type === 'select'" :value="value" @input="check" :options="options" />
+    <TheMultiselect v-if="type === 'multiselect'" :value="value" @input="check" :options="options" />
 
     <span class="ui-field-error" v-if="errorMessage">{{ errorMessage }}</span>
   </label>
@@ -58,7 +60,7 @@
     },
 
     props: {
-      value: { type: String },
+      value: { type: [String, Number, Array] },
       label: { type: String },
       type: { type: String, default: "text" },
       required: { type: Boolean },
@@ -66,6 +68,7 @@
       max: { type: Number },
       email: { type: Boolean },
       tel: { type: Boolean },
+      options: { type: Array },
     },
 
     methods: {
@@ -81,7 +84,7 @@
           this.rules.email.check(data, this.email) ||
           this.rules.tel.check(data, this.tel, telInputValue);
 
-        if (this.rules.required.check(data, this.required, this.tel)) {
+        if (this.rules.required.check(data.toString(), this.required, this.tel)) {
           this.errorMessage = this.rules.required.message;
         } else if (this.rules.min.check(data, this.min)) {
           this.errorMessage = this.rules.min.message;
