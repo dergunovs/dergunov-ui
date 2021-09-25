@@ -54,7 +54,6 @@
     props: {
       value: { required: true },
       options: { type: Array },
-      fit: { type: String, default: "regular" },
     },
 
     components: { arrow },
@@ -104,9 +103,6 @@
     white-space: pre;
     overflow: hidden;
   }
-  .ui-select-current-arrow {
-    background-color: var(--color-white);
-  }
   .ui-select-current-active {
     border: 1px solid var(--color-gray-dark);
   }
@@ -127,7 +123,7 @@
     padding: 8px 12px;
     border-radius: 8px;
     list-style: none;
-    box-shadow: 0px 2px 8px var(--color-gray);
+    box-shadow: 0px 2px 8px -2px var(--color-gray);
   }
   .ui-select-dropdown {
     padding: 4px 0;
