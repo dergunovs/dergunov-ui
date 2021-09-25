@@ -9,9 +9,14 @@
       tabindex="0"
     >
       <template v-if="!currentOptions.length">Выбрать</template>
-      <div v-else @click.stop class="ui-multiselect-current-option-block">
-        <div v-for="(option, index) in currentOptions" :key="`option${index}`" class="ui-multiselect-current-option">
-          <span>{{ option.name }}</span>
+      <div v-else class="ui-multiselect-current-option-block">
+        <div
+          v-for="(option, index) in currentOptions"
+          :key="`option${index}`"
+          @click.stop
+          class="ui-multiselect-current-option"
+        >
+          <span class="ui-multiselect-current-option-name">{{ option.name }}</span>
           <button @click="removeOption(option)" class="ui-multiselect-current-option-remove">×</button>
         </div>
       </div>
@@ -123,8 +128,8 @@
     border: 1px solid var(--color-gray);
     border-radius: 4px;
     padding: 0 8px;
-    height: 44px;
-    line-height: 44px;
+    min-height: 44px;
+    line-height: 42px;
     transition-duration: 300ms;
     vertical-align: top;
     cursor: default;
@@ -136,23 +141,26 @@
   }
   .ui-multiselect-current-option-block {
     display: flex;
+    flex-wrap: wrap;
   }
   .ui-multiselect-current-option {
     display: flex;
     align-items: center;
     background-color: var(--color-gray-light);
     margin-right: 8px;
+    margin-top: 6px;
+    margin-bottom: 6px;
     padding: 2px 8px;
     border-radius: 4px;
     transition-duration: 300ms;
+  }
+  .ui-multiselect-current-option-name {
+    line-height: 1;
   }
   .ui-multiselect-current-option:last-child {
     margin-right: 0;
   }
   .ui-multiselect-current-option-remove {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     margin-left: 4px;
     cursor: pointer;
     border: 0;
@@ -187,10 +195,13 @@
     border-radius: 8px;
     list-style: none;
     box-shadow: 0px 2px 8px -2px var(--color-gray);
+    max-height: 188px;
+    overflow-y: auto;
   }
   .ui-multiselect-dropdown {
     padding: 4px 0;
     color: var(--color-gray-dark);
+    user-select: none;
   }
   .ui-multiselect-dropdown:hover {
     color: var(--color-black);

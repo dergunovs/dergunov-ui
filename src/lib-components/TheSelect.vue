@@ -124,6 +124,8 @@
     border-radius: 8px;
     list-style: none;
     box-shadow: 0px 2px 8px -2px var(--color-gray);
+    max-height: 188px;
+    overflow-y: auto;
   }
   .ui-select-dropdown {
     padding: 4px 0;

@@ -19,9 +19,15 @@
     data() {
       return {
         options: [
-          { value: 1, name: "Первый" },
-          { value: 2, name: "Второй" },
-          { value: 3, name: "Третий" },
+          { value: 1, name: "Первый вариант" },
+          { value: 2, name: "Второй вариант" },
+          { value: 3, name: "Третий вариант" },
+          { value: 4, name: "Четвертый вариант" },
+          { value: 5, name: "Пятый вариант" },
+          { value: 6, name: "Шестой вариант" },
+          { value: 7, name: "Семьдой вариант" },
+          { value: 8, name: "Восьмой вариант" },
+          { value: 9, name: "Девятый вариант" },
         ],
         currentOptions: [],
       };
