@@ -95,8 +95,8 @@
     },
 
     methods: {
-      toggleOptions() {
-        this.isShowOptions = !this.isShowOptions;
+      openOptions() {
+        this.isShowOptions = true;
         this.focusOnFirstOptionElement();
       },
 
@@ -104,8 +104,8 @@
         this.isShowOptions = false;
       },
 
-      openOptions() {
-        this.isShowOptions = true;
+      toggleOptions() {
+        this.isShowOptions = !this.isShowOptions;
         this.focusOnFirstOptionElement();
       },
 
@@ -118,10 +118,6 @@
 
       removeOption(optionValueToRemove) {
         this.currentOptions = this.currentOptions.filter((option) => option.value !== optionValueToRemove);
-      },
-
-      hideOptions() {
-        this.isShowOptions = false;
       },
 
       async focusOnFirstOptionElement() {

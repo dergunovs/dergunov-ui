@@ -22,7 +22,7 @@
     <transition name="fade">
       <ul class="ui-select-dropdown-block" v-show="isShowOptions">
         <li
-          v-for="(option, index) in options"
+          v-for="(option, index) in optionsFiltered"
           :key="`option${index}`"
           ref="optionElements"
           @click="setOption(option)"
@@ -61,6 +61,14 @@
 
     components: { arrow },
 
+    computed: {
+      optionsFiltered: function() {
+        return this.options.map((option) => {
+          return { value: option, name: option };
+        });
+      },
+    },
+
     watch: {
       currentOption() {
         this.$emit("input", this.currentOption.value);
@@ -68,8 +76,8 @@
     },
 
     methods: {
-      toggleOptions() {
-        this.isShowOptions = !this.isShowOptions;
+      openOptions() {
+        this.isShowOptions = true;
         this.focusOnFirstOptionElement();
       },
 
@@ -77,8 +85,8 @@
         this.isShowOptions = false;
       },
 
-      openOptions() {
-        this.isShowOptions = true;
+      toggleOptions() {
+        this.isShowOptions = !this.isShowOptions;
         this.focusOnFirstOptionElement();
       },
 
@@ -110,8 +118,12 @@
     },
 
     mounted() {
-      if (this.value) {
+      if (typeof this.value === "object") {
         this.currentOption = this.options.find((option) => option.value === this.value);
+      }
+
+      if (typeof this.value === "string") {
+        this.currentOption = { value: this.value, name: this.value };
       }
 
       document.addEventListener("click", this.hideOptions);
