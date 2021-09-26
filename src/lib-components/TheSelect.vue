@@ -1,14 +1,14 @@
 <template>
   <div @click.stop class="ui-select-block">
     <div
-      @click="showOptions = !showOptions"
-      @keydown.space="showOptions = !showOptions"
+      @click="toggleOptions"
+      @keydown.space="toggleOptions"
       @keydown.esc="hideOptions"
       class="ui-select-current"
-      :class="{ 'ui-select-current-active': showOptions }"
+      :class="{ 'ui-select-current-active': isShowOptions }"
       tabindex="0"
     >
-      {{ currentOption.name || "Выбрать" }}
+      <div>{{ currentOption.name || "Выбрать" }}</div>
       <img
         :src="$options.components.arrow"
         class="ui-select-current-arrow"
@@ -20,16 +20,19 @@
     </div>
 
     <transition name="fade">
-      <ul class="ui-select-dropdown-block" v-show="showOptions">
+      <ul class="ui-select-dropdown-block" v-show="isShowOptions">
         <li
           v-for="(option, index) in options"
           :key="`option${index}`"
-          @click="
-            currentOption = option;
-            showOptions = false;
-          "
+          ref="optionElements"
+          @click="setOption(option)"
+          @mouseover="focusAt(index)"
+          @keydown.up="focusUp(index)"
+          @keydown.down="focusDown(index)"
+          @keydown.enter="setOption(option)"
           class="ui-select-dropdown"
           :class="{ 'ui-select-dropdown-current': option.name === currentOption.name }"
+          tabindex="0"
         >
           {{ option.name }}
         </li>
@@ -46,7 +49,7 @@
 
     data() {
       return {
-        showOptions: false,
+        isShowOptions: false,
         currentOption: "",
       };
     },
@@ -65,13 +68,51 @@
     },
 
     methods: {
+      toggleOptions() {
+        this.isShowOptions = !this.isShowOptions;
+        this.focusOnFirstOptionElement();
+      },
+
       hideOptions() {
-        this.showOptions = false;
+        this.isShowOptions = false;
+      },
+
+      openOptions() {
+        this.isShowOptions = true;
+        this.focusOnFirstOptionElement();
+      },
+
+      setOption(option) {
+        this.currentOption = option;
+        this.hideOptions();
+      },
+
+      async focusOnFirstOptionElement() {
+        await this.$nextTick();
+        this.$refs.optionElements[0].focus();
+      },
+
+      focusAt(index) {
+        this.$refs.optionElements[index].focus();
+      },
+
+      focusUp(index) {
+        if (index !== 0) {
+          this.$refs.optionElements[index - 1].focus();
+        }
+      },
+
+      focusDown(index) {
+        if (index !== this.$refs.optionElements.length - 1) {
+          this.$refs.optionElements[index + 1].focus();
+        }
       },
     },
 
     mounted() {
-      this.currentOption = this.value ? this.options.find((option) => option.value === this.value) : "";
+      if (this.value) {
+        this.currentOption = this.options.find((option) => option.value === this.value);
+      }
 
       document.addEventListener("click", this.hideOptions);
     },
@@ -89,6 +130,7 @@
   .ui-select-current {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     border: 1px solid var(--color-gray);
     border-radius: 4px;
     padding: 0 8px;
@@ -129,13 +171,21 @@
   }
   .ui-select-dropdown {
     padding: 4px 0;
-    color: var(--color-gray-dark);
-  }
-  .ui-select-dropdown:hover {
     color: var(--color-black);
+    user-select: none;
+    outline: none;
     cursor: pointer;
   }
+  .ui-select-dropdown:hover {
+    text-decoration: underline;
+  }
+  .ui-select-dropdown:focus {
+    text-decoration: underline;
+  }
   .ui-select-dropdown-current {
-    color: var(--color-black);
+    color: var(--color-primary);
+  }
+  .ui-select-dropdown-current:hover {
+    color: var(--color-primary-dark);
   }
 </style>

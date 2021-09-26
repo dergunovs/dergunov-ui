@@ -1,14 +1,14 @@
 <template>
   <div @click.stop class="ui-multiselect-block">
     <div
-      @click="showOptions = !showOptions"
-      @keydown.space="showOptions = !showOptions"
+      @click="toggleOptions"
+      @keydown.space="toggleOptions"
       @keydown.esc="hideOptions"
       class="ui-multiselect-current"
-      :class="{ 'ui-multiselect-current-active': showOptions }"
+      :class="{ 'ui-multiselect-current-active': isShowOptions }"
       tabindex="0"
     >
-      <template v-if="!currentOptions.length">Выбрать</template>
+      <div v-if="!currentOptions.length">Выбрать</div>
       <div v-else class="ui-multiselect-current-option-block">
         <div
           v-for="(option, index) in currentOptions"
@@ -34,15 +34,21 @@
     </div>
 
     <transition name="fade">
-      <ul class="ui-multiselect-dropdown-block" v-if="showOptions">
+      <ul class="ui-multiselect-dropdown-block" v-if="isShowOptions">
         <li v-if="!optionsFiltered.length" @click="hideOptions" class="ui-multiselect-dropdown">
           Нет элементов для выбора
         </li>
         <li
           v-for="(option, index) in optionsFiltered"
           :key="`option${index}`"
+          ref="optionElements"
           @click="addOption(option)"
+          @mouseover="focusAt(index)"
+          @keydown.up="focusUp(index)"
+          @keydown.down="focusDown(index)"
+          @keydown.enter="addOption(option)"
           class="ui-multiselect-dropdown"
+          tabindex="0"
         >
           {{ option.name }}
         </li>
@@ -59,7 +65,7 @@
 
     data() {
       return {
-        showOptions: false,
+        isShowOptions: false,
         currentOptions: [],
       };
     },
@@ -89,6 +95,20 @@
     },
 
     methods: {
+      toggleOptions() {
+        this.isShowOptions = !this.isShowOptions;
+        this.focusOnFirstOptionElement();
+      },
+
+      hideOptions() {
+        this.isShowOptions = false;
+      },
+
+      openOptions() {
+        this.isShowOptions = true;
+        this.focusOnFirstOptionElement();
+      },
+
       addOption(option) {
         this.currentOptions.push(option);
         if (!this.optionsFiltered.length) {
@@ -101,7 +121,30 @@
       },
 
       hideOptions() {
-        this.showOptions = false;
+        this.isShowOptions = false;
+      },
+
+      async focusOnFirstOptionElement() {
+        await this.$nextTick();
+        if (this.$refs.optionElements.length) {
+          this.$refs.optionElements[0].focus();
+        }
+      },
+
+      focusAt(index) {
+        this.$refs.optionElements[index].focus();
+      },
+
+      focusUp(index) {
+        if (index !== 0) {
+          this.$refs.optionElements[index - 1].focus();
+        }
+      },
+
+      focusDown(index) {
+        if (index !== this.optionsFiltered.length - 1) {
+          this.$refs.optionElements[index + 1].focus();
+        }
       },
     },
 
@@ -203,11 +246,15 @@
   }
   .ui-multiselect-dropdown {
     padding: 4px 0;
-    color: var(--color-gray-dark);
+    color: var(--color-black);
     user-select: none;
+    outline: none;
+    cursor: pointer;
   }
   .ui-multiselect-dropdown:hover {
-    color: var(--color-black);
-    cursor: pointer;
+    text-decoration: underline;
+  }
+  .ui-multiselect-dropdown:focus {
+    text-decoration: underline;
   }
 </style>
