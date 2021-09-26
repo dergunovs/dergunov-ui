@@ -83,7 +83,12 @@
           return option.value;
         });
 
-        return this.options.filter((option) => !currentOptionsValues.includes(option.value));
+        let optionsTypeUpdated = this.options.map((option) => {
+          if (typeof option === "string" || typeof option === "number") return { value: option, name: option };
+          if (typeof option === "object") return option;
+        });
+
+        return optionsTypeUpdated.filter((option) => !currentOptionsValues.includes(option.value));
       },
     },
 
@@ -146,7 +151,15 @@
 
     mounted() {
       if (this.value) {
-        this.currentOptions = this.options.filter((option) => this.value.includes(option.value));
+        if (typeof this.options[0] === "object") {
+          this.currentOptions = this.options.filter((option) => this.value.includes(option.value));
+        }
+        if (typeof this.options[0] === "string" || typeof this.options[0] === "number") {
+          let optionsTypeUpdated = this.options.filter((option) => this.value.includes(option));
+          this.currentOptions = optionsTypeUpdated.map((option) => {
+            return { value: option, name: option };
+          });
+        }
       }
 
       document.addEventListener("click", this.hideOptions);
