@@ -5,12 +5,13 @@
 
       <p>Директива v-model добавляет компоненту двустороннее связывание с data.</p>
       <p class="mb-16">
-        <b>options:</b> массив объектов <b>или</b> массив из текстовых полей<br />
-        1. Объект [{ value: значение, name: название для отображения }, ...]<br />
-        2. Текст ["Первый","Второй","Третий"]
+        <b>options:</b> массив состоящий из элементов одного из следующих типов:<br />
+        1. Object [{ value: значение, name: название для отображения }, ...]<br />
+        2. String ["Первый","Второй","Третий"]<br />
+        3. Number [1,2,3]
       </p>
 
-      <p><TheSelect v-model="currentOption" :options="optionsTypeString" /></p>
+      <p><TheSelect v-model="currentOption" :options="optionsTypeObject" /></p>
       <p>currentOption: {{ currentOption }}</p>
     </section>
   </div>
@@ -27,8 +28,7 @@
           { value: 2, name: "Второй" },
           { value: 3, name: "Третий" },
         ],
-        optionsTypeString: ["Первый", "Второй", "Третий"],
-        currentOption: "Второй",
+        currentOption: "",
       };
     },
   };

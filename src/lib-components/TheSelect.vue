@@ -64,7 +64,8 @@
     computed: {
       optionsFiltered: function() {
         return this.options.map((option) => {
-          return { value: option, name: option };
+          if (typeof option === "string" || typeof option === "number") return { value: option, name: option };
+          if (typeof option === "object") return option;
         });
       },
     },
@@ -118,12 +119,13 @@
     },
 
     mounted() {
-      if (typeof this.value === "object") {
-        this.currentOption = this.options.find((option) => option.value === this.value);
-      }
-
-      if (typeof this.value === "string") {
-        this.currentOption = { value: this.value, name: this.value };
+      if (this.value || this.value === 0) {
+        if (typeof this.options[0] === "object") {
+          this.currentOption = this.options.find((option) => option.value === this.value);
+        }
+        if (typeof this.options[0] === "string" || typeof this.options[0] === "number") {
+          this.currentOption = { value: this.value, name: this.value };
+        }
       }
 
       document.addEventListener("click", this.hideOptions);
