@@ -24,7 +24,7 @@
         <li
           v-for="(option, index) in optionsFiltered"
           :key="`option${index}`"
-          ref="optionElements"
+          :ref="setOptionElementRef"
           @click="setOption(option)"
           @mouseover="focusAt(index)"
           @keydown.up="focusUp(index)"
@@ -41,22 +41,24 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+  import { defineComponent } from "vue";
   import arrow from "@/lib-components/assets/icons/arrow.svg";
 
-  export default {
+  export default /*#__PURE__*/ defineComponent({
     name: "TheSelect",
 
     data() {
       return {
         isShowOptions: false,
-        currentOption: "",
+        currentOption: {},
+        optionElements: [],
       };
     },
 
     props: {
-      value: { required: true },
-      options: { type: Array },
+      modelValue: { type: [String, Number] },
+      options: { type: Array, required: true },
     },
 
     components: { arrow },
@@ -72,7 +74,7 @@
 
     watch: {
       currentOption() {
-        this.$emit("input", this.currentOption.value);
+        this.$emit("update:modelValue", (this.currentOption as any).value);
       },
     },
 
@@ -91,40 +93,50 @@
         this.focusOnFirstOptionElement();
       },
 
-      setOption(option) {
+      setOption(option: string | number) {
         this.currentOption = option;
         this.hideOptions();
       },
 
       async focusOnFirstOptionElement() {
         await this.$nextTick();
-        this.$refs.optionElements[0].focus();
+        (this.optionElements as HTMLElement[])[0].focus();
       },
 
-      focusAt(index) {
-        this.$refs.optionElements[index].focus();
+      focusAt(index: number) {
+        (this.optionElements as HTMLElement[])[index].focus();
       },
 
-      focusUp(index) {
+      focusUp(index: number) {
         if (index !== 0) {
-          this.$refs.optionElements[index - 1].focus();
+          (this.optionElements as HTMLElement[])[index - 1].focus();
         }
       },
 
-      focusDown(index) {
-        if (index !== this.$refs.optionElements.length - 1) {
-          this.$refs.optionElements[index + 1].focus();
+      focusDown(index: number) {
+        if (index !== (this.optionElements as HTMLElement[]).length - 1) {
+          (this.optionElements as HTMLElement[])[index + 1].focus();
+        }
+      },
+
+      setOptionElementRef(el: HTMLElement) {
+        if (el) {
+          (this.optionElements as HTMLElement[]).push(el);
         }
       },
     },
 
+    beforeUpdate() {
+      this.optionElements = [];
+    },
+
     mounted() {
-      if (this.value || this.value === 0) {
+      if (this.modelValue || this.modelValue === 0) {
         if (typeof this.options[0] === "object") {
-          this.currentOption = this.options.find((option) => option.value === this.value);
+          (this.currentOption as any) = this.options.find((option: any) => option.value === this.modelValue);
         }
         if (typeof this.options[0] === "string" || typeof this.options[0] === "number") {
-          this.currentOption = { value: this.value, name: this.value };
+          this.currentOption = { value: this.modelValue, name: this.modelValue };
         }
       }
 
@@ -134,7 +146,7 @@
     beforeDestroy() {
       document.removeEventListener("click", this.hideOptions);
     },
-  };
+  });
 </script>
 
 <style>

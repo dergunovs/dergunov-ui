@@ -18,10 +18,11 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+  import { defineComponent } from "vue";
   import copy from "@/lib-components/assets/icons/copy.svg";
 
-  export default {
+  export default /*#__PURE__*/ defineComponent({
     name: "TheCode",
 
     data() {
@@ -34,7 +35,7 @@
 
     methods: {
       copyToClipboard() {
-        navigator.clipboard.writeText(this.$refs.code.textContent);
+        navigator.clipboard.writeText((this.$refs.code as HTMLElement).innerText);
         this.copied = true;
         setTimeout(() => {
           this.copied = false;
@@ -43,13 +44,13 @@
     },
 
     mounted() {
-      this.$refs.code.innerHTML = this.$refs.code.innerHTML
+      (this.$refs.code as HTMLElement).innerHTML = (this.$refs.code as HTMLElement).innerHTML
         .replaceAll("<pre>", "")
         .replaceAll("</pre>", "")
         .replaceAll("<", "&lt;")
         .replaceAll(">", "&gt;");
     },
-  };
+  });
 </script>
 
 <style>

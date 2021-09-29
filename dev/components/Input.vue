@@ -7,13 +7,14 @@
       <p>Директива v-model добавляет компоненту двустороннее связывание с data.</p>
       <p class="mb-16">Атрибут type="tel" добавляет маску.</p>
 
-      <p><TheInput v-model="regular" /> data: {{ regular }}</p>
+      <TheInput v-model="regular" class="mb-8" />
+      <p>data: {{ regular }}</p>
 
-      <p class="mb-16">
+      <div class="flex mb-16">
         <TheInput type="password" placeholder="password" class="mr-8" />
         <TheInput type="number" placeholder="number" class="mr-8" />
         <TheInput type="tel" placeholder="tel" v-model="tel" />
-      </p>
+      </div>
 
       <div class="flex mb-16">
         <TheInput placeholder="disabled" disabled class="mr-8" /> <TheButton>Одинаковая высота</TheButton>
@@ -22,8 +23,10 @@
   </div>
 </template>
 
-<script>
-  export default {
+<script lang="ts">
+  import { defineComponent } from "vue";
+
+  export default /*#__PURE__*/ defineComponent({
     name: "Input",
 
     data() {
@@ -32,5 +35,5 @@
         tel: "",
       };
     },
-  };
+  });
 </script>

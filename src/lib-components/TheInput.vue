@@ -1,37 +1,42 @@
 <template>
   <input
     class="ui-input"
-    :value="value"
+    :value="modelValue"
     :type="type"
     @input="emitValue($event.target.value)"
     :maxlength="this.type === 'tel' ? '18' : ''"
   />
 </template>
 
-<script>
-  export default {
+<script lang="ts">
+  import { defineComponent } from "vue";
+
+  export default /*#__PURE__*/ defineComponent({
     name: "TheInput",
 
     props: {
-      value: { type: String, default: "" },
+      modelValue: { type: String },
       type: { type: String, default: "text" },
     },
 
     methods: {
-      emitValue(inputValue) {
-        this.type === "tel" ? this.$emit("input", this.maskToTel(inputValue)) : this.$emit("input", inputValue);
+      emitValue(modelValue: string) {
+        this.type === "tel"
+          ? this.$emit("update:modelValue", this.maskToTel(modelValue))
+          : this.$emit("update:modelValue", modelValue);
       },
 
-      maskToTel(inputValue) {
-        let x = inputValue.replace(/\D/g, "").match(/(\d{0,1})(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,2})/);
+      maskToTel(modelValue: string) {
+        let x: any = modelValue.replace(/\D/g, "").match(/(\d{0,1})(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,2})/);
         return !x[3] ? `+7 (${x[2]}` : `+7 (${x[2]}) ${x[3]}` + (x[4] ? `-${x[4]}` : "") + (x[5] ? `-${x[5]}` : "");
       },
     },
-  };
+  });
 </script>
 
 <style>
   .ui-input {
+    width: 100%;
     border: 1px solid var(--color-gray);
     outline: none !important;
     border-radius: 4px;

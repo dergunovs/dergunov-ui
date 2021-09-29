@@ -7,6 +7,8 @@ import resolve from "@rollup/plugin-node-resolve";
 import replace from "@rollup/plugin-replace";
 import babel from "@rollup/plugin-babel";
 import { terser } from "rollup-plugin-terser";
+import ttypescript from "ttypescript";
+import typescript from "rollup-plugin-typescript2";
 import minimist from "minimist";
 import styles from "rollup-plugin-styles";
 import images from "rollup-plugin-image-files";
@@ -26,7 +28,7 @@ const argv = minimist(process.argv.slice(2));
 const projectRoot = path.resolve(__dirname, "..");
 
 const baseConfig = {
-  input: "src/entry.js",
+  input: "src/entry.ts",
   plugins: {
     preVue: [alias({ entries: [{ find: "@", replacement: `${path.resolve(projectRoot, "src")}` }] })],
     replace: { "process.env.NODE_ENV": JSON.stringify("production"), preventAssignment: true },
@@ -52,7 +54,7 @@ const buildFormats = [];
 if (!argv.format || argv.format === "es") {
   const esConfig = {
     ...baseConfig,
-    input: "src/entry.esm.js",
+    input: "src/entry.esm.ts",
     external,
     output: {
       file: "dist/dergunov-ui.esm.js",
@@ -65,6 +67,11 @@ if (!argv.format || argv.format === "es") {
       ...baseConfig.plugins.preVue,
       vue(baseConfig.plugins.vue),
       ...baseConfig.plugins.postVue,
+      typescript({
+        typescript: ttypescript,
+        useTsconfigDeclarationDir: true,
+        emitDeclarationOnly: true,
+      }),
       babel({
         ...baseConfig.plugins.babel,
         presets: [["@babel/preset-env", { ...babelPresetEnvConfig, targets: esbrowserslist }]],
@@ -90,10 +97,7 @@ if (!argv.format || argv.format === "cjs") {
     plugins: [
       replace(baseConfig.plugins.replace),
       ...baseConfig.plugins.preVue,
-      vue({
-        ...baseConfig.plugins.vue,
-        template: { ...baseConfig.plugins.vue.template, optimizeSSR: true },
-      }),
+      vue(baseConfig.plugins.vue),
       ...baseConfig.plugins.postVue,
       babel(baseConfig.plugins.babel),
     ],

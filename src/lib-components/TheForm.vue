@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent @input="formCheck">
+  <form @submit.prevent @input="formValidate">
     <slot v-if="formStatus !== 'success'"></slot>
 
     <div v-if="formStatus === 'success'" class="ui-form-message">
@@ -14,36 +14,43 @@
   </form>
 </template>
 
-<script>
-  export default {
+<script lang="ts">
+  import { defineComponent } from "vue";
+
+  export default /*#__PURE__*/ defineComponent({
     name: "TheForm",
 
     props: {
       formStatus: { type: String },
     },
 
+    data() {
+      return {
+        errorsCount: 0,
+      };
+    },
+
     methods: {
-      formCheck() {
-        this.$el.querySelectorAll(".ui-field-error").length
-          ? this.$emit("validate", true)
-          : this.$emit("validate", false);
-
-        this.formValidate();
-      },
-
       formValidate() {
-        this.$children.forEach((element) => {
-          if (element.required && !element.value) {
-            this.$emit("validate", true);
+        this.errorsCount = 0;
+
+        this.$el.querySelectorAll(".ui-field-label-block").forEach((element: any) => {
+          if (
+            (element.querySelector(".ui-field-label-required") && !element.querySelector(".ui-field-input").value) ||
+            element.querySelectorAll(".ui-field-error").length
+          ) {
+            this.errorsCount = this.errorsCount + 1;
           }
         });
+
+        this.errorsCount > 0 ? this.$emit("errors", true) : this.$emit("errors", false);
       },
     },
 
     mounted() {
       this.formValidate();
     },
-  };
+  });
 </script>
 
 <style>

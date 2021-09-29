@@ -8,7 +8,9 @@
   />
 </template>
 
-<script>
+<script lang="ts">
+  import { defineComponent } from "vue";
+
   import arrow from "@/lib-components/assets/icons/arrow.svg";
   import copy from "@/lib-components/assets/icons/copy.svg";
   import download from "@/lib-components/assets/icons/download.svg";
@@ -18,7 +20,7 @@
   import vk from "@/lib-components/assets/icons/vk.svg";
   import youtube from "@/lib-components/assets/icons/youtube.svg";
 
-  export default {
+  export default /*#__PURE__*/ defineComponent({
     name: "TheIcon",
 
     components: { arrow, copy, download, facebook, instagram, views, vk, youtube },
@@ -30,7 +32,7 @@
       alt: { type: String },
       src: { type: String },
     },
-  };
+  });
 </script>
 
 <style>

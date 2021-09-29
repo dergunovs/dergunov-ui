@@ -4,7 +4,7 @@
       <div class="ui-slider-wrapper" ref="sliderWrapper">
         <div
           class="ui-slider-slide"
-          :ref="`slide-${index}`"
+          :ref="`slide${index}`"
           v-for="(slide, index) in slides"
           :key="`client` + index"
           :class="{ 'ui-slider-slide-active': slideCurrent === index }"
@@ -26,8 +26,10 @@
   </div>
 </template>
 
-<script>
-  export default {
+<script lang="ts">
+  import { defineComponent } from "vue";
+
+  export default /*#__PURE__*/ defineComponent({
     name: "TheSlider",
 
     data() {
@@ -42,11 +44,12 @@
     },
 
     methods: {
-      setSlideCurrent(index) {
-        this.$refs.sliderWrapper.style.transform = `translate3d(-${index * this.slideWidth}px, 0px, 0px)`;
+      setSlideCurrent(index: number) {
+        (this.$refs.sliderWrapper as HTMLElement).style.transform = `translate3d(-${index *
+          this.slideWidth}px, 0px, 0px)`;
         this.slideCurrent = index;
       },
-      slideSwipe(e) {
+      slideSwipe(e: MouseEvent) {
         let slideClickZone = e.offsetX / this.slideWidth;
 
         if (slideClickZone < 0.2 && this.slideCurrent !== 0) {
@@ -58,26 +61,31 @@
       },
       nextSlide() {
         this.slideCurrent = this.slideCurrent + 1;
-        this.$refs.sliderWrapper.style.transform = `translate3d(-${this.slideCurrent * this.slideWidth}px, 0px, 0px)`;
+        this.updateCoordinatesX();
       },
       prevSlide() {
         this.slideCurrent = this.slideCurrent - 1;
-        this.$refs.sliderWrapper.style.transform = `translate3d(-${this.slideCurrent * this.slideWidth}px, 0px, 0px)`;
+        this.updateCoordinatesX();
       },
       updateSlideWidth() {
-        this.slideWidth = this.$refs["slide-" + this.slideCurrent][0].offsetWidth;
+        this.slideWidth = (this.$refs["slide" + this.slideCurrent] as HTMLElement).offsetWidth;
+        this.updateCoordinatesX();
+      },
+      updateCoordinatesX() {
+        (this.$refs.sliderWrapper as HTMLElement).style.transform = `translate3d(-${this.slideCurrent *
+          this.slideWidth}px, 0px, 0px)`;
       },
     },
 
     mounted() {
-      this.slideWidth = this.$refs["slide-0"][0].offsetWidth;
+      this.slideWidth = (this.$refs.slide0 as HTMLElement).offsetWidth;
       window.addEventListener("resize", this.updateSlideWidth);
     },
 
     beforeDestroy() {
       window.removeEventListener("resize", this.updateSlideWidth);
     },
-  };
+  });
 </script>
 
 <style>

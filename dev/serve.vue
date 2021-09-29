@@ -26,19 +26,22 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+  import { defineComponent } from "vue";
   import "@/lib-components/assets/styles.css";
   import Readme from "./Readme.vue";
 
+  declare var require: any;
+
   const requireComponents = require.context("./components/", false, /\.vue$/);
-  let components = {};
-  requireComponents.keys().forEach((file) => {
+  let components: any = {};
+  requireComponents.keys().forEach((file: any) => {
     const component = requireComponents(file);
     const componentName = file.replace(/^\.\/(.*)\.\w+$/, "$1");
     components[componentName] = component.default;
   });
 
-  export default {
+  export default defineComponent({
     name: "Components",
 
     data() {
@@ -49,5 +52,5 @@
     },
 
     components: { ...components, Readme },
-  };
+  });
 </script>

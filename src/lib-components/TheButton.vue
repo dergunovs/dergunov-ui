@@ -14,8 +14,10 @@
   </button>
 </template>
 
-<script>
-  export default {
+<script lang="ts">
+  import { defineComponent } from "vue";
+
+  export default /*#__PURE__*/ defineComponent({
     name: "TheButton",
 
     props: {
@@ -24,7 +26,7 @@
       active: { type: Boolean, default: false },
       disabled: { type: Boolean, default: false },
     },
-  };
+  });
 </script>
 
 <style>
@@ -41,6 +43,7 @@
     height: 44px;
     font-weight: 700;
     transition-duration: 300ms;
+    white-space: nowrap;
   }
 
   .ui-button-fit-grow {

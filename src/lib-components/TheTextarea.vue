@@ -1,15 +1,18 @@
 <template>
-  <textarea class="ui-textarea" @input="$emit('input', $event.target.value)"> </textarea>
+  <textarea class="ui-textarea" @input="$emit('update:modelValue', $event.target.value)"></textarea>
 </template>
 
-<script>
-  export default {
+<script lang="ts">
+  import { defineComponent } from "vue";
+
+  export default /*#__PURE__*/ defineComponent({
     name: "TheTextarea",
-  };
+  });
 </script>
 
 <style>
   .ui-textarea {
+    width: 100%;
     border: 1px solid var(--color-gray);
     outline: none !important;
     border-radius: 4px;

@@ -11,8 +11,10 @@
   ></iframe>
 </template>
 
-<script>
-  export default {
+<script lang="ts">
+  import { defineComponent } from "vue";
+
+  export default /*#__PURE__*/ defineComponent({
     name: "TheMap",
 
     props: {
@@ -20,5 +22,5 @@
       height: { type: String, default: "400" },
       title: { type: String, default: "Карта" },
     },
-  };
+  });
 </script>

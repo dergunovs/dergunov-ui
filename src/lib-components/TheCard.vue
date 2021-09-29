@@ -39,26 +39,32 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+  import { defineComponent, PropType } from "vue";
   import views from "@/lib-components/assets/icons/views.svg";
 
-  export default {
+  interface Card {
+    h1: string;
+    intro: string;
+    thumb: string;
+    tags: string[];
+    theme: object;
+    views: number;
+    level: number;
+  }
+
+  export default /*#__PURE__*/ defineComponent({
     name: "TheCard",
 
     props: {
       card: {
-        h1: { type: String, required: true },
-        intro: { type: String, required: true },
-        thumb: { type: String },
-        tags: { type: Array },
-        theme: { type: Object },
-        views: { type: Number },
-        level: { type: Number },
+        type: Object as PropType<Card>,
+        required: true,
       },
     },
 
     components: { views },
-  };
+  });
 </script>
 
 <style>

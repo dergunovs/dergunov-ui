@@ -1,46 +1,46 @@
 <template>
   <div class="ui-field-label-block">
-    <label @click.stop="openSelectOptions" :for="`input${_uid}`" class="ui-field-label">
+    <label @click.stop="openSelectOptions" :for="`input${$.uid}`" class="ui-field-label">
       {{ label }}
-      <span v-if="required">*</span>
+      <span v-if="required" class="ui-field-label-required">*</span>
     </label>
 
     <TheInput
       v-if="type === 'text'"
-      :value="value"
-      @input="check"
+      :modelValue="modelValue"
+      @update:modelValue="check"
       ref="input"
-      :id="`input${_uid}`"
+      :id="`input${$.uid}`"
       class="ui-field-input"
       :type="this.tel ? 'tel' : 'text'"
     />
 
     <TheTextarea
       v-if="type === 'textarea'"
-      :value="value"
-      @input="check"
+      :modelValue="modelValue"
+      @update:modelValue="check"
       ref="input"
-      :id="`input${_uid}`"
+      :id="`input${$.uid}`"
       class="ui-field-input"
     />
 
     <TheSelect
       v-if="type === 'select'"
-      :value="value"
-      @input="check"
+      :modelValue="modelValue"
+      @update:modelValue="check"
       :options="options"
       ref="input"
-      :id="`input${_uid}`"
+      :id="`input${$.uid}`"
       class="ui-field-input"
     />
 
     <TheMultiselect
       v-if="type === 'multiselect'"
-      :value="value"
-      @input="check"
+      :modelValue="modelValue"
+      @update:modelValue="check"
       :options="options"
       ref="input"
-      :id="`input${_uid}`"
+      :id="`input${$.uid}`"
       class="ui-field-input"
     />
 
@@ -48,8 +48,10 @@
   </div>
 </template>
 
-<script>
-  export default {
+<script lang="ts">
+  import { defineComponent } from "vue";
+
+  export default /*#__PURE__*/ defineComponent({
     name: "TheField",
 
     data() {
@@ -60,31 +62,31 @@
         errorMessage: "",
         rules: {
           required: {
-            check(data, required, tel) {
+            check(data: any, required: boolean, tel: boolean) {
               return (required && !data?.length) || (required && data === "+7 (" && tel) ? true : false;
             },
             message: "Заполните это поле",
           },
           min: {
-            check(data, min) {
+            check(data: any, min: number) {
               return data?.length < min ? true : false;
             },
             message: "Слишком мало символов",
           },
           max: {
-            check(data, max) {
+            check(data: any, max: number) {
               return data?.length > max ? true : false;
             },
             message: "Слишком много символов",
           },
           email: {
-            check(data, email) {
+            check(data: any, email: boolean) {
               return data && email && !emailRegexp.test(String(data).toLowerCase()) ? true : false;
             },
             message: "Введите корректный email",
           },
           tel: {
-            check(data, tel, value) {
+            check(data: any, tel: boolean, value: string) {
               return tel && data?.length < 18 && value?.length ? true : false;
             },
             message: "Введите корректный телефон",
@@ -94,22 +96,22 @@
     },
 
     props: {
-      value: { type: [String, Number, Array] },
+      modelValue: { type: [String, Number, Array] },
       label: { type: String },
       type: { type: String, default: "text" },
       required: { type: Boolean },
-      min: { type: Number },
-      max: { type: Number },
+      min: { type: Number, default: 0 },
+      max: { type: Number, default: Infinity },
       email: { type: Boolean },
       tel: { type: Boolean },
       options: { type: Array },
     },
 
     methods: {
-      check(data) {
-        this.$emit("input", data);
+      check(data: any) {
+        this.$emit("update:modelValue", data);
 
-        let telInputValue = this.tel ? this.$refs.input.$el.value : false;
+        let telInputValue = this.tel ? (this.$refs.input as any).$el.value : false;
 
         this.error =
           this.rules.required.check(data, this.required, this.tel) ||
@@ -134,10 +136,12 @@
       },
 
       openSelectOptions() {
-        ["select"].includes(this.type) ? this.$refs.input.openOptions() : this.$refs.input.$el.focus();
+        ["select"].includes(this.type)
+          ? (this.$refs.input as any).openOptions()
+          : (this.$refs.input as any).$el.focus();
       },
     },
-  };
+  });
 </script>
 
 <style>
