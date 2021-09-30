@@ -8,7 +8,7 @@
       <p class="mb-16">Атрибут type="tel" добавляет маску.</p>
 
       <TheInput v-model="regular" class="mb-8" />
-      <p>data: {{ regular }}</p>
+      <p class="mb-16">data: {{ regular }}</p>
 
       <div class="flex mb-16">
         <TheInput type="password" placeholder="password" class="mr-8" />

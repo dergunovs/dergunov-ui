@@ -15,10 +15,6 @@
       direction: { type: String, default: "vertical" },
       design: { type: String, default: "regular" },
     },
-
-    data() {
-      return {};
-    },
   });
 </script>
 

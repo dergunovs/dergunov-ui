@@ -34,7 +34,7 @@
     </div>
 
     <transition name="fade">
-      <ul class="ui-multiselect-dropdown-block" v-if="isShowOptions">
+      <ul class="ui-multiselect-dropdown-block" v-show="isShowOptions">
         <li v-if="!optionsFiltered.length" @click="hideOptions" class="ui-multiselect-dropdown">
           Нет элементов для выбора
         </li>
@@ -61,7 +61,7 @@
   import { defineComponent } from "vue";
   import arrow from "@/lib-components/assets/icons/arrow.svg";
 
-  declare interface Option {
+  interface Option {
     value: string | number;
     name: string;
   }
@@ -73,7 +73,7 @@
       return {
         isShowOptions: false,
         currentOptions: [] as Option[],
-        optionElements: [],
+        optionElements: [] as HTMLElement[],
       };
     },
 
@@ -121,7 +121,7 @@
         this.focusOnFirstOptionElement();
       },
 
-      addOption(option: any) {
+      addOption(option: Option) {
         this.currentOptions = [...this.currentOptions, option];
         if (!this.optionsFiltered.length) {
           this.hideOptions();
@@ -134,42 +134,47 @@
         );
       },
 
-      async focusOnFirstOptionElement() {
-        await this.$nextTick();
-        if ((this.optionElements as HTMLElement[]).length) {
-          (this.optionElements as HTMLElement[])[0].focus();
+      focusOnFirstOptionElement() {
+        if (this.optionElements.length) {
+          setTimeout(() => {
+            this.optionElements[0].focus();
+          }, 100);
         }
       },
 
       focusAt(index: number) {
-        (this.optionElements as HTMLElement[])[index].focus();
+        this.optionElements[index].focus();
       },
 
       focusUp(index: number) {
         if (index !== 0) {
-          (this.optionElements as HTMLElement[])[index - 1].focus();
+          this.optionElements[index - 1].focus();
         }
       },
 
       focusDown(index: number) {
         if (index !== this.optionsFiltered.length - 1) {
-          (this.optionElements as HTMLElement[])[index + 1].focus();
+          this.optionElements[index + 1].focus();
         }
       },
 
       setOptionElementRef(el: HTMLElement) {
         if (el) {
-          (this.optionElements as HTMLElement[]).push(el);
+          this.optionElements.push(el);
         }
       },
+    },
+
+    beforeUpdate() {
+      this.optionElements = [];
     },
 
     mounted() {
       if (this.modelValue) {
         if (typeof this.options[0] === "object") {
-          (this.currentOptions as any) = this.options.filter((option: any) =>
+          this.currentOptions = this.options.filter((option: any) =>
             (this.modelValue as any).includes(option.value)
-          );
+          ) as Option[];
         }
         if (typeof this.options[0] === "string" || typeof this.options[0] === "number") {
           let optionsTypeUpdated = this.options.filter((option: any) => (this.modelValue as any).includes(option));

@@ -45,14 +45,19 @@
   import { defineComponent } from "vue";
   import arrow from "@/lib-components/assets/icons/arrow.svg";
 
+  interface Option {
+    value: string | number;
+    name: string;
+  }
+
   export default /*#__PURE__*/ defineComponent({
     name: "TheSelect",
 
     data() {
       return {
         isShowOptions: false,
-        currentOption: {},
-        optionElements: [],
+        currentOption: {} as Option,
+        optionElements: [] as HTMLElement[],
       };
     },
 
@@ -74,7 +79,7 @@
 
     watch: {
       currentOption() {
-        this.$emit("update:modelValue", (this.currentOption as any).value);
+        this.$emit("update:modelValue", this.currentOption.value);
       },
     },
 
@@ -93,35 +98,36 @@
         this.focusOnFirstOptionElement();
       },
 
-      setOption(option: string | number) {
+      setOption(option: Option) {
         this.currentOption = option;
         this.hideOptions();
       },
 
-      async focusOnFirstOptionElement() {
-        await this.$nextTick();
-        (this.optionElements as HTMLElement[])[0].focus();
+      focusOnFirstOptionElement() {
+        setTimeout(() => {
+          this.optionElements[0].focus();
+        }, 100);
       },
 
       focusAt(index: number) {
-        (this.optionElements as HTMLElement[])[index].focus();
+        this.optionElements[index].focus();
       },
 
       focusUp(index: number) {
         if (index !== 0) {
-          (this.optionElements as HTMLElement[])[index - 1].focus();
+          this.optionElements[index - 1].focus();
         }
       },
 
       focusDown(index: number) {
-        if (index !== (this.optionElements as HTMLElement[]).length - 1) {
-          (this.optionElements as HTMLElement[])[index + 1].focus();
+        if (index !== this.optionElements.length - 1) {
+          this.optionElements[index + 1].focus();
         }
       },
 
       setOptionElementRef(el: HTMLElement) {
         if (el) {
-          (this.optionElements as HTMLElement[]).push(el);
+          this.optionElements.push(el);
         }
       },
     },
@@ -133,10 +139,10 @@
     mounted() {
       if (this.modelValue || this.modelValue === 0) {
         if (typeof this.options[0] === "object") {
-          (this.currentOption as any) = this.options.find((option: any) => option.value === this.modelValue);
+          this.currentOption = this.options.find((option: any) => option.value === this.modelValue) as Option;
         }
         if (typeof this.options[0] === "string" || typeof this.options[0] === "number") {
-          this.currentOption = { value: this.modelValue, name: this.modelValue };
+          this.currentOption = { value: this.modelValue, name: this.modelValue as string };
         }
       }
 

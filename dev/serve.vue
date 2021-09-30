@@ -35,7 +35,7 @@
 
   const requireComponents = require.context("./components/", false, /\.vue$/);
   let components: any = {};
-  requireComponents.keys().forEach((file: any) => {
+  requireComponents.keys().forEach((file: string) => {
     const component = requireComponents(file);
     const componentName = file.replace(/^\.\/(.*)\.\w+$/, "$1");
     components[componentName] = component.default;

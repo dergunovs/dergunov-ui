@@ -34,9 +34,10 @@
       formValidate() {
         this.errorsCount = 0;
 
-        this.$el.querySelectorAll(".ui-field-label-block").forEach((element: any) => {
+        this.$el.querySelectorAll(".ui-field-label-block").forEach((element: HTMLElement) => {
           if (
-            (element.querySelector(".ui-field-label-required") && !element.querySelector(".ui-field-input").value) ||
+            (element.querySelector(".ui-field-label-required") &&
+              !(element.querySelector(".ui-field-input") as HTMLInputElement).value) ||
             element.querySelectorAll(".ui-field-error").length
           ) {
             this.errorsCount = this.errorsCount + 1;
