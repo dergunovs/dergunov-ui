@@ -55,7 +55,7 @@ if (!argv.format || argv.format === "es") {
       dir: "./dist",
       format: "esm",
       exports: "named",
-      assetFileNames: "[name].[ext]",
+      assetFileNames: "assets/[name].[ext]",
       preserveModules: true,
     },
     plugins: [
@@ -83,11 +83,12 @@ if (!argv.format || argv.format === "cjs") {
     external,
     output: {
       compact: true,
-      file: "dist/dergunov-ui.ssr.js",
+      dir: "./dist",
       format: "cjs",
       name: "DergunovUi",
-      exports: "auto",
+      exports: "named",
       assetFileNames: "[name].[ext]",
+      preserveModules: true,
       globals,
     },
     plugins: [
