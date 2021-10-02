@@ -11,3 +11,5 @@ export { default as TheMultiselect } from "./TheMultiselect.vue";
 export { default as TheSelect } from "./TheSelect.vue";
 export { default as TheSlider } from "./TheSlider.vue";
 export { default as TheTextarea } from "./TheTextarea.vue";
+
+export { default as CSS } from "./CSS.vue";

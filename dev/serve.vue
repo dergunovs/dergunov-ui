@@ -28,7 +28,6 @@
 
 <script lang="ts">
   import { defineComponent } from "vue";
-  import "@/lib-components/assets/styles.css";
   import Readme from "./Readme.vue";
 
   declare var require: any;

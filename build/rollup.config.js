@@ -6,7 +6,6 @@ import commonjs from "@rollup/plugin-commonjs";
 import resolve from "@rollup/plugin-node-resolve";
 import replace from "@rollup/plugin-replace";
 import babel from "@rollup/plugin-babel";
-import { terser } from "rollup-plugin-terser";
 import ttypescript from "ttypescript";
 import typescript from "rollup-plugin-typescript2";
 import minimist from "minimist";
@@ -24,110 +23,47 @@ const babelPresetEnvConfig = require("../babel.config").presets.filter(
 )[0][1];
 
 const argv = minimist(process.argv.slice(2));
-
 const projectRoot = path.resolve(__dirname, "..");
+const external = ["vue"];
+const globals = { vue: "Vue" };
 
 const baseConfig = {
-  input: "src/entry.ts",
+  input: "src/entry.esm.ts",
+  output: {
+    dir: "./dist",
+    format: "esm",
+    exports: "named",
+    assetFileNames: "[name].[ext]",
+    preserveModules: true,
+  },
+  external,
   plugins: {
     preVue: [alias({ entries: [{ find: "@", replacement: `${path.resolve(projectRoot, "src")}` }] })],
     replace: { "process.env.NODE_ENV": JSON.stringify("production"), preventAssignment: true },
     vue: { css: true, template: { isProduction: true } },
     postVue: [
-      resolve({ extensions: [".js", ".jsx", ".ts", ".tsx", ".vue"] }),
+      resolve({ extensions: [".js", ".ts", ".vue"] }),
       commonjs(),
-      styles({ mode: ["extract", "styles.css"], minimize: process.env.NODE_ENV === "production" }),
+      styles({ mode: ["inject"], minimize: process.env.NODE_ENV === "production" }),
       images(),
     ],
-    babel: {
-      exclude: "node_modules/**",
-      extensions: [".js", ".jsx", ".ts", ".tsx", ".vue"],
-      babelHelpers: "bundled",
-    },
+    babel: { exclude: "node_modules/**", extensions: [".js", ".ts", ".vue"], babelHelpers: "bundled" },
   },
 };
 
-const external = ["vue"];
-const globals = { vue: "Vue" };
+const config = {
+  ...baseConfig,
+  plugins: [
+    replace(baseConfig.plugins.replace),
+    ...baseConfig.plugins.preVue,
+    vue(baseConfig.plugins.vue),
+    ...baseConfig.plugins.postVue,
+    typescript({ typescript: ttypescript, useTsconfigDeclarationDir: true, emitDeclarationOnly: true }),
+    babel({
+      ...baseConfig.plugins.babel,
+      presets: [["@babel/preset-env", { ...babelPresetEnvConfig, targets: esbrowserslist }]],
+    }),
+  ],
+};
 
-const buildFormats = [];
-if (!argv.format || argv.format === "es") {
-  const esConfig = {
-    ...baseConfig,
-    input: "src/entry.esm.ts",
-    external,
-    output: {
-      file: "dist/dergunov-ui.esm.js",
-      format: "esm",
-      exports: "named",
-      assetFileNames: "assets/[name].[ext]",
-    },
-    plugins: [
-      replace(baseConfig.plugins.replace),
-      ...baseConfig.plugins.preVue,
-      vue(baseConfig.plugins.vue),
-      ...baseConfig.plugins.postVue,
-      typescript({
-        typescript: ttypescript,
-        useTsconfigDeclarationDir: true,
-        emitDeclarationOnly: true,
-      }),
-      babel({
-        ...baseConfig.plugins.babel,
-        presets: [["@babel/preset-env", { ...babelPresetEnvConfig, targets: esbrowserslist }]],
-      }),
-    ],
-  };
-  buildFormats.push(esConfig);
-}
-
-if (!argv.format || argv.format === "cjs") {
-  const umdConfig = {
-    ...baseConfig,
-    external,
-    output: {
-      compact: true,
-      file: "dist/dergunov-ui.ssr.js",
-      format: "cjs",
-      name: "DergunovUi",
-      exports: "auto",
-      assetFileNames: "assets/[name].[ext]",
-      globals,
-    },
-    plugins: [
-      replace(baseConfig.plugins.replace),
-      ...baseConfig.plugins.preVue,
-      vue(baseConfig.plugins.vue),
-      ...baseConfig.plugins.postVue,
-      babel(baseConfig.plugins.babel),
-    ],
-  };
-  buildFormats.push(umdConfig);
-}
-
-if (!argv.format || argv.format === "iife") {
-  const unpkgConfig = {
-    ...baseConfig,
-    external,
-    output: {
-      compact: true,
-      file: "dist/dergunov-ui.min.js",
-      format: "iife",
-      name: "DergunovUi",
-      exports: "auto",
-      assetFileNames: "assets/[name].[ext]",
-      globals,
-    },
-    plugins: [
-      replace(baseConfig.plugins.replace),
-      ...baseConfig.plugins.preVue,
-      vue(baseConfig.plugins.vue),
-      ...baseConfig.plugins.postVue,
-      babel(baseConfig.plugins.babel),
-      terser({ output: { ecma: 5 } }),
-    ],
-  };
-  buildFormats.push(unpkgConfig);
-}
-
-export default buildFormats;
+export default [config];
