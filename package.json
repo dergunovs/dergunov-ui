@@ -10,6 +10,10 @@
     "dist/*",
     "src/**/*.vue"
   ],
+  "exports": {
+    "./*": "./*",
+    "./": "./"
+  },
   "sideEffects": false,
   "scripts": {
     "dev": "vue-cli-service serve dev/serve.ts",
