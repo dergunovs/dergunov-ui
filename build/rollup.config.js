@@ -52,11 +52,11 @@ if (!argv.format || argv.format === "es") {
     input: "src/entry.esm.ts",
     external,
     output: {
-      dir: "./dist",
+      dir: "dist",
       format: "esm",
       exports: "named",
       assetFileNames: "[name].[ext]",
-      preserveModules: true,
+      preserveModules: false,
     },
     plugins: [
       replace(baseConfig.plugins.replace),
