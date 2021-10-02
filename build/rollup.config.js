@@ -55,7 +55,7 @@ if (!argv.format || argv.format === "es") {
       dir: "./dist",
       format: "esm",
       exports: "named",
-      assetFileNames: "assets/[name].[ext]",
+      assetFileNames: "[name].[ext]",
       preserveModules: true,
     },
     plugins: [
