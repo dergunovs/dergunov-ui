@@ -83,7 +83,7 @@ if (!argv.format || argv.format === "cjs") {
     ...baseConfig,
     external,
     output: {
-      compact: true,
+      compact: false,
       dir: "./dist",
       format: "cjs",
       name: "DergunovUi",
