@@ -46,61 +46,36 @@ const external = ["vue"];
 const globals = { vue: "Vue" };
 
 const buildFormats = [];
-if (!argv.format || argv.format === "es") {
-  const esConfig = {
-    ...baseConfig,
-    input: "src/entry.esm.ts",
-    external,
-    output: {
-      dir: "dist",
-      format: "esm",
-      exports: "named",
-      assetFileNames: "[name].[ext]",
-      preserveModules: true,
-      compact: false,
-    },
-    plugins: [
-      replace(baseConfig.plugins.replace),
-      ...baseConfig.plugins.preVue,
-      vue(baseConfig.plugins.vue),
-      ...baseConfig.plugins.postVue,
-      typescript({
-        typescript: ttypescript,
-        useTsconfigDeclarationDir: true,
-        emitDeclarationOnly: true,
-      }),
-      babel({
-        ...baseConfig.plugins.babel,
-        presets: [["@babel/preset-env", { ...babelPresetEnvConfig, targets: esbrowserslist }]],
-      }),
-    ],
-  };
-  buildFormats.push(esConfig);
-}
 
-if (!argv.format || argv.format === "cjs") {
-  const umdConfig = {
-    ...baseConfig,
-    external,
-    output: {
-      compact: false,
-      dir: "./dist",
-      format: "cjs",
-      name: "DergunovUi",
-      exports: "named",
-      assetFileNames: "[name].[ext]",
-      preserveModules: true,
-      globals,
-    },
-    plugins: [
-      replace(baseConfig.plugins.replace),
-      ...baseConfig.plugins.preVue,
-      vue(baseConfig.plugins.vue),
-      ...baseConfig.plugins.postVue,
-      babel(baseConfig.plugins.babel),
-    ],
-  };
-  buildFormats.push(umdConfig);
-}
+const esConfig = {
+  ...baseConfig,
+  input: "src/entry.esm.ts",
+  external,
+  output: {
+    file: "dist/dergunov-ui.esm.js",
+    format: "esm",
+    exports: "named",
+    assetFileNames: "[name].[ext]",
+    preserveModules: false,
+    compact: true,
+  },
+  plugins: [
+    replace(baseConfig.plugins.replace),
+    ...baseConfig.plugins.preVue,
+    vue(baseConfig.plugins.vue),
+    ...baseConfig.plugins.postVue,
+    typescript({
+      typescript: ttypescript,
+      useTsconfigDeclarationDir: true,
+      emitDeclarationOnly: true,
+    }),
+    babel({
+      ...baseConfig.plugins.babel,
+      presets: [["@babel/preset-env", { ...babelPresetEnvConfig, targets: esbrowserslist }]],
+    }),
+  ],
+};
+
+buildFormats.push(esConfig);
 
 export default buildFormats;
