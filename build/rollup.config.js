@@ -23,20 +23,11 @@ const babelPresetEnvConfig = require("../babel.config").presets.filter(
 )[0][1];
 
 const argv = minimist(process.argv.slice(2));
+
 const projectRoot = path.resolve(__dirname, "..");
-const external = ["vue"];
-const globals = { vue: "Vue" };
 
 const baseConfig = {
-  input: "src/entry.esm.ts",
-  output: {
-    dir: "./dist",
-    format: "esm",
-    exports: "named",
-    assetFileNames: "[name].[ext]",
-    preserveModules: true,
-  },
-  external,
+  input: "src/entry.ts",
   plugins: {
     preVue: [alias({ entries: [{ find: "@", replacement: `${path.resolve(projectRoot, "src")}` }] })],
     replace: { "process.env.NODE_ENV": JSON.stringify("production"), preventAssignment: true },
@@ -51,19 +42,63 @@ const baseConfig = {
   },
 };
 
-const config = {
-  ...baseConfig,
-  plugins: [
-    replace(baseConfig.plugins.replace),
-    ...baseConfig.plugins.preVue,
-    vue(baseConfig.plugins.vue),
-    ...baseConfig.plugins.postVue,
-    typescript({ typescript: ttypescript, useTsconfigDeclarationDir: true, emitDeclarationOnly: true }),
-    babel({
-      ...baseConfig.plugins.babel,
-      presets: [["@babel/preset-env", { ...babelPresetEnvConfig, targets: esbrowserslist }]],
-    }),
-  ],
-};
+const external = ["vue"];
+const globals = { vue: "Vue" };
 
-export default [config];
+const buildFormats = [];
+if (!argv.format || argv.format === "es") {
+  const esConfig = {
+    ...baseConfig,
+    input: "src/entry.esm.ts",
+    external,
+    output: {
+      dir: "./dist",
+      format: "esm",
+      exports: "named",
+      assetFileNames: "[name].[ext]",
+      preserveModules: true,
+    },
+    plugins: [
+      replace(baseConfig.plugins.replace),
+      ...baseConfig.plugins.preVue,
+      vue(baseConfig.plugins.vue),
+      ...baseConfig.plugins.postVue,
+      typescript({
+        typescript: ttypescript,
+        useTsconfigDeclarationDir: true,
+        emitDeclarationOnly: true,
+      }),
+      babel({
+        ...baseConfig.plugins.babel,
+        presets: [["@babel/preset-env", { ...babelPresetEnvConfig, targets: esbrowserslist }]],
+      }),
+    ],
+  };
+  buildFormats.push(esConfig);
+}
+
+if (!argv.format || argv.format === "cjs") {
+  const umdConfig = {
+    ...baseConfig,
+    external,
+    output: {
+      compact: true,
+      file: "dist/dergunov-ui.ssr.js",
+      format: "cjs",
+      name: "DergunovUi",
+      exports: "auto",
+      assetFileNames: "[name].[ext]",
+      globals,
+    },
+    plugins: [
+      replace(baseConfig.plugins.replace),
+      ...baseConfig.plugins.preVue,
+      vue(baseConfig.plugins.vue),
+      ...baseConfig.plugins.postVue,
+      babel(baseConfig.plugins.babel),
+    ],
+  };
+  buildFormats.push(umdConfig);
+}
+
+export default buildFormats;
