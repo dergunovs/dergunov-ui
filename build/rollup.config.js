@@ -57,7 +57,7 @@ if (!argv.format || argv.format === "es") {
       exports: "named",
       assetFileNames: "[name].[ext]",
       preserveModules: true,
-      compact: true,
+      compact: false,
     },
     plugins: [
       replace(baseConfig.plugins.replace),
