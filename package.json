@@ -7,12 +7,15 @@
   "module": "dist/dergunov-ui.esm.js",
   "types": "dist/types/src/entry.esm.d.ts",
   "files": [
-    "dist/*",
+    "dist",
     "src/**/*.vue"
   ],
   "exports": {
-    "./*": "./*",
-    "./": "./"
+    ".": {
+      "import": {
+        "default": "./dist/src/entry.esm.js"
+      }
+    }
   },
   "sideEffects": false,
   "scripts": {

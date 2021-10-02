@@ -35,7 +35,7 @@ const baseConfig = {
     postVue: [
       resolve({ extensions: [".js", ".ts", ".vue"] }),
       commonjs(),
-      styles({ mode: ["inject"], minimize: process.env.NODE_ENV === "production" }),
+      styles({ mode: ["extract"], minimize: process.env.NODE_ENV === "production" }),
       images(),
     ],
     babel: { exclude: "node_modules/**", extensions: [".js", ".ts", ".vue"], babelHelpers: "bundled" },
