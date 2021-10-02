@@ -35,7 +35,7 @@ const baseConfig = {
     postVue: [
       resolve({ extensions: [".js", ".ts", ".vue"] }),
       commonjs(),
-      styles({ mode: ["extract"], minimize: process.env.NODE_ENV === "production" }),
+      styles({ mode: ["extract", "styles.css"], minimize: process.env.NODE_ENV === "production" }),
       images(),
     ],
     babel: { exclude: "node_modules/**", extensions: [".js", ".ts", ".vue"], babelHelpers: "bundled" },
@@ -55,7 +55,7 @@ const esConfig = {
     file: "dist/dergunov-ui.esm.js",
     format: "esm",
     exports: "named",
-    assetFileNames: "[name].[ext]",
+    assetFileNames: "assets/[name].[ext]",
     preserveModules: false,
     compact: true,
   },
