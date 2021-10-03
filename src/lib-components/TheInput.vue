@@ -20,16 +20,18 @@
     },
 
     methods: {
-      emitValue(modelValue: string) {
+      emitValue(modelValue: string): void {
         this.type === "tel"
           ? this.$emit("update:modelValue", this.maskToTel(modelValue))
           : this.$emit("update:modelValue", modelValue);
       },
 
-      maskToTel(modelValue: string) {
+      maskToTel(modelValue: string): string {
         let x = modelValue.replace(/\D/g, "").match(/(\d{0,1})(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,2})/);
         if (x) {
           return !x[3] ? `+7 (${x[2]}` : `+7 (${x[2]}) ${x[3]}` + (x[4] ? `-${x[4]}` : "") + (x[5] ? `-${x[5]}` : "");
+        } else {
+          return "";
         }
       },
     },

@@ -43,13 +43,15 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent } from "vue";
+  import { defineComponent, PropType } from "vue";
   import arrow from "@/lib-components/assets/icons/arrow.svg";
 
   interface Option {
     value: string | number;
     name: string;
   }
+
+  type OptionValue = string | number;
 
   export default /*#__PURE__*/ defineComponent({
     name: "TheSelect",
@@ -63,15 +65,15 @@
     },
 
     props: {
-      modelValue: { type: [String, Number] },
+      modelValue: { type: [String, Number] as PropType<OptionValue> },
       options: { type: Array, required: true },
     },
 
     components: { arrow },
 
     computed: {
-      optionsFiltered: function() {
-        return this.options.map((option) => {
+      optionsFiltered: function(): Option[] {
+        return this.options.map((option: any) => {
           if (typeof option === "string" || typeof option === "number") return { value: option, name: option };
           if (typeof option === "object") return option;
         });
@@ -85,48 +87,48 @@
     },
 
     methods: {
-      openOptions() {
+      openOptions(): void {
         this.isShowOptions = true;
         this.focusOnFirstOptionElement();
       },
 
-      hideOptions() {
+      hideOptions(): void {
         this.isShowOptions = false;
       },
 
-      toggleOptions() {
+      toggleOptions(): void {
         this.isShowOptions = !this.isShowOptions;
         this.focusOnFirstOptionElement();
       },
 
-      setOption(option: Option) {
+      setOption(option: Option): void {
         this.currentOption = option;
         this.hideOptions();
       },
 
-      focusOnFirstOptionElement() {
+      focusOnFirstOptionElement(): void {
         setTimeout(() => {
           this.optionElements[0].focus();
         }, 100);
       },
 
-      focusAt(index: number) {
+      focusAt(index: number): void {
         this.optionElements[index].focus();
       },
 
-      focusUp(index: number) {
+      focusUp(index: number): void {
         if (index !== 0) {
           this.optionElements[index - 1].focus();
         }
       },
 
-      focusDown(index: number) {
+      focusDown(index: number): void {
         if (index !== this.optionElements.length - 1) {
           this.optionElements[index + 1].focus();
         }
       },
 
-      setOptionElementRef(el: HTMLElement) {
+      setOptionElementRef(el: HTMLElement): void {
         if (el) {
           this.optionElements.push(el);
         }

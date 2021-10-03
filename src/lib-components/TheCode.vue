@@ -40,9 +40,10 @@
     },
 
     methods: {
-      copyToClipboard() {
+      copyToClipboard(): void {
         navigator.clipboard.writeText(this.code.innerText);
         this.copied = true;
+
         setTimeout(() => {
           this.copied = false;
         }, 200);

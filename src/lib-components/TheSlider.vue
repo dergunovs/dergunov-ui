@@ -43,13 +43,18 @@
       slides: { type: Array, required: true },
     },
 
+    computed: {
+      sliderWrapper: function(): HTMLElement {
+        return this.$refs.sliderWrapper as HTMLElement;
+      },
+    },
+
     methods: {
-      setSlideCurrent(index: number) {
-        (this.$refs.sliderWrapper as HTMLElement).style.transform = `translate3d(-${index *
-          this.slideWidth}px, 0px, 0px)`;
+      setSlideCurrent(index: number): void {
+        this.sliderWrapper.style.transform = `translate3d(-${index * this.slideWidth}px, 0px, 0px)`;
         this.slideCurrent = index;
       },
-      slideSwipe(e: MouseEvent) {
+      slideSwipe(e: MouseEvent): void {
         let slideClickZone = e.offsetX / this.slideWidth;
 
         if (slideClickZone < 0.2 && this.slideCurrent !== 0) {
@@ -59,21 +64,20 @@
           this.nextSlide();
         }
       },
-      nextSlide() {
+      nextSlide(): void {
         this.slideCurrent = this.slideCurrent + 1;
         this.updateCoordinatesX();
       },
-      prevSlide() {
+      prevSlide(): void {
         this.slideCurrent = this.slideCurrent - 1;
         this.updateCoordinatesX();
       },
-      updateSlideWidth() {
+      updateSlideWidth(): void {
         this.slideWidth = (this.$refs["slide" + this.slideCurrent] as HTMLElement).offsetWidth;
         this.updateCoordinatesX();
       },
-      updateCoordinatesX() {
-        (this.$refs.sliderWrapper as HTMLElement).style.transform = `translate3d(-${this.slideCurrent *
-          this.slideWidth}px, 0px, 0px)`;
+      updateCoordinatesX(): void {
+        this.sliderWrapper.style.transform = `translate3d(-${this.slideCurrent * this.slideWidth}px, 0px, 0px)`;
       },
     },
 

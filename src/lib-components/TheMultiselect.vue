@@ -47,6 +47,7 @@
           @keydown.up="focusUp(index)"
           @keydown.down="focusDown(index)"
           @keydown.enter="addOption(option)"
+          @keydown.esc="hideOptions"
           class="ui-multiselect-dropdown"
           tabindex="0"
         >
@@ -58,13 +59,15 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent } from "vue";
+  import { defineComponent, PropType } from "vue";
   import arrow from "@/lib-components/assets/icons/arrow.svg";
 
   interface Option {
     value: string | number;
     name: string;
   }
+
+  type OptionValue = string | number;
 
   export default /*#__PURE__*/ defineComponent({
     name: "TheMultiselect",
@@ -78,63 +81,61 @@
     },
 
     props: {
-      modelValue: { type: [Array, String] },
+      modelValue: { type: Array as PropType<OptionValue[]> },
       options: { type: Array, required: true },
     },
 
     components: { arrow },
 
     computed: {
-      optionsFiltered: function() {
-        let currentOptionsValues = this.currentOptions.map((option: { value: string | number }) => {
+      optionsFiltered: function(): Option[] {
+        let currentOptionsValues: (string | number)[] = this.currentOptions.map((option: Option) => {
           return option.value;
         });
 
-        let optionsTypeUpdated = this.options.map((option) => {
+        let optionsTypeUpdated: any[] = this.options.map((option: any) => {
           if (typeof option === "string" || typeof option === "number") return { value: option, name: option };
           if (typeof option === "object") return option;
         });
 
-        return optionsTypeUpdated.filter((option: any) => !currentOptionsValues.includes(option.value));
+        return optionsTypeUpdated.filter((option: Option) => !currentOptionsValues.includes(option.value));
       },
     },
 
     watch: {
       currentOptions() {
-        let udpatedValues = this.currentOptions.map((option: { value: string | number }) => option.value);
+        let udpatedValues = this.currentOptions.map((option: Option) => option.value);
         this.$emit("update:modelValue", udpatedValues);
       },
     },
 
     methods: {
-      openOptions() {
+      openOptions(): void {
         this.isShowOptions = true;
         this.focusOnFirstOptionElement();
       },
 
-      hideOptions() {
+      hideOptions(): void {
         this.isShowOptions = false;
       },
 
-      toggleOptions() {
+      toggleOptions(): void {
         this.isShowOptions = !this.isShowOptions;
         this.focusOnFirstOptionElement();
       },
 
-      addOption(option: Option) {
+      addOption(option: Option): void {
         this.currentOptions = [...this.currentOptions, option];
         if (!this.optionsFiltered.length) {
           this.hideOptions();
         }
       },
 
-      removeOption(optionValueToRemove: string | number) {
-        this.currentOptions = this.currentOptions.filter(
-          (option: { value: string | number }) => option.value !== optionValueToRemove
-        );
+      removeOption(optionValueToRemove: string | number): void {
+        this.currentOptions = this.currentOptions.filter((option: Option) => option.value !== optionValueToRemove);
       },
 
-      focusOnFirstOptionElement() {
+      focusOnFirstOptionElement(): void {
         if (this.optionElements.length) {
           setTimeout(() => {
             this.optionElements[0].focus();
@@ -142,23 +143,23 @@
         }
       },
 
-      focusAt(index: number) {
+      focusAt(index: number): void {
         this.optionElements[index].focus();
       },
 
-      focusUp(index: number) {
+      focusUp(index: number): void {
         if (index !== 0) {
           this.optionElements[index - 1].focus();
         }
       },
 
-      focusDown(index: number) {
+      focusDown(index: number): void {
         if (index !== this.optionsFiltered.length - 1) {
           this.optionElements[index + 1].focus();
         }
       },
 
-      setOptionElementRef(el: HTMLElement) {
+      setOptionElementRef(el: HTMLElement): void {
         if (el) {
           this.optionElements.push(el);
         }
@@ -170,18 +171,22 @@
     },
 
     mounted() {
-      if (this.modelValue) {
-        if (typeof this.options[0] === "object") {
-          this.currentOptions = this.options.filter((option: any) =>
-            (this.modelValue as any).includes(option.value)
-          ) as Option[];
-        }
-        if (typeof this.options[0] === "string" || typeof this.options[0] === "number") {
-          let optionsTypeUpdated = this.options.filter((option: any) => (this.modelValue as any).includes(option));
-          this.currentOptions = optionsTypeUpdated.map((option: any) => {
-            return { value: option, name: option };
-          });
-        }
+      if (typeof this.options[0] === "object") {
+        this.currentOptions = (this.options as Option[]).filter((option: Option) => {
+          if (this.modelValue) {
+            return this.modelValue.includes(option.value);
+          }
+        }) as Option[];
+      }
+      if (typeof this.options[0] === "string" || typeof this.options[0] === "number") {
+        let optionsTypeUpdated = (this.options as OptionValue[]).filter((option: OptionValue) => {
+          if (this.modelValue) {
+            return this.modelValue.includes(option);
+          }
+        });
+        this.currentOptions = optionsTypeUpdated.map((option: any) => {
+          return { value: option, name: option };
+        });
       }
 
       document.addEventListener("click", this.hideOptions);

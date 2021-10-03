@@ -31,7 +31,7 @@
     },
 
     methods: {
-      formValidate() {
+      formValidate(): void {
         this.errorsCount = 0;
 
         this.$el.querySelectorAll(".ui-field-label-block").forEach((element: HTMLElement) => {

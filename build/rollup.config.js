@@ -52,12 +52,12 @@ const esConfig = {
   input: "src/entry.esm.ts",
   external,
   output: {
-    dir: "dist",
+    file: "dist/dergunov-ui.esm.js",
     format: "esm",
     exports: "named",
     assetFileNames: "assets/[name].[ext]",
-    preserveModules: true,
-    compact: false,
+    preserveModules: false,
+    compact: true,
   },
   plugins: [
     replace(baseConfig.plugins.replace),

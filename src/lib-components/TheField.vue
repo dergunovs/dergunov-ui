@@ -69,31 +69,31 @@
         errorMessage: "",
         rules: {
           required: {
-            check(data: InputDataFormatted, required: boolean, tel: boolean) {
+            check(data: InputDataFormatted, required: boolean, tel: boolean): boolean {
               return (required && !data.length) || (required && data === "+7 (" && tel) ? true : false;
             },
             message: "Заполните это поле",
           },
           min: {
-            check(data: InputDataFormatted, min: number) {
+            check(data: InputDataFormatted, min: number): boolean {
               return data.length < min ? true : false;
             },
             message: "Слишком мало символов",
           },
           max: {
-            check(data: InputDataFormatted, max: number) {
+            check(data: InputDataFormatted, max: number): boolean {
               return data.length > max ? true : false;
             },
             message: "Слишком много символов",
           },
           email: {
-            check(data: InputDataFormatted, email: boolean) {
+            check(data: InputDataFormatted, email: boolean): boolean {
               return data && email && !emailRegexp.test(String(data).toLowerCase()) ? true : false;
             },
             message: "Введите корректный email",
           },
           tel: {
-            check(data: InputDataFormatted, tel: boolean, value: string) {
+            check(data: InputDataFormatted, tel: boolean, value: string): boolean {
               return tel && data.length < 18 && value.length ? true : false;
             },
             message: "Введите корректный телефон",
@@ -121,7 +121,7 @@
     },
 
     methods: {
-      check(data: InputData) {
+      check(data: InputData): void {
         this.$emit("update:modelValue", data);
 
         let dataFormatted: InputDataFormatted = data as InputDataFormatted;
@@ -154,7 +154,7 @@
         }
       },
 
-      openSelectOptions() {
+      openSelectOptions(): void {
         ["select"].includes(this.type) ? this.input.openOptions() : this.input.$el.focus();
       },
     },
