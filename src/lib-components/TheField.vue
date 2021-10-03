@@ -49,7 +49,14 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent } from "vue";
+  import { defineComponent, ComponentPublicInstance } from "vue";
+
+  interface InputComponent extends ComponentPublicInstance {
+    openOptions: () => void;
+  }
+
+  type InputData = string | number | (string | number)[];
+  type InputDataFormatted = string | (string | number)[];
 
   export default /*#__PURE__*/ defineComponent({
     name: "TheField",
@@ -62,32 +69,32 @@
         errorMessage: "",
         rules: {
           required: {
-            check(data: any, required: boolean, tel: boolean) {
-              return (required && !data?.length) || (required && data === "+7 (" && tel) ? true : false;
+            check(data: InputDataFormatted, required: boolean, tel: boolean) {
+              return (required && !data.length) || (required && data === "+7 (" && tel) ? true : false;
             },
             message: "Заполните это поле",
           },
           min: {
-            check(data: any, min: number) {
-              return data?.length < min ? true : false;
+            check(data: InputDataFormatted, min: number) {
+              return data.length < min ? true : false;
             },
             message: "Слишком мало символов",
           },
           max: {
-            check(data: any, max: number) {
-              return data?.length > max ? true : false;
+            check(data: InputDataFormatted, max: number) {
+              return data.length > max ? true : false;
             },
             message: "Слишком много символов",
           },
           email: {
-            check(data: any, email: boolean) {
+            check(data: InputDataFormatted, email: boolean) {
               return data && email && !emailRegexp.test(String(data).toLowerCase()) ? true : false;
             },
             message: "Введите корректный email",
           },
           tel: {
-            check(data: any, tel: boolean, value: string) {
-              return tel && data?.length < 18 && value?.length ? true : false;
+            check(data: InputDataFormatted, tel: boolean, value: string) {
+              return tel && data.length < 18 && value.length ? true : false;
             },
             message: "Введите корректный телефон",
           },
@@ -107,28 +114,40 @@
       options: { type: Array },
     },
 
+    computed: {
+      input: function(): InputComponent {
+        return this.$refs.input as InputComponent;
+      },
+    },
+
     methods: {
-      check(data: any) {
+      check(data: InputData) {
         this.$emit("update:modelValue", data);
 
-        let telInputValue = this.tel ? (this.$refs.input as any).$el.value : false;
+        let dataFormatted: InputDataFormatted = data as InputDataFormatted;
+
+        if (typeof data === "number") {
+          dataFormatted = data.toString();
+        }
+
+        let telInputValue = this.tel ? this.input.$el.value : false;
 
         this.error =
-          this.rules.required.check(data, this.required, this.tel) ||
-          this.rules.min.check(data, this.min) ||
-          this.rules.max.check(data, this.max) ||
-          this.rules.email.check(data, this.email) ||
-          this.rules.tel.check(data, this.tel, telInputValue);
+          this.rules.required.check(dataFormatted, this.required, this.tel) ||
+          this.rules.min.check(dataFormatted, this.min) ||
+          this.rules.max.check(dataFormatted, this.max) ||
+          this.rules.email.check(dataFormatted, this.email) ||
+          this.rules.tel.check(dataFormatted, this.tel, telInputValue);
 
-        if (this.rules.required.check(data.toString(), this.required, this.tel)) {
+        if (this.rules.required.check(dataFormatted, this.required, this.tel)) {
           this.errorMessage = this.rules.required.message;
-        } else if (this.rules.min.check(data, this.min)) {
+        } else if (this.rules.min.check(dataFormatted, this.min)) {
           this.errorMessage = this.rules.min.message;
-        } else if (this.rules.max.check(data, this.max)) {
+        } else if (this.rules.max.check(dataFormatted, this.max)) {
           this.errorMessage = this.rules.max.message;
-        } else if (this.rules.email.check(data, this.email)) {
+        } else if (this.rules.email.check(dataFormatted, this.email)) {
           this.errorMessage = this.rules.email.message;
-        } else if (this.rules.tel.check(data, this.tel, telInputValue)) {
+        } else if (this.rules.tel.check(dataFormatted, this.tel, telInputValue)) {
           this.errorMessage = this.rules.tel.message;
         } else {
           this.errorMessage = "";
@@ -136,9 +155,7 @@
       },
 
       openSelectOptions() {
-        ["select"].includes(this.type)
-          ? (this.$refs.input as any).openOptions()
-          : (this.$refs.input as any).$el.focus();
+        ["select"].includes(this.type) ? this.input.openOptions() : this.input.$el.focus();
       },
     },
   });

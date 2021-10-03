@@ -30,6 +30,7 @@
           @keydown.up="focusUp(index)"
           @keydown.down="focusDown(index)"
           @keydown.enter="setOption(option)"
+          @keydown.esc="hideOptions"
           class="ui-select-dropdown"
           :class="{ 'ui-select-dropdown-current': option.name === currentOption.name }"
           tabindex="0"

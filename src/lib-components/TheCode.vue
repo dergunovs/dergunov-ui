@@ -33,9 +33,15 @@
 
     components: { copy },
 
+    computed: {
+      code: function(): HTMLElement {
+        return this.$refs.code as HTMLElement;
+      },
+    },
+
     methods: {
       copyToClipboard() {
-        navigator.clipboard.writeText((this.$refs.code as HTMLElement).innerText);
+        navigator.clipboard.writeText(this.code.innerText);
         this.copied = true;
         setTimeout(() => {
           this.copied = false;
@@ -44,7 +50,7 @@
     },
 
     mounted() {
-      (this.$refs.code as HTMLElement).innerHTML = (this.$refs.code as HTMLElement).innerHTML
+      this.code.innerHTML = this.code.innerHTML
         .replaceAll("<pre>", "")
         .replaceAll("</pre>", "")
         .replaceAll("<", "&lt;")
