@@ -1,5 +1,6 @@
 export { default as TheButton } from "./TheButton.vue";
 export { default as TheCard } from "./TheCard.vue";
+export { default as TheCheckbox } from "./TheCheckbox.vue";
 export { default as TheCode } from "./TheCode.vue";
 export { default as TheField } from "./TheField.vue";
 export { default as TheForm } from "./TheForm.vue";

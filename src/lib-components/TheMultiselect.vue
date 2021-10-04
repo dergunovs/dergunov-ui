@@ -89,11 +89,11 @@
 
     computed: {
       optionsFiltered: function(): Option[] {
-        let currentOptionsValues: (string | number)[] = this.currentOptions.map((option: Option) => {
+        let currentOptionsValues: OptionValue[] = this.currentOptions.map((option: Option) => {
           return option.value;
         });
 
-        let optionsTypeUpdated: any[] = this.options.map((option: any) => {
+        let optionsTypeUpdated = this.options.map((option: any) => {
           if (typeof option === "string" || typeof option === "number") return { value: option, name: option };
           if (typeof option === "object") return option;
         });
@@ -131,7 +131,7 @@
         }
       },
 
-      removeOption(optionValueToRemove: string | number): void {
+      removeOption(optionValueToRemove: OptionValue): void {
         this.currentOptions = this.currentOptions.filter((option: Option) => option.value !== optionValueToRemove);
       },
 
