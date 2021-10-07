@@ -23,14 +23,7 @@
         <TheField label="Минимальное количество символов" :min="3" v-model="formData.min" class="w-50 mb-8" />
         <TheField label="Максимальное количество символов" :max="3" v-model="formData.max" class="w-50 mb-8" />
         <TheField label="Textarea" type="textarea" required v-model="formData.required" class="w-50 mb-8" />
-        <TheField
-          label="Select"
-          type="select"
-          required
-          v-model="formData.select"
-          :options="selectOptions"
-          class="w-50 mb-8"
-        />
+        <TheField label="Select" type="select" v-model="formData.select" :options="selectOptions" class="w-50 mb-8" />
         <TheField
           label="Multiselect"
           type="multiselect"
@@ -61,7 +54,7 @@
           max: "",
           required: "",
           select: "",
-          multiselect: "",
+          multiselect: [],
         },
         selectOptions: [
           { value: 0, name: "Нет" },

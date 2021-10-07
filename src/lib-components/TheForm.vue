@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent @input="formValidate">
+  <form @submit.prevent>
     <slot v-if="formStatus !== 'success'"></slot>
 
     <div v-if="formStatus === 'success'" class="ui-form-message">
@@ -35,9 +35,15 @@
         this.errorsCount = 0;
 
         this.$el.querySelectorAll(".ui-field-label-block").forEach((element: HTMLElement) => {
+          let inputValue = (element.querySelector(".ui-field-input") as HTMLInputElement).value ? 1 : 0;
+          let selectValue =
+            element.querySelectorAll(".ui-select-current-option").length +
+            element.querySelectorAll(".ui-multiselect-current-option").length;
+
+          let allValues = inputValue + selectValue;
+
           if (
-            (element.querySelector(".ui-field-label-required") &&
-              !(element.querySelector(".ui-field-input") as HTMLInputElement).value) ||
+            (element.querySelector(".ui-field-label-required") && !allValues) ||
             element.querySelectorAll(".ui-field-error").length
           ) {
             this.errorsCount = this.errorsCount + 1;
@@ -50,6 +56,12 @@
 
     mounted() {
       this.formValidate();
+
+      (document.querySelector("form") as HTMLElement).addEventListener("DOMSubtreeModified", this.formValidate);
+    },
+
+    beforeDestroy() {
+      (document.querySelector("form") as HTMLElement).removeEventListener("DOMSubtreeModified", this.formValidate);
     },
   });
 </script>

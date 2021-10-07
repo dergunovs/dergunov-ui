@@ -8,7 +8,7 @@
       :class="{ 'ui-select-current-active': isShowOptions }"
       tabindex="0"
     >
-      <div>{{ currentOption.name || "Выбрать" }}</div>
+      <div :class="{ 'ui-select-current-option': currentOption.name }">{{ currentOption.name || "Выбрать" }}</div>
       <img
         :src="$options.components.arrow"
         class="ui-select-current-arrow"
@@ -139,7 +139,7 @@
       this.optionElements = [];
     },
 
-    mounted() {
+    beforeCreate() {
       if (this.modelValue || this.modelValue === 0) {
         if (typeof this.options[0] === "object") {
           this.currentOption = this.options.find((option: any) => option.value === this.modelValue) as Option;
@@ -148,7 +148,9 @@
           this.currentOption = { value: this.modelValue, name: this.modelValue as string };
         }
       }
+    },
 
+    mounted() {
       document.addEventListener("click", this.hideOptions);
     },
 

@@ -13,10 +13,12 @@
 
       <TheForm :formStatus="formStatus" @errors="formValidate">
         <h2>Заказать услуги</h2>
+
         <div class="flex flex-sb flex-top mb-16">
           <TheField label="Ваше имя" v-model="formData.customer" required class="w-50-8" />
           <TheField label="Электронная почта" v-model="formData.email" email class="w-50-8" />
         </div>
+
         <TheField
           label="Сообщение"
           type="textarea"
@@ -26,6 +28,25 @@
           :max="9"
           class="mb-16"
         />
+
+        <TheField
+          label="Нужна обратная связь?"
+          type="select"
+          v-model="formData.recall"
+          :options="optionsRecall"
+          required
+          class="mb-16"
+        />
+
+        <TheField
+          label="Предпочтительные типы связи"
+          type="multiselect"
+          v-model="formData.type"
+          :options="optionsType"
+          required
+          class="mb-32"
+        />
+
         <TheButton @ui-click="formSubmit" :disabled="formErrors">Отправить сообщение</TheButton>
       </TheForm>
     </section>
@@ -44,7 +65,18 @@
           customer: "",
           email: "",
           message: "",
+          recall: "",
+          type: [],
         },
+        optionsRecall: [
+          { value: 1, name: "Да" },
+          { value: 0, name: "Нет" },
+        ],
+        optionsType: [
+          { value: 1, name: "Телефон" },
+          { value: 2, name: "Электронная почта" },
+          { value: 3, name: "Мессенжер" },
+        ],
         formStatus: "",
         formErrors: false,
       };

@@ -42,6 +42,7 @@
       ref="input"
       :id="`input${$.uid}`"
       class="ui-field-input"
+      value="1"
     />
 
     <span class="ui-field-error" v-if="errorMessage">{{ errorMessage }}</span>
@@ -122,8 +123,6 @@
 
     methods: {
       check(data: InputData): void {
-        this.$emit("update:modelValue", data);
-
         let dataFormatted: InputDataFormatted = data as InputDataFormatted;
 
         if (typeof data === "number") {
@@ -152,6 +151,8 @@
         } else {
           this.errorMessage = "";
         }
+
+        this.$emit("update:modelValue", data);
       },
 
       openSelectOptions(): void {
