@@ -42,7 +42,6 @@
       ref="input"
       :id="`input${$.uid}`"
       class="ui-field-input"
-      value="1"
     />
 
     <span class="ui-field-error" v-if="errorMessage">{{ errorMessage }}</span>
@@ -156,7 +155,7 @@
       },
 
       openSelectOptions(): void {
-        ["select"].includes(this.type) ? this.input.openOptions() : this.input.$el.focus();
+        ["select", "multiselect"].includes(this.type) ? this.input.openOptions() : this.input.$el.focus();
       },
     },
   });

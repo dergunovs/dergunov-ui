@@ -1,5 +1,15 @@
 <template>
-  <input type="checkbox" :value="modelValue" :checked="modelValue" ref="checkbox" @change="emitValue" />
+  <label class="ui-checkbox-block">
+    <input
+      type="checkbox"
+      :value="modelValue"
+      :checked="modelValue"
+      ref="checkbox"
+      @change="emitValue"
+      class="ui-checkbox"
+    />
+    <div class="ui-checkbox-fake"></div>
+  </label>
 </template>
 
 <script lang="ts">
@@ -39,3 +49,44 @@
     },
   });
 </script>
+
+<style>
+  .ui-checkbox-block {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .ui-checkbox {
+    position: absolute;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    z-index: 1;
+  }
+
+  .ui-checkbox:focus {
+    border-radius: 4px;
+    width: 20px;
+    height: 20px;
+  }
+
+  .ui-checkbox-fake {
+    border: 2px solid var(--color-black);
+    border-radius: 4px;
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    cursor: pointer;
+    z-index: 2;
+  }
+
+  .ui-checkbox-fake:hover {
+    background-color: var(--color-gray-light);
+  }
+
+  .ui-checkbox:checked + .ui-checkbox-fake {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23000' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3e%3c/svg%3e");
+  }
+</style>

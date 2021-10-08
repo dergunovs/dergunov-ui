@@ -7,9 +7,9 @@
       <p class="mb-16">Тип v-model может быть boolean, string или number.</p>
 
       <div class="flex mb-16">
-        <label class="mr-16"><TheCheckbox v-model="checkboxBoolean" /> checkboxBoolean</label>
-        <label class="mr-16"><TheCheckbox v-model="checkboxString" /> checkboxString</label>
-        <label><TheCheckbox v-model="checkboxNumber" /> checkboxNumber</label>
+        <label class="flex mr-16"><TheCheckbox v-model="checkboxBoolean" /> checkboxBoolean</label>
+        <label class="flex mr-16"><TheCheckbox v-model="checkboxString" /> checkboxString</label>
+        <label class="flex"><TheCheckbox v-model="checkboxNumber" /> checkboxNumber</label>
       </div>
 
       <p>checkboxBoolean: {{ checkboxBoolean }}</p>
