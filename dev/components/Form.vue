@@ -44,6 +44,14 @@
           v-model="formData.type"
           :options="optionsType"
           required
+          class="mb-16"
+        />
+
+        <TheField
+          label="Согласие на обработку персональных данных"
+          type="checkbox"
+          v-model="formData.agree"
+          required
           class="mb-32"
         />
 
@@ -67,6 +75,7 @@
           message: "",
           recall: "",
           type: [],
+          agree: false,
         },
         optionsRecall: [
           { value: 1, name: "Да" },

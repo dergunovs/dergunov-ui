@@ -270,7 +270,7 @@
 
   .ui-multiselect-dropdown-block {
     position: absolute;
-    z-index: 2;
+    z-index: 3;
     width: 100%;
     background-color: var(--color-white);
     margin: 0;

@@ -1,6 +1,6 @@
 <template>
-  <div class="ui-field-label-block">
-    <label @click.stop="openSelectOptions" :for="`input${$.uid}`" class="ui-field-label">
+  <div class="ui-field-label-block" :class="`ui-field-type-${type}`">
+    <label @click.stop="handleFocus" :for="`input${$.uid}`" class="ui-field-label">
       {{ label }}
       <span v-if="required" class="ui-field-label-required">*</span>
     </label>
@@ -44,6 +44,15 @@
       class="ui-field-input"
     />
 
+    <TheCheckbox
+      v-if="type === 'checkbox'"
+      :modelValue="modelValue"
+      @update:modelValue="check"
+      ref="input"
+      :id="`input${$.uid}`"
+      class="ui-field-input"
+    />
+
     <span class="ui-field-error" v-if="errorMessage">{{ errorMessage }}</span>
   </div>
 </template>
@@ -55,7 +64,7 @@
     openOptions: () => void;
   }
 
-  type InputData = string | number | (string | number)[];
+  type InputData = boolean | string | number | (string | number)[];
   type InputDataFormatted = string | (string | number)[];
 
   export default /*#__PURE__*/ defineComponent({
@@ -103,7 +112,7 @@
     },
 
     props: {
-      modelValue: { type: [String, Number, Array] },
+      modelValue: { type: [String, Number, Array, Boolean] },
       label: { type: String },
       type: { type: String, default: "text" },
       required: { type: Boolean },
@@ -126,6 +135,8 @@
 
         if (typeof data === "number") {
           dataFormatted = data.toString();
+        } else if (typeof data === "boolean") {
+          dataFormatted = data === false ? "" : data.toString();
         }
 
         let telInputValue = this.tel ? this.input.$el.value : false;
@@ -154,8 +165,14 @@
         this.$emit("update:modelValue", data);
       },
 
-      openSelectOptions(): void {
-        ["select", "multiselect"].includes(this.type) ? this.input.openOptions() : this.input.$el.focus();
+      handleFocus(): void {
+        if (["select", "multiselect"].includes(this.type)) {
+          this.input.openOptions();
+        } else if (["checkbox", "radio"].includes(this.type)) {
+          this.input.$el.click();
+        } else {
+          this.input.$el.focus();
+        }
       },
     },
   });
@@ -167,6 +184,26 @@
     flex-direction: column;
     align-items: flex-start;
   }
+
+  .ui-field-type-checkbox {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .ui-field-type-checkbox .ui-field-input {
+    width: auto;
+    order: 0;
+  }
+
+  .ui-field-type-checkbox .ui-field-label {
+    width: calc(100% - 32px);
+    order: 1;
+  }
+
+  .ui-field-type-checkbox .ui-field-error {
+    order: 2;
+  }
+
   .ui-field-label {
     margin-bottom: 2px;
     cursor: pointer;

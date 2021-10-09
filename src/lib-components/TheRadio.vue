@@ -47,7 +47,7 @@
   }
 
   .ui-radio-fake {
-    border: 2px solid var(--color-primary);
+    border: 2px solid var(--color-gray);
     border-radius: 50%;
     width: 24px;
     height: 24px;

@@ -40,7 +40,11 @@
             element.querySelectorAll(".ui-select-current-option").length +
             element.querySelectorAll(".ui-multiselect-current-option").length;
 
-          let allValues = inputValue + selectValue;
+          let checkBoxInput = element.querySelector(".ui-checkbox") as HTMLInputElement;
+          let checkboxValue = checkBoxInput ? Number(checkBoxInput.checked) : 0;
+          console.log(checkboxValue);
+
+          let allValues = inputValue + selectValue + checkboxValue;
 
           if (
             (element.querySelector(".ui-field-label-required") && !allValues) ||

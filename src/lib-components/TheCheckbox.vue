@@ -9,6 +9,8 @@
       class="ui-checkbox"
     />
     <div class="ui-checkbox-fake"></div>
+
+    <meta v-if="modelValue" />
   </label>
 </template>
 
@@ -73,7 +75,7 @@
   }
 
   .ui-checkbox-fake {
-    border: 2px solid var(--color-primary);
+    border: 2px solid var(--color-gray);
     border-radius: 4px;
     width: 24px;
     height: 24px;
