@@ -9,6 +9,7 @@ export { default as TheInput } from "./TheInput.vue";
 export { default as TheList } from "./TheList.vue";
 export { default as TheMap } from "./TheMap.vue";
 export { default as TheMultiselect } from "./TheMultiselect.vue";
+export { default as TheRadio } from "./TheRadio.vue";
 export { default as TheSelect } from "./TheSelect.vue";
 export { default as TheSlider } from "./TheSlider.vue";
 export { default as TheTextarea } from "./TheTextarea.vue";
