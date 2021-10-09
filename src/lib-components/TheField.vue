@@ -53,6 +53,16 @@
       class="ui-field-input"
     />
 
+    <TheRadio
+      v-if="type === 'radio'"
+      :modelValue="modelValue"
+      :value="value"
+      @update:modelValue="check"
+      ref="input"
+      :id="`input${$.uid}`"
+      class="ui-field-input"
+    />
+
     <span class="ui-field-error" v-if="errorMessage">{{ errorMessage }}</span>
   </div>
 </template>
@@ -113,6 +123,7 @@
 
     props: {
       modelValue: { type: [String, Number, Array, Boolean] },
+      value: { type: String },
       label: { type: String },
       type: { type: String, default: "text" },
       required: { type: Boolean },
@@ -185,17 +196,20 @@
     align-items: flex-start;
   }
 
-  .ui-field-type-checkbox {
+  .ui-field-type-checkbox,
+  .ui-field-type-radio {
     flex-direction: row;
     flex-wrap: wrap;
   }
 
-  .ui-field-type-checkbox .ui-field-input {
+  .ui-field-type-checkbox .ui-field-input,
+  .ui-field-type-radio .ui-field-input {
     width: auto;
     order: 0;
   }
 
-  .ui-field-type-checkbox .ui-field-label {
+  .ui-field-type-checkbox .ui-field-label,
+  .ui-field-type-radio .ui-field-label {
     width: calc(100% - 32px);
     order: 1;
   }

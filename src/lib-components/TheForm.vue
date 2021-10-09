@@ -42,7 +42,6 @@
 
           let checkBoxInput = element.querySelector(".ui-checkbox") as HTMLInputElement;
           let checkboxValue = checkBoxInput ? Number(checkBoxInput.checked) : 0;
-          console.log(checkboxValue);
 
           let allValues = inputValue + selectValue + checkboxValue;
 

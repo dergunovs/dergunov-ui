@@ -7,6 +7,9 @@
 
       <p>Форма является компонентом слотом, в который нужно добавить поля и кнопки.</p>
       <p>Имеет встроенные обработчики для успешной отправки и ошибки сервера.</p>
+      <p>На компонент form можно повесить слушатель события @errors="formValidate".</p>
+      <p>Функиця formValidate(result: boolean) { this.formErrors = result }.</p>
+      <p class="mb-16">Кнопку отправки формы можно отключить при ошибках валидации :disabled="formErrors".</p>
 
       <p><b>formData:</b> {{ formData }}</p>
       <p class="mb-16"><b>formStatus:</b> {{ formStatus }}</p>
@@ -52,8 +55,21 @@
           type="checkbox"
           v-model="formData.agree"
           required
-          class="mb-32"
+          class="mb-8"
         />
+
+        <p class="mb-8">Оцените эту форму от 1 до 5</p>
+        <div class="flex mb-32">
+          <TheField
+            v-for="n in 5"
+            :key="n"
+            :label="n.toString()"
+            type="radio"
+            v-model="formData.rate"
+            :value="n.toString()"
+            class="mr-16"
+          />
+        </div>
 
         <TheButton @ui-click="formSubmit" :disabled="formErrors">Отправить сообщение</TheButton>
       </TheForm>
@@ -76,6 +92,7 @@
           recall: "",
           type: [],
           agree: false,
+          rate: "",
         },
         optionsRecall: [
           { value: 1, name: "Да" },
