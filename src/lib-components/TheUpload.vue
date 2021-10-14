@@ -15,13 +15,13 @@
     <div v-if="files.length" class="ui-file-block">
       <span class="ui-file-intro">
         Файл<template v-if="files.length > 1"
-          >ы ({{ files.length }} шт., {{ filesSize.toString().slice(0, -3) }} kb) </template
+          >ы ({{ files.length }} шт., {{ filesSize.toString().slice(0, -3) }} kb)</template
         >:
       </span>
       <ol class="ui-file-list">
         <li v-for="file in files" :key="file.name" class="ui-file">
           <b>{{ file.name }}</b> {{ file.size.toString().slice(0, -3) }} kb
-          <button @click="removeFile" class="ui-file-remove" type="button">×</button>
+          <button @click="removeFile(file.name)" class="ui-file-remove" type="button">×</button>
         </li>
       </ol>
     </div>
@@ -45,10 +45,14 @@
       multiple: { type: Boolean, default: false },
     },
 
+    emits: ["updateFiles"],
+
     methods: {
-      updateFiles(event: InputEvent) {
+      updateFiles(event: InputEvent): void {
         const uploadableFiles: File[] = (event.target as HTMLInputElement).files as any;
         this.files = [...uploadableFiles];
+
+        this.emitFiles();
 
         this.filesSize = 0;
         this.files.forEach((file: File) => {
@@ -56,7 +60,21 @@
         });
       },
 
-      removeFile() {},
+      removeFile(fileName: string): void {
+        this.files = this.files.filter((file: File) => file.name !== fileName);
+
+        this.emitFiles();
+      },
+
+      emitFiles() {
+        let files = new DataTransfer();
+
+        this.files.forEach((file: File) => {
+          files.items.add(file);
+        });
+
+        this.$emit("updateFiles", files);
+      },
     },
   });
 </script>

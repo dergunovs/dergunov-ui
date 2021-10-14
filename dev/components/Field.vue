@@ -49,11 +49,11 @@
           type="checkbox"
           v-model="formData.agree"
           required
-          class="mb-8"
+          class="mb-16"
         />
 
         <p class="mb-8">Оцените эту форму от 1 до 5</p>
-        <div class="flex mb-32">
+        <div class="flex mb-16">
           <TheField
             v-for="n in 5"
             :key="n"
@@ -64,6 +64,8 @@
             class="mr-16"
           />
         </div>
+
+        <TheField label="Загрузка файлов" type="upload" v-model="formData.files" multiple class="mb-32" />
       </TheForm>
     </section>
   </div>
@@ -87,6 +89,7 @@
           multiselect: [],
           agree: false,
           rate: "",
+          files: [],
         },
         selectOptions: [
           { value: 0, name: "Нет" },

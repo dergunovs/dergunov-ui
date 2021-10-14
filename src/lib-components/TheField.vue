@@ -63,6 +63,15 @@
       class="ui-field-input"
     />
 
+    <TheUpload
+      v-if="type === 'upload'"
+      :multiple="multiple"
+      @updateFiles="check"
+      ref="input"
+      :id="`input${$.uid}`"
+      class="ui-field-input"
+    />
+
     <span class="ui-field-error" v-if="errorMessage">{{ errorMessage }}</span>
   </div>
 </template>
@@ -122,7 +131,7 @@
     },
 
     props: {
-      modelValue: { type: [String, Number, Array, Boolean] },
+      modelValue: { type: [String, Number, Array, Boolean, DataTransfer] },
       value: { type: String },
       label: { type: String },
       type: { type: String, default: "text" },
@@ -132,6 +141,7 @@
       email: { type: Boolean },
       tel: { type: Boolean },
       options: { type: Array },
+      multiple: { type: Boolean },
     },
 
     computed: {
@@ -181,6 +191,8 @@
           this.input.openOptions();
         } else if (["checkbox", "radio"].includes(this.type)) {
           this.input.$el.click();
+        } else if (["upload"].includes(this.type)) {
+          this.input.$el.querySelector("input").click();
         } else {
           this.input.$el.focus();
         }
