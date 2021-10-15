@@ -1,6 +1,6 @@
 <template>
   <div class="ui-upload-block">
-    <label class="ui-upload-button-block">
+    <label @keydown.space="chooseFiles" class="ui-upload-button-block" tabindex="0">
       <input
         type="file"
         ref="upload"
@@ -45,9 +45,13 @@
       multiple: { type: Boolean, default: false },
     },
 
-    emits: ["updateFiles"],
+    emits: ["update:modelValue"],
 
     methods: {
+      chooseFiles(): void {
+        (this.$refs.upload as HTMLElement).click();
+      },
+
       updateFiles(event: InputEvent): void {
         const uploadableFiles: File[] = (event.target as HTMLInputElement).files as any;
         this.files = [...uploadableFiles];
@@ -66,14 +70,14 @@
         this.emitFiles();
       },
 
-      emitFiles() {
+      emitFiles(): void {
         let files = new DataTransfer();
 
         this.files.forEach((file: File) => {
           files.items.add(file);
         });
 
-        this.$emit("updateFiles", files);
+        this.$emit("update:modelValue", files);
       },
     },
   });

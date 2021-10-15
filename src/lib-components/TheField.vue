@@ -66,7 +66,7 @@
     <TheUpload
       v-if="type === 'upload'"
       :multiple="multiple"
-      @updateFiles="check"
+      @update:modelValue="check"
       ref="input"
       :id="`input${$.uid}`"
       class="ui-field-input"
@@ -83,7 +83,7 @@
     openOptions: () => void;
   }
 
-  type InputData = boolean | string | number | (string | number)[];
+  type InputData = boolean | string | number | (string | number)[] | DataTransfer;
   type InputDataFormatted = string | (string | number)[];
 
   export default /*#__PURE__*/ defineComponent({
@@ -158,6 +158,8 @@
           dataFormatted = data.toString();
         } else if (typeof data === "boolean") {
           dataFormatted = data === false ? "" : data.toString();
+        } else if (Object.prototype.toString.call(data) === "[object DataTransfer]") {
+          dataFormatted = (data as DataTransfer).items.length ? "got some files" : "";
         }
 
         let telInputValue = this.tel ? this.input.$el.value : false;

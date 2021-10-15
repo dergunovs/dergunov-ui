@@ -18,26 +18,17 @@
         <h2>Заказать услуги</h2>
 
         <div class="flex flex-sb flex-top mb-16">
-          <TheField label="Ваше имя" v-model="formData.customer" required class="w-50-8" />
+          <TheField label="Ваше имя" v-model="formData.customer" class="w-50-8" />
           <TheField label="Электронная почта" v-model="formData.email" email class="w-50-8" />
         </div>
 
-        <TheField
-          label="Сообщение"
-          type="textarea"
-          v-model="formData.message"
-          required
-          :min="3"
-          :max="9"
-          class="mb-16"
-        />
+        <TheField label="Сообщение" type="textarea" v-model="formData.message" :min="3" :max="9" class="mb-16" />
 
         <TheField
           label="Нужна обратная связь?"
           type="select"
           v-model="formData.recall"
           :options="optionsRecall"
-          required
           class="mb-16"
         />
 
@@ -46,7 +37,6 @@
           type="multiselect"
           v-model="formData.type"
           :options="optionsType"
-          required
           class="mb-16"
         />
 
@@ -54,7 +44,6 @@
           label="Согласие на обработку персональных данных"
           type="checkbox"
           v-model="formData.agree"
-          required
           class="mb-8"
         />
 
@@ -71,7 +60,9 @@
           />
         </div>
 
-        <TheField label="Загрузка файлов" type="upload" v-model="formData.files" multiple class="mb-32" />
+        <TheField label="Загрузка файлов" type="upload" v-model="formData.files" multiple required class="mb-32" />
+
+        <TheField label="Загрузка файлов2" type="upload" v-model="formData.files2" multiple required class="mb-32" />
 
         <TheButton @ui-click="formSubmit" :disabled="formErrors">Отправить сообщение</TheButton>
       </TheForm>
@@ -96,6 +87,7 @@
           agree: false,
           rate: "",
           files: [],
+          files2: [],
         },
         optionsRecall: [
           { value: 1, name: "Да" },

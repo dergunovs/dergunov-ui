@@ -36,6 +36,7 @@
 
         this.$el.querySelectorAll(".ui-field-label-block").forEach((element: HTMLElement) => {
           let inputValue = (element.querySelector(".ui-field-input") as HTMLInputElement).value ? 1 : 0;
+
           let selectValue =
             element.querySelectorAll(".ui-select-current-option").length +
             element.querySelectorAll(".ui-multiselect-current-option").length;
@@ -43,7 +44,9 @@
           let checkBoxInput = element.querySelector(".ui-checkbox") as HTMLInputElement;
           let checkboxValue = checkBoxInput ? Number(checkBoxInput.checked) : 0;
 
-          let allValues = inputValue + selectValue + checkboxValue;
+          let fileValue = element.querySelectorAll(".ui-file").length;
+
+          let allValues = inputValue + selectValue + checkboxValue + fileValue;
 
           if (
             (element.querySelector(".ui-field-label-required") && !allValues) ||
