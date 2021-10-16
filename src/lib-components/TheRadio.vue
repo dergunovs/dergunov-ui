@@ -1,18 +1,20 @@
 <template>
-  <label v-for="(option, index) in optionsFiltered" :key="`option-${index}`" class="ui-radio-block">
-    <input
-      type="radio"
-      :value="option.value"
-      :checked="modelValue === option.value"
-      @change="setOption(option)"
-      ref="radio"
-      :name="`radio-${$.uid}`"
-      class="ui-radio"
-    />
+  <div>
+    <label v-for="(option, index) in optionsFiltered" :key="`option-${index}`" class="ui-radio-block">
+      <input
+        type="radio"
+        :value="option.value"
+        :checked="modelValue === option.value"
+        @change="setOption(option)"
+        ref="radio"
+        :name="`radio-${$.uid}`"
+        class="ui-radio"
+      />
 
-    <div class="ui-radio-fake"></div>
-    {{ option.name }}
-  </label>
+      <div class="ui-radio-fake"></div>
+      {{ option.name }}
+    </label>
+  </div>
 </template>
 
 <script lang="ts">
@@ -72,6 +74,7 @@
     display: flex;
     align-items: center;
     margin-right: 16px;
+    margin-bottom: 8px;
   }
 
   .ui-radio-block:last-child {

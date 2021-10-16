@@ -44,9 +44,14 @@
           let checkBoxInput = element.querySelector(".ui-checkbox") as HTMLInputElement;
           let checkboxValue = checkBoxInput ? Number(checkBoxInput.checked) : 0;
 
+          let radioValue = 0;
+          (element.querySelectorAll(".ui-radio") as any).forEach((radio: HTMLInputElement) => {
+            radioValue = radioValue + Number(radio.checked);
+          });
+
           let fileValue = element.querySelectorAll(".ui-file").length;
 
-          let allValues = inputValue + selectValue + checkboxValue + fileValue;
+          let allValues = inputValue + selectValue + checkboxValue + fileValue + radioValue;
 
           if (
             (element.querySelector(".ui-field-label-required") && !allValues) ||
@@ -62,12 +67,10 @@
 
     mounted() {
       this.formValidate();
-
-      (document.querySelector("form") as HTMLElement).addEventListener("DOMSubtreeModified", this.formValidate);
     },
 
-    beforeDestroy() {
-      (document.querySelector("form") as HTMLElement).removeEventListener("DOMSubtreeModified", this.formValidate);
+    updated() {
+      this.formValidate();
     },
   });
 </script>

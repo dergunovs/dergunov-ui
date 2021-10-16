@@ -50,10 +50,14 @@
           class="mb-16"
         />
 
-        <p class="mb-8">Оцените эту форму от 1 до 5</p>
-        <div class="flex mb-16">
-          <TheRadio v-model="formData.rate" :options="formData.rateOptions" />
-        </div>
+        <TheField
+          label="Оцените эту форму от 1 до 5"
+          type="radio"
+          v-model="formData.rate"
+          required
+          :options="formData.rateOptions"
+          class="mb-16"
+        />
 
         <TheField label="Загрузка файлов" type="upload" v-model="formData.files" multiple required class="mb-32" />
 

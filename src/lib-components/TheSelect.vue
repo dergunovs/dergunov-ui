@@ -220,9 +220,6 @@
     text-decoration: underline;
   }
   .ui-select-dropdown-current {
-    color: var(--color-primary);
-  }
-  .ui-select-dropdown-current:hover {
-    color: var(--color-primary-dark);
+    font-weight: 700;
   }
 </style>

@@ -210,20 +210,17 @@
     align-items: flex-start;
   }
 
-  .ui-field-type-checkbox,
-  .ui-field-type-radio {
+  .ui-field-type-checkbox {
     flex-direction: row;
     flex-wrap: wrap;
   }
 
-  .ui-field-type-checkbox .ui-field-input,
-  .ui-field-type-radio .ui-field-input {
+  .ui-field-type-checkbox .ui-field-input {
     width: auto;
     order: 0;
   }
 
-  .ui-field-type-checkbox .ui-field-label,
-  .ui-field-type-radio .ui-field-label {
+  .ui-field-type-checkbox .ui-field-label {
     width: calc(100% - 32px);
     order: 1;
   }

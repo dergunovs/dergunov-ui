@@ -9,8 +9,6 @@
       class="ui-checkbox"
     />
     <div class="ui-checkbox-fake"></div>
-
-    <meta v-if="modelValue" />
   </label>
 </template>
 

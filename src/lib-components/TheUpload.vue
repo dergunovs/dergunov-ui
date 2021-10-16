@@ -15,12 +15,12 @@
     <div v-if="files.length" class="ui-file-block">
       <span class="ui-file-intro">
         Файл<template v-if="files.length > 1"
-          >ы ({{ files.length }} шт., {{ filesSize.toString().slice(0, -3) }} kb)</template
+          >ы ({{ files.length }} шт., {{ filesSize > 1000 ? filesSize.toString().slice(0, -3) : "< 1" }} kb)</template
         >:
       </span>
       <ol class="ui-file-list">
         <li v-for="file in files" :key="file.name" class="ui-file">
-          <b>{{ file.name }}</b> {{ file.size.toString().slice(0, -3) }} kb
+          <b>{{ file.name }}</b> {{ file.size > 1000 ? file.size.toString().slice(0, -3) : "< 1" }} kb
           <button @click="removeFile(file.name)" class="ui-file-remove" type="button">×</button>
         </li>
       </ol>
@@ -66,6 +66,9 @@
 
       removeFile(fileName: string): void {
         this.files = this.files.filter((file: File) => file.name !== fileName);
+        if (!this.files.length) {
+          (this.$refs.upload as HTMLInputElement).value = "";
+        }
 
         this.emitFiles();
       },
