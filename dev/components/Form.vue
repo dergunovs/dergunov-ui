@@ -18,7 +18,7 @@
         <h2>Заказать услуги</h2>
 
         <div class="flex flex-sb flex-top mb-16">
-          <TheField label="Ваше имя" v-model="formData.customer" class="w-50-8" />
+          <TheField label="Ваше имя" v-model="formData.customer" required class="w-50-8" />
           <TheField label="Электронная почта" v-model="formData.email" email class="w-50-8" />
         </div>
 
@@ -29,6 +29,7 @@
           type="select"
           v-model="formData.recall"
           :options="optionsRecall"
+          required
           class="mb-16"
         />
 
@@ -37,6 +38,7 @@
           type="multiselect"
           v-model="formData.type"
           :options="optionsType"
+          required
           class="mb-16"
         />
 
@@ -44,25 +46,16 @@
           label="Согласие на обработку персональных данных"
           type="checkbox"
           v-model="formData.agree"
-          class="mb-8"
+          required
+          class="mb-16"
         />
 
         <p class="mb-8">Оцените эту форму от 1 до 5</p>
         <div class="flex mb-16">
-          <TheField
-            v-for="n in 5"
-            :key="n"
-            :label="n.toString()"
-            type="radio"
-            v-model="formData.rate"
-            :value="n.toString()"
-            class="mr-16"
-          />
+          <TheRadio v-model="formData.rate" :options="formData.rateOptions" />
         </div>
 
         <TheField label="Загрузка файлов" type="upload" v-model="formData.files" multiple required class="mb-32" />
-
-        <TheField label="Загрузка файлов2" type="upload" v-model="formData.files2" multiple required class="mb-32" />
 
         <TheButton @ui-click="formSubmit" :disabled="formErrors">Отправить сообщение</TheButton>
       </TheForm>
@@ -86,8 +79,8 @@
           type: [],
           agree: false,
           rate: "",
+          rateOptions: [1, 2, 3, 4, 5],
           files: [],
-          files2: [],
         },
         optionsRecall: [
           { value: 1, name: "Да" },

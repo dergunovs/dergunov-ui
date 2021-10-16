@@ -6,8 +6,8 @@
       <p class="mb-16">Поле является частью компонента формы. Имеет встроенные правила валидации.</p>
 
       <p><b>label:</b> заголовок поля.</p>
-      <p><b>type:</b> text, textarea, select, multiselect, checkbox, radio. default: text</p>
-      <p><b>options:</b> массив опций [{value: 0, name: "Нет"}, ...] для select и multiselect</p>
+      <p><b>type:</b> text, textarea, select, multiselect, checkbox, radio, upload. default: text</p>
+      <p><b>options:</b> массив опций [object, string или number] для select, multiselect и radio</p>
       <p><b>value:</b> текстовое значение для radio</p>
       <p class="mb-32"><b>v-model:</b> для двустороннего связывания.</p>
 
@@ -21,8 +21,7 @@
       <p><b>Поддержка валидации разными типами полей</b></p>
       <p><b>text:</b> tel, email, min, max, required.</p>
       <p><b>textarea:</b> min, max, required.</p>
-      <p><b>select, multiselect, checkbox:</b> required.</p>
-      <p class="mb-32"><b>radio:</b> валидация не поддерживается.</p>
+      <p class="mb-32"><b>select, multiselect, checkbox, radio, upload:</b> required.</p>
 
       <p class="mb-32">formData: {{ formData }}</p>
 
@@ -54,15 +53,7 @@
 
         <p class="mb-8">Оцените эту форму от 1 до 5</p>
         <div class="flex mb-16">
-          <TheField
-            v-for="n in 5"
-            :key="n"
-            :label="n.toString()"
-            type="radio"
-            v-model="formData.rate"
-            :value="n.toString()"
-            class="mr-16"
-          />
+          <TheRadio v-model="formData.rate" :options="formData.rateOptions" />
         </div>
 
         <TheField label="Загрузка файлов" type="upload" v-model="formData.files" multiple class="mb-32" />
@@ -89,6 +80,7 @@
           multiselect: [],
           agree: false,
           rate: "",
+          rateOptions: [1, 2, 3, 4, 5],
           files: [],
         },
         selectOptions: [

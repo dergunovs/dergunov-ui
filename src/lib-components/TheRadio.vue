@@ -1,24 +1,66 @@
 <template>
-  <label class="ui-radio-block">
-    <input type="radio" :value="value" :checked="modelValue === value" @change="emitValue" class="ui-radio" />
+  <label v-for="(option, index) in optionsFiltered" :key="`option-${index}`" class="ui-radio-block">
+    <input
+      type="radio"
+      :value="option.value"
+      :checked="modelValue === option.value"
+      @change="setOption(option)"
+      ref="radio"
+      :name="`radio-${$.uid}`"
+      class="ui-radio"
+    />
+
     <div class="ui-radio-fake"></div>
+    {{ option.name }}
   </label>
 </template>
 
 <script lang="ts">
-  import { defineComponent } from "vue";
+  import { defineComponent, PropType } from "vue";
+
+  interface Option {
+    value: string | number;
+    name: string;
+  }
+
+  type OptionValue = string | number;
 
   export default /*#__PURE__*/ defineComponent({
     name: "TheRadio",
 
+    data() {
+      return {
+        currentOption: {} as Option,
+        optionElements: [] as HTMLElement[],
+      };
+    },
+
     props: {
-      modelValue: { type: [Boolean, String, Number] },
-      value: { type: [Boolean, String, Number] },
+      modelValue: { type: [String, Number] as PropType<OptionValue> },
+      options: { type: Array, required: true },
+    },
+
+    computed: {
+      optionsFiltered: function(): Option[] {
+        return this.options.map((option: any) => {
+          if (typeof option === "string" || typeof option === "number") return { value: option, name: option };
+          if (typeof option === "object") return option;
+        });
+      },
+      radio: function(): HTMLInputElement {
+        return this.$refs.radio as HTMLInputElement;
+      },
+    },
+
+    watch: {
+      currentOption() {
+        this.$emit("update:modelValue", this.currentOption.value);
+      },
     },
 
     methods: {
-      emitValue(): void {
-        this.$emit("update:modelValue", this.value);
+      setOption(option: Option): void {
+        this.currentOption = option;
       },
     },
   });
@@ -29,6 +71,12 @@
     position: relative;
     display: flex;
     align-items: center;
+    margin-right: 16px;
+  }
+
+  .ui-radio-block:last-child {
+    margin-right: 0;
+    margin-bottom: 0;
   }
 
   .ui-radio {

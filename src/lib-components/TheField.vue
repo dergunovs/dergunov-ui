@@ -10,9 +10,9 @@
       :modelValue="modelValue"
       @update:modelValue="check"
       ref="input"
+      :type="this.tel ? 'tel' : 'text'"
       :id="`input${$.uid}`"
       class="ui-field-input"
-      :type="this.tel ? 'tel' : 'text'"
     />
 
     <TheTextarea
@@ -27,8 +27,8 @@
     <TheSelect
       v-if="type === 'select'"
       :modelValue="modelValue"
-      @update:modelValue="check"
       :options="options"
+      @update:modelValue="check"
       ref="input"
       :id="`input${$.uid}`"
       class="ui-field-input"
@@ -37,8 +37,8 @@
     <TheMultiselect
       v-if="type === 'multiselect'"
       :modelValue="modelValue"
-      @update:modelValue="check"
       :options="options"
+      @update:modelValue="check"
       ref="input"
       :id="`input${$.uid}`"
       class="ui-field-input"
@@ -56,7 +56,7 @@
     <TheRadio
       v-if="type === 'radio'"
       :modelValue="modelValue"
-      :value="value"
+      :options="options"
       @update:modelValue="check"
       ref="input"
       :id="`input${$.uid}`"
