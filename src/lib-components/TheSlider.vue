@@ -1,17 +1,45 @@
 <template>
   <div>
-    <div class="ui-slider-container" @mousedown="slideSwipe" @touchstart="slideSwipe">
+    <div class="ui-slider-container">
+      <button
+        type="button"
+        @click="prevSlide"
+        @touchstart="prevSlide"
+        class="ui-slide-button ui-slide-button-prev"
+        :class="{ 'ui-slide-button-active': this.slideCurrent !== 0 }"
+      >
+        <img
+          :src="$options.components.arrow"
+          class="ui-slide-arrow-left"
+          width="48"
+          height="48"
+          alt="slide-prev"
+          loading="lazy"
+        />
+      </button>
+
       <div class="ui-slider-wrapper" ref="sliderWrapper">
-        <div
-          class="ui-slider-slide"
-          :ref="`slide${index}`"
-          v-for="(slide, index) in slides"
-          :key="`client` + index"
-          :class="{ 'ui-slider-slide-active': slideCurrent === index }"
-        >
+        <div class="ui-slider-slide" :ref="`slide${index}`" v-for="(slide, index) in slides" :key="`slide` + index">
           <slot :slide="slide"></slot>
         </div>
       </div>
+
+      <button
+        type="button"
+        @click="nextSlide"
+        @touchstart="nextSlide"
+        class="ui-slide-button ui-slide-button-next"
+        :class="{ 'ui-slide-button-active': this.slideCurrent !== this.slides.length - 1 }"
+      >
+        <img
+          :src="$options.components.arrow"
+          class="ui-slide-arrow-right"
+          width="48"
+          height="48"
+          alt="slide-right"
+          loading="lazy"
+        />
+      </button>
     </div>
 
     <div class="ui-slider-bullets">
@@ -28,6 +56,7 @@
 
 <script lang="ts">
   import { defineComponent } from "vue";
+  import arrow from "@/lib-components/assets/icons/arrow.svg";
 
   export default /*#__PURE__*/ defineComponent({
     name: "TheSlider",
@@ -43,6 +72,8 @@
       slides: { type: Array, required: true },
     },
 
+    components: { arrow },
+
     computed: {
       sliderWrapper: function(): HTMLElement {
         return this.$refs.sliderWrapper as HTMLElement;
@@ -54,35 +85,35 @@
         this.sliderWrapper.style.transform = `translate3d(-${index * this.slideWidth}px, 0px, 0px)`;
         this.slideCurrent = index;
       },
-      slideSwipe(e: MouseEvent): void {
-        let slideClickZone = e.offsetX / this.slideWidth;
 
-        if (slideClickZone < 0.2 && this.slideCurrent !== 0) {
-          this.prevSlide();
-        }
-        if (slideClickZone > 0.8 && this.slideCurrent !== this.slides.length - 1) {
-          this.nextSlide();
-        }
-      },
-      nextSlide(): void {
-        this.slideCurrent = this.slideCurrent + 1;
-        this.updateCoordinatesX();
-      },
       prevSlide(): void {
-        this.slideCurrent = this.slideCurrent - 1;
-        this.updateCoordinatesX();
+        if (this.slideCurrent !== 0) {
+          this.slideCurrent = this.slideCurrent - 1;
+          this.updateCoordinatesX();
+        }
       },
+
+      nextSlide(): void {
+        if (this.slideCurrent !== this.slides.length - 1) {
+          this.slideCurrent = this.slideCurrent + 1;
+          this.updateCoordinatesX();
+        }
+      },
+
       updateSlideWidth(): void {
-        this.slideWidth = (this.$refs["slide" + this.slideCurrent] as HTMLElement).offsetWidth;
+        this.slideWidth = Number(
+          window.getComputedStyle(this.$refs["slide" + this.slideCurrent] as HTMLElement).width.slice(0, -2)
+        );
         this.updateCoordinatesX();
       },
+
       updateCoordinatesX(): void {
         this.sliderWrapper.style.transform = `translate3d(-${this.slideCurrent * this.slideWidth}px, 0px, 0px)`;
       },
     },
 
     mounted() {
-      this.slideWidth = (this.$refs.slide0 as HTMLElement).offsetWidth;
+      this.slideWidth = Number(window.getComputedStyle(this.$refs.slide0 as HTMLElement).width.slice(0, -2));
       window.addEventListener("resize", this.updateSlideWidth);
     },
 
@@ -110,14 +141,43 @@
     transition-property: transform;
     transition-duration: 600ms;
   }
+
+  .ui-slide-button {
+    background-color: transparent;
+    opacity: 0;
+    width: 96px;
+    height: 100%;
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    border: 0;
+    transition-duration: 300ms;
+  }
+  .ui-slide-button-next {
+    right: 0;
+  }
+  .ui-slider-container:hover .ui-slide-button-active {
+    cursor: pointer;
+    opacity: 0.1;
+  }
+  .ui-slider-container:hover .ui-slide-button-active:hover {
+    opacity: 0.2;
+    background-color: var(--color-gray);
+  }
+  .ui-slide-arrow-left {
+    transform: rotate(90deg);
+  }
+  .ui-slide-arrow-right {
+    transform: rotate(-90deg);
+  }
+
   .ui-slider-slide {
     width: 100%;
     position: relative;
+    z-index: 1;
     transition-property: transform;
     flex-shrink: 0;
     transition-duration: 600ms;
-    z-index: 1;
-    pointer-events: none;
   }
 
   .ui-slider-bullets {
