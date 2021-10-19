@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="`ui-radio-direction-${direction}`">
     <label v-for="(option, index) in optionsFiltered" :key="`option-${index}`" class="ui-radio-block">
       <input
         type="radio"
@@ -40,6 +40,7 @@
     props: {
       modelValue: { type: [String, Number] as PropType<OptionValue> },
       options: { type: Array, required: true },
+      direction: { type: String, default: "column" },
     },
 
     computed: {
@@ -69,12 +70,22 @@
 </script>
 
 <style>
+  .ui-radio-direction-column {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .ui-radio-direction-row {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+  }
+
   .ui-radio-block {
     position: relative;
     display: flex;
     align-items: center;
-    margin-right: 16px;
-    margin-bottom: 8px;
   }
 
   .ui-radio-block:last-child {

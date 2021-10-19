@@ -12,20 +12,20 @@
 
     props: {
       type: { type: String, default: "ul" },
-      direction: { type: String, default: "vertical" },
+      direction: { type: String, default: "column" },
       design: { type: String, default: "regular" },
     },
   });
 </script>
 
 <style>
-  .ui-list-direction-horizontal {
+  .ui-list-direction-row {
     display: flex;
   }
-  .ui-list-direction-horizontal li {
+  .ui-list-direction-row li {
     padding-right: 32px;
   }
-  .ui-list-direction-horizontal li:last-child {
+  .ui-list-direction-row li:last-child {
     padding-right: 0;
   }
 
@@ -59,7 +59,7 @@
     margin-left: 40px;
     margin-bottom: 16px;
   }
-  ol.ui-list-design-styled.horizontal li {
+  ol.ui-list-design-styled.row li {
     margin-bottom: 0;
     padding-right: 16px;
   }

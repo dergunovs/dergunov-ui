@@ -57,6 +57,7 @@
       v-if="type === 'radio'"
       :modelValue="modelValue"
       :options="options"
+      :direction="direction"
       @update:modelValue="check"
       ref="input"
       :id="`input${$.uid}`"
@@ -141,6 +142,7 @@
       email: { type: Boolean },
       tel: { type: Boolean },
       options: { type: Array },
+      direction: { type: String, default: "column" },
       multiple: { type: Boolean },
     },
 

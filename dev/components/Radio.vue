@@ -4,6 +4,8 @@
       <h1>{{ $options.name }}</h1>
 
       <p>Директива v-model добавляет компоненту двустороннее связывание с data.</p>
+
+      <p><b>direction:</b> column, row. default: <b>column</b></p>
       <p class="mb-16">
         <b>options:</b> массив состоящий из элементов одного из следующих типов:<br />
         1. Object [{ <b>value:</b> значение, <b>name:</b> название для отображения }, ...]<br />

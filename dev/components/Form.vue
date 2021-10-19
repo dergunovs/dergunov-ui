@@ -56,6 +56,7 @@
           v-model="formData.rate"
           required
           :options="formData.rateOptions"
+          direction="row"
           class="mb-16"
         />
 
