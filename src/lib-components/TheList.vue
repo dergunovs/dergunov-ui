@@ -22,9 +22,11 @@
   .ui-list-direction-row {
     display: flex;
   }
+
   .ui-list-direction-row li {
     padding-right: 32px;
   }
+
   .ui-list-direction-row li:last-child {
     padding-right: 0;
   }
@@ -37,6 +39,7 @@
   .ui-list-design-none {
     list-style: none;
   }
+
   .ui-list-design-none li {
     padding: 0;
   }
@@ -45,27 +48,33 @@
     margin: 16px 0;
     list-style: none;
   }
+
   ul.ui-list-design-styled li {
     border-left: 6px solid var(--color-primary);
     margin-bottom: 8px;
     padding-left: 6px;
   }
+
   ol.ui-list-design-styled {
     margin: 24px 0;
     counter-reset: num;
   }
+
   ol.ui-list-design-styled li {
     position: relative;
     margin-left: 40px;
     margin-bottom: 16px;
   }
+
   ol.ui-list-design-styled.row li {
     margin-bottom: 0;
     padding-right: 16px;
   }
+
   ol.ui-list-design-styled li:last-child {
     margin-bottom: 0;
   }
+
   ol.ui-list-design-styled li::before {
     content: counter(num);
     counter-increment: num;

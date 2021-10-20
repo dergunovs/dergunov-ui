@@ -162,6 +162,7 @@
   .ui-select-block {
     position: relative;
   }
+
   .ui-select-current {
     display: flex;
     justify-content: space-between;
@@ -180,12 +181,15 @@
     white-space: pre;
     overflow: hidden;
   }
+
   .ui-select-current-active {
     border: 1px solid var(--color-gray-dark);
   }
+
   .ui-select-current-active .ui-select-current-arrow {
     transform: rotate(180deg);
   }
+
   .ui-select-current:disabled {
     background-color: var(--color-gray);
   }
@@ -204,6 +208,7 @@
     max-height: 188px;
     overflow-y: auto;
   }
+
   .ui-select-dropdown {
     padding: 4px 0;
     color: var(--color-black);
@@ -211,12 +216,15 @@
     outline: none;
     cursor: pointer;
   }
+
   .ui-select-dropdown:hover {
     text-decoration: underline;
   }
+
   .ui-select-dropdown:focus {
     text-decoration: underline;
   }
+
   .ui-select-dropdown-current {
     font-weight: 700;
   }

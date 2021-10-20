@@ -235,9 +235,11 @@
     margin-bottom: 2px;
     cursor: pointer;
   }
+
   .ui-field-input {
     width: 100%;
   }
+
   .ui-field-error {
     color: var(--color-primary);
   }

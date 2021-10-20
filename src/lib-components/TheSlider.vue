@@ -128,6 +128,7 @@
     position: relative;
     overflow: hidden;
   }
+
   .ui-slider-wrapper {
     position: relative;
     overflow: visible;
@@ -153,20 +154,25 @@
     border: 0;
     transition-duration: 300ms;
   }
+
   .ui-slide-button-next {
     right: 0;
   }
+
   .ui-slider-container:hover .ui-slide-button-active {
     cursor: pointer;
     opacity: 0.1;
   }
+
   .ui-slider-container:hover .ui-slide-button-active:hover {
     opacity: 0.2;
     background-color: var(--color-gray);
   }
+
   .ui-slide-arrow-left {
     transform: rotate(90deg);
   }
+
   .ui-slide-arrow-right {
     transform: rotate(-90deg);
   }
@@ -185,6 +191,7 @@
     justify-content: center;
     margin-top: 24px;
   }
+
   .ui-slider-bullet {
     margin: 4px;
     width: 16px;
@@ -194,12 +201,15 @@
     transition-duration: 300ms;
     background-color: var(--color-gray-light);
   }
+
   .ui-slider-bullet:hover {
     background-color: var(--color-gray);
   }
+
   .ui-slider-bullet-active {
     background-color: var(--color-primary);
   }
+
   .ui-slider-bullet-active:hover {
     background-color: var(--color-primary-dark);
   }

@@ -49,9 +49,11 @@
     line-height: 44px;
     transition-duration: 300ms;
   }
+
   .ui-input:focus {
     border: 1px solid var(--color-gray-dark);
   }
+
   .ui-input:disabled {
     background-color: var(--color-gray);
   }

@@ -202,6 +202,7 @@
   .ui-multiselect-block {
     position: relative;
   }
+
   .ui-multiselect-current {
     display: flex;
     justify-content: space-between;
@@ -220,10 +221,12 @@
     white-space: pre;
     overflow: hidden;
   }
+
   .ui-multiselect-current-option-block {
     display: flex;
     flex-wrap: wrap;
   }
+
   .ui-multiselect-current-option {
     display: flex;
     align-items: center;
@@ -235,12 +238,15 @@
     border-radius: 4px;
     transition-duration: 300ms;
   }
+
   .ui-multiselect-current-option-name {
     line-height: 1;
   }
+
   .ui-multiselect-current-option:last-child {
     margin-right: 0;
   }
+
   .ui-multiselect-current-option-remove {
     margin-left: 4px;
     cursor: pointer;
@@ -253,15 +259,19 @@
     width: 24px;
     text-align: center;
   }
+
   .ui-multiselect-current-option-remove:hover {
     background-color: var(--color-primary);
   }
+
   .ui-multiselect-current-active {
     border: 1px solid var(--color-gray-dark);
   }
+
   .ui-multiselect-current-active .ui-multiselect-current-arrow {
     transform: rotate(180deg);
   }
+
   .ui-multiselect-current:disabled {
     background-color: var(--color-gray);
   }
@@ -280,6 +290,7 @@
     max-height: 188px;
     overflow-y: auto;
   }
+
   .ui-multiselect-dropdown {
     padding: 4px 0;
     color: var(--color-black);
@@ -287,9 +298,11 @@
     outline: none;
     cursor: pointer;
   }
+
   .ui-multiselect-dropdown:hover {
     text-decoration: underline;
   }
+
   .ui-multiselect-dropdown:focus {
     text-decoration: underline;
   }

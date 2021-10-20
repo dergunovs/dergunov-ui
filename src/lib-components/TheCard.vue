@@ -72,6 +72,7 @@
     display: flex;
     flex-direction: column;
   }
+
   .ui-card-block:hover .ui-card-h1 {
     text-decoration: underline;
   }
@@ -80,6 +81,7 @@
     display: flex;
     margin-bottom: 8px;
   }
+
   .ui-card-thumb {
     width: 100%;
     height: auto;
@@ -92,6 +94,7 @@
     align-items: center;
     margin-bottom: 2px;
   }
+
   .ui-card-h1 {
     font-size: 20px;
     font-weight: 700;
@@ -113,6 +116,7 @@
     display: flex;
     flex-wrap: wrap;
   }
+
   .ui-card-tag {
     background-color: var(--color-gray-light);
     padding: 4px 8px;
@@ -121,6 +125,7 @@
     margin-right: 8px;
     margin-top: 8px;
   }
+
   .ui-card-tag:last-child {
     margin-right: 0;
   }
@@ -129,6 +134,7 @@
     display: flex;
     opacity: 0.5;
   }
+
   .ui-card-views {
     font-size: 16px;
   }
@@ -137,6 +143,7 @@
     display: flex;
     align-items: center;
   }
+
   .ui-card-level {
     width: 12px;
     height: 12px;
@@ -145,6 +152,7 @@
     margin-left: 4px;
     border-radius: 50%;
   }
+
   .ui-card-level-active {
     background-color: var(--color-primary);
   }

@@ -69,21 +69,25 @@
     margin: 8px 0;
     padding: 16px;
   }
+
   .ui-code {
     white-space: break-spaces;
     overflow-x: auto;
     flex-grow: 1;
   }
+
   .ui-code-image-block {
     display: flex;
     justify-content: flex-end;
     align-items: flex-start;
   }
+
   .ui-code-image-button {
     background: none;
     border: none;
     cursor: pointer;
   }
+
   .ui-code-image {
     opacity: 0.5;
     transition-duration: 300ms;
@@ -92,9 +96,11 @@
     border: 1px solid transparent;
     border-radius: 4px;
   }
+
   .ui-code-image:hover {
     opacity: 1;
   }
+
   .ui-code-image-copy {
     border: 1px solid var(--color-gray-dark);
   }

@@ -20,9 +20,11 @@
     transition-duration: 300ms;
     resize: none;
   }
+
   .ui-textarea:focus {
     border: 1px solid var(--color-gray-dark);
   }
+
   .ui-textarea:disabled {
     background-color: var(--color-gray);
   }
