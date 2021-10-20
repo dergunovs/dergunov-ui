@@ -33,28 +33,26 @@
       />
     </div>
 
-    <transition name="fade">
-      <ul class="ui-multiselect-dropdown-block" v-show="isShowOptions">
-        <li v-if="!optionsFiltered.length" @click="hideOptions" class="ui-multiselect-dropdown">
-          Нет элементов для выбора
-        </li>
-        <li
-          v-for="(option, index) in optionsFiltered"
-          :key="`option${index}`"
-          :ref="setOptionElementRef"
-          @click="addOption(option)"
-          @mouseover="focusAt(index)"
-          @keydown.up="focusUp(index)"
-          @keydown.down="focusDown(index)"
-          @keydown.enter="addOption(option)"
-          @keydown.esc="hideOptions"
-          class="ui-multiselect-dropdown"
-          tabindex="0"
-        >
-          {{ option.name }}
-        </li>
-      </ul>
-    </transition>
+    <ul class="ui-multiselect-dropdown-block" v-show="isShowOptions">
+      <li v-if="!optionsFiltered.length" @click="hideOptions" class="ui-multiselect-dropdown">
+        Нет элементов для выбора
+      </li>
+      <li
+        v-for="(option, index) in optionsFiltered"
+        :key="`option${index}`"
+        :ref="setOptionElementRef"
+        @click="addOption(option)"
+        @mouseover="focusAt(index)"
+        @keydown.up="focusUp(index)"
+        @keydown.down="focusDown(index)"
+        @keydown.enter="addOption(option)"
+        @keydown.esc="hideOptions"
+        class="ui-multiselect-dropdown"
+        tabindex="0"
+      >
+        {{ option.name }}
+      </li>
+    </ul>
   </div>
 </template>
 
