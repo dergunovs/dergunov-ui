@@ -1,11 +1,11 @@
 <template>
   <div class="ui-spoler-block">
-    <button @click="expanded = !expanded" class="ui-spoler-button">
-      {{ expanded ? titleExpanded : title }}
+    <button @click="isExpanded = !isExpanded" class="ui-spoler-button">
+      {{ isExpanded ? titleExpanded : title }}
     </button>
 
     <transition name="fade">
-      <div v-show="expanded" class="ui-spoler" :class="{ 'ui-spoler-expanded': expanded }">
+      <div v-show="isExpanded" class="ui-spoler" :class="{ 'ui-spoler-expanded': isExpanded }">
         <slot></slot>
       </div>
     </transition>
@@ -20,7 +20,7 @@
 
     data() {
       return {
-        expanded: false,
+        isExpanded: false,
       };
     },
 
@@ -30,14 +30,16 @@
       modelValue: { type: Boolean, default: false },
     },
 
+    emits: ["update:modelValue"],
+
     watch: {
-      expanded() {
-        this.$emit("update:modelValue", this.expanded);
+      isExpanded() {
+        this.$emit("update:modelValue", this.isExpanded);
       },
     },
 
     beforeMount() {
-      this.expanded = this.modelValue;
+      this.isExpanded = this.modelValue;
     },
   });
 </script>
