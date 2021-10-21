@@ -47,6 +47,7 @@
     <TheCheckbox
       v-if="type === 'checkbox'"
       :modelValue="modelValue"
+      :design="design"
       @update:modelValue="check"
       ref="input"
       :id="`input${$.uid}`"
@@ -58,6 +59,7 @@
       :modelValue="modelValue"
       :options="options"
       :direction="direction"
+      :design="design"
       @update:modelValue="check"
       ref="input"
       :id="`input${$.uid}`"
@@ -142,8 +144,9 @@
       email: { type: Boolean },
       tel: { type: Boolean },
       options: { type: Array },
-      direction: { type: String, default: "column" },
+      direction: { type: String },
       multiple: { type: Boolean },
+      design: { type: String },
     },
 
     computed: {

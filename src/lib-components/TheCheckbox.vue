@@ -8,7 +8,7 @@
       @change="emitValue"
       class="ui-checkbox"
     />
-    <div class="ui-checkbox-fake"></div>
+    <div class="ui-checkbox-fake" :class="`ui-checkbox-design-${design}`"></div>
   </label>
 </template>
 
@@ -28,6 +28,7 @@
 
     props: {
       modelValue: { type: [Boolean, String, Number] },
+      design: { type: String, default: "none" },
     },
 
     computed: {
@@ -91,5 +92,39 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: 16px;
+  }
+
+  .ui-checkbox-design-switch {
+    width: 36px;
+    height: 12px;
+    position: relative;
+    background-color: var(--color-gray-light);
+    transition: 200ms;
+    border: none;
+  }
+
+  .ui-checkbox-design-switch:hover {
+    background-color: var(--color-gray);
+  }
+
+  .ui-checkbox-design-switch::before {
+    content: "";
+    height: 20px;
+    position: absolute;
+    top: -4px;
+    left: -2px;
+    background-color: var(--color-white);
+    border-radius: 50%;
+    box-shadow: 0px 0px 3px -1px var(--color-black);
+    transition: 200ms;
+  }
+
+  .ui-checkbox:checked + .ui-checkbox-design-switch {
+    background: var(--color-gray);
+  }
+
+  .ui-checkbox:checked + .ui-checkbox-design-switch:before {
+    background: var(--color-primary);
+    transform: translateX(20px);
   }
 </style>

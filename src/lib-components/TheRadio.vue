@@ -41,6 +41,7 @@
       modelValue: { type: [String, Number] as PropType<OptionValue> },
       options: { type: Array, required: true },
       direction: { type: String, default: "column" },
+      design: { type: String, default: "none" },
     },
 
     computed: {
