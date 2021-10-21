@@ -7,8 +7,9 @@
       ref="checkbox"
       @change="emitValue"
       class="ui-checkbox"
+      :class="`ui-checkbox-design-${design}`"
     />
-    <div class="ui-checkbox-fake" :class="`ui-checkbox-design-${design}`"></div>
+    <div class="ui-checkbox-fake" :class="`ui-checkbox-fake-design-${design}`"></div>
   </label>
 </template>
 
@@ -94,7 +95,12 @@
     background-size: 16px;
   }
 
-  .ui-checkbox-design-switch {
+  .ui-checkbox-design-switch:focus {
+    width: 36px;
+    height: 100%;
+  }
+
+  .ui-checkbox-fake-design-switch {
     width: 36px;
     height: 12px;
     position: relative;
@@ -103,12 +109,13 @@
     border: none;
   }
 
-  .ui-checkbox-design-switch:hover {
+  .ui-checkbox-fake-design-switch:hover {
     background-color: var(--color-gray);
   }
 
-  .ui-checkbox-design-switch::before {
+  .ui-checkbox-fake-design-switch::before {
     content: "";
+    width: 20px;
     height: 20px;
     position: absolute;
     top: -4px;
@@ -119,11 +126,11 @@
     transition: 200ms;
   }
 
-  .ui-checkbox:checked + .ui-checkbox-design-switch {
+  .ui-checkbox:checked + .ui-checkbox-fake-design-switch {
     background: var(--color-gray);
   }
 
-  .ui-checkbox:checked + .ui-checkbox-design-switch:before {
+  .ui-checkbox:checked + .ui-checkbox-fake-design-switch:before {
     background: var(--color-primary);
     transform: translateX(20px);
   }

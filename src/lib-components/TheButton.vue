@@ -38,7 +38,7 @@
     background-color: var(--color-primary);
     border: none;
     border-radius: 4px;
-    color: #fff;
+    color: var(--color-white);
     padding: 0 24px;
     height: 44px;
     font-weight: 700;

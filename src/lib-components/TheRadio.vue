@@ -1,6 +1,11 @@
 <template>
-  <div :class="`ui-radio-direction-${direction}`">
-    <label v-for="(option, index) in optionsFiltered" :key="`option-${index}`" class="ui-radio-block">
+  <div :class="[`ui-radio-direction-${direction}`, `ui-radio-design-${design}`]">
+    <label
+      v-for="(option, index) in optionsFiltered"
+      :key="`option-${index}`"
+      class="ui-radio-block"
+      :class="{ 'ui-radio-block-active': modelValue === option.value }"
+    >
       <input
         type="radio"
         :value="option.value"
@@ -11,7 +16,7 @@
         class="ui-radio"
       />
 
-      <div class="ui-radio-fake"></div>
+      <div v-if="design === 'none'" class="ui-radio-fake"></div>
       {{ option.name }}
     </label>
   </div>
@@ -128,5 +133,44 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: 16px;
+  }
+
+  .ui-radio-design-buttons {
+    gap: 2px;
+  }
+
+  .ui-radio-design-buttons .ui-radio-block {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    cursor: pointer;
+    background-color: var(--color-gray-light);
+    border: none;
+    padding: 0 24px;
+    height: 44px;
+    font-weight: 700;
+    transition-duration: 300ms;
+    white-space: nowrap;
+  }
+
+  .ui-radio-design-buttons .ui-radio-block:hover {
+    background-color: var(--color-gray);
+  }
+
+  .ui-radio-design-buttons .ui-radio-block-active {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+  }
+
+  .ui-radio-design-buttons .ui-radio-block-active:hover {
+    background-color: var(--color-primary-dark);
+  }
+
+  .ui-radio-design-buttons .ui-radio:focus {
+    border-radius: 0;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    cursor: pointer;
   }
 </style>
