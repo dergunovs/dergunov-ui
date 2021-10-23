@@ -2,7 +2,7 @@
   import { defineComponent } from "vue";
 
   export default /*#__PURE__*/ defineComponent({
-    name: "CSS",
+    name: "TheCSS",
   });
 </script>
 
@@ -29,6 +29,9 @@
     --color-primary: #ff5050;
     --color-primary-dark: #ed0d0d;
     --color-primary-light: #db9090;
+
+    --color-success: #3aa636;
+    --color-error: #cb0000;
 
     --color-black: #000;
     --color-gray-dark: #444;
@@ -579,6 +582,14 @@
     background-color: var(--color-primary-light);
   }
 
+  .bg-success {
+    background-color: var(--color-success);
+  }
+
+  .bg-error {
+    background-color: var(--color-error);
+  }
+
   .bg-black {
     background-color: var(--color-black);
   }
@@ -611,6 +622,14 @@
     border: 1px solid var(--color-primary-light);
   }
 
+  .border-success {
+    border: 1px solid var(--color-success);
+  }
+
+  .border-error {
+    border: 1px solid var(--color-error);
+  }
+
   .border-black {
     border: 1px solid var(--color-black);
   }
@@ -629,6 +648,26 @@
 
   .border-white {
     border: 1px solid var(--color-white);
+  }
+
+  .color-primary {
+    color: var(--color-primary);
+  }
+
+  .color-primary-dark {
+    color: var(--color-primary-dark);
+  }
+
+  .color-primary-light {
+    color: var(--color-primary-light);
+  }
+
+  .color-success {
+    color: var(--color-success);
+  }
+
+  .color-error {
+    color: var(--color-error);
   }
 
   .color-black {

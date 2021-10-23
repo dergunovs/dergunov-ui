@@ -17,4 +17,5 @@ export { default as TheSpoiler } from "./TheSpoiler.vue";
 export { default as TheTextarea } from "./TheTextarea.vue";
 export { default as TheUpload } from "./TheUpload.vue";
 
-export { default as CSS } from "./CSS.vue";
+export { default as css } from "./css.vue";
+export { default as toast } from "./toast.vue";

@@ -2,10 +2,8 @@
   <div>
     <section>
       <h1>{{ $options.name }}</h1>
-      
-      <p>Встроенные в библиотеку утилитарные классы и общие стили. Работают после импорта внутри вашего CSS файла:
-<pre>@import "dergunov-ui";</pre>
-      </p>
+
+      <p>Встроенные в библиотеку утилитарные классы и общие стили.</p>
       <p>
         * { font-family: "font"; box-sizing: border-box; margin: 0; padding: 0; font-weight: 400; font-size: 18px;
         line-height: 1.5 }
@@ -21,6 +19,8 @@
         <div class="bg-primary p-8">color-primary</div>
         <div class="bg-primary-dark p-8">color-primary-dark</div>
         <div class="bg-primary-light p-8">color-primary-light</div>
+        <div class="bg-success p-8">color-success</div>
+        <div class="bg-error p-8">color-error</div>
       </div>
 
       <div class="flex flex-sb">

@@ -1,28 +1,26 @@
 <template>
-  <div id="app">
-    <div class="center flex flex-top">
-      <nav class="w-20 pt-32">
-        <TheButton design="none" @ui-click="componentCurrent = ''" :active="componentCurrent === ''" class="mb-16">
-          Описание
-        </TheButton>
+  <div class="center flex flex-top">
+    <nav class="w-20 pt-32">
+      <TheButton design="none" @ui-click="componentCurrent = ''" :active="componentCurrent === ''" class="mb-16">
+        Описание
+      </TheButton>
 
-        <p><b>Компоненты:</b></p>
-        <TheList design="none">
-          <li v-for="component in Object.values(components)" :key="component.name">
-            <TheButton
-              design="none"
-              :active="componentCurrent === component.name"
-              @ui-click="componentCurrent = component.name"
-            >
-              {{ component.name }}
-            </TheButton>
-          </li>
-        </TheList>
-      </nav>
+      <p><b>Компоненты:</b></p>
+      <TheList design="none">
+        <li v-for="component in Object.values(components)" :key="component.name">
+          <TheButton
+            design="none"
+            :active="componentCurrent === component.name"
+            @ui-click="componentCurrent = component.name"
+          >
+            {{ component.name }}
+          </TheButton>
+        </li>
+      </TheList>
+    </nav>
 
-      <div v-if="!componentCurrent" class="w-80"><Readme /></div>
-      <div v-else class="w-80"><component :is="componentCurrent" /></div>
-    </div>
+    <div v-if="!componentCurrent" class="w-80"><Readme /></div>
+    <div v-else class="w-80"><component :is="componentCurrent" /></div>
   </div>
 </template>
 

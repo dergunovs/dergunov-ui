@@ -244,6 +244,6 @@
   }
 
   .ui-field-error {
-    color: var(--color-primary);
+    color: var(--color-error);
   }
 </style>

@@ -131,7 +131,7 @@
   }
 
   .ui-checkbox:checked + .ui-checkbox-fake-design-switch:before {
-    background: var(--color-primary);
+    background: var(--color-success);
     transform: translateX(20px);
   }
 </style>
