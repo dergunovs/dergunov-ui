@@ -10,7 +10,7 @@ import ttypescript from "ttypescript";
 import typescript from "rollup-plugin-typescript2";
 import minimist from "minimist";
 import styles from "rollup-plugin-styles";
-import images from "rollup-plugin-image-files";
+import image from "@rollup/plugin-image";
 
 const esbrowserslist = fs
   .readFileSync("./.browserslistrc")
@@ -36,7 +36,7 @@ const baseConfig = {
       resolve({ extensions: [".js", ".ts", ".vue"] }),
       commonjs(),
       styles({ mode: ["extract", "styles.css"], minimize: process.env.NODE_ENV === "production" }),
-      images(),
+      image(),
     ],
     babel: { exclude: "node_modules/**", extensions: [".js", ".ts", ".vue"], babelHelpers: "bundled" },
   },

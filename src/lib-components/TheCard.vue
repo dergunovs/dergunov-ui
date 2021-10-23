@@ -10,7 +10,7 @@
 
         <div v-if="card.views" class="ui-card-views-block">
           <img
-            src="@/lib-components/assets/icons/views.svg"
+            src="./assets/icons/views.svg"
             class="ui-card-views-icon"
             :alt="`${card.views} просмотров`"
             loading="lazy"

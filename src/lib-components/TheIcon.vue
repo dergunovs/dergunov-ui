@@ -11,14 +11,14 @@
 <script lang="ts">
   import { defineComponent } from "vue";
 
-  import arrow from "@/lib-components/assets/icons/arrow.svg";
-  import copy from "@/lib-components/assets/icons/copy.svg";
-  import download from "@/lib-components/assets/icons/download.svg";
-  import facebook from "@/lib-components/assets/icons/facebook.svg";
-  import instagram from "@/lib-components/assets/icons/instagram.svg";
-  import views from "@/lib-components/assets/icons/views.svg";
-  import vk from "@/lib-components/assets/icons/vk.svg";
-  import youtube from "@/lib-components/assets/icons/youtube.svg";
+  import arrow from "./assets/icons/arrow.svg";
+  import copy from "./assets/icons/copy.svg";
+  import download from "./assets/icons/download.svg";
+  import facebook from "./assets/icons/facebook.svg";
+  import instagram from "./assets/icons/instagram.svg";
+  import views from "./assets/icons/views.svg";
+  import vk from "./assets/icons/vk.svg";
+  import youtube from "./assets/icons/youtube.svg";
 
   export default /*#__PURE__*/ defineComponent({
     name: "TheIcon",

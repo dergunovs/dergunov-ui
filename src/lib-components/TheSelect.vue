@@ -10,7 +10,7 @@
     >
       <div :class="{ 'ui-select-current-option': currentOption.name }">{{ currentOption.name || "Выбрать" }}</div>
       <img
-        src="@/lib-components/assets/icons/arrow.svg"
+        src="./assets/icons/arrow.svg"
         class="ui-select-current-arrow"
         width="16"
         height="16"

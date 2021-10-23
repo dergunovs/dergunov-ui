@@ -32,7 +32,7 @@
         :class="{ 'ui-slide-button-active': this.slideCurrent !== this.slides.length - 1 }"
       >
         <img
-          src="@/lib-components/assets/icons/arrow.svg"
+          src="./assets/icons/arrow.svg"
           class="ui-slide-arrow-right"
           width="48"
           height="48"

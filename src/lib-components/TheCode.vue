@@ -4,7 +4,7 @@
     <div class="ui-code-image-block">
       <button @click="copyToClipboard" class="ui-code-image-button">
         <img
-          src="@/lib-components/assets/icons/copy.svg"
+          src="./assets/icons/copy.svg"
           class="ui-code-image"
           :class="{ 'ui-code-image-copy': copied }"
           alt="Копировать код"
