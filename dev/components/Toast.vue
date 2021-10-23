@@ -3,7 +3,8 @@
     <section>
       <h1>{{ $options.name }}</h1>
 
-      <p>Нужно импортировать компонент toast, чтобы была возможность его использовать с помощью toast.info("Текст").</p>
+      <p>Нужно импортировать компонент: import { toast } from "dergunov-ui";</p>
+      <p>Использование в секции script: toast.info("Текст").</p>
       <p class="mb-16">3 вида сообщений: success, error и info.</p>
 
       <div class="flex">

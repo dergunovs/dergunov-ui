@@ -1,4 +1,4 @@
-## Глобальная установка в Nuxt.js
+## Глобальная установка в Nuxt3
 
 1. Установить пакет:
 
@@ -11,44 +11,32 @@ npm i dergunov-ui
 3. Внутри ui.js прописать:
 
 ```sh
-import Vue from "vue";
+import { defineNuxtPlugin } from "#app";
 import ui from "dergunov-ui";
+import "dergunov-ui/dist/assets/styles.css";
 
-Vue.use(ui);
-```
-
-4. В nuxt.config.js подключить плагин:
-
-```sh
-plugins: [ { src: "~plugins/ui" } ]
-```
-
-```sh
-build: { transpile: ["dergunov-ui"] }
+export default defineNuxtPlugin((nuxtApp) => nuxtApp.vueApp.use(ui));
 ```
 
 ## CSS
 
-Опционально можно подключить общие стили и утилитарные классы. В самом начале вашего css файла допишите:
-
-```sh
-@import "dergunov-ui";
-```
-
-Внутри компонентов данные стили не используются, то есть подключать css из библиотеки компонентов не обязательно.
-
-Если общие стили не подключены то в вашем css файле необходимо прописать переменные. Ниже представлены их значения по-умолчанию.
+В библиотеку компонентов встроены утилитарные классы. Внутри компонентов они не используются.
+Компоненты используют предопределенные цвета через var(). Вы можете их переназначить в своём css.
+Цвета по-умолчанию:
 
 ```sh
 :root {
---color-primary: #ff5050;
---color-primary-dark: #ed0d0d;
---color-primary-light: #db9090;
+  --color-primary: #ff5050;
+  --color-primary-dark: #ed0d0d;
+  --color-primary-light: #db9090;
 
---color-black: #000;
---color-gray-dark: #444;
---color-gray: #ccc;
---color-gray-light: #eee;
---color-white: #fff;
+  --color-success: #3aa636;
+  --color-error: #cb0000;
+
+  --color-black: #000;
+  --color-gray-dark: #444;
+  --color-gray: #ccc;
+  --color-gray-light: #eee;
+  --color-white: #fff;
 }
 ```
