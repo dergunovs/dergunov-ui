@@ -32,7 +32,7 @@
         :class="{ 'ui-slide-button-active': this.slideCurrent !== this.slides.length - 1 }"
       >
         <img
-          :src="$options.components.arrow"
+          src="@/lib-components/assets/icons/arrow.svg"
           class="ui-slide-arrow-right"
           width="48"
           height="48"
@@ -56,7 +56,6 @@
 
 <script lang="ts">
   import { defineComponent } from "vue";
-  import arrow from "@/lib-components/assets/icons/arrow.svg";
 
   export default /*#__PURE__*/ defineComponent({
     name: "TheSlider",
@@ -71,8 +70,6 @@
     props: {
       slides: { type: Array, required: true },
     },
-
-    components: { arrow },
 
     computed: {
       sliderWrapper: function(): HTMLElement {

@@ -10,7 +10,7 @@
     >
       <div :class="{ 'ui-select-current-option': currentOption.name }">{{ currentOption.name || "Выбрать" }}</div>
       <img
-        :src="$options.components.arrow"
+        src="@/lib-components/assets/icons/arrow.svg"
         class="ui-select-current-arrow"
         width="16"
         height="16"
@@ -42,7 +42,6 @@
 
 <script lang="ts">
   import { defineComponent, PropType } from "vue";
-  import arrow from "@/lib-components/assets/icons/arrow.svg";
 
   interface Option {
     value: string | number;
@@ -66,8 +65,6 @@
       modelValue: { type: [String, Number] as PropType<OptionValue> },
       options: { type: Array, required: true },
     },
-
-    components: { arrow },
 
     computed: {
       optionsFiltered: function(): Option[] {

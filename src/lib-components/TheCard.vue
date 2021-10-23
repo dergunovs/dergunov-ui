@@ -10,7 +10,7 @@
 
         <div v-if="card.views" class="ui-card-views-block">
           <img
-            :src="$options.components.views"
+            src="@/lib-components/assets/icons/views.svg"
             class="ui-card-views-icon"
             :alt="`${card.views} просмотров`"
             loading="lazy"
@@ -41,7 +41,6 @@
 
 <script lang="ts">
   import { defineComponent, PropType } from "vue";
-  import views from "@/lib-components/assets/icons/views.svg";
 
   interface Card {
     h1: string;
@@ -62,8 +61,6 @@
         required: true,
       },
     },
-
-    components: { views },
   });
 </script>
 

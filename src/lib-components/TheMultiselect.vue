@@ -24,7 +24,7 @@
       </div>
 
       <img
-        :src="$options.components.arrow"
+        src="@/lib-components/assets/icons/arrow.svg"
         class="ui-multiselect-current-arrow"
         width="16"
         height="16"
@@ -58,7 +58,6 @@
 
 <script lang="ts">
   import { defineComponent, PropType } from "vue";
-  import arrow from "@/lib-components/assets/icons/arrow.svg";
 
   interface Option {
     value: string | number;
@@ -82,8 +81,6 @@
       modelValue: { type: Array as PropType<OptionValue[]> },
       options: { type: Array, required: true },
     },
-
-    components: { arrow },
 
     computed: {
       optionsFiltered: function(): Option[] {

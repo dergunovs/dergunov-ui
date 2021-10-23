@@ -4,7 +4,7 @@
     <div class="ui-code-image-block">
       <button @click="copyToClipboard" class="ui-code-image-button">
         <img
-          :src="$options.components.copy"
+          src="@/lib-components/assets/icons/copy.svg"
           class="ui-code-image"
           :class="{ 'ui-code-image-copy': copied }"
           alt="Копировать код"
@@ -20,7 +20,6 @@
 
 <script lang="ts">
   import { defineComponent } from "vue";
-  import copy from "@/lib-components/assets/icons/copy.svg";
 
   export default /*#__PURE__*/ defineComponent({
     name: "TheCode",
@@ -30,8 +29,6 @@
         copied: false,
       };
     },
-
-    components: { copy },
 
     computed: {
       code: function(): HTMLElement {
