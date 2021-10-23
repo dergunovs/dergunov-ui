@@ -2,7 +2,7 @@
   import { defineComponent } from "vue";
 
   export default /*#__PURE__*/ defineComponent({
-    name: "TheToast",
+    name: "toast",
 
     success(message: string) {
       (this as any).methods.toast("success", message);

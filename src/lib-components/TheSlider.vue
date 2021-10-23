@@ -9,7 +9,7 @@
         :class="{ 'ui-slide-button-active': this.slideCurrent !== 0 }"
       >
         <img
-          :src="$options.components.arrow"
+          src="./assets/icons/arrow.svg"
           class="ui-slide-arrow-left"
           width="48"
           height="48"
