@@ -8,9 +8,16 @@
       itemtype="https://schema.org/ListItem"
     >
       <template v-if="index < breadcrumbs.length - 1">
-        <nuxt-link :to="item.url" :itemid="item.url" itemtype="https://schema.org/Thing" itemscope itemprop="item">
+        <component
+          :is="linkType"
+          :to="item.url"
+          :itemid="item.url"
+          itemtype="https://schema.org/Thing"
+          itemscope
+          itemprop="item"
+        >
           <span itemprop="name">{{ item.title }}</span>
-        </nuxt-link>
+        </component>
 
         <span class="breadcrumbs-arrow"> > </span>
       </template>
@@ -29,6 +36,7 @@
     name: "TheBreadcrumbs",
 
     props: {
+      linkType: { required: true },
       pathUrl: { type: String, required: true },
       pathTitles: { type: Array as PropType<string[]>, required: true },
     },

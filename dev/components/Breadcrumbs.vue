@@ -3,7 +3,7 @@
     <section>
       <h1>{{ $options.name }}</h1>
 
-      <TheBreadcrumbs :pathUrl="pathUrl" :pathTitles="pathTitles" />
+      <TheBreadcrumbs :linkType="NuxtLink" :pathUrl="pathUrl" :pathTitles="pathTitles" />
     </section>
   </div>
 </template>
