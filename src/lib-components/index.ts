@@ -1,3 +1,4 @@
+export { default as TheBreadcrumbs } from "./TheBreadcrumbs.vue";
 export { default as TheButton } from "./TheButton.vue";
 export { default as TheCard } from "./TheCard.vue";
 export { default as TheCheckbox } from "./TheCheckbox.vue";
