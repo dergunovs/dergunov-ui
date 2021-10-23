@@ -134,7 +134,7 @@
     },
 
     props: {
-      modelValue: { type: [String, Number, Array, Boolean, DataTransfer] },
+      modelValue: { type: [String, Number, Array, Boolean, Object] },
       value: { type: String },
       label: { type: String },
       type: { type: String, default: "text" },
