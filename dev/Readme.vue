@@ -1,6 +1,17 @@
 <template>
   <section>
-    <h1>Глобальная установка в Nuxt3</h1>
+    <h1>Библиотека компонентов</h1>
+    <p>Библиотека компонентов на основе vue-sfc-rollup для Nuxt3 (в дальшейшем будет поддержка Vue CLI 5).</p>
+    <p>20 компонентов занимают 10кб (gzip) в бандле вашего приложения. Весь CSS в сжатом виде занимает 5 кб.</p>
+    <p>
+      Полезные ссылки:
+      <a href="https://github.com/dergunovs/dergunov-ui" target="_blank" class="mr-8">Github</a>
+      <a href="https://www.youtube.com/playlist?list=PLOICX-WjKEZcZ4EZsp_xNQ_stjGRyIUDx" target="_blank" class="mr-8"
+        >Youtube</a
+      >
+      <a href="mailto:a@dergunov.com">Email</a>
+    </p>
+    <h2>Глобальная установка в Nuxt3</h2>
     <TheList>
       <li>Установить пакет:</li>
       <TheCode>npm i dergunov-ui</TheCode>

@@ -49,5 +49,9 @@
     },
 
     components: { ...components, Readme },
+
+    beforeCreate() {
+      document.title = "Библиотека компонентов";
+    },
   });
 </script>

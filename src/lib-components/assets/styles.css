@@ -42,9 +42,21 @@
 }
 
 .center {
-  width: calc(100% - 120px);
+  width: calc(100% - 128px);
   margin: 0 auto;
   max-width: 1600px;
+}
+
+@media (max-width: 960px) {
+  .center {
+    width: calc(100% - 32px);
+  }
+}
+
+@media (max-width: 600px) {
+  .center {
+    width: calc(100% - 16px);
+  }
 }
 
 section {
