@@ -13,20 +13,15 @@
 
   import arrow from "./assets/icons/arrow.svg";
   import copy from "./assets/icons/copy.svg";
-  import download from "./assets/icons/download.svg";
-  import facebook from "./assets/icons/facebook.svg";
-  import instagram from "./assets/icons/instagram.svg";
   import views from "./assets/icons/views.svg";
-  import vk from "./assets/icons/vk.svg";
-  import youtube from "./assets/icons/youtube.svg";
 
   export default /*#__PURE__*/ defineComponent({
     name: "TheIcon",
 
-    components: { arrow, copy, download, facebook, instagram, views, vk, youtube },
+    components: { arrow, copy, views },
 
     props: {
-      title: { type: String, default: "download" },
+      title: { type: String },
       size: { type: String, default: "medium" },
       type: { type: String, default: "regular" },
       alt: { type: String },
@@ -50,18 +45,6 @@
   .ui-icon-size-big {
     width: 48px;
     height: 48px;
-  }
-
-  .ui-icon-type-round {
-    width: 48px;
-    height: 48px;
-    background-color: var(--color-gray-light);
-    padding: 8px;
-    border-radius: 50%;
-  }
-
-  .ui-icon-type-round:hover {
-    background-color: var(--color-primary);
   }
 
   .ui-icon-type-inverted {

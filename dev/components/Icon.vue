@@ -3,9 +3,9 @@
     <section>
       <h1>{{ $options.name }}</h1>
 
-      <p><b>title:</b> copy, download, facebook, instagram, view, vk, youtube</p>
+      <p><b>title:</b> arrow, copy, view</p>
       <p><b>size:</b> small, medium, big, default: <b>medium</b></p>
-      <p><b>type:</b> regular, round, inverted: <b>regular</b></p>
+      <p><b>type:</b> regular, inverted: <b>regular</b></p>
       <p><b>alt:</b> если не используется, что подставляется title</p>
       <p class="mb-16">
         <b>src:</b> для подключения внешних изображений, например
@@ -15,28 +15,22 @@
       <div class="flex mb-16">
         <div class="flex mr-16"><TheIcon title="arrow" />arrow</div>
         <div class="flex mr-16"><TheIcon title="copy" />copy</div>
-        <div class="flex mr-16"><TheIcon title="download" />download</div>
-        <div class="flex mr-16"><TheIcon title="facebook" />facebook</div>
-        <div class="flex mr-16"><TheIcon title="instagram" />instagram</div>
         <div class="flex mr-16"><TheIcon title="views" />views</div>
-        <div class="flex mr-16"><TheIcon title="vk" />vk</div>
-        <div class="flex mr-16"><TheIcon title="youtube" />youtube</div>
         <div class="flex"></div>
       </div>
 
       <div class="flex mb-8">
         <div class="flex mr-16">size:</div>
-        <div class="flex mr-16"><TheIcon title="download" size="small" />small</div>
-        <div class="flex mr-16"><TheIcon title="download" size="medium" />medium</div>
-        <div class="flex"><TheIcon title="download" size="big" />big</div>
+        <div class="flex mr-16"><TheIcon title="copy" size="small" />small</div>
+        <div class="flex mr-16"><TheIcon title="copy" size="medium" />medium</div>
+        <div class="flex"><TheIcon title="copy" size="big" />big</div>
       </div>
 
       <div class="flex">
         <div class="flex mr-16">type:</div>
-        <div class="flex mr-16"><TheIcon title="youtube" type="regular" />regular</div>
-        <div class="flex mr-16"><TheIcon title="youtube" type="round" />round</div>
-        <div class="flex mr-16"><TheIcon title="youtube" type="inverted" />inverted</div>
-        <div class="flex bg-primary p-8"><TheIcon title="youtube" type="inverted" />inverted внутри div.bg-primary</div>
+        <div class="flex mr-16"><TheIcon title="views" type="regular" />regular</div>
+        <div class="flex mr-16"><TheIcon title="views" type="inverted" />inverted</div>
+        <div class="flex bg-primary p-8"><TheIcon title="views" type="inverted" />inverted внутри div.bg-primary</div>
       </div>
     </section>
   </div>

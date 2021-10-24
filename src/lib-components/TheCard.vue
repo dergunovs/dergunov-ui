@@ -129,7 +129,13 @@
 
   .ui-card-views-block {
     display: flex;
+    align-items: center;
     opacity: 0.5;
+  }
+
+  .ui-card-views-icon {
+    width: 16px;
+    height: 16px;
   }
 
   .ui-card-views {

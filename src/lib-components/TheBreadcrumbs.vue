@@ -1,8 +1,9 @@
 <template>
-  <ul class="breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">
+  <ul class="ui-breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">
     <li
       v-for="(item, index) in breadcrumbs"
       :key="`item${index}`"
+      class="ui-breabcrumb"
       itemprop="itemListElement"
       itemscope
       itemtype="https://schema.org/ListItem"
@@ -10,6 +11,7 @@
       <template v-if="index < breadcrumbs.length - 1">
         <component
           :is="linkType"
+          class="ui-breadcrumb-link"
           :to="item.url"
           :itemid="item.url"
           itemtype="https://schema.org/Thing"
@@ -19,7 +21,7 @@
           <span itemprop="name">{{ item.title }}</span>
         </component>
 
-        <span class="breadcrumbs-arrow"> > </span>
+        <span class="ui-breadcrumb-arrow">></span>
       </template>
 
       <span v-else itemprop="name">{{ item.title }}</span>
@@ -69,3 +71,19 @@
     },
   });
 </script>
+
+<style>
+  .ui-breadcrumbs {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+  }
+
+  .ui-breadcrumb-link {
+    color: var(--color-black);
+  }
+
+  .ui-breadcrumb-arrow {
+    margin: 0 4px;
+  }
+</style>

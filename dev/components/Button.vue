@@ -15,7 +15,7 @@
       <div><TheButton design="none">design: none</TheButton></div>
       <div class="mb-16"><TheButton design="none" active>design: none, active: true</TheButton></div>
 
-      <TheButton><TheIcon title="youtube" type="inverted" class="mr-8" />TheIcon внутри TheButton</TheButton>
+      <TheButton><TheIcon title="arrow" type="inverted" class="mr-8" />TheIcon внутри TheButton</TheButton>
 
       <h2>Actions</h2>
       <div>

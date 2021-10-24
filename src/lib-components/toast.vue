@@ -1,19 +1,19 @@
 <script lang="ts">
-  import { defineComponent } from "vue";
+  import { defineComponent, ComponentOptions } from "vue";
 
   export default /*#__PURE__*/ defineComponent({
     name: "toast",
 
     success(message: string) {
-      (this as any).methods.toast("success", message);
+      (this as ComponentOptions).methods.toast("success", message);
     },
 
     error(message: string) {
-      (this as any).methods.toast("error", message);
+      (this as ComponentOptions).methods.toast("error", message);
     },
 
     info(message: string) {
-      (this as any).methods.toast("info", message);
+      (this as ComponentOptions).methods.toast("info", message);
     },
 
     methods: {
