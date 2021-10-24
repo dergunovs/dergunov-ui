@@ -1,6 +1,15 @@
 <template>
   <div class="ui-spoler-block">
     <button @click="isExpanded = !isExpanded" class="ui-spoler-button">
+      <img
+        src="./assets/icons/arrow.svg"
+        class="ui-spoiler-arrow"
+        :class="{ 'ui-spoiler-arrow-expanded': isExpanded }"
+        width="16"
+        height="16"
+        alt="spoiler"
+        loading="lazy"
+      />
       {{ isExpanded ? titleExpanded : title }}
     </button>
 
@@ -51,6 +60,8 @@
   }
 
   .ui-spoler-button {
+    display: flex;
+    align-items: center;
     cursor: pointer;
     text-align: left;
     border: none;
@@ -63,6 +74,15 @@
 
   .ui-spoler-button:hover {
     background-color: var(--color-gray);
+  }
+
+  .ui-spoiler-arrow {
+    transform: rotate(270deg);
+    margin-right: 4px;
+    transition-duration: 200ms;
+  }
+  .ui-spoiler-arrow-expanded {
+    transform: rotate(360deg);
   }
 
   .ui-spoler {
