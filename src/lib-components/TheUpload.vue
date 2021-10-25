@@ -57,7 +57,10 @@
         this.files = [...uploadableFiles];
 
         this.emitFiles();
+        this.updateFilesSize();
+      },
 
+      updateFilesSize() {
         this.filesSize = 0;
         this.files.forEach((file: File) => {
           this.filesSize = this.filesSize + file.size;
@@ -71,6 +74,7 @@
         }
 
         this.emitFiles();
+        this.updateFilesSize();
       },
 
       emitFiles(): void {

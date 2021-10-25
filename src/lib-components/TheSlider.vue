@@ -98,10 +98,12 @@
       },
 
       updateSlideWidth(): void {
-        this.slideWidth = Number(
-          getComputedStyle(this.$refs["slide" + this.slideCurrent] as HTMLElement).width.slice(0, -2)
-        );
-        this.updateCoordinatesX();
+        if (this.$refs["slide" + this.slideCurrent]) {
+          this.slideWidth = Number(
+            getComputedStyle(this.$refs["slide" + this.slideCurrent] as Element).width.slice(0, -2)
+          );
+          this.updateCoordinatesX();
+        }
       },
 
       updateCoordinatesX(): void {
@@ -111,6 +113,7 @@
 
     mounted() {
       this.slideWidth = Number(getComputedStyle(this.$refs.slide0 as HTMLElement).width.slice(0, -2));
+      console.log(this.slideWidth);
       window.addEventListener("resize", this.updateSlideWidth);
     },
 
