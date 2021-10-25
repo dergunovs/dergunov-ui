@@ -6,8 +6,10 @@
       <p>В Nuxt и Vue разные названия компонентов ссылок: NuxtLink и RouterLink.</p>
 
       <p><b>linkType (string):</b> NuxtLink, RouterLink</p>
-      <p><b>pathUrl (string):</b> относительный путь текущей страницы, например, "/blog/example"</p>
-      <p class="mb-16"><b>pathTitles (array):</b> список заголовков для ссылок ["Главная", "Блог", "Пример"]</p>
+      <p><b>pathUrl (string):</b> относительный путь текущей страницы, например, "/blog/examples/first"</p>
+      <p class="mb-16">
+        <b>pathTitles (array):</b> список заголовков для ссылок ["Главная", "Блог", "Примеры", "Первый"]
+      </p>
 
       <TheBreadcrumbs linkType="a" :pathUrl="pathUrl" :pathTitles="pathTitles" />
     </section>
@@ -22,8 +24,8 @@
 
     data() {
       return {
-        pathUrl: "/blog/example",
-        pathTitles: ["Главная", "Блог", "Пример"],
+        pathUrl: "/blog/examples/first",
+        pathTitles: ["Главная", "Блог", "Примеры", "Первый"],
       };
     },
   });

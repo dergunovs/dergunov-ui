@@ -60,7 +60,7 @@
         this.updateFilesSize();
       },
 
-      updateFilesSize() {
+      updateFilesSize(): void {
         this.filesSize = 0;
         this.files.forEach((file: File) => {
           this.filesSize = this.filesSize + file.size;

@@ -28,11 +28,11 @@
     },
 
     methods: {
-      hidePopup() {
+      hidePopup(): void {
         this.$emit("update:modelValue", false);
       },
 
-      focusAtPopup() {
+      focusAtPopup(): void {
         setTimeout(() => {
           (this.$refs.popup as HTMLElement).focus();
         }, 100);
