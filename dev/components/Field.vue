@@ -8,7 +8,6 @@
       <p><b>label:</b> заголовок поля.</p>
       <p><b>type:</b> text, textarea, select, multiselect, checkbox, radio, upload. default: text</p>
       <p><b>options:</b> массив опций [object, string или number] для select, multiselect и radio</p>
-      <p><b>value:</b> текстовое значение для radio</p>
       <p class="mb-32"><b>v-model:</b> для двустороннего связывания.</p>
 
       <p><b>Виды валидации поля</b></p>
