@@ -11,6 +11,7 @@ import typescript from "rollup-plugin-typescript2";
 import minimist from "minimist";
 import styles from "rollup-plugin-styles";
 import image from "@rollup/plugin-image";
+import { terser } from "rollup-plugin-terser";
 
 const esbrowserslist = fs
   .readFileSync("./.browserslistrc")
@@ -37,6 +38,7 @@ const baseConfig = {
       commonjs(),
       styles({ mode: ["extract", "styles.css"], minimize: process.env.NODE_ENV === "production" }),
       image(),
+      terser(),
     ],
     babel: { exclude: "node_modules/**", extensions: [".js", ".ts", ".vue"], babelHelpers: "bundled" },
   },
