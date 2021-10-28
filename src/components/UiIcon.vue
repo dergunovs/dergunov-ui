@@ -11,9 +11,9 @@
 <script lang="ts">
   import { defineComponent } from "vue";
 
-  import arrow from "./assets/icons/arrow.svg";
-  import copy from "./assets/icons/copy.svg";
-  import views from "./assets/icons/views.svg";
+  import arrow from "@/assets/icons/arrow.svg";
+  import copy from "@/assets/icons/copy.svg";
+  import views from "@/assets/icons/views.svg";
 
   export default /*#__PURE__*/ defineComponent({
     name: "UiIcon",

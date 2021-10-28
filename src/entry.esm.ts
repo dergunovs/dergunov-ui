@@ -1,7 +1,7 @@
 import { App, Plugin } from "vue";
 
 import * as components from "@/components/index";
-import "@/components/assets/styles.css";
+import "@/assets/styles.css";
 
 const install: Exclude<Plugin["install"], undefined> = function installDergunovUi(app: App) {
   Object.entries(components).forEach(([componentName, component]) => {

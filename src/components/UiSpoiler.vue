@@ -2,7 +2,7 @@
   <div class="ui-spoler-block">
     <button @click="isExpanded = !isExpanded" class="ui-spoler-button">
       <img
-        src="./assets/icons/arrow.svg"
+        src="@/assets/icons/arrow.svg"
         class="ui-spoiler-arrow"
         :class="{ 'ui-spoiler-arrow-expanded': isExpanded }"
         width="16"
