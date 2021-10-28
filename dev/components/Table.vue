@@ -4,17 +4,16 @@
       <h1>{{ $options.name }}</h1>
 
       <p>Является компонентов слотом внутри которого необходимо разместить компонент <b>TheRow.</b></p>
-      <p class="mb-32">
-        В него через v-for необходимо передать props row с данными каждой строки основной части таблицы.
-      </p>
+      <p>В него через v-for необходимо передать props row с данными каждой строки основной части таблицы.</p>
+      <p class="mb-32">Если таблица не влезает в родительный блок, то появляется скролл + сообщение о нём.</p>
 
       <p><b>headers:</b> массив из заголовков столбцов</p>
       <p><b>fit:</b> regular, grow. default: regular</p>
       <p class="mb-32"><b>width:</b> если требуется, то можно указать ширину. type: string</p>
 
-      <TheTable :headers="headers" width="800">
-        <TheRow v-for="member in staff" :key="member.id" :row="member" />
-      </TheTable>
+      <UiTable :headers="headers" width="800">
+        <UiRow v-for="member in staff" :key="member.id" :row="member" />
+      </UiTable>
     </section>
   </div>
 </template>

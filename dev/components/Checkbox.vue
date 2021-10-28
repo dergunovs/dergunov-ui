@@ -10,10 +10,10 @@
       <p class="mb-16"><b>design:</b> none, switch. default: <b>none</b></p>
 
       <div class="flex mb-16">
-        <label class="flex mr-16"><TheCheckbox v-model="checkboxBoolean" /> checkboxBoolean</label>
-        <label class="flex mr-16"><TheCheckbox v-model="checkboxString" /> checkboxString</label>
-        <label class="flex mr-16"><TheCheckbox v-model="checkboxNumber" /> checkboxNumber</label>
-        <label class="flex"><TheCheckbox design="switch" /> design="switch"</label>
+        <label class="flex mr-16"><UiCheckbox v-model="checkboxBoolean" /> checkboxBoolean</label>
+        <label class="flex mr-16"><UiCheckbox v-model="checkboxString" /> checkboxString</label>
+        <label class="flex mr-16"><UiCheckbox v-model="checkboxNumber" /> checkboxNumber</label>
+        <label class="flex"><UiCheckbox design="switch" /> design="switch"</label>
       </div>
 
       <p>checkboxBoolean: {{ checkboxBoolean }}</p>

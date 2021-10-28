@@ -9,15 +9,15 @@
 
       <p class="mb-16">popup: {{ popup }}</p>
 
-      <TheButton @ui-click="popup = true">Показать popup</TheButton>
+      <UiButton @ui-click="popup = true">Показать popup</UiButton>
 
-      <ThePopup v-model="popup">
+      <UiPopup v-model="popup">
         <p>
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sed dolor itaque incidunt molestias saepe quo
           eligendi necessitatibus magnam autem corporis sunt, placeat eaque nihil explicabo, quas ullam dignissimos
           velit. Exercitationem.
         </p>
-      </ThePopup>
+      </UiPopup>
     </section>
   </div>
 </template>

@@ -16,7 +16,7 @@
   import views from "./assets/icons/views.svg";
 
   export default /*#__PURE__*/ defineComponent({
-    name: "TheIcon",
+    name: "UiIcon",
 
     components: { arrow, copy, views },
 

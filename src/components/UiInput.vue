@@ -12,7 +12,7 @@
   import { defineComponent } from "vue";
 
   export default /*#__PURE__*/ defineComponent({
-    name: "TheInput",
+    name: "UiInput",
 
     props: {
       modelValue: { type: String },

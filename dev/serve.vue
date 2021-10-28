@@ -1,22 +1,22 @@
 <template>
   <div class="center flex flex-top">
     <nav class="w-20 pt-32">
-      <TheButton design="none" @ui-click="componentCurrent = ''" :active="componentCurrent === ''" class="mb-16">
+      <UiButton design="none" @ui-click="componentCurrent = ''" :active="componentCurrent === ''" class="mb-16">
         Описание
-      </TheButton>
+      </UiButton>
 
       <p><b>Компоненты:</b></p>
-      <TheList design="none">
+      <UiList design="none">
         <li v-for="component in Object.values(components)" :key="component.name">
-          <TheButton
+          <UiButton
             design="none"
             :active="componentCurrent === component.name"
             @ui-click="componentCurrent = component.name"
           >
             {{ component.name }}
-          </TheButton>
+          </UiButton>
         </li>
-      </TheList>
+      </UiList>
     </nav>
 
     <div v-if="!componentCurrent" class="w-80"><Readme /></div>

@@ -14,17 +14,17 @@
       <p><b>formData:</b> {{ formData }}</p>
       <p class="mb-16"><b>formStatus:</b> {{ formStatus }}</p>
 
-      <TheForm :formStatus="formStatus" @errors="formValidate">
+      <UiForm :formStatus="formStatus" @errors="formValidate">
         <h2>Заказать услуги</h2>
 
         <div class="flex flex-sb flex-top mb-16">
-          <TheField label="Ваше имя" v-model="formData.customer" required class="w-50-8" />
-          <TheField label="Электронная почта" v-model="formData.email" email class="w-50-8" />
+          <UiField label="Ваше имя" v-model="formData.customer" required class="w-50-8" />
+          <UiField label="Электронная почта" v-model="formData.email" email class="w-50-8" />
         </div>
 
-        <TheField label="Сообщение" type="textarea" v-model="formData.message" :min="3" :max="9" class="mb-16" />
+        <UiField label="Сообщение" type="textarea" v-model="formData.message" :min="3" :max="9" class="mb-16" />
 
-        <TheField
+        <UiField
           label="Нужна обратная связь?"
           type="select"
           v-model="formData.recall"
@@ -33,7 +33,7 @@
           class="mb-16"
         />
 
-        <TheField
+        <UiField
           label="Предпочтительные типы связи"
           type="multiselect"
           v-model="formData.type"
@@ -42,7 +42,7 @@
           class="mb-16"
         />
 
-        <TheField
+        <UiField
           label="Согласие на обработку персональных данных"
           type="checkbox"
           v-model="formData.agree"
@@ -50,7 +50,7 @@
           class="mb-16"
         />
 
-        <TheField
+        <UiField
           label="Оцените эту форму от 1 до 5"
           type="radio"
           v-model="formData.rate"
@@ -60,10 +60,10 @@
           class="mb-16"
         />
 
-        <TheField label="Загрузка файлов" type="upload" v-model="formData.files" multiple required class="mb-32" />
+        <UiField label="Загрузка файлов" type="upload" v-model="formData.files" multiple required class="mb-32" />
 
-        <TheButton @ui-click="formSubmit" :disabled="formErrors">Отправить сообщение</TheButton>
-      </TheForm>
+        <UiButton @ui-click="formSubmit" :disabled="formErrors">Отправить сообщение</UiButton>
+      </UiForm>
     </section>
   </div>
 </template>

@@ -58,7 +58,7 @@
   import { defineComponent } from "vue";
 
   export default /*#__PURE__*/ defineComponent({
-    name: "TheSlider",
+    name: "UiSlider",
 
     data() {
       return {
@@ -72,7 +72,7 @@
     },
 
     computed: {
-      sliderWrapper: function(): HTMLElement {
+      sliderWrapper: function (): HTMLElement {
         return this.$refs.sliderWrapper as HTMLElement;
       },
     },

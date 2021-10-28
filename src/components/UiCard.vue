@@ -53,7 +53,7 @@
   }
 
   export default /*#__PURE__*/ defineComponent({
-    name: "TheCard",
+    name: "UiCard",
 
     props: {
       card: {

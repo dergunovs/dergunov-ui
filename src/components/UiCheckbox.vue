@@ -19,7 +19,7 @@
   type Value = boolean | string | number;
 
   export default /*#__PURE__*/ defineComponent({
-    name: "TheCheckbox",
+    name: "UiCheckbox",
 
     data() {
       return {
@@ -33,7 +33,7 @@
     },
 
     computed: {
-      checkbox: function(): HTMLInputElement {
+      checkbox: function (): HTMLInputElement {
         return this.$refs.checkbox as HTMLInputElement;
       },
     },

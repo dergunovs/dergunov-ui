@@ -9,7 +9,7 @@
 
       <p class="mb-32"><b>multiple:</b> boolean</p>
 
-      <TheUpload multiple />
+      <UiUpload multiple />
     </section>
   </div>
 </template>

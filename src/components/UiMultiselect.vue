@@ -17,9 +17,7 @@
           class="ui-multiselect-current-option"
         >
           <span class="ui-multiselect-current-option-name">{{ option.name }}</span>
-          <span @click="removeOption(option.value)" class="ui-multiselect-current-option-remove">
-            ×
-          </span>
+          <span @click="removeOption(option.value)" class="ui-multiselect-current-option-remove"> × </span>
         </div>
       </div>
 
@@ -67,7 +65,7 @@
   type OptionValue = string | number;
 
   export default /*#__PURE__*/ defineComponent({
-    name: "TheMultiselect",
+    name: "UiMultiselect",
 
     data() {
       return {
@@ -83,7 +81,7 @@
     },
 
     computed: {
-      optionsFiltered: function(): Option[] {
+      optionsFiltered: function (): Option[] {
         let currentOptionsValues: OptionValue[] = this.currentOptions.map((option: Option) => {
           return option.value;
         });

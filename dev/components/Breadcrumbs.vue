@@ -11,7 +11,7 @@
         <b>pathTitles (array):</b> список заголовков для ссылок ["Главная", "Блог", "Примеры", "Первый"]
       </p>
 
-      <TheBreadcrumbs linkType="a" :pathUrl="pathUrl" :pathTitles="pathTitles" />
+      <UiBreadcrumbs linkType="a" :pathUrl="pathUrl" :pathTitles="pathTitles" />
     </section>
   </div>
 </template>

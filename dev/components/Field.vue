@@ -24,17 +24,17 @@
 
       <p class="mb-32">formData: {{ formData }}</p>
 
-      <TheForm class="mb-32">
-        <TheField label="Телефон" tel v-model="formData.tel" class="w-50 mb-8" />
-        <TheField label="Электронная почта" email v-model="formData.email" class="w-50 mb-8" />
-        <TheField label="Минимальное количество символов" :min="3" v-model="formData.min" class="w-50 mb-8" />
-        <TheField label="Максимальное количество символов" :max="3" v-model="formData.max" class="w-50 mb-8" />
+      <UiForm class="mb-32">
+        <UiField label="Телефон" tel v-model="formData.tel" class="w-50 mb-8" />
+        <UiField label="Электронная почта" email v-model="formData.email" class="w-50 mb-8" />
+        <UiField label="Минимальное количество символов" :min="3" v-model="formData.min" class="w-50 mb-8" />
+        <UiField label="Максимальное количество символов" :max="3" v-model="formData.max" class="w-50 mb-8" />
 
-        <TheField label="Textarea" type="textarea" required v-model="formData.required" class="w-50 mb-8" />
+        <UiField label="Textarea" type="textarea" required v-model="formData.required" class="w-50 mb-8" />
 
-        <TheField label="Select" type="select" v-model="formData.select" :options="selectOptions" class="w-50 mb-8" />
+        <UiField label="Select" type="select" v-model="formData.select" :options="selectOptions" class="w-50 mb-8" />
 
-        <TheField
+        <UiField
           label="Multiselect"
           type="multiselect"
           required
@@ -43,7 +43,7 @@
           class="w-50 mb-16"
         />
 
-        <TheField
+        <UiField
           label="Согласие на обработку персональных данных"
           type="checkbox"
           v-model="formData.agree"
@@ -51,7 +51,7 @@
           class="mb-16"
         />
 
-        <TheField
+        <UiField
           label="Оцените эту форму от 1 до 5"
           type="radio"
           v-model="formData.rate"
@@ -60,8 +60,8 @@
           class="mb-16"
         />
 
-        <TheField label="Загрузка файлов" type="upload" v-model="formData.files" multiple class="mb-32" />
-      </TheForm>
+        <UiField label="Загрузка файлов" type="upload" v-model="formData.files" multiple class="mb-32" />
+      </UiForm>
     </section>
   </div>
 </template>

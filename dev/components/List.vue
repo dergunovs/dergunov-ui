@@ -7,41 +7,41 @@
       <p><b>direction:</b> column, row. default: <b>column</b></p>
       <p><b>design:</b> regular, none, styled. default: <b>regular</b></p>
 
-      <TheList type="ul" direction="column" design="regular">
+      <UiList type="ul" direction="column" design="regular">
         <li>ul, column, regular</li>
         <li>ul, column, regular</li>
         <li>ul, column, regular</li>
-      </TheList>
+      </UiList>
 
-      <TheList type="ol" direction="row" design="regular">
+      <UiList type="ol" direction="row" design="regular">
         <li>ol, row, regular</li>
         <li>ol, row, regular</li>
         <li>ol, row, regular</li>
-      </TheList>
+      </UiList>
 
-      <TheList type="ul" direction="row" design="none">
+      <UiList type="ul" direction="row" design="none">
         <li class="border-gray">ul, row, none + border-gray</li>
         <li class="border-gray">ul, row, none + border-gray</li>
         <li class="border-gray">ul, row, none + border-gray</li>
-      </TheList>
+      </UiList>
 
-      <TheList type="ul" direction="vertical" design="styled">
+      <UiList type="ul" direction="vertical" design="styled">
         <li>ul, vertical, styled</li>
         <li>ul, vertical, styled</li>
         <li>ul, vertical, styled</li>
-      </TheList>
+      </UiList>
 
-      <TheList type="ol" direction="row" design="styled">
+      <UiList type="ol" direction="row" design="styled">
         <li>ol, row, styled</li>
         <li>ol, row, styled</li>
         <li>ol, row, styled</li>
-      </TheList>
+      </UiList>
 
-      <TheList type="ol" direction="vertical" design="styled">
+      <UiList type="ol" direction="vertical" design="styled">
         <li>ol, vertical, styled</li>
         <li>ol, vertical, styled</li>
         <li>ol, vertical, styled</li>
-      </TheList>
+      </UiList>
     </section>
   </div>
 </template>

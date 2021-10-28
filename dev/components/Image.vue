@@ -8,23 +8,23 @@
       <p class="mb-16">Закрытие по клику на кнопку × или нажатию esc на клавиатуре.</p>
 
       <p>
-        <TheImage src="https://dergunov.com/uploads/service/1618082598121-ads.svg">
+        <UiImage src="https://dergunov.com/uploads/service/1618082598121-ads.svg">
           <span class="text-underline">SVG</span>
-        </TheImage>
+        </UiImage>
         - большая картинка, уже во весь экран
       </p>
 
       <p>
-        <TheImage src="https://dergunov.com/uploads/keis/1615208512334keis-simple-img-1.jpg">
+        <UiImage src="https://dergunov.com/uploads/keis/1615208512334keis-simple-img-1.jpg">
           <span class="text-underline">Jpeg</span>
-        </TheImage>
+        </UiImage>
         - маленькая картинка, можно увеличивать
       </p>
 
       <p>
-        <TheImage src="https://dergunov.com/assets/images/main-utp-2.svg">
+        <UiImage src="https://dergunov.com/assets/images/main-utp-2.svg">
           <img src="https://dergunov.com/assets/images/main-utp-2.svg" width="32" height="32" />
-        </TheImage>
+        </UiImage>
         - ссылка картинка
       </p>
     </section>

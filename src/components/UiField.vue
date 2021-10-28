@@ -5,7 +5,7 @@
       <span v-if="required" class="ui-field-label-required">*</span>
     </label>
 
-    <TheInput
+    <UiInput
       v-if="type === 'text'"
       :modelValue="modelValue"
       @update:modelValue="check"
@@ -15,7 +15,7 @@
       class="ui-field-input"
     />
 
-    <TheTextarea
+    <UiTextarea
       v-if="type === 'textarea'"
       :modelValue="modelValue"
       @update:modelValue="check"
@@ -24,7 +24,7 @@
       class="ui-field-input"
     />
 
-    <TheSelect
+    <UiSelect
       v-if="type === 'select'"
       :modelValue="modelValue"
       :options="options"
@@ -34,7 +34,7 @@
       class="ui-field-input"
     />
 
-    <TheMultiselect
+    <UiMultiselect
       v-if="type === 'multiselect'"
       :modelValue="modelValue"
       :options="options"
@@ -44,7 +44,7 @@
       class="ui-field-input"
     />
 
-    <TheCheckbox
+    <UiCheckbox
       v-if="type === 'checkbox'"
       :modelValue="modelValue"
       :design="design"
@@ -54,7 +54,7 @@
       class="ui-field-input"
     />
 
-    <TheRadio
+    <UiRadio
       v-if="type === 'radio'"
       :modelValue="modelValue"
       :options="options"
@@ -66,7 +66,7 @@
       class="ui-field-input"
     />
 
-    <TheUpload
+    <UiUpload
       v-if="type === 'upload'"
       :multiple="multiple"
       @update:modelValue="check"
@@ -90,10 +90,11 @@
   type InputDataFormatted = string | (string | number)[];
 
   export default /*#__PURE__*/ defineComponent({
-    name: "TheField",
+    name: "UiField",
 
     data() {
-      let emailRegexp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Zа-яёА-ЯЁ\-0-9]+\.)+[a-zA-Zа-яёА-ЯЁ]{2,}))$/;
+      let emailRegexp =
+        /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Zа-яёА-ЯЁ\-0-9]+\.)+[a-zA-Zа-яёА-ЯЁ]{2,}))$/;
 
       return {
         error: false,
@@ -150,7 +151,7 @@
     },
 
     computed: {
-      input: function(): InputComponent {
+      input: function (): InputComponent {
         return this.$refs.input as InputComponent;
       },
     },

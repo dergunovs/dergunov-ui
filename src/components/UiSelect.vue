@@ -51,7 +51,7 @@
   type OptionValue = string | number;
 
   export default /*#__PURE__*/ defineComponent({
-    name: "TheSelect",
+    name: "UiSelect",
 
     data() {
       return {
@@ -67,7 +67,7 @@
     },
 
     computed: {
-      optionsFiltered: function(): Option[] {
+      optionsFiltered: function (): Option[] {
         return this.options.map((option: any) => {
           if (typeof option === "string" || typeof option === "number") return { value: option, name: option };
           if (typeof option === "object") return option;

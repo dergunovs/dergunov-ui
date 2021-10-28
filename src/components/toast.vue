@@ -17,7 +17,7 @@
     },
 
     methods: {
-      async toast(type: string, message: string) {
+      toast(type: string, message: string): void {
         if (!document.body.contains(document.querySelector(".ui-toast-block")!)) {
           let toastBlock = document.createElement("div");
           toastBlock.classList.add("ui-toast-block");

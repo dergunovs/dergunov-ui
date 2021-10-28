@@ -18,7 +18,7 @@
   import { defineComponent } from "vue";
 
   export default /*#__PURE__*/ defineComponent({
-    name: "TheForm",
+    name: "UiForm",
 
     props: {
       formStatus: { type: String },

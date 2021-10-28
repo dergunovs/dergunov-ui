@@ -35,7 +35,7 @@
   import { defineComponent, PropType } from "vue";
 
   export default /*#__PURE__*/ defineComponent({
-    name: "TheBreadcrumbs",
+    name: "UiBreadcrumbs",
 
     props: {
       linkType: { required: true },
@@ -44,7 +44,7 @@
     },
 
     computed: {
-      breadcrumbs: function(): object[] {
+      breadcrumbs: function (): object[] {
         let urls = this.pathUrl.split("/");
         urls[0] = "/";
 
@@ -62,7 +62,7 @@
 
         let titles = this.pathTitles;
 
-        let breadcrumbs = urlsFormatted.map(function(url: string, i: number) {
+        let breadcrumbs = urlsFormatted.map(function (url: string, i: number) {
           return { url: url, title: titles[i] };
         });
 

@@ -5,7 +5,7 @@
 
       <p class="mb-16">Директива v-model добавляет компоненту input двустороннее связывание с data.</p>
 
-      <TheTextarea v-model="test"></TheTextarea>
+      <UiTextarea v-model="test"></UiTextarea>
       <p class="mb-16">data: {{ test }}</p>
     </section>
   </div>

@@ -18,7 +18,7 @@
   import { defineComponent, nextTick } from "vue";
 
   export default defineComponent({
-    name: "TheImage",
+    name: "UiImage",
 
     data() {
       return {

@@ -19,7 +19,7 @@
   import { defineComponent } from "vue";
 
   export default /*#__PURE__*/ defineComponent({
-    name: "TheTable",
+    name: "UiTable",
 
     data() {
       return {

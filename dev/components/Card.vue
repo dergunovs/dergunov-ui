@@ -22,7 +22,7 @@
           :href="blog.url"
           class="w-33-32 text-no-line color-black no-hover-color"
         >
-          <TheCard :card="blog" />
+          <UiCard :card="blog" />
         </a>
       </div>
 
@@ -34,7 +34,7 @@
           :href="wiki.url"
           class="w-33-32 text-no-line color-black no-hover-color"
         >
-          <TheCard :card="wiki" />
+          <UiCard :card="wiki" />
         </a>
       </div>
     </section>

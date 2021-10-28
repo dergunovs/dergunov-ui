@@ -15,17 +15,17 @@
       </p>
 
       <div class="flex mb-8">
-        <TheRadio v-model="radioObject" :options="radioObjectOptions" />
+        <UiRadio v-model="radioObject" :options="radioObjectOptions" />
       </div>
       <p class="mb-32">radioObject: {{ radioObject }}</p>
 
       <div class="flex mb-8">
-        <TheRadio v-model="radioStringRow" :options="radioStringRowOptions" direction="row" />
+        <UiRadio v-model="radioStringRow" :options="radioStringRowOptions" direction="row" />
       </div>
       <p class="mb-32">radioStringRow: {{ radioStringRow }}</p>
 
       <div class="flex mb-8">
-        <TheRadio v-model="radioButtons" :options="radioStringRowOptions" direction="row" design="buttons" />
+        <UiRadio v-model="radioButtons" :options="radioStringRowOptions" direction="row" design="buttons" />
       </div>
       <p>design="buttons": {{ radioButtons }}</p>
     </section>

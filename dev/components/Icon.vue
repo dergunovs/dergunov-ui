@@ -9,28 +9,28 @@
       <p><b>alt:</b> если не используется, что подставляется title</p>
       <p class="mb-16">
         <b>src:</b> для подключения внешних изображений, например
-        <TheIcon src="https://dergunov.com/uploads/service/1618085014591-sozdanie-saitov.svg" size="small" />
+        <UiIcon src="https://dergunov.com/uploads/service/1618085014591-sozdanie-saitov.svg" size="small" />
       </p>
 
       <div class="flex mb-16">
-        <div class="flex mr-16"><TheIcon title="arrow" />arrow</div>
-        <div class="flex mr-16"><TheIcon title="copy" />copy</div>
-        <div class="flex mr-16"><TheIcon title="views" />views</div>
+        <div class="flex mr-16"><UiIcon title="arrow" />arrow</div>
+        <div class="flex mr-16"><UiIcon title="copy" />copy</div>
+        <div class="flex mr-16"><UiIcon title="views" />views</div>
         <div class="flex"></div>
       </div>
 
       <div class="flex mb-8">
         <div class="flex mr-16">size:</div>
-        <div class="flex mr-16"><TheIcon title="copy" size="small" />small</div>
-        <div class="flex mr-16"><TheIcon title="copy" size="medium" />medium</div>
-        <div class="flex"><TheIcon title="copy" size="big" />big</div>
+        <div class="flex mr-16"><UiIcon title="copy" size="small" />small</div>
+        <div class="flex mr-16"><UiIcon title="copy" size="medium" />medium</div>
+        <div class="flex"><UiIcon title="copy" size="big" />big</div>
       </div>
 
       <div class="flex">
         <div class="flex mr-16">type:</div>
-        <div class="flex mr-16"><TheIcon title="views" type="regular" />regular</div>
-        <div class="flex mr-16"><TheIcon title="views" type="inverted" />inverted</div>
-        <div class="flex bg-primary p-8"><TheIcon title="views" type="inverted" />inverted внутри div.bg-primary</div>
+        <div class="flex mr-16"><UiIcon title="views" type="regular" />regular</div>
+        <div class="flex mr-16"><UiIcon title="views" type="inverted" />inverted</div>
+        <div class="flex bg-primary p-8"><UiIcon title="views" type="inverted" />inverted внутри div.bg-primary</div>
       </div>
     </section>
   </div>

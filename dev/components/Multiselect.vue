@@ -11,7 +11,7 @@
         3. Number [1,2,3]
       </p>
 
-      <p><TheMultiselect v-model="currentOptions" :options="options" /></p>
+      <p><UiMultiselect v-model="currentOptions" :options="options" /></p>
 
       <p>currentOptions: {{ currentOptions }}</p>
     </section>

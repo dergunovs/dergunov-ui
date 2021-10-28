@@ -11,7 +11,7 @@
   import { defineComponent } from "vue";
 
   export default /*#__PURE__*/ defineComponent({
-    name: "ThePopup",
+    name: "UiPopup",
 
     props: {
       modelValue: { type: Boolean, default: false },

@@ -8,18 +8,18 @@
       <p><b>disabled:</b> Boolean. default: <b>false</b></p>
       <p class="mb-16"><b>active:</b> Boolean. default: <b>false</b></p>
 
-      <div class="mb-16"><TheButton fit="regular">fit: regular, design: regular</TheButton></div>
-      <div class="mb-16"><TheButton fit="regular" active>fit: regular, active: true</TheButton></div>
-      <div class="mb-16"><TheButton fit="grow">fit: grow</TheButton></div>
+      <div class="mb-16"><UiButton fit="regular">fit: regular, design: regular</UiButton></div>
+      <div class="mb-16"><UiButton fit="regular" active>fit: regular, active: true</UiButton></div>
+      <div class="mb-16"><UiButton fit="grow">fit: grow</UiButton></div>
 
-      <div><TheButton design="none">design: none</TheButton></div>
-      <div class="mb-16"><TheButton design="none" active>design: none, active: true</TheButton></div>
+      <div><UiButton design="none">design: none</UiButton></div>
+      <div class="mb-16"><UiButton design="none" active>design: none, active: true</UiButton></div>
 
-      <TheButton><TheIcon title="arrow" type="inverted" class="mr-8" />TheIcon внутри TheButton</TheButton>
+      <UiButton><UiIcon title="arrow" type="inverted" class="mr-8" />TheIcon внутри TheButton</UiButton>
 
       <h2>Actions</h2>
       <div>
-        @ui-click: <TheButton @ui-click="TheButtonClick">clicks: {{ clickCount }}</TheButton>
+        @ui-click: <UiButton @ui-click="TheButtonClick">clicks: {{ clickCount }}</UiButton>
       </div>
     </section>
   </div>

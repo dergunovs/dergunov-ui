@@ -7,17 +7,17 @@
       <p>Директива v-model добавляет компоненту двустороннее связывание с data.</p>
       <p class="mb-16">Атрибут type="tel" добавляет маску.</p>
 
-      <TheInput v-model="regular" class="mb-8" />
+      <UiInput v-model="regular" class="mb-8" />
       <p class="mb-16">data: {{ regular }}</p>
 
       <div class="flex mb-16">
-        <TheInput type="password" placeholder="password" class="mr-8" />
-        <TheInput type="number" placeholder="number" class="mr-8" />
-        <TheInput type="tel" placeholder="tel" v-model="tel" />
+        <UiInput type="password" placeholder="password" class="mr-8" />
+        <UiInput type="number" placeholder="number" class="mr-8" />
+        <UiInput type="tel" placeholder="tel" v-model="tel" />
       </div>
 
       <div class="flex mb-16">
-        <TheInput placeholder="disabled" disabled class="mr-8" /> <TheButton>Одинаковая высота</TheButton>
+        <UiInput placeholder="disabled" disabled class="mr-8" /> <UiButton>Одинаковая высота</UiButton>
       </div>
     </section>
   </div>

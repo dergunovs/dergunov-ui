@@ -9,7 +9,7 @@
         <p>После это внутри слайда можно использовать данные в вашем шаблоне, например, client.slide.image.</p>
       </div>
 
-      <TheSlider :slides="clients" v-slot="client">
+      <UiSlider :slides="clients" v-slot="client">
         <div class="flex flex-sb flex-top">
           <div class="w-40-16">
             <img
@@ -34,7 +34,7 @@
             <div v-html="client.slide.description" class="bg-gray-light p-32"></div>
           </div>
         </div>
-      </TheSlider>
+      </UiSlider>
     </section>
   </div>
 </template>

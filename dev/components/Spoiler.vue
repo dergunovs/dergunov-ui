@@ -14,13 +14,13 @@
 
       <p class="mb-16">expanded: {{ expanded }}</p>
 
-      <TheSpoiler v-model="expanded" title="Раскрыть" titleExpanded="Свернуть">
+      <UiSpoiler v-model="expanded" title="Раскрыть" titleExpanded="Свернуть">
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti veniam tempora deleniti voluptate, a
           consequuntur quae distinctio ea vero, quasi iste quia. A quaerat, excepturi quae hic quidem voluptatem
           similique!
         </p>
-      </TheSpoiler>
+      </UiSpoiler>
     </section>
   </div>
 </template>

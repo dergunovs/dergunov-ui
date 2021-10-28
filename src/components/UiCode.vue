@@ -22,7 +22,7 @@
   import { defineComponent } from "vue";
 
   export default /*#__PURE__*/ defineComponent({
-    name: "TheCode",
+    name: "UiCode",
 
     data() {
       return {
@@ -31,7 +31,7 @@
     },
 
     computed: {
-      code: function(): HTMLElement {
+      code: function (): HTMLElement {
         return this.$refs.code as HTMLElement;
       },
     },
