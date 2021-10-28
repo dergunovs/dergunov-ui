@@ -1,16 +1,18 @@
 <template>
-  <button @click="showImage" class="ui-image-button">
-    <slot></slot>
-  </button>
+  <div class="ui-image-root">
+    <button @click="showImage" class="ui-image-button">
+      <slot></slot>
+    </button>
 
-  <div v-if="isShowImage" @keydown.esc="closeImage" class="ui-image-block" tabindex="0">
-    <div class="ui-image-panel">
-      <button @click="zoomOut" :disabled="currentZoom === 50">Уменьшить</button>
-      <button @click="zoomIn" :disabled="isReachedMaxZoom">Увеличить</button>
-      <button @click="closeImage" class="ui-image-panel-close">×</button>
+    <div v-if="isShowImage" @keydown.esc="closeImage" class="ui-image-block" tabindex="0">
+      <div class="ui-image-panel">
+        <button @click="zoomOut" :disabled="currentZoom === 50">Уменьшить</button>
+        <button @click="zoomIn" :disabled="isReachedMaxZoom">Увеличить</button>
+        <button @click="closeImage" class="ui-image-panel-close">×</button>
+      </div>
+
+      <img :src="src" class="ui-image" :class="`ui-image-zoom-${currentZoom}`" />
     </div>
-
-    <img :src="src" class="ui-image" :class="`ui-image-zoom-${currentZoom}`" />
   </div>
 </template>
 
@@ -76,6 +78,10 @@
 </script>
 
 <style>
+  .ui-image-root {
+    display: inline-block;
+  }
+
   .ui-image-button {
     background: none;
     border: none;
