@@ -1,0 +1,40 @@
+<template>
+  <div>
+    <section>
+      <h1>{{ $options.name }}</h1>
+
+      <p>Является компонентов слотом внутри которого необходимо разместить компонент <b>TheRow.</b></p>
+      <p class="mb-32">
+        В него через v-for необходимо передать props row с данными каждой строки основной части таблицы.
+      </p>
+
+      <p><b>headers:</b> массив из заголовков столбцов</p>
+      <p><b>fit:</b> regular, grow. default: regular</p>
+      <p class="mb-32"><b>width:</b> если требуется, то можно указать ширину. type: string</p>
+
+      <TheTable :headers="headers" width="800">
+        <TheRow v-for="member in staff" :key="member.id" :row="member" />
+      </TheTable>
+    </section>
+  </div>
+</template>
+
+<script lang="ts">
+  import { defineComponent } from "vue";
+
+  export default /*#__PURE__*/ defineComponent({
+    name: "Table",
+
+    data() {
+      return {
+        headers: ["№", "Имя", "Должность"],
+        staff: [
+          { id: "1", name: "Иван", job: "Дворник" },
+          { id: "2", name: "Петр", job: "Водитель" },
+          { id: "3", name: "Костя", job: "Столяр" },
+          { id: "4", name: "Коля", job: "Плотник" },
+        ],
+      };
+    },
+  });
+</script>

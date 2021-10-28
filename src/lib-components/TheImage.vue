@@ -5,7 +5,7 @@
 
   <div v-if="isShowImage" @keydown.esc="closeImage" class="ui-image-block" tabindex="0">
     <div class="ui-image-panel">
-      <button @click="zoomOut">Уменьшить</button>
+      <button @click="zoomOut" :disabled="currentZoom === 50">Уменьшить</button>
       <button @click="zoomIn" :disabled="isReachedMaxZoom">Увеличить</button>
       <button @click="closeImage" class="ui-image-panel-close">×</button>
     </div>
@@ -58,10 +58,10 @@
 
       checkMaxSize(): void {
         setTimeout(() => {
-          let size = document.querySelector(".ui-image") as HTMLElement;
+          let image = document.querySelector(".ui-image") as HTMLElement;
 
-          let imageWidth = ((Number(getComputedStyle(size).width.slice(0, -2)) + 1) * this.currentZoom) / 100;
-          let imageHeight = ((Number(getComputedStyle(size).height.slice(0, -2)) + 1) * this.currentZoom) / 100;
+          let imageWidth = ((Number(getComputedStyle(image).width.slice(0, -2)) + 1) * this.currentZoom) / 100;
+          let imageHeight = ((Number(getComputedStyle(image).height.slice(0, -2)) + 1) * this.currentZoom) / 100;
 
           this.isReachedMaxZoom = imageWidth > window.innerWidth || imageHeight > window.innerHeight ? true : false;
         }, 100);
