@@ -1,20 +1,18 @@
-Библиотека компонентов на основе vue-sfc-rollup для Nuxt3 (в дальшейшем будет поддержка Vue CLI 5).
+Библиотека компонентов на основе vue-sfc-rollup для Nuxt3 и Vue CLI 5.
 
-22 компонента занимают 10кб (gzip) в бандле вашего приложения. 5 кб занимает весь CSS.
+22 компонента занимают 9 кб (gzip) в бандле вашего приложения. 4 кб (gzip) занимает весь CSS.
 
 [Перечень всех компонентов и их функциональности](https://ui.dergunov.com).
 
-## Глобальная установка в Nuxt3
-
-1. Установить пакет:
+## Установка
 
 ```sh
 npm i dergunov-ui
 ```
 
-2. Создать файл ui.js в папке /plugins/
+### Nuxt3
 
-3. Внутри ui.js прописать:
+Создать файл ui.js в папке /plugins/. В файле ui.js прописать:
 
 ```sh
 import { defineNuxtPlugin } from "#app";
@@ -22,6 +20,15 @@ import ui from "dergunov-ui";
 import "dergunov-ui/dist/assets/styles.css";
 
 export default defineNuxtPlugin((nuxtApp) => nuxtApp.vueApp.use(ui));
+```
+
+### Vue CLI 5
+
+В файле main.js подключить библиотеку:
+
+```sh
+import ui from "dergunov-ui";
+app.use(ui);
 ```
 
 ## CSS

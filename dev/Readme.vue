@@ -2,8 +2,8 @@
   <section>
     <h1>Библиотека компонентов</h1>
 
-    <p>Библиотека компонентов на основе vue-sfc-rollup для Nuxt3 (в дальшейшем будет поддержка Vue CLI 5).</p>
-    <p>22 компонента занимают <b>10 кб</b> (gzip) в бандле вашего приложения. <b>5 кб</b> занимает весь CSS.</p>
+    <p>Библиотека компонентов на основе vue-sfc-rollup для Nuxt3 и Vue CLI 5.</p>
+    <p>22 компонента занимают <b>9 кб</b> (gzip) в бандле вашего приложения. <b>4 кб</b> (gzip) занимает весь CSS.</p>
     <p>
       Полезные ссылки:
       <a href="https://github.com/dergunovs/dergunov-ui" target="_blank" class="mr-8">Github</a>
@@ -13,14 +13,14 @@
       <a href="mailto:a@dergunov.com">Email</a>
     </p>
 
-    <h2>Глобальная установка в Nuxt3</h2>
-    <UiList>
-      <li>Установить пакет:</li>
-      <UiCode>npm i dergunov-ui</UiCode>
+    <h2>Установка</h2>
+    <UiCode>npm i dergunov-ui</UiCode>
 
+    <h3>Nuxt3</h3>
+    <UiList>
       <li>Создать файл ui.js в папке /plugins/</li>
 
-      <li>Внутри ui.js прописать:</li>
+      <li>В файле ui.js подключить библиотеку:</li>
       <UiCode>
         <pre>
 import { defineNuxtPlugin } from "#app";
@@ -30,13 +30,25 @@ import "dergunov-ui/dist/assets/styles.css";
 export default defineNuxtPlugin((nuxtApp) => nuxtApp.vueApp.use(ui));</pre
         >
       </UiCode>
+    </UiList>
 
-      <h2>CSS</h2>
-      <p>В библиотеку компонентов встроены утилитарные классы. Внутри компонентов они не используются.</p>
-      <p>Компоненты используют предопределенные цвета через var(). Вы можете их переназначить в своём css.</p>
-      <p><b>Цвета по-умолчанию:</b></p>
+    <h3>Vue CLI 5</h3>
+    <UiList>
+      <li>В файле main.js подключить библиотеку:</li>
       <UiCode>
         <pre>
+import ui from "dergunov-ui";
+app.use(ui);</pre
+        >
+      </UiCode>
+    </UiList>
+
+    <h2>CSS</h2>
+    <p>В библиотеку компонентов встроены утилитарные классы. Внутри компонентов они не используются.</p>
+    <p>Компоненты используют предопределенные цвета через var(). Вы можете их переназначить в своём css.</p>
+    <p><b>Цвета по-умолчанию:</b></p>
+    <UiCode>
+      <pre>
 :root {
   --color-primary: #ff5050;
   --color-primary-dark: #ed0d0d;
@@ -51,9 +63,8 @@ export default defineNuxtPlugin((nuxtApp) => nuxtApp.vueApp.use(ui));</pre
   --color-gray-light: #eee;
   --color-white: #fff;
 }</pre
-        >
-      </UiCode>
-    </UiList>
+      >
+    </UiCode>
   </section>
 </template>
 

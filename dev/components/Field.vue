@@ -6,7 +6,7 @@
       <p class="mb-16">Поле является частью компонента формы. Имеет встроенные правила валидации.</p>
 
       <p><b>label:</b> заголовок поля.</p>
-      <p><b>type:</b> text, textarea, select, multiselect, checkbox, radio, upload. default: text</p>
+      <p><b>type:</b> text, password, textarea, select, multiselect, checkbox, radio, upload. default: text</p>
       <p><b>options:</b> массив опций [object, string или number] для select, multiselect и radio</p>
       <p class="mb-32"><b>v-model:</b> для двустороннего связывания.</p>
 
@@ -26,6 +26,7 @@
 
       <UiForm class="mb-32">
         <UiField label="Телефон" tel v-model="formData.tel" class="w-50 mb-8" />
+        <UiField label="Пароль" type="password" v-model="formData.password" class="w-50 mb-8" />
         <UiField label="Электронная почта" email v-model="formData.email" class="w-50 mb-8" />
         <UiField label="Минимальное количество символов" :min="3" v-model="formData.min" class="w-50 mb-8" />
         <UiField label="Максимальное количество символов" :max="3" v-model="formData.max" class="w-50 mb-8" />
@@ -76,6 +77,7 @@
       return {
         formData: {
           tel: "",
+          password: "",
           email: "",
           min: "",
           max: "",

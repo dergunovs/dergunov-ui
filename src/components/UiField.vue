@@ -6,11 +6,11 @@
     </label>
 
     <UiInput
-      v-if="type === 'text'"
+      v-if="type === 'text' || type === 'password'"
       :modelValue="modelValue"
       @update:modelValue="check"
       ref="input"
-      :type="this.tel ? 'tel' : 'text'"
+      :type="textType"
       :id="`input${$.uid}`"
       class="ui-field-input"
     />
@@ -153,6 +153,16 @@
     computed: {
       input: function (): InputComponent {
         return this.$refs.input as InputComponent;
+      },
+
+      textType: function (): string {
+        if (this.tel) {
+          return "tel";
+        } else if (this.type === "password") {
+          return "password";
+        } else {
+          return "text";
+        }
       },
     },
 
