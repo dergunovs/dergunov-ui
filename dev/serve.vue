@@ -1,7 +1,7 @@
 <template>
   <div class="center flex flex-top">
     <nav class="w-20 pt-32">
-      <UiButton design="none" @ui-click="componentCurrent = ''" :active="componentCurrent === ''" class="mb-16">
+      <UiButton design="link" @ui-click="componentCurrent = ''" :active="componentCurrent === ''" class="mb-16">
         Описание
       </UiButton>
 
@@ -9,7 +9,7 @@
       <UiList design="none">
         <li v-for="component in Object.values(components)" :key="component.name">
           <UiButton
-            design="none"
+            design="link"
             :active="componentCurrent === component.name"
             @ui-click="componentCurrent = component.name"
           >

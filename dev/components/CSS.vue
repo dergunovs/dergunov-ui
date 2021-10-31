@@ -16,8 +16,8 @@
     <section>
       <h1>Цвет</h1>
       <div class="flex flex-sb mb-16">
-        <div class="bg-primary p-8">color-primary</div>
-        <div class="bg-primary-dark p-8">color-primary-dark</div>
+        <div class="bg-primary color-white p-8">color-primary</div>
+        <div class="bg-primary-dark color-white p-8">color-primary-dark</div>
         <div class="bg-primary-light p-8">color-primary-light</div>
         <div class="bg-success p-8">color-success</div>
         <div class="bg-error p-8">color-error</div>

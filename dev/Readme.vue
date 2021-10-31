@@ -50,9 +50,9 @@ app.use(ui);</pre
     <UiCode>
       <pre>
 :root {
-  --color-primary: #ff5050;
-  --color-primary-dark: #ed0d0d;
-  --color-primary-light: #db9090;
+  --color-primary: #111bbb;
+  --color-primary-dark: #0f0f66;
+  --color-primary-light: #7b7bdb;
 
   --color-success: #3aa636;
   --color-error: #cb0000;

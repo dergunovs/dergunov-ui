@@ -58,20 +58,17 @@
     background-color: var(--color-primary-dark);
   }
 
-  .ui-button-design-none {
+  .ui-button-design-link {
     background: none;
-    color: var(--color-black);
+    color: var(--color-primary);
     padding: 0;
     font-weight: 400;
     height: auto;
-  }
-
-  .ui-button-design-none:hover {
     text-decoration: underline;
   }
 
-  .ui-button-design-none.ui-button-active-true {
-    text-decoration: underline;
+  .ui-button-design-link:hover {
+    color: var(--color-primary-dark);
   }
 
   .ui-button-disabled-true {

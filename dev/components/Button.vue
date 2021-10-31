@@ -4,7 +4,7 @@
       <h1>{{ $options.name }}</h1>
 
       <p><b>fit:</b> regular, grow. default: <b>regular</b></p>
-      <p><b>design:</b> regular, none. default: <b>regular</b></p>
+      <p><b>design:</b> regular, link. default: <b>regular</b></p>
       <p><b>disabled:</b> Boolean. default: <b>false</b></p>
       <p class="mb-16"><b>active:</b> Boolean. default: <b>false</b></p>
 
@@ -12,8 +12,7 @@
       <div class="mb-16"><UiButton fit="regular" active>fit: regular, active: true</UiButton></div>
       <div class="mb-16"><UiButton fit="grow">fit: grow</UiButton></div>
 
-      <div><UiButton design="none">design: none</UiButton></div>
-      <div class="mb-16"><UiButton design="none" active>design: none, active: true</UiButton></div>
+      <div class="mb-16"><UiButton design="link">design: link</UiButton></div>
 
       <UiButton><UiIcon title="arrow" type="inverted" class="mr-8" />TheIcon внутри TheButton</UiButton>
 
