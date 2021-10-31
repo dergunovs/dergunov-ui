@@ -8,8 +8,7 @@
   "style": "dist/assets/styles.css",
   "types": "dist/types/src/entry.esm.d.ts",
   "files": [
-    "dist/*",
-    "src/**/*.vue"
+    "dist/*"
   ],
   "sideEffects": false,
   "scripts": {
