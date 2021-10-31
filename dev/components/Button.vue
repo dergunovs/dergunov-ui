@@ -14,7 +14,7 @@
 
       <div class="mb-16"><UiButton design="link">design: link</UiButton></div>
 
-      <UiButton><UiIcon title="arrow" type="inverted" class="mr-8" />TheIcon внутри TheButton</UiButton>
+      <UiButton><UiIcon title="arrow" type="inverted" class="mr-8" />С иконкой внутри</UiButton>
 
       <h2>Actions</h2>
       <div>

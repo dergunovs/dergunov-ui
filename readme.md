@@ -1,6 +1,8 @@
-Библиотека компонентов на основе vue-sfc-rollup для Nuxt3 и Vue CLI 5.
+Библиотека компонентов на основе vue-sfc-rollup для Nuxt3 и Vue CLI 5. Zero Dependencies.
 
 22 компонента занимают 9 кб (gzip) в бандле вашего приложения. 4 кб (gzip) занимает весь CSS.
+
+Компоненты нужно использовать с префиксом Ui. Например, UiForm или UiTable.
 
 [Перечень всех компонентов и их функциональности](https://ui.dergunov.com).
 
@@ -29,6 +31,12 @@ export default defineNuxtPlugin((nuxtApp) => nuxtApp.vueApp.use(ui));
 ```sh
 import ui from "dergunov-ui";
 app.use(ui);
+```
+
+В css файле или секции style компонента подключите общие стили библиотеки:
+
+```sh
+@import "dergunov-ui/dist/assets/styles.css";
 ```
 
 ## CSS

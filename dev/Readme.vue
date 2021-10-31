@@ -2,11 +2,14 @@
   <section>
     <h1>Библиотека компонентов</h1>
 
-    <p>Библиотека компонентов на основе vue-sfc-rollup для Nuxt3 и Vue CLI 5.</p>
+    <p>Библиотека компонентов на основе vue-sfc-rollup для Nuxt3 и Vue CLI 5. Zero Dependencies.</p>
     <p>22 компонента занимают <b>9 кб</b> (gzip) в бандле вашего приложения. <b>4 кб</b> (gzip) занимает весь CSS.</p>
+    <p>Компоненты нужно использовать с префиксом Ui. Например, UiForm или UiTable.</p>
+
     <p>
       Полезные ссылки:
       <a href="https://github.com/dergunovs/dergunov-ui" target="_blank" class="mr-8">Github</a>
+      <a href="https://www.npmjs.com/package/dergunov-ui" target="_blank" class="mr-8">NPM</a>
       <a href="https://www.youtube.com/playlist?list=PLOICX-WjKEZcZ4EZsp_xNQ_stjGRyIUDx" target="_blank" class="mr-8"
         >Youtube</a
       >
@@ -40,6 +43,11 @@ export default defineNuxtPlugin((nuxtApp) => nuxtApp.vueApp.use(ui));</pre
 import ui from "dergunov-ui";
 app.use(ui);</pre
         >
+      </UiCode>
+
+      <li>В css файле или секции style компонента подключите общие стили библиотеки:</li>
+      <UiCode>
+        <pre>@import "dergunov-ui/dist/assets/styles.css";</pre>
       </UiCode>
     </UiList>
 
