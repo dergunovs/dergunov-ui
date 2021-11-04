@@ -134,7 +134,7 @@
       this.optionElements = [];
     },
 
-    beforeMount() {
+    mounted() {
       if (this.modelValue || this.modelValue === 0) {
         if (typeof this.options[0] === "object") {
           this.currentOption = this.options.find((option: any) => option.value === this.modelValue) as Option;
@@ -143,9 +143,7 @@
           this.currentOption = { value: this.modelValue, name: this.modelValue as string };
         }
       }
-    },
 
-    mounted() {
       document.addEventListener("click", this.hideOptions);
     },
 

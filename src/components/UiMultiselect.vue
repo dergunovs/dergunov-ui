@@ -166,7 +166,7 @@
       this.optionElements = [];
     },
 
-    beforeMount() {
+    mounted() {
       if (typeof this.options[0] === "object") {
         this.currentOptions = (this.options as Option[]).filter((option: Option) => {
           if (this.modelValue) {
@@ -183,9 +183,7 @@
           return { value: option, name: option };
         });
       }
-    },
 
-    mounted() {
       document.addEventListener("click", this.hideOptions);
     },
 
