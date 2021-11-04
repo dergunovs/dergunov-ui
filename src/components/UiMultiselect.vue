@@ -167,22 +167,24 @@
     },
 
     mounted() {
-      if (typeof this.options[0] === "object") {
-        this.currentOptions = (this.options as Option[]).filter((option: Option) => {
-          if (this.modelValue) {
-            return this.modelValue.includes(option.value);
-          }
-        }) as Option[];
-      } else if (typeof this.options[0] === "string" || typeof this.options[0] === "number") {
-        let optionsTypeUpdated = (this.options as OptionValue[]).filter((option: OptionValue) => {
-          if (this.modelValue) {
-            return this.modelValue.includes(option);
-          }
-        });
-        this.currentOptions = optionsTypeUpdated.map((option: any) => {
-          return { value: option, name: option };
-        });
-      }
+      setTimeout(() => {
+        if (typeof this.options[0] === "object") {
+          this.currentOptions = (this.options as Option[]).filter((option: Option) => {
+            if (this.modelValue) {
+              return this.modelValue.includes(option.value);
+            }
+          }) as Option[];
+        } else if (typeof this.options[0] === "string" || typeof this.options[0] === "number") {
+          let optionsTypeUpdated = (this.options as OptionValue[]).filter((option: OptionValue) => {
+            if (this.modelValue) {
+              return this.modelValue.includes(option);
+            }
+          });
+          this.currentOptions = optionsTypeUpdated.map((option: any) => {
+            return { value: option, name: option };
+          });
+        }
+      }, 100);
 
       document.addEventListener("click", this.hideOptions);
     },

@@ -135,14 +135,16 @@
     },
 
     mounted() {
-      if (this.modelValue || this.modelValue === 0) {
-        if (typeof this.options[0] === "object") {
-          this.currentOption = this.options.find((option: any) => option.value === this.modelValue) as Option;
+      setTimeout(() => {
+        if (this.modelValue || this.modelValue === 0) {
+          if (typeof this.options[0] === "object") {
+            this.currentOption = this.options.find((option: any) => option.value === this.modelValue) as Option;
+          }
+          if (typeof this.options[0] === "string" || typeof this.options[0] === "number") {
+            this.currentOption = { value: this.modelValue, name: this.modelValue as string };
+          }
         }
-        if (typeof this.options[0] === "string" || typeof this.options[0] === "number") {
-          this.currentOption = { value: this.modelValue, name: this.modelValue as string };
-        }
-      }
+      }, 100);
 
       document.addEventListener("click", this.hideOptions);
     },
