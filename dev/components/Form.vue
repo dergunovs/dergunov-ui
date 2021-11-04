@@ -87,10 +87,7 @@
           rateOptions: [1, 2, 3, 4, 5],
           files: [],
         },
-        optionsRecall: [
-          { value: 1, name: "Да" },
-          { value: 0, name: "Нет" },
-        ],
+        optionsRecall: ["Да", "Нет"],
         optionsType: [
           { value: 1, name: "Телефон" },
           { value: 2, name: "Электронная почта" },

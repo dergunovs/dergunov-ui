@@ -98,7 +98,10 @@
     watch: {
       currentOptions() {
         let udpatedValues = this.currentOptions.map((option: Option) => option.value);
-        this.$emit("update:modelValue", udpatedValues);
+
+        if (this.modelValue!.length !== udpatedValues.length) {
+          this.$emit("update:modelValue", udpatedValues);
+        }
       },
     },
 
@@ -163,15 +166,14 @@
       this.optionElements = [];
     },
 
-    beforeCreate() {
+    beforeMount() {
       if (typeof this.options[0] === "object") {
         this.currentOptions = (this.options as Option[]).filter((option: Option) => {
           if (this.modelValue) {
             return this.modelValue.includes(option.value);
           }
         }) as Option[];
-      }
-      if (typeof this.options[0] === "string" || typeof this.options[0] === "number") {
+      } else if (typeof this.options[0] === "string" || typeof this.options[0] === "number") {
         let optionsTypeUpdated = (this.options as OptionValue[]).filter((option: OptionValue) => {
           if (this.modelValue) {
             return this.modelValue.includes(option);

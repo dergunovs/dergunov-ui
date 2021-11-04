@@ -15,7 +15,7 @@
       <p><b>email:</b> электронная почта, Boolean.</p>
       <p><b>min:</b> минимальное количество символов, Number.</p>
       <p><b>max:</b> максимальное количество символов, Number.</p>
-      <p class="mb-32"><b>reguired:</b> обязательное поле, Boolean.</p>
+      <p class="mb-32"><b>required:</b> обязательное поле, Boolean.</p>
 
       <p><b>Поддержка валидации разными типами полей</b></p>
       <p><b>text:</b> tel, email, min, max, required.</p>
