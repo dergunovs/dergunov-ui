@@ -66,7 +66,9 @@
     },
 
     mounted() {
-      this.formValidate();
+      setTimeout(() => {
+        this.formValidate();
+      }, 100);
     },
 
     updated() {

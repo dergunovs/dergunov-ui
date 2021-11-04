@@ -168,7 +168,7 @@
 
     methods: {
       check(data: InputData): void {
-        let dataFormatted: InputDataFormatted = data as InputDataFormatted;
+        let dataFormatted = data as InputDataFormatted;
 
         if (typeof data === "number") {
           dataFormatted = data.toString();
