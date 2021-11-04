@@ -54,6 +54,7 @@
     flex-direction: column;
     align-items: flex-end;
     gap: 8px;
+    z-index: 999;
   }
 
   .ui-toast {
