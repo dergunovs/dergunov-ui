@@ -64,6 +64,7 @@
     max-width: 500px;
     transition: all 300ms;
     opacity: 0;
+    cursor: default;
   }
 
   .ui-toast-visible {
@@ -74,11 +75,23 @@
     background-color: var(--color-success);
   }
 
+  .ui-toast-success:hover {
+    background-color: var(--color-success-dark);
+  }
+
   .ui-toast-error {
     background-color: var(--color-error);
   }
 
+  .ui-toast-error:hover {
+    background-color: var(--color-error-dark);
+  }
+
   .ui-toast-info {
     background-color: var(--color-gray-dark);
+  }
+
+  .ui-toast-info:hover {
+    background-color: var(--color-black);
   }
 </style>

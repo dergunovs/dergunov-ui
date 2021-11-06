@@ -49,10 +49,12 @@ app.use(ui);
 :root {
   --color-primary: #111bbb;
   --color-primary-dark: #0f0f66;
-  --color-primary-light: #7b7bdb;
+  --color-primary-light: #7b99db;
 
   --color-success: #3aa636;
+  --color-success-dark: #20811d;
   --color-error: #cb0000;
+  --color-error-dark: #830a0a;
 
   --color-black: #000;
   --color-gray-dark: #444;

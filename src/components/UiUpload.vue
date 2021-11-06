@@ -98,7 +98,7 @@
     border: 1px solid var(--color-gray);
     padding: 0px 16px;
     min-height: 44px;
-    border-radius: 8px;
+    border-radius: 4px;
   }
 
   .ui-upload-button-block {
