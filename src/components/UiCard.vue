@@ -23,7 +23,7 @@
 
       <div v-if="card.theme" class="ui-card-theme">{{ card.theme.h1 }}</div>
 
-      <div class="ui-card-intro">{{ card.intro }}</div>
+      <div class="ui-card-introtext">{{ card.introtext }}</div>
 
       <div v-if="card.tags" class="ui-card-tag-block">
         <div v-for="(tag, index) in card.tags" :key="`tag${index}`" class="ui-card-tag">{{ tag }}</div>
@@ -44,12 +44,12 @@
 
   interface Card {
     h1: string;
-    intro: string;
-    thumb: string;
-    tags: string[];
-    theme: object;
-    views: number;
-    level: number;
+    introtext: string;
+    thumb?: string;
+    tags?: string[];
+    theme?: { h1: string };
+    views?: number;
+    level?: number;
   }
 
   export default /*#__PURE__*/ defineComponent({
@@ -105,7 +105,7 @@
     line-height: 1;
   }
 
-  .ui-card-intro {
+  .ui-card-introtext {
     line-height: 1.3;
   }
 
