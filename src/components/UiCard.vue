@@ -1,7 +1,7 @@
 <template>
   <div class="ui-card-block">
     <div v-if="card.thumb" class="ui-card-thumb-block">
-      <img :src="card.thumb" :alt="card.h1" class="ui-card-thumb" loading="lazy" />
+      <img :src="`${thumbPrefix}${card.thumb}`" :alt="card.h1" class="ui-card-thumb" loading="lazy" />
     </div>
 
     <div class="ui-card-text-block">
@@ -56,10 +56,8 @@
     name: "UiCard",
 
     props: {
-      card: {
-        type: Object as PropType<Card>,
-        required: true,
-      },
+      card: { type: Object as PropType<Card>, required: true },
+      thumbPrefix: { type: String, default: "/" },
     },
   });
 </script>
