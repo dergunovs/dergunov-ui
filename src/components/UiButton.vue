@@ -46,6 +46,10 @@
     white-space: nowrap;
   }
 
+  .ui-button:hover {
+    color: var(--color-white);
+  }
+
   .ui-button-fit-grow {
     width: 100%;
   }
