@@ -1,6 +1,6 @@
 {
   "name": "dergunov-ui",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "test ui-kit",
   "main": "dist/dergunov-ui.esm.js",
   "browser": "dist/dergunov-ui.esm.js",
