@@ -66,6 +66,7 @@
   .ui-card-block {
     display: flex;
     flex-direction: column;
+    width: 100%;
   }
 
   .ui-card-block:hover .ui-card-h1 {
