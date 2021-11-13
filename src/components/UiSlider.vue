@@ -6,7 +6,7 @@
         @click="prevSlide"
         @touchstart="prevSlide"
         class="ui-slide-button ui-slide-button-prev"
-        :class="{ 'ui-slide-button-active': this.slideCurrent !== 0 }"
+        :class="{ 'ui-slide-button-active': slideCurrent !== 0 }"
       >
         <img
           src="@/assets/icons/arrow.svg"
@@ -29,7 +29,7 @@
         @click="nextSlide"
         @touchstart="nextSlide"
         class="ui-slide-button ui-slide-button-next"
-        :class="{ 'ui-slide-button-active': this.slideCurrent !== this.slides.length - 1 }"
+        :class="{ 'ui-slide-button-active': slideCurrent !== slides.length - 1 }"
       >
         <img
           src="@/assets/icons/arrow.svg"
@@ -45,7 +45,7 @@
     <div class="ui-slider-bullets">
       <div
         v-for="(number, index) in slides"
-        :key="`number-${index}`"
+        :key="`bullet-${index}`"
         @click="setSlideCurrent(index)"
         class="ui-slider-bullet"
         :class="{ 'ui-slider-bullet-active': slideCurrent === index }"
