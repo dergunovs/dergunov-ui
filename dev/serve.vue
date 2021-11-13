@@ -55,3 +55,23 @@
     },
   });
 </script>
+
+<style>
+  @font-face {
+    font-family: "font";
+    src: url("assets/400.woff2") format("woff2");
+    font-weight: 400;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "font";
+    src: url("assets/700.woff2") format("woff2");
+    font-weight: 700;
+    font-display: swap;
+  }
+
+  * {
+    font-family: "font";
+  }
+</style>
