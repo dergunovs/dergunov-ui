@@ -1,7 +1,7 @@
 <template>
   <div :class="[`ui-radio-direction-${direction}`, `ui-radio-design-${design}`]">
     <label
-      v-for="(option, index) in optionsFiltered"
+      v-for="(option, index) in optionsComputed"
       :key="`option-${index}`"
       class="ui-radio-block"
       :class="{ 'ui-radio-block-active': modelValue === option.value }"
@@ -50,13 +50,13 @@
     },
 
     computed: {
-      optionsFiltered: function (): Option[] {
+      optionsComputed(): Option[] {
         return this.options.map((option: any) => {
           if (typeof option === "string" || typeof option === "number") return { value: option, name: option };
           if (typeof option === "object") return option;
         });
       },
-      radio: function (): HTMLInputElement {
+      radio(): HTMLInputElement {
         return this.$refs.radio as HTMLInputElement;
       },
     },

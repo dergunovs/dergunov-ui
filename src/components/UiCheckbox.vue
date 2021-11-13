@@ -33,7 +33,7 @@
     },
 
     computed: {
-      checkbox: function (): HTMLInputElement {
+      checkbox(): HTMLInputElement {
         return this.$refs.checkbox as HTMLInputElement;
       },
     },

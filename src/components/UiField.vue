@@ -151,11 +151,11 @@
     },
 
     computed: {
-      input: function (): InputComponent {
+      input(): InputComponent {
         return this.$refs.input as InputComponent;
       },
 
-      textType: function (): string {
+      textType(): string {
         if (this.tel) {
           return "tel";
         } else if (this.type === "password") {

@@ -44,7 +44,7 @@
     },
 
     computed: {
-      breadcrumbs: function (): object[] {
+      breadcrumbs(): object[] {
         let urls = this.pathUrl.split("/");
         urls[0] = "/";
 

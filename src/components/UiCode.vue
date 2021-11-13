@@ -31,7 +31,7 @@
     },
 
     computed: {
-      code: function (): HTMLElement {
+      code(): HTMLElement {
         return this.$refs.code as HTMLElement;
       },
     },

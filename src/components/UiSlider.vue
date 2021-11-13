@@ -72,7 +72,7 @@
     },
 
     computed: {
-      sliderWrapper: function (): HTMLElement {
+      sliderWrapper(): HTMLElement {
         return this.$refs.sliderWrapper as HTMLElement;
       },
     },

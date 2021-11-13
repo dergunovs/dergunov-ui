@@ -21,7 +21,7 @@
 
     <ul class="ui-select-dropdown-block" v-show="isShowOptions">
       <li
-        v-for="(option, index) in optionsFiltered"
+        v-for="(option, index) in optionsComputed"
         :key="`option${index}`"
         :ref="setOptionElementRef"
         @click="setOption(option)"
@@ -67,7 +67,7 @@
     },
 
     computed: {
-      optionsFiltered: function (): Option[] {
+      optionsComputed(): Option[] {
         return this.options.map((option: any) => {
           if (typeof option === "string" || typeof option === "number") return { value: option, name: option };
           if (typeof option === "object") return option;

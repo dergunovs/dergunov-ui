@@ -1,7 +1,7 @@
 <template>
   <div class="ui-card-block">
     <div v-if="card.thumb" class="ui-card-thumb-block">
-      <img :src="`${thumbPrefix}${card.thumb}`" :alt="card.h1" class="ui-card-thumb" loading="lazy" />
+      <img :src="thumbComputed" :alt="card.h1" class="ui-card-thumb" loading="lazy" />
     </div>
 
     <div class="ui-card-text-block">
@@ -25,8 +25,13 @@
 
       <div class="ui-card-introtext">{{ card.introtext }}</div>
 
-      <div v-if="card.tags" class="ui-card-tag-block">
-        <div v-for="(tag, index) in card.tags" :key="`tag${index}`" class="ui-card-tag">{{ tag }}</div>
+      <div v-if="card.tag" class="ui-card-tag-block">
+        <template v-if="typeof card.tag === 'string'">
+          <span class="ui-card-tag">{{ card.tag }}</span>
+        </template>
+        <template v-else>
+          <span v-for="(tag, index) in card.tag" :key="`tag${index}`" class="ui-card-tag">{{ tag }}</span>
+        </template>
       </div>
 
       <div v-if="card.level" class="ui-card-level-block">
@@ -46,7 +51,7 @@
     h1: string;
     introtext: string;
     thumb?: string;
-    tags?: string[];
+    tag?: string | string[];
     theme?: { h1: string };
     views?: number;
     level?: number;
@@ -57,7 +62,13 @@
 
     props: {
       card: { type: Object as PropType<Card>, required: true },
-      thumbPrefix: { type: String, default: "/" },
+      thumbPrefix: { type: String },
+    },
+
+    computed: {
+      thumbComputed(): string {
+        return this.thumbPrefix ? `${this.thumbPrefix}${this.card.thumb}` : this.card.thumb || "";
+      },
     },
   });
 </script>

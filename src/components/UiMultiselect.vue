@@ -32,11 +32,11 @@
     </div>
 
     <ul class="ui-multiselect-dropdown-block" v-show="isShowOptions">
-      <li v-if="!optionsFiltered.length" @click="hideOptions" class="ui-multiselect-dropdown">
+      <li v-if="!optionsComputed.length" @click="hideOptions" class="ui-multiselect-dropdown">
         Нет элементов для выбора
       </li>
       <li
-        v-for="(option, index) in optionsFiltered"
+        v-for="(option, index) in optionsComputed"
         :key="`option${index}`"
         :ref="setOptionElementRef"
         @click="addOption(option)"
@@ -81,7 +81,7 @@
     },
 
     computed: {
-      optionsFiltered: function (): Option[] {
+      optionsComputed(): Option[] {
         let currentOptionsValues: OptionValue[] = this.currentOptions.map((option: Option) => {
           return option.value;
         });
@@ -122,7 +122,7 @@
 
       addOption(option: Option): void {
         this.currentOptions = [...this.currentOptions, option];
-        if (!this.optionsFiltered.length) {
+        if (!this.optionsComputed.length) {
           this.hideOptions();
         }
       },
@@ -150,7 +150,7 @@
       },
 
       focusDown(index: number): void {
-        if (index !== this.optionsFiltered.length - 1) {
+        if (index !== this.optionsComputed.length - 1) {
           this.optionElements[index + 1].focus();
         }
       },
