@@ -1,7 +1,7 @@
 <template>
   <div class="ui-card-block">
     <div v-if="card.thumb" class="ui-card-thumb-block">
-      <img :src="thumbComputed" :alt="card.h1" class="ui-card-thumb" loading="lazy" />
+      <img :src="thumbComputed" :alt="card.h1" class="ui-card-thumb" loading="lazy" width="345" height="194" />
     </div>
 
     <div class="ui-card-text-block">
