@@ -35,13 +35,15 @@
 
     methods: {
       checkTableSize(): void {
-        let tableBlock = document.querySelector(".ui-table-block") as HTMLElement;
-        let table = document.querySelector(".ui-table") as HTMLElement;
+        const tableBlock = document.querySelector(".ui-table-block") as HTMLElement;
+        const table = document.querySelector(".ui-table") as HTMLElement;
 
-        let tableBlockSize = Number(getComputedStyle(tableBlock).width.slice(0, -2));
-        let tableSize = Number(getComputedStyle(table).width.slice(0, -2));
+        if (tableBlock && table) {
+          const tableBlockSize = Number(getComputedStyle(tableBlock).width.slice(0, -2));
+          const tableSize = Number(getComputedStyle(table).width.slice(0, -2));
 
-        this.isScrollable = tableSize > tableBlockSize ? true : false;
+          this.isScrollable = tableSize > tableBlockSize ? true : false;
+        }
       },
     },
 
