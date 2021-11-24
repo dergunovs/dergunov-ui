@@ -77,6 +77,7 @@
     display: flex;
     flex-wrap: wrap;
     list-style: none;
+    padding-inline-start: 0;
   }
 
   .ui-breadcrumb-link {
