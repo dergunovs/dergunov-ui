@@ -6,6 +6,7 @@
     </label>
 
     <component
+      v-if="type"
       :is="fieldType"
       :modelValue="modelValue"
       @update:modelValue="check"
@@ -99,11 +100,9 @@
         return this.$refs.input as InputComponent;
       },
 
-      fieldType(): string {
+      fieldType(): any {
         if (this.type === "text" || this.type === "number" || this.type === "password") {
           return "UiInput";
-        } else if (this.type === "textarea") {
-          return "UiTextarea";
         } else if (this.type === "textarea") {
           return "UiTextarea";
         } else if (this.type === "select") {
@@ -116,8 +115,6 @@
           return "UiRadio";
         } else if (this.type === "upload") {
           return "UiUpload";
-        } else {
-          return "";
         }
       },
 
