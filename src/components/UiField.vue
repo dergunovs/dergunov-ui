@@ -1,5 +1,5 @@
 <template>
-  <div class="ui-field-label-block" :class="`ui-field-type-${field}`">
+  <div class="ui-field-label-block" :class="`ui-field-type-${fieldType}`">
     <label @click.stop="handleFocus" :for="`input${$.uid}`" class="ui-field-label">
       {{ label }}
       <span v-if="required" class="ui-field-label-required">*</span>
@@ -11,6 +11,7 @@
       @update:modelValue="check"
       ref="input"
       :type="type"
+      :rows="rows"
       :id="`input${$.uid}`"
       :options="options"
       :design="design"
@@ -81,6 +82,7 @@
     props: {
       field: { type: [String, Object], required: true },
       type: { type: String },
+      rows: { type: String },
       modelValue: { type: [String, Number, Array, Boolean, Object] },
       value: { type: String },
       label: { type: String },
@@ -98,6 +100,10 @@
     computed: {
       input(): InputComponent {
         return this.$refs.input as InputComponent;
+      },
+
+      fieldType(): string {
+        return typeof this.field === "string" ? this.field : this.field.name;
       },
     },
 
@@ -140,13 +146,11 @@
       },
 
       handleFocus(): void {
-        const fieldType = typeof this.field === "string" ? this.field : this.field.name;
-
-        if (["UiSelect", "UiMultiselect"].includes(fieldType)) {
+        if (["UiSelect", "UiMultiselect"].includes(this.fieldType)) {
           this.input.openOptions();
-        } else if (["UiCheckbox", "UiRadio"].includes(fieldType)) {
+        } else if (["UiCheckbox", "UiRadio"].includes(this.fieldType)) {
           this.input.$el.click();
-        } else if (["UiUpload"].includes(fieldType)) {
+        } else if (["UiUpload"].includes(this.fieldType)) {
           this.input.$el.querySelector("input").click();
         } else {
           this.input.$el.focus();
