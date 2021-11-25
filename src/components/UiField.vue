@@ -102,19 +102,19 @@
 
       fieldType(): any {
         if (this.type === "text" || this.type === "number" || this.type === "password") {
-          return "UiInput";
+          return "ui-input";
         } else if (this.type === "textarea") {
-          return "UiTextarea";
+          return "ui-textarea";
         } else if (this.type === "select") {
-          return "UiSelect";
+          return "ui-select";
         } else if (this.type === "multiselect") {
-          return "UiMultiselect";
+          return "ui-multiselect";
         } else if (this.type === "checkbox") {
-          return "UiCheckbox";
+          return "ui-checkbox";
         } else if (this.type === "radio") {
-          return "UiRadio";
+          return "ui-radio";
         } else if (this.type === "upload") {
-          return "UiUpload";
+          return "ui-upload";
         }
       },
 
