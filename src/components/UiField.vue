@@ -5,74 +5,18 @@
       <span v-if="required" class="ui-field-label-required">*</span>
     </label>
 
-    <UiInput
-      v-if="type === 'text' || type === 'password'"
+    <component
+      :is="fieldType"
       :modelValue="modelValue"
       @update:modelValue="check"
       ref="input"
+      :id="`input${$.uid}`"
+      class="ui-field-input"
+      :options="options"
+      :design="design"
       :type="textType"
-      :id="`input${$.uid}`"
-      class="ui-field-input"
-    />
-
-    <UiTextarea
-      v-if="type === 'textarea'"
-      :modelValue="modelValue"
-      @update:modelValue="check"
-      ref="input"
-      :id="`input${$.uid}`"
-      class="ui-field-input"
-    />
-
-    <UiSelect
-      v-if="type === 'select'"
-      :modelValue="modelValue"
-      :options="options"
-      @update:modelValue="check"
-      ref="input"
-      :id="`input${$.uid}`"
-      class="ui-field-input"
-    />
-
-    <UiMultiselect
-      v-if="type === 'multiselect'"
-      :modelValue="modelValue"
-      :options="options"
-      @update:modelValue="check"
-      ref="input"
-      :id="`input${$.uid}`"
-      class="ui-field-input"
-    />
-
-    <UiCheckbox
-      v-if="type === 'checkbox'"
-      :modelValue="modelValue"
-      :design="design"
-      @update:modelValue="check"
-      ref="input"
-      :id="`input${$.uid}`"
-      class="ui-field-input"
-    />
-
-    <UiRadio
-      v-if="type === 'radio'"
-      :modelValue="modelValue"
-      :options="options"
       :direction="direction"
-      :design="design"
-      @update:modelValue="check"
-      ref="input"
-      :id="`input${$.uid}`"
-      class="ui-field-input"
-    />
-
-    <UiUpload
-      v-if="type === 'upload'"
       :multiple="multiple"
-      @update:modelValue="check"
-      ref="input"
-      :id="`input${$.uid}`"
-      class="ui-field-input"
     />
 
     <span class="ui-field-error" v-if="errorMessage">{{ errorMessage }}</span>
@@ -81,7 +25,6 @@
 
 <script lang="ts">
   import { defineComponent, ComponentPublicInstance } from "vue";
-  import { UiUpload, UiRadio, UiCheckbox, UiMultiselect, UiSelect, UiTextarea, UiInput } from "./index";
 
   interface InputComponent extends ComponentPublicInstance {
     openOptions: () => void;
@@ -156,6 +99,28 @@
         return this.$refs.input as InputComponent;
       },
 
+      fieldType(): string {
+        if (this.type === "text" || this.type === "number" || this.type === "password") {
+          return "UiInput";
+        } else if (this.type === "textarea") {
+          return "UiTextarea";
+        } else if (this.type === "textarea") {
+          return "UiTextarea";
+        } else if (this.type === "select") {
+          return "UiSelect";
+        } else if (this.type === "multiselect") {
+          return "UiMultiselect";
+        } else if (this.type === "checkbox") {
+          return "UiCheckbox";
+        } else if (this.type === "radio") {
+          return "UiRadio";
+        } else if (this.type === "upload") {
+          return "UiUpload";
+        } else {
+          return "";
+        }
+      },
+
       textType(): string {
         if (this.tel) {
           return "tel";
@@ -166,8 +131,6 @@
         }
       },
     },
-
-    components: { UiUpload, UiRadio, UiCheckbox, UiMultiselect, UiSelect, UiTextarea, UiInput },
 
     methods: {
       check(data: InputData): void {
