@@ -79,7 +79,7 @@
     },
 
     props: {
-      field: { type: String as any, required: true },
+      field: { type: [String, Object], required: true },
       type: { type: String },
       modelValue: { type: [String, Number, Array, Boolean, Object] },
       value: { type: String },
@@ -140,11 +140,13 @@
       },
 
       handleFocus(): void {
-        if (["UiSelect", "UiMultiselect"].includes(this.field)) {
+        const fieldType = typeof this.field === "string" ? this.field : this.field.name;
+
+        if (["UiSelect", "UiMultiselect"].includes(fieldType)) {
           this.input.openOptions();
-        } else if (["UiCheckbox", "UiRadio"].includes(this.field)) {
+        } else if (["UiCheckbox", "UiRadio"].includes(fieldType)) {
           this.input.$el.click();
-        } else if (["UiUpload"].includes(this.field)) {
+        } else if (["UiUpload"].includes(fieldType)) {
           this.input.$el.querySelector("input").click();
         } else {
           this.input.$el.focus();
