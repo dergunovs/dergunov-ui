@@ -81,6 +81,7 @@
 
 <script lang="ts">
   import { defineComponent, ComponentPublicInstance } from "vue";
+  import { UiUpload, UiRadio, UiCheckbox, UiMultiselect, UiSelect, UiTextarea, UiInput } from "./index";
 
   interface InputComponent extends ComponentPublicInstance {
     openOptions: () => void;
@@ -165,6 +166,8 @@
         }
       },
     },
+
+    components: { UiUpload, UiRadio, UiCheckbox, UiMultiselect, UiSelect, UiTextarea, UiInput },
 
     methods: {
       check(data: InputData): void {
