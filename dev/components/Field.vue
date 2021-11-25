@@ -5,10 +5,10 @@
 
       <p class="mb-16">Поле является частью компонента формы. Имеет встроенные правила валидации.</p>
 
-      <p><b>label:</b> заголовок поля.</p>
-      <p><b>type:</b> text, password, textarea, select, multiselect, checkbox, radio, upload. default: text</p>
+      <p><b>label:</b> заголовок поля</p>
+      <p><b>field:</b> внутренний компонент поля, например, UiInput или UiSelect</p>
       <p><b>options:</b> массив опций [object, string или number] для select, multiselect и radio</p>
-      <p class="mb-32"><b>v-model:</b> для двустороннего связывания.</p>
+      <p class="mb-32"><b>v-model:</b> для двустороннего связывания</p>
 
       <p><b>Виды валидации поля</b></p>
       <p><b>tel:</b> формат номера телефона + маска поля, Boolean.</p>
@@ -25,17 +25,44 @@
       <p class="mb-32">formData: {{ formData }}</p>
 
       <UiForm class="mb-32">
-        <UiField label="Телефон" tel v-model="formData.tel" class="w-50 mb-8" />
-        <UiField label="Пароль" type="password" v-model="formData.password" class="w-50 mb-8" />
-        <UiField label="Электронная почта" email v-model="formData.email" class="w-50 mb-8" />
-        <UiField label="Минимальное количество символов" :min="3" v-model="formData.min" class="w-50 mb-8" />
-        <UiField label="Максимальное количество символов" :max="3" v-model="formData.max" class="w-50 mb-8" />
-
-        <UiField label="Textarea" type="textarea" required v-model="formData.required" class="w-50 mb-8" />
-
-        <UiField label="Select" type="select" v-model="formData.select" :options="selectOptions" class="w-50 mb-8" />
+        <UiField field="UiInput" label="Телефон" tel v-model="formData.tel" class="w-50 mb-8" />
+        <UiField field="UiInput" label="Пароль" type="password" v-model="formData.password" class="w-50 mb-8" />
+        <UiField field="UiInput" label="Электронная почта" email v-model="formData.email" class="w-50 mb-8" />
+        <UiField
+          field="UiInput"
+          label="Минимальное количество символов"
+          :min="3"
+          v-model="formData.min"
+          class="w-50 mb-8"
+        />
+        <UiField
+          field="UiInput"
+          label="Максимальное количество символов"
+          :max="3"
+          v-model="formData.max"
+          class="w-50 mb-8"
+        />
 
         <UiField
+          field="UiTextarea"
+          label="Textarea"
+          type="textarea"
+          required
+          v-model="formData.required"
+          class="w-50 mb-8"
+        />
+
+        <UiField
+          field="UiSelect"
+          label="Select"
+          type="select"
+          v-model="formData.select"
+          :options="selectOptions"
+          class="w-50 mb-8"
+        />
+
+        <UiField
+          field="UiMultiselect"
           label="Multiselect"
           type="multiselect"
           required
@@ -45,6 +72,7 @@
         />
 
         <UiField
+          field="UiCheckbox"
           label="Согласие на обработку персональных данных"
           type="checkbox"
           v-model="formData.agree"
@@ -53,6 +81,7 @@
         />
 
         <UiField
+          field="UiRadio"
           label="Оцените эту форму от 1 до 5"
           type="radio"
           v-model="formData.rate"
@@ -61,7 +90,14 @@
           class="mb-16"
         />
 
-        <UiField label="Загрузка файлов" type="upload" v-model="formData.files" multiple class="mb-32" />
+        <UiField
+          field="UiUpload"
+          label="Загрузка файлов"
+          type="upload"
+          v-model="formData.files"
+          multiple
+          class="mb-32"
+        />
       </UiForm>
     </section>
   </div>

@@ -1,23 +1,22 @@
 <template>
-  <div class="ui-field-label-block" :class="`ui-field-type-${type}`">
+  <div class="ui-field-label-block" :class="`ui-field-type-${field}`">
     <label @click.stop="handleFocus" :for="`input${$.uid}`" class="ui-field-label">
       {{ label }}
       <span v-if="required" class="ui-field-label-required">*</span>
     </label>
 
     <component
-      v-if="type"
-      :is="fieldType"
+      :is="field"
       :modelValue="modelValue"
       @update:modelValue="check"
       ref="input"
+      :type="type"
       :id="`input${$.uid}`"
-      class="ui-field-input"
       :options="options"
       :design="design"
-      :type="textType"
       :direction="direction"
       :multiple="multiple"
+      class="ui-field-input"
     />
 
     <span class="ui-field-error" v-if="errorMessage">{{ errorMessage }}</span>
@@ -80,10 +79,11 @@
     },
 
     props: {
+      field: { type: String as any, required: true },
+      type: { type: String },
       modelValue: { type: [String, Number, Array, Boolean, Object] },
       value: { type: String },
       label: { type: String },
-      type: { type: String, default: "text" },
       required: { type: Boolean },
       min: { type: Number, default: 0 },
       max: { type: Number, default: Infinity },
@@ -98,34 +98,6 @@
     computed: {
       input(): InputComponent {
         return this.$refs.input as InputComponent;
-      },
-
-      fieldType(): any {
-        if (this.type === "text" || this.type === "number" || this.type === "password") {
-          return "ui-input";
-        } else if (this.type === "textarea") {
-          return "ui-textarea";
-        } else if (this.type === "select") {
-          return "ui-select";
-        } else if (this.type === "multiselect") {
-          return "ui-multiselect";
-        } else if (this.type === "checkbox") {
-          return "ui-checkbox";
-        } else if (this.type === "radio") {
-          return "ui-radio";
-        } else if (this.type === "upload") {
-          return "ui-upload";
-        }
-      },
-
-      textType(): string {
-        if (this.tel) {
-          return "tel";
-        } else if (this.type === "password") {
-          return "password";
-        } else {
-          return "text";
-        }
       },
     },
 
@@ -168,11 +140,11 @@
       },
 
       handleFocus(): void {
-        if (["select", "multiselect"].includes(this.type)) {
+        if (["UiSelect", "UiMultiselect"].includes(this.field)) {
           this.input.openOptions();
-        } else if (["checkbox", "radio"].includes(this.type)) {
+        } else if (["UiCheckbox", "UiRadio"].includes(this.field)) {
           this.input.$el.click();
-        } else if (["upload"].includes(this.type)) {
+        } else if (["UiUpload"].includes(this.field)) {
           this.input.$el.querySelector("input").click();
         } else {
           this.input.$el.focus();
@@ -189,22 +161,22 @@
     align-items: flex-start;
   }
 
-  .ui-field-type-checkbox {
+  .ui-field-type-UiCheckbox {
     flex-direction: row;
     flex-wrap: wrap;
   }
 
-  .ui-field-type-checkbox .ui-field-input {
+  .ui-field-type-UiCheckbox .ui-field-input {
     width: auto;
     order: 0;
   }
 
-  .ui-field-type-checkbox .ui-field-label {
+  .ui-field-type-UiCheckbox .ui-field-label {
     width: calc(100% - 32px);
     order: 1;
   }
 
-  .ui-field-type-checkbox .ui-field-error {
+  .ui-field-type-UiCheckbox .ui-field-error {
     order: 2;
   }
 

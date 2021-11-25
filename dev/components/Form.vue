@@ -18,13 +18,22 @@
         <h2>Заказать услуги</h2>
 
         <div class="flex flex-sb flex-top mb-16">
-          <UiField label="Ваше имя" v-model="formData.customer" required class="w-50-8" />
-          <UiField label="Электронная почта" v-model="formData.email" email class="w-50-8" />
+          <UiField field="UiInput" label="Ваше имя" v-model="formData.customer" required class="w-50-8" />
+          <UiField field="UiInput" label="Электронная почта" v-model="formData.email" email class="w-50-8" />
         </div>
 
-        <UiField label="Сообщение" type="textarea" v-model="formData.message" :min="3" :max="9" class="mb-16" />
+        <UiField
+          field="UiTextarea"
+          label="Сообщение"
+          type="textarea"
+          v-model="formData.message"
+          :min="3"
+          :max="9"
+          class="mb-16"
+        />
 
         <UiField
+          field="UiSelect"
           label="Нужна обратная связь?"
           type="select"
           v-model="formData.recall"
@@ -34,6 +43,7 @@
         />
 
         <UiField
+          field="UiMultiselect"
           label="Предпочтительные типы связи"
           type="multiselect"
           v-model="formData.type"
@@ -43,6 +53,7 @@
         />
 
         <UiField
+          field="UiCheckbox"
           label="Согласие на обработку персональных данных"
           type="checkbox"
           v-model="formData.agree"
@@ -51,6 +62,7 @@
         />
 
         <UiField
+          field="UiRadio"
           label="Оцените эту форму от 1 до 5"
           type="radio"
           v-model="formData.rate"
@@ -60,7 +72,15 @@
           class="mb-16"
         />
 
-        <UiField label="Загрузка файлов" type="upload" v-model="formData.files" multiple required class="mb-32" />
+        <UiField
+          field="UiUpload"
+          label="Загрузка файлов"
+          type="upload"
+          v-model="formData.files"
+          multiple
+          required
+          class="mb-32"
+        />
 
         <UiButton @ui-click="formSubmit" :disabled="formErrors">Отправить сообщение</UiButton>
       </UiForm>
