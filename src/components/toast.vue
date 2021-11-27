@@ -31,7 +31,6 @@
         document.querySelector(".ui-toast-block")!.append(toast);
 
         setTimeout(() => toast.classList.add("ui-toast-visible"), 200);
-
         setTimeout(() => toast.classList.remove("ui-toast-visible"), 2800);
 
         setTimeout(() => {

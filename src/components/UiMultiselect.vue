@@ -32,9 +32,7 @@
     </div>
 
     <ul class="ui-multiselect-dropdown-block" v-show="isShowOptions">
-      <li v-if="!optionsComputed.length" @click="hideOptions" class="ui-multiselect-dropdown">
-        Нет элементов для выбора
-      </li>
+      <li v-if="!optionsComputed.length" @click="hideOptions" class="ui-multiselect-dropdown">Нет элементов</li>
       <li
         v-for="(option, index) in optionsComputed"
         :key="`option${index}`"

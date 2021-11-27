@@ -1,6 +1,6 @@
 <template>
   <div class="ui-table-block">
-    <div v-if="isScrollable" class="ui-table-scroll-message">Таблицу можно прокручивать вправо -></div>
+    <div v-if="isScrollable" class="ui-table-scroll-message">Можно прокручивать вправо -></div>
 
     <table class="ui-table" :class="`ui-table-fit-${fit}`" :width="width" cellspacing="0" cellpadding="0" border="0">
       <thead class="ui-table-header">
