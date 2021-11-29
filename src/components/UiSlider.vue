@@ -98,7 +98,7 @@
       },
 
       updateSlideWidth(): void {
-        let currentSlide = this.$refs["slide" + this.slideCurrent] as Element;
+        let currentSlide = this.$refs["slide" + this.slideCurrent] as HTMLElement;
         if (currentSlide) {
           this.slideWidth = Number(getComputedStyle(currentSlide).width.slice(0, -2));
           this.updateCoordinatesX();
@@ -111,7 +111,7 @@
     },
 
     mounted() {
-      this.slideWidth = Number(getComputedStyle(this.$refs.slide0 as HTMLElement).width.slice(0, -2));
+      this.updateSlideWidth();
       window.addEventListener("resize", this.updateSlideWidth);
     },
 
