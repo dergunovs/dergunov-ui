@@ -111,7 +111,10 @@
     },
 
     mounted() {
-      this.updateSlideWidth();
+      setTimeout(() => {
+        this.updateSlideWidth();
+      }, 300);
+
       window.addEventListener("resize", this.updateSlideWidth);
     },
 
