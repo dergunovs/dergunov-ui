@@ -1,6 +1,7 @@
-Библиотека компонентов на основе vue-sfc-rollup для Nuxt3 и Vue CLI 5. Zero Dependencies.
+Библиотека компонентов для Nuxt3/Vite/Vue CLI 5. Zero Dependencies. Code Splitting.
 
-22 компонента занимают 9 кб (gzip) в бандле вашего приложения. 4 кб (gzip) занимает весь CSS.
+22 компонента занимают до 9 кб (gzip) в бандле вашего приложения. 4 кб (gzip) занимает весь CSS.
+Импортируйте только необходимые компоненты, чтобы максимально сократить размер бандла.
 
 Компоненты нужно использовать с префиксом Ui. Например, UiForm или UiTable.
 
@@ -12,34 +13,27 @@
 npm i dergunov-ui
 ```
 
-### Nuxt3
+## Использование
 
-Создать файл ui.js в папке /plugins/. В файле ui.js прописать:
-
-```sh
-import { defineNuxtPlugin } from "#app";
-import ui from "dergunov-ui";
-import "dergunov-ui/dist/assets/styles.css";
-
-export default defineNuxtPlugin((nuxtApp) => nuxtApp.vueApp.use(ui));
-```
-
-### Vue CLI 5
-
-В файле main.js подключить библиотеку:
+Импортируйте необходимые компоненты из библотеки в своём приложении.
 
 ```sh
-import ui from "dergunov-ui";
-app.use(ui);
-```
+<template>
+  <UiButton>Кнопка</UiButton>
+</template>
 
-В css файле или секции style компонента подключите общие стили библиотеки:
-
-```sh
-@import "dergunov-ui/dist/assets/styles.css";
+<script setup>
+import { UiButton } from "dergunov-ui"
+</script>
 ```
 
 ## CSS
+
+В своём css файле или секции style корневого компонента подключите общие стили библиотеки:
+
+```sh
+@import "dergunov-ui/dist/esm/assets/styles.css";
+```
 
 В библиотеку компонентов встроены утилитарные классы. Внутри компонентов они не используются.
 Компоненты используют предопределенные цвета через var(). Вы можете их переназначить в своём css.

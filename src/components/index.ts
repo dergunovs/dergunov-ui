@@ -1,3 +1,4 @@
+import "@/assets/styles.css";
 export { default as UiBreadcrumbs } from "./UiBreadcrumbs.vue";
 export { default as UiButton } from "./UiButton.vue";
 export { default as UiCard } from "./UiCard.vue";
