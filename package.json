@@ -4,7 +4,7 @@
   "description": "ui-kit",
   "module": "dist/esm/index.js",
   "style": "dist/esm/assets/styles.css",
-  "types": "dist/types/src/entry.esm.d.ts",
+  "types": "dist/types/src/components/index.d.ts",
   "files": [
     "dist/*"
   ],
@@ -13,7 +13,7 @@
     "dev": "vue-cli-service serve dev/serve.ts",
     "build": "cross-env NODE_ENV=production rollup --config build/rollup.config.js",
     "book": "vue-cli-service build dev/serve.ts",
-    "postbuild": "rimraf ./dist/types/dev ./dist/types/src/entry.d.ts",
+    "postbuild": "rimraf ./dist/types/dev ./dist/types/src/entry.esm.d.ts",
     "test": "echo \"Ждём, верим, надеемся.\""
   },
   "devDependencies": {
