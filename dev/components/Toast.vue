@@ -16,23 +16,22 @@
   </div>
 </template>
 
+<script setup lang="ts">
+  import { toast, UiButton } from "@/components";
+
+  function toastSuccess() {
+    toast.success("success");
+  }
+
+  function toastError() {
+    toast.error("error");
+  }
+
+  function toastInfo() {
+    toast.info("info");
+  }
+</script>
+
 <script lang="ts">
-  import { toast } from "@/components";
-  import { defineComponent } from "vue";
-
-  export default /*#__PURE__*/ defineComponent({
-    name: "Toast",
-
-    methods: {
-      toastSuccess() {
-        toast.success("success");
-      },
-      toastError() {
-        toast.error("error");
-      },
-      toastInfo() {
-        toast.info("info");
-      },
-    },
-  });
+  export default { name: "Toast" };
 </script>

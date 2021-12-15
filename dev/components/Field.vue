@@ -25,18 +25,17 @@
       <p class="mb-32">formData: {{ formData }}</p>
 
       <UiForm class="mb-32">
-        <UiField field="UiInput" label="Телефон" tel v-model="formData.tel" class="w-50 mb-8" />
-        <UiField field="UiInput" label="Пароль" type="password" v-model="formData.password" class="w-50 mb-8" />
-        <UiField field="UiInput" label="Электронная почта" email v-model="formData.email" class="w-50 mb-8" />
+        <UiField :field="UiInput" label="Телефон" type="tel" v-model="formData.tel" class="w-50 mb-8" />
+        <UiField :field="UiInput" label="Электронная почта" email v-model="formData.email" class="w-50 mb-8" />
         <UiField
-          field="UiInput"
+          :field="UiInput"
           label="Минимальное количество символов"
           :min="3"
           v-model="formData.min"
           class="w-50 mb-8"
         />
         <UiField
-          field="UiInput"
+          :field="UiInput"
           label="Максимальное количество символов"
           :max="3"
           v-model="formData.max"
@@ -44,7 +43,7 @@
         />
 
         <UiField
-          field="UiTextarea"
+          :field="UiTextarea"
           label="Textarea"
           type="textarea"
           required
@@ -53,7 +52,7 @@
         />
 
         <UiField
-          field="UiSelect"
+          :field="UiSelect"
           label="Select"
           type="select"
           v-model="formData.select"
@@ -62,7 +61,7 @@
         />
 
         <UiField
-          field="UiMultiselect"
+          :field="UiMultiselect"
           label="Multiselect"
           type="multiselect"
           required
@@ -72,7 +71,7 @@
         />
 
         <UiField
-          field="UiCheckbox"
+          :field="UiCheckbox"
           label="Согласие на обработку персональных данных"
           type="checkbox"
           v-model="formData.agree"
@@ -81,17 +80,17 @@
         />
 
         <UiField
-          field="UiRadio"
+          :field="UiRadio"
           label="Оцените эту форму от 1 до 5"
           type="radio"
           v-model="formData.rate"
           required
-          :options="formData.rateOptions"
+          :options="rateOptions"
           class="mb-16"
         />
 
         <UiField
-          field="UiUpload"
+          :field="UiUpload"
           label="Загрузка файлов"
           type="upload"
           v-model="formData.files"
@@ -103,38 +102,47 @@
   </div>
 </template>
 
-<script lang="ts">
-  import { defineComponent } from "vue";
+<script setup lang="ts">
+  import {
+    UiField,
+    UiForm,
+    UiUpload,
+    UiRadio,
+    UiCheckbox,
+    UiMultiselect,
+    UiSelect,
+    UiTextarea,
+    UiInput,
+  } from "@/components";
+  import { ref } from "vue";
 
-  export default /*#__PURE__*/ defineComponent({
-    name: "Field",
-
-    data() {
-      return {
-        formData: {
-          tel: "",
-          password: "",
-          email: "",
-          min: "",
-          max: "",
-          required: "",
-          select: "",
-          multiselect: [],
-          agree: false,
-          rate: "",
-          rateOptions: [1, 2, 3, 4, 5],
-          files: [],
-        },
-        selectOptions: [
-          { value: 0, name: "Нет" },
-          { value: 1, name: "Да" },
-        ],
-        multiselectOptions: [
-          { value: 0, name: "Нет" },
-          { value: 1, name: "Да" },
-          { value: 2, name: "Может быть" },
-        ],
-      };
-    },
+  const formData = ref({
+    tel: "",
+    email: "",
+    min: "",
+    max: "",
+    required: "",
+    select: "",
+    multiselect: [],
+    agree: false,
+    rate: "",
+    files: [],
   });
+
+  const rateOptions = [1, 2, 3, 4, 5];
+
+  const selectOptions = [
+    { value: 0, name: "Нет" },
+    { value: 1, name: "Да" },
+  ];
+
+  const multiselectOptions = [
+    { value: 0, name: "Нет" },
+    { value: 1, name: "Да" },
+    { value: 2, name: "Может быть" },
+  ];
+</script>
+
+<script lang="ts">
+  export default { name: "Field" };
 </script>

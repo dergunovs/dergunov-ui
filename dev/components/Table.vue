@@ -18,22 +18,18 @@
   </div>
 </template>
 
+<script setup lang="ts">
+  import { UiTable, UiRow } from "@/components";
+
+  const headers = ["№", "Имя", "Должность"];
+  const staff = [
+    { id: "1", name: "Иван", job: "Дворник" },
+    { id: "2", name: "Петр", job: "Водитель" },
+    { id: "3", name: "Костя", job: "Столяр" },
+    { id: "4", name: "Коля", job: "Плотник" },
+  ];
+</script>
+
 <script lang="ts">
-  import { defineComponent } from "vue";
-
-  export default /*#__PURE__*/ defineComponent({
-    name: "Table",
-
-    data() {
-      return {
-        headers: ["№", "Имя", "Должность"],
-        staff: [
-          { id: "1", name: "Иван", job: "Дворник" },
-          { id: "2", name: "Петр", job: "Водитель" },
-          { id: "3", name: "Костя", job: "Столяр" },
-          { id: "4", name: "Коля", job: "Плотник" },
-        ],
-      };
-    },
-  });
+  export default { name: "Table" };
 </script>

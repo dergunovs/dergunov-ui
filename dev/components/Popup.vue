@@ -7,31 +7,27 @@
       <p>При появлении фокус устанавливается на общий div popup.</p>
       <p class="mb-16">Закрыть popup: через v-model, кнопка х, esc, клик вне области.</p>
 
-      <p class="mb-16">popup: {{ popup }}</p>
+      <p class="mb-16">popup: {{ isShow }}</p>
 
-      <UiButton @ui-click="popup = true">Показать popup</UiButton>
+      <UiButton @ui-click="isShow = true">Показать popup</UiButton>
 
-      <UiPopup v-model="popup">
+      <UiPopup v-model="isShow">
         <p>
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sed dolor itaque incidunt molestias saepe quo
-          eligendi necessitatibus magnam autem corporis sunt, placeat eaque nihil explicabo, quas ullam dignissimos
-          velit. Exercitationem.
+          eligendi necessitatibus magnam autem corporis sunt, placeat eaque nihil explicabo.
         </p>
       </UiPopup>
     </section>
   </div>
 </template>
 
+<script setup lang="ts">
+  import { UiPopup, UiButton } from "@/components";
+  import { ref } from "vue";
+
+  const isShow = ref(true);
+</script>
+
 <script lang="ts">
-  import { defineComponent } from "vue";
-
-  export default /*#__PURE__*/ defineComponent({
-    name: "Popup",
-
-    data() {
-      return {
-        popup: true,
-      };
-    },
-  });
+  export default { name: "Popup" };
 </script>

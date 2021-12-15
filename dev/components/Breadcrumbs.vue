@@ -16,17 +16,13 @@
   </div>
 </template>
 
+<script setup lang="ts">
+  import { UiBreadcrumbs } from "@/components";
+
+  const pathUrl = "/blog/examples/first";
+  const pathTitles = ["Главная", "Блог", "Примеры", "Первый"];
+</script>
+
 <script lang="ts">
-  import { defineComponent } from "vue";
-
-  export default /*#__PURE__*/ defineComponent({
-    name: "Breadcrumbs",
-
-    data() {
-      return {
-        pathUrl: "/blog/examples/first",
-        pathTitles: ["Главная", "Блог", "Примеры", "Первый"],
-      };
-    },
-  });
+  export default { name: "Breadcrumbs" };
 </script>

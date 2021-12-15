@@ -11,28 +11,26 @@
         3. Number [1,2,3]
       </p>
 
-      <p><UiSelect v-model="currentOption" :options="optionsTypeObject" /></p>
+      <p><UiSelect v-model="currentOption" :options="options" /></p>
 
       <p>currentOption: {{ currentOption }}</p>
     </section>
   </div>
 </template>
 
+<script setup lang="ts">
+  import { UiSelect } from "@/components";
+  import { ref } from "vue";
+
+  const currentOption = ref("");
+
+  const options = [
+    { value: 1, name: "Первый" },
+    { value: 2, name: "Второй" },
+    { value: 3, name: "Третий" },
+  ];
+</script>
+
 <script lang="ts">
-  import { defineComponent } from "vue";
-
-  export default /*#__PURE__*/ defineComponent({
-    name: "Select",
-
-    data() {
-      return {
-        optionsTypeObject: [
-          { value: 1, name: "Первый" },
-          { value: 2, name: "Второй" },
-          { value: 3, name: "Третий" },
-        ],
-        currentOption: "",
-      };
-    },
-  });
+  export default { name: "Select" };
 </script>

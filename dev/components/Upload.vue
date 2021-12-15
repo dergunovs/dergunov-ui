@@ -14,10 +14,10 @@
   </div>
 </template>
 
-<script lang="ts">
-  import { defineComponent } from "vue";
+<script setup lang="ts">
+  import { UiUpload } from "@/components";
+</script>
 
-  export default /*#__PURE__*/ defineComponent({
-    name: "Upload",
-  });
+<script lang="ts">
+  export default { name: "Upload" };
 </script>

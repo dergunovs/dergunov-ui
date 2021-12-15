@@ -71,12 +71,10 @@ import { UiButton } from "dergunov-ui"
   </section>
 </template>
 
-<script lang="ts">
-  import { defineComponent } from "vue";
-
-  export default /*#__PURE__*/ defineComponent({
-    name: "Readme",
-  });
+<script setup lang="ts">
+  import { UiCode } from "@/components";
 </script>
 
-<style></style>
+<script lang="ts">
+  export default { name: "Readme" };
+</script>

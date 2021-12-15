@@ -32,24 +32,22 @@
   </div>
 </template>
 
+<script setup lang="ts">
+  import { UiRadio } from "@/components";
+  import { ref } from "vue";
+
+  const radioObject = ref("");
+  const radioStringRow = ref("");
+  const radioButtons = ref("");
+
+  const radioObjectOptions = [
+    { value: 1, name: "Первый" },
+    { value: 2, name: "Второй" },
+    { value: 3, name: "Третий" },
+  ];
+  const radioStringRowOptions = ["Отлично", "Хорошо", "Плохо"];
+</script>
+
 <script lang="ts">
-  import { defineComponent } from "vue";
-
-  export default /*#__PURE__*/ defineComponent({
-    name: "Radio",
-
-    data() {
-      return {
-        radioObject: "",
-        radioObjectOptions: [
-          { value: 1, name: "Первый" },
-          { value: 2, name: "Второй" },
-          { value: 3, name: "Третий" },
-        ],
-        radioStringRow: "",
-        radioStringRowOptions: ["Отлично", "Хорошо", "Плохо"],
-        radioButtons: "",
-      };
-    },
-  });
+  export default { name: "Radio" };
 </script>

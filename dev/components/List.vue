@@ -46,10 +46,10 @@
   </div>
 </template>
 
-<script lang="ts">
-  import { defineComponent } from "vue";
+<script setup lang="ts">
+  import { UiList } from "@/components";
+</script>
 
-  export default /*#__PURE__*/ defineComponent({
-    name: "List",
-  });
+<script lang="ts">
+  export default { name: "List" };
 </script>

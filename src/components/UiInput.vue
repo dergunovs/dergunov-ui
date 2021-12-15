@@ -1,41 +1,58 @@
 <template>
   <input
     class="ui-input"
-    :value="modelValue"
-    :type="type"
+    :value="props.modelValue"
+    :type="props.type"
     @input="emitValue($event.target.value)"
-    :maxlength="this.type === 'tel' ? '18' : ''"
+    :maxlength="props.type === 'tel' ? '18' : ''"
+    ref="input"
   />
 </template>
 
-<script lang="ts">
-  import { defineComponent } from "vue";
+<script setup lang="ts">
+  import { ref } from "vue";
 
-  export default /*#__PURE__*/ defineComponent({
-    name: "UiInput",
+  const input = ref<any>(null);
 
-    props: {
-      modelValue: { type: String },
-      type: { type: String, default: "text" },
-    },
+  interface Props {
+    modelValue?: string;
+    type?: string;
+    disabled?: boolean;
+  }
 
-    methods: {
-      emitValue(modelValue: string): void {
-        this.type === "tel"
-          ? this.$emit("update:modelValue", this.maskToTel(modelValue))
-          : this.$emit("update:modelValue", modelValue);
-      },
+  const props = withDefaults(defineProps<Props>(), {
+    modelValue: "",
+    type: "text",
+    disabled: false,
+  });
 
-      maskToTel(modelValue: string): string {
-        let x = modelValue.replace(/\D/g, "").match(/(\d{0,1})(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,2})/);
+  const emit = defineEmits(["update:modelValue"]);
+
+  function emitValue(inputValue: string): void {
+    props.type === "tel" ? emit("update:modelValue", maskToTel(inputValue)) : emit("update:modelValue", inputValue);
+  }
+
+  function maskToTel(inputValue: string): string {
+    const isLastInputValueDigit = !/[^0-9]/g.test(input.value.value.at(-1));
+    const isAddingSymbol = props.modelValue < input.value.value;
+
+    if (isAddingSymbol) {
+      if (isLastInputValueDigit) {
+        const x = inputValue.replace(/[^\d]/g, "").match(/(\d{0,1})(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,2})/);
         if (x) {
           return !x[3] ? `+7 (${x[2]}` : `+7 (${x[2]}) ${x[3]}` + (x[4] ? `-${x[4]}` : "") + (x[5] ? `-${x[5]}` : "");
         } else {
           return "";
         }
-      },
-    },
-  });
+      } else {
+        input.value.value = props.modelValue;
+        return input.value.value;
+      }
+    } else {
+      input.value.value = props.modelValue;
+      return input.value.value.slice(0, -1);
+    }
+  }
 </script>
 
 <style>

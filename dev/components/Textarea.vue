@@ -11,16 +11,13 @@
   </div>
 </template>
 
+<script setup lang="ts">
+  import { UiTextarea } from "@/components";
+  import { ref } from "vue";
+
+  const test = ref("test");
+</script>
+
 <script lang="ts">
-  import { defineComponent } from "vue";
-
-  export default /*#__PURE__*/ defineComponent({
-    name: "Textarea",
-
-    data() {
-      return {
-        test: "",
-      };
-    },
-  });
+  export default { name: "Textarea" };
 </script>

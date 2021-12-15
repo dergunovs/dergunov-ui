@@ -10,31 +10,28 @@
       <p class="mb-16"><b>design:</b> none, switch. default: <b>none</b></p>
 
       <div class="flex mb-16">
-        <label class="flex mr-16"><UiCheckbox v-model="checkboxBoolean" /> checkboxBoolean</label>
-        <label class="flex mr-16"><UiCheckbox v-model="checkboxString" /> checkboxString</label>
-        <label class="flex mr-16"><UiCheckbox v-model="checkboxNumber" /> checkboxNumber</label>
-        <label class="flex"><UiCheckbox design="switch" /> design="switch"</label>
+        <label class="flex mr-16"><UiCheckbox v-model="boolean" />boolean</label>
+        <label class="flex mr-16"><UiCheckbox v-model="string" />string</label>
+        <label class="flex mr-16"><UiCheckbox v-model="number" />number</label>
+        <label class="flex"><UiCheckbox design="switch" />design="switch"</label>
       </div>
 
-      <p>checkboxBoolean: {{ checkboxBoolean }}</p>
-      <p>checkboxString: {{ checkboxString }}</p>
-      <p>checkboxNumber: {{ checkboxNumber }}</p>
+      <p>boolean: {{ boolean }}</p>
+      <p>string: {{ string }}</p>
+      <p>number: {{ number }}</p>
     </section>
   </div>
 </template>
 
+<script setup lang="ts">
+  import { UiCheckbox } from "@/components";
+  import { ref } from "vue";
+
+  const boolean = ref(false);
+  const string = ref("Текст");
+  const number = ref(1);
+</script>
+
 <script lang="ts">
-  import { defineComponent } from "vue";
-
-  export default /*#__PURE__*/ defineComponent({
-    name: "Checkbox",
-
-    data() {
-      return {
-        checkboxBoolean: false,
-        checkboxString: "Текст",
-        checkboxNumber: 1,
-      };
-    },
-  });
+  export default { name: "Checkbox" };
 </script>

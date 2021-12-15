@@ -61,12 +61,6 @@
         <div class="border-gray w-50 p-8">flex + flex-wrap + gap-16</div>
       </div>
 
-      <div class="flex flex-wrap gap-32 mb-16">
-        <div class="border-gray w-50 p-8">flex + flex-wrap + gap-32</div>
-        <div class="border-gray w-50 p-8">flex + flex-wrap + gap-32</div>
-        <div class="border-gray w-50 p-8">flex + flex-wrap + gap-32</div>
-      </div>
-
       <div class="flex flex-center mb-16">
         <div class="border-gray p-8">flex + flex-center</div>
         <div class="border-gray p-8">flex + flex-center</div>
@@ -148,9 +142,6 @@
       <h1>Текст</h1>
       <p>Обычный шрифт с font-weight: 400 внутри тега p</p>
       <p><b>Жирный шрифт с font-weight: 700</b></p>
-      <h1>Заголовок H1</h1>
-      <h2>Заголовок H2</h2>
-      <h3>Заголовок H3</h3>
       <p class="text-left">text-left</p>
       <p class="text-center">text-center</p>
       <p class="text-right">text-right</p>
@@ -179,9 +170,5 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent } from "vue";
-
-  export default /*#__PURE__*/ defineComponent({
-    name: "CSS",
-  });
+  export default { name: "CSS" };
 </script>

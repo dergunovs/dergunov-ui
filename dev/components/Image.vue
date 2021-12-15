@@ -31,10 +31,10 @@
   </div>
 </template>
 
-<script lang="ts">
-  import { defineComponent } from "vue";
+<script setup lang="ts">
+  import { UiImage } from "@/components";
+</script>
 
-  export default defineComponent({
-    name: "Image",
-  });
+<script lang="ts">
+  export default { name: "Image" };
 </script>

@@ -18,12 +18,12 @@
         <h2>Заказать услуги</h2>
 
         <div class="flex flex-sb flex-top mb-16">
-          <UiField field="UiInput" label="Ваше имя" v-model="formData.customer" required class="w-50-8" />
-          <UiField field="UiInput" label="Электронная почта" v-model="formData.email" email class="w-50-8" />
+          <UiField :field="UiInput" label="Ваше имя" v-model="formData.customer" required class="w-50-8" />
+          <UiField :field="UiInput" label="Электронная почта" v-model="formData.email" email class="w-50-8" />
         </div>
 
         <UiField
-          field="UiTextarea"
+          :field="UiTextarea"
           label="Сообщение"
           type="textarea"
           v-model="formData.message"
@@ -33,27 +33,27 @@
         />
 
         <UiField
-          field="UiSelect"
+          :field="UiSelect"
           label="Нужна обратная связь?"
           type="select"
           v-model="formData.recall"
-          :options="optionsRecall"
+          :options="recallOptions"
           required
           class="mb-16"
         />
 
         <UiField
-          field="UiMultiselect"
+          :field="UiMultiselect"
           label="Предпочтительные типы связи"
           type="multiselect"
           v-model="formData.type"
-          :options="optionsType"
+          :options="typeOptions"
           required
           class="mb-16"
         />
 
         <UiField
-          field="UiCheckbox"
+          :field="UiCheckbox"
           label="Согласие на обработку персональных данных"
           type="checkbox"
           v-model="formData.agree"
@@ -62,18 +62,18 @@
         />
 
         <UiField
-          field="UiRadio"
+          :field="UiRadio"
           label="Оцените эту форму от 1 до 5"
           type="radio"
           v-model="formData.rate"
           required
-          :options="formData.rateOptions"
+          :options="rateOptions"
           direction="row"
           class="mb-16"
         />
 
         <UiField
-          field="UiUpload"
+          :field="UiUpload"
           label="Загрузка файлов"
           type="upload"
           v-model="formData.files"
@@ -88,43 +88,52 @@
   </div>
 </template>
 
-<script lang="ts">
-  import { defineComponent } from "vue";
+<script setup lang="ts">
+  import {
+    UiField,
+    UiForm,
+    UiButton,
+    UiUpload,
+    UiRadio,
+    UiCheckbox,
+    UiMultiselect,
+    UiSelect,
+    UiTextarea,
+    UiInput,
+  } from "@/components";
+  import { ref } from "vue";
 
-  export default /*#__PURE__*/ defineComponent({
-    name: "Form",
-
-    data() {
-      return {
-        formData: {
-          customer: "",
-          email: "",
-          message: "",
-          recall: "",
-          type: [],
-          agree: false,
-          rate: "",
-          rateOptions: [1, 2, 3, 4, 5],
-          files: [],
-        },
-        optionsRecall: ["Да", "Нет"],
-        optionsType: [
-          { value: 1, name: "Телефон" },
-          { value: 2, name: "Электронная почта" },
-          { value: 3, name: "Мессенжер" },
-        ],
-        formStatus: "",
-        formErrors: false,
-      };
-    },
-
-    methods: {
-      formSubmit() {
-        this.formStatus = "success";
-      },
-      formValidate(result: boolean) {
-        this.formErrors = result;
-      },
-    },
+  const formData = ref({
+    customer: "",
+    email: "",
+    message: "",
+    recall: "",
+    type: [],
+    agree: false,
+    rate: "",
+    files: [],
   });
+
+  const formStatus = ref("");
+  const formErrors = ref(false);
+
+  const rateOptions = [1, 2, 3, 4, 5];
+  const recallOptions = ["Да", "Нет"];
+  const typeOptions = [
+    { value: "phone", name: "Телефон" },
+    { value: "email", name: "Электронная почта" },
+    { value: "telegram", name: "Телеграм" },
+  ];
+
+  function formSubmit() {
+    formStatus.value = "success";
+  }
+
+  function formValidate(result: boolean) {
+    formErrors.value = result;
+  }
+</script>
+
+<script lang="ts">
+  export default { name: "Form" };
 </script>

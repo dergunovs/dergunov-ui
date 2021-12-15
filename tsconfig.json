@@ -5,8 +5,8 @@
     "strict": true,
     "declaration": true,
     "declarationDir": "dist/types",
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
     "importHelpers": true,
     "moduleResolution": "node",
     "experimentalDecorators": true,
@@ -14,17 +14,9 @@
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "baseUrl": ".",
-    "newLine": "lf",
     "types": ["node", "vue"],
-    "paths": {
-      "@/*": ["src/*"]
-    },
-    "plugins": [
-      {
-        "transform": "@zerollup/ts-transform-paths",
-        "exclude": ["*"]
-      }
-    ],
+    "paths": { "@/*": ["src/*"] },
+    "plugins": [{ "transform": "@zerollup/ts-transform-paths", "exclude": ["*"] }],
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },
   "exclude": ["node_modules", "dist"]

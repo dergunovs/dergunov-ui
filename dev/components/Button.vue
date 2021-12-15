@@ -18,28 +18,23 @@
 
       <h2>Actions</h2>
       <div>
-        @ui-click: <UiButton @ui-click="TheButtonClick">clicks: {{ clickCount }}</UiButton>
+        @ui-click: <UiButton @ui-click="count">clicks: {{ clicks }}</UiButton>
       </div>
     </section>
   </div>
 </template>
 
+<script setup lang="ts">
+  import { UiButton, UiIcon } from "@/components";
+  import { ref } from "vue";
+
+  const clicks = ref(0);
+
+  function count() {
+    clicks.value++;
+  }
+</script>
+
 <script lang="ts">
-  import { defineComponent } from "vue";
-
-  export default /*#__PURE__*/ defineComponent({
-    name: "Button",
-
-    data() {
-      return {
-        clickCount: 0,
-      };
-    },
-
-    methods: {
-      TheButtonClick() {
-        this.clickCount++;
-      },
-    },
-  });
+  export default { name: "Button" };
 </script>
