@@ -82,7 +82,7 @@
           class="mb-32"
         />
 
-        <UiButton @ui-click="formSubmit" :disabled="formErrors">Отправить сообщение</UiButton>
+        <UiButton @click="formSubmit" :disabled="formErrors">Отправить сообщение</UiButton>
       </UiForm>
     </section>
   </div>

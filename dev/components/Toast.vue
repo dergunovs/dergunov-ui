@@ -8,9 +8,9 @@
       <p class="mb-16">3 вида сообщений: success, error и info.</p>
 
       <div class="flex">
-        <UiButton @ui-click="toastSuccess" class="mr-16">success</UiButton>
-        <UiButton @ui-click="toastError" class="mr-16">error</UiButton>
-        <UiButton @ui-click="toastInfo">info</UiButton>
+        <UiButton @click="toastSuccess" class="mr-16">success</UiButton>
+        <UiButton @click="toastError" class="mr-16">error</UiButton>
+        <UiButton @click="toastInfo">info</UiButton>
       </div>
     </section>
   </div>

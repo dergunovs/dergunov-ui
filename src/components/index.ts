@@ -21,4 +21,4 @@ export { default as UiRow } from "./UiRow.vue";
 export { default as UiTable } from "./UiTable.vue";
 export { default as UiTextarea } from "./UiTextarea.vue";
 export { default as UiUpload } from "./UiUpload.vue";
-export { default as toast } from "./toast.vue";
+export { default as toast } from "./toast";

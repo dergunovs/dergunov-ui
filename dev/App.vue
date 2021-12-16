@@ -1,11 +1,11 @@
 <template>
   <div class="center flex flex-top">
     <nav class="w-20 pt-32">
-      <UiButton design="link" @ui-click="setCurrentComponent(Readme)" class="mb-16">Описание</UiButton>
+      <UiButton design="link" @click="setCurrentComponent(Readme)" class="mb-16">Описание</UiButton>
 
       <p><b>Компоненты:</b></p>
       <div v-for="(component, index) in Object.values(components)" :key="index">
-        <UiButton design="link" @ui-click="setCurrentComponent(component)">{{ component.name }}</UiButton>
+        <UiButton design="link" @click="setCurrentComponent(component)">{{ component.name }}</UiButton>
       </div>
     </nav>
 

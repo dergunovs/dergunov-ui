@@ -10,7 +10,7 @@
     >
       <template v-if="index < breadcrumbs.length - 1">
         <component
-          :is="linkType"
+          :is="props.linkType"
           class="ui-breadcrumb-link"
           :to="item.url"
           :itemid="item.url"
@@ -26,49 +26,43 @@
 
       <span v-else itemprop="name">{{ item.title }}</span>
 
-      <meta itemprop="position" :content="index + 1" />
+      <meta itemprop="position" :content="(index + 1).toString()" />
     </li>
   </ul>
 </template>
 
-<script lang="ts">
-  import { defineComponent, PropType } from "vue";
+<script setup lang="ts">
+  import { computed } from "vue";
 
-  export default /*#__PURE__*/ defineComponent({
-    name: "UiBreadcrumbs",
+  const props = defineProps<{
+    linkType: any;
+    pathUrl: string;
+    pathTitles: string[];
+  }>();
 
-    props: {
-      linkType: { required: true },
-      pathUrl: { type: String, required: true },
-      pathTitles: { type: Array as PropType<string[]>, required: true },
-    },
+  const breadcrumbs = computed<{ url: string; title: string }[]>(() => {
+    let urls = props.pathUrl.split("/");
+    urls[0] = "/";
 
-    computed: {
-      breadcrumbs(): object[] {
-        let urls = this.pathUrl.split("/");
-        urls[0] = "/";
+    let urlsFormatted = urls.map((url: string, i: number) => {
+      if (i === 0) {
+        return `${url}`;
+      } else if (i === 1) {
+        return `${urls[i - 1]}${url}`;
+      } else if (i === 2) {
+        return `${urls[i - 2]}${urls[i - 1]}/${url}`;
+      } else {
+        return `${urls[i - 3]}${urls[i - 2]}/${urls[i - 1]}/${url}`;
+      }
+    });
 
-        let urlsFormatted = urls.map((url: string, i: number) => {
-          if (i === 0) {
-            return `${url}`;
-          } else if (i === 1) {
-            return `${urls[i - 1]}${url}`;
-          } else if (i === 2) {
-            return `${urls[i - 2]}${urls[i - 1]}/${url}`;
-          } else {
-            return `${urls[i - 3]}${urls[i - 2]}/${urls[i - 1]}/${url}`;
-          }
-        });
+    let titles = props.pathTitles;
 
-        let titles = this.pathTitles;
+    let breadcrumbs = urlsFormatted.map(function (url: string, i: number) {
+      return { url: url, title: titles[i] };
+    });
 
-        let breadcrumbs = urlsFormatted.map(function (url: string, i: number) {
-          return { url: url, title: titles[i] };
-        });
-
-        return breadcrumbs;
-      },
-    },
+    return breadcrumbs;
   });
 </script>
 

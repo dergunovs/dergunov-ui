@@ -3,9 +3,9 @@
     <section>
       <h1>{{ $options.name }}</h1>
 
-      <p>В Nuxt и Vue разные названия компонентов ссылок: NuxtLink и RouterLink.</p>
+      <p>В Nuxt и Vue Router разные компоненты ссылок: NuxtLink и RouterLink.</p>
 
-      <p><b>linkType (string):</b> NuxtLink, RouterLink</p>
+      <p><b>linkType (component):</b> NuxtLink, RouterLink</p>
       <p><b>pathUrl (string):</b> относительный путь текущей страницы, например, "/blog/examples/first"</p>
       <p class="mb-16">
         <b>pathTitles (array):</b> список заголовков для ссылок ["Главная", "Блог", "Примеры", "Первый"]

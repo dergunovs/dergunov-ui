@@ -19,7 +19,16 @@
       </button>
 
       <div class="ui-slider-wrapper" ref="sliderWrapper">
-        <div class="ui-slider-slide" :ref="`slide${index}`" v-for="(slide, index) in slides" :key="`slide` + index">
+        <div
+          class="ui-slider-slide"
+          v-for="(slide, index) in props.slides"
+          :key="`slide` + index"
+          :ref="
+            (el) => {
+              if (el) slideElements[index] = el;
+            }
+          "
+        >
           <slot :slide="slide"></slot>
         </div>
       </div>
@@ -44,7 +53,7 @@
 
     <div class="ui-slider-bullets">
       <div
-        v-for="(number, index) in slides"
+        v-for="(number, index) in props.slides"
         :key="`bullet-${index}`"
         @click="setSlideCurrent(index)"
         class="ui-slider-bullet"
@@ -54,73 +63,63 @@
   </div>
 </template>
 
-<script lang="ts">
-  import { defineComponent } from "vue";
+<script setup lang="ts">
+  import { ref, onMounted, onBeforeUnmount, onBeforeUpdate } from "vue";
 
-  export default /*#__PURE__*/ defineComponent({
-    name: "UiSlider",
+  const slideCurrent = ref(0);
+  const slideWidth = ref(NaN);
+  const sliderWrapper = ref();
+  const slideElements = ref<any[]>([]);
 
-    data() {
-      return {
-        slideCurrent: 0,
-        slideWidth: NaN,
-      };
-    },
+  const props = defineProps<{
+    slides: any[];
+  }>();
 
-    props: {
-      slides: { type: Array, required: true },
-    },
+  function setSlideCurrent(index: number): void {
+    sliderWrapper.value.style.transform = `translate3d(-${index * slideWidth.value}px, 0px, 0px)`;
+    slideCurrent.value = index;
+  }
 
-    computed: {
-      sliderWrapper(): HTMLElement {
-        return this.$refs.sliderWrapper as HTMLElement;
-      },
-    },
+  function prevSlide(): void {
+    if (slideCurrent.value !== 0) {
+      slideCurrent.value--;
+      updateCoordinatesX();
+    }
+  }
 
-    methods: {
-      setSlideCurrent(index: number): void {
-        this.sliderWrapper.style.transform = `translate3d(-${index * this.slideWidth}px, 0px, 0px)`;
-        this.slideCurrent = index;
-      },
+  function nextSlide(): void {
+    if (slideCurrent.value !== props.slides.length - 1) {
+      slideCurrent.value++;
+      updateCoordinatesX();
+    }
+  }
 
-      prevSlide(): void {
-        if (this.slideCurrent !== 0) {
-          this.slideCurrent = this.slideCurrent - 1;
-          this.updateCoordinatesX();
-        }
-      },
+  function updateSlideWidth(): void {
+    const currentSlide = slideElements.value[slideCurrent.value];
+    if (currentSlide) {
+      slideWidth.value = Number(getComputedStyle(currentSlide).width.slice(0, -2));
+      updateCoordinatesX();
+    }
+  }
 
-      nextSlide(): void {
-        if (this.slideCurrent !== this.slides.length - 1) {
-          this.slideCurrent = this.slideCurrent + 1;
-          this.updateCoordinatesX();
-        }
-      },
+  function updateCoordinatesX(): void {
+    sliderWrapper.value.style.transform = `translate3d(-${slideCurrent.value * slideWidth.value}px, 0px, 0px)`;
+  }
 
-      updateSlideWidth(): void {
-        let currentSlide = this.$refs["slide" + this.slideCurrent] as HTMLElement;
-        if (currentSlide) {
-          this.slideWidth = Number(getComputedStyle(currentSlide).width.slice(0, -2));
-          this.updateCoordinatesX();
-        }
-      },
+  onMounted(() => {
+    setTimeout(() => {
+      updateSlideWidth();
+    }, 300);
 
-      updateCoordinatesX(): void {
-        this.sliderWrapper.style.transform = `translate3d(-${this.slideCurrent * this.slideWidth}px, 0px, 0px)`;
-      },
-    },
+    window.addEventListener("resize", updateSlideWidth);
+  });
 
-    mounted() {
-      setTimeout(() => {
-        this.updateSlideWidth();
-      }, 300);
+  onBeforeUnmount(() => {
+    window.removeEventListener("resize", updateSlideWidth);
+  });
 
-      window.addEventListener("resize", this.updateSlideWidth);
-    },
-
-    beforeDestroy() {
-      window.removeEventListener("resize", this.updateSlideWidth);
-    },
+  onBeforeUpdate(() => {
+    slideElements.value = [];
   });
 </script>
 

@@ -9,7 +9,7 @@
 
       <p class="mb-16">popup: {{ isShow }}</p>
 
-      <UiButton @ui-click="isShow = true">Показать popup</UiButton>
+      <UiButton @click="isShow = true">Показать popup</UiButton>
 
       <UiPopup v-model="isShow">
         <p>

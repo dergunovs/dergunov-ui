@@ -1,51 +1,51 @@
 <template>
   <div class="ui-card-block">
-    <div v-if="card.thumb" class="ui-card-thumb-block">
-      <img :src="thumbComputed" :alt="card.h1" class="ui-card-thumb" loading="lazy" width="345" height="194" />
+    <div v-if="props.card.thumb" class="ui-card-thumb-block">
+      <img :src="thumbComputed" :alt="props.card.h1" class="ui-card-thumb" loading="lazy" width="345" height="194" />
     </div>
 
     <div class="ui-card-text-block">
       <div class="ui-card-h1-block">
-        <div class="ui-card-h1">{{ card.h1 }}</div>
+        <div class="ui-card-h1">{{ props.card.h1 }}</div>
 
-        <div v-if="card.views" class="ui-card-views-block">
+        <div v-if="props.card.views" class="ui-card-views-block">
           <img
             src="@/assets/icons/views.svg"
             class="ui-card-views-icon"
-            :alt="`${card.views} просмотров`"
+            :alt="`${props.card.views} просмотров`"
             loading="lazy"
             width="16"
             height="16"
           />
-          <div class="ui-card-views">{{ card.views }}</div>
+          <div class="ui-card-views">{{ props.card.views }}</div>
         </div>
       </div>
 
-      <div v-if="card.theme" class="ui-card-theme">{{ card.theme.h1 }}</div>
+      <div v-if="props.card.theme" class="ui-card-theme">{{ props.card.theme.h1 }}</div>
 
-      <div class="ui-card-introtext">{{ card.introtext }}</div>
+      <div class="ui-card-introtext">{{ props.card.introtext }}</div>
 
-      <div v-if="card.tag" class="ui-card-tag-block">
-        <template v-if="typeof card.tag === 'string'">
-          <span class="ui-card-tag">{{ card.tag }}</span>
+      <div v-if="props.card.tag" class="ui-card-tag-block">
+        <template v-if="typeof props.card.tag === 'string'">
+          <span class="ui-card-tag">{{ props.card.tag }}</span>
         </template>
         <template v-else>
-          <span v-for="(tag, index) in card.tag" :key="`tag${index}`" class="ui-card-tag">{{ tag }}</span>
+          <span v-for="(tag, index) in props.card.tag" :key="`tag${index}`" class="ui-card-tag">{{ tag }}</span>
         </template>
       </div>
 
-      <div v-if="card.level" class="ui-card-level-block">
+      <div v-if="props.card.level" class="ui-card-level-block">
         <span>Сложность:</span>
-        <div class="ui-card-level" :class="{ 'ui-card-level-active': card.level > 0 }"></div>
-        <div class="ui-card-level" :class="{ 'ui-card-level-active': card.level > 1 }"></div>
-        <div class="ui-card-level" :class="{ 'ui-card-level-active': card.level > 2 }"></div>
+        <div class="ui-card-level" :class="{ 'ui-card-level-active': props.card.level > 0 }"></div>
+        <div class="ui-card-level" :class="{ 'ui-card-level-active': props.card.level > 1 }"></div>
+        <div class="ui-card-level" :class="{ 'ui-card-level-active': props.card.level > 2 }"></div>
       </div>
     </div>
   </div>
 </template>
 
-<script lang="ts">
-  import { defineComponent, PropType } from "vue";
+<script setup lang="ts">
+  import { computed } from "vue";
 
   interface Card {
     h1: string;
@@ -57,19 +57,13 @@
     level?: number;
   }
 
-  export default /*#__PURE__*/ defineComponent({
-    name: "UiCard",
+  const props = defineProps<{
+    card: Card;
+    thumbPrefix?: string;
+  }>();
 
-    props: {
-      card: { type: Object as PropType<Card>, required: true },
-      thumbPrefix: { type: String },
-    },
-
-    computed: {
-      thumbComputed(): string {
-        return this.thumbPrefix ? `${this.thumbPrefix}${this.card.thumb}` : this.card.thumb || "";
-      },
-    },
+  const thumbComputed = computed(() => {
+    return props.thumbPrefix ? `${props.thumbPrefix}${props.card.thumb}` : props.card.thumb || "";
   });
 </script>
 

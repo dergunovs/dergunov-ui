@@ -2,30 +2,30 @@
   <button
     class="ui-button"
     :class="[
-      `ui-button-fit-${fit}`,
-      `ui-button-design-${design}`,
-      `ui-button-active-${active}`,
-      `ui-button-disabled-${disabled}`,
+      `ui-button-fit-${props.fit}`,
+      `ui-button-design-${props.design}`,
+      `ui-button-active-${props.active}`,
+      `ui-button-disabled-${props.disabled}`,
     ]"
-    @click="$emit('ui-click')"
     :disabled="disabled"
   >
     <slot></slot>
   </button>
 </template>
 
-<script lang="ts">
-  import { defineComponent } from "vue";
+<script setup lang="ts">
+  interface Props {
+    fit?: string;
+    design?: string;
+    active?: boolean;
+    disabled?: boolean;
+  }
 
-  export default /*#__PURE__*/ defineComponent({
-    name: "UiButton",
-
-    props: {
-      fit: { type: String, default: "regular" },
-      design: { type: String, default: "regular" },
-      active: { type: Boolean, default: false },
-      disabled: { type: Boolean, default: false },
-    },
+  const props = withDefaults(defineProps<Props>(), {
+    fit: "regular",
+    design: "regular",
+    active: false,
+    disabled: false,
   });
 </script>
 
