@@ -1,13 +1,20 @@
 <template>
-  <textarea class="ui-textarea" @input="$emit('update:modelValue', $event.target.value)"></textarea>
+  <textarea
+    class="ui-textarea"
+    @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
+  ></textarea>
 </template>
 
-<script lang="ts">
-  import { defineComponent } from "vue";
+<script setup lang="ts">
+  interface Props {
+    modelValue?: string;
+  }
 
-  export default /*#__PURE__*/ defineComponent({
-    name: "UiTextarea",
+  const props = withDefaults(defineProps<Props>(), {
+    modelValue: "",
   });
+
+  const emit = defineEmits(["update:modelValue"]);
 </script>
 
 <style>

@@ -9,21 +9,21 @@
       <input
         type="radio"
         :value="option.value"
-        :checked="modelValue === option.value"
+        :checked="props.modelValue === option.value"
+        :disabled="props.disabled"
         @change="setOption(option)"
-        ref="radio"
         :name="`radio-${$.uid}`"
         class="ui-radio"
       />
 
-      <div v-if="design === 'none'" class="ui-radio-fake"></div>
+      <div v-if="design === 'none'" class="ui-radio-fake" :class="`ui-radio-fake-disabled-${props.disabled}`"></div>
       {{ option.name }}
     </label>
   </div>
 </template>
 
-<script lang="ts">
-  import { defineComponent, PropType } from "vue";
+<script setup lang="ts">
+  import { ref, computed, watch } from "vue";
 
   interface Option {
     value: string | number;
@@ -32,47 +32,38 @@
 
   type OptionValue = string | number;
 
-  export default /*#__PURE__*/ defineComponent({
-    name: "UiRadio",
+  const currentOption = ref<Option>();
 
-    data() {
-      return {
-        currentOption: {} as Option,
-        optionElements: [] as HTMLElement[],
-      };
-    },
+  interface Props {
+    modelValue: OptionValue;
+    options: OptionValue[] | Option[];
+    direction?: string;
+    disabled?: boolean;
+    design?: string;
+  }
 
-    props: {
-      modelValue: { type: [String, Number] as PropType<OptionValue> },
-      options: { type: Array, required: true },
-      direction: { type: String, default: "column" },
-      design: { type: String, default: "none" },
-    },
-
-    computed: {
-      optionsComputed(): Option[] {
-        return this.options.map((option: any) => {
-          if (typeof option === "string" || typeof option === "number") return { value: option, name: option };
-          if (typeof option === "object") return option;
-        });
-      },
-      radio(): HTMLInputElement {
-        return this.$refs.radio as HTMLInputElement;
-      },
-    },
-
-    watch: {
-      currentOption() {
-        this.$emit("update:modelValue", this.currentOption.value);
-      },
-    },
-
-    methods: {
-      setOption(option: Option): void {
-        this.currentOption = option;
-      },
-    },
+  const props = withDefaults(defineProps<Props>(), {
+    direction: "column",
+    design: "none",
+    disabled: false,
   });
+
+  const emit = defineEmits(["update:modelValue"]);
+
+  const optionsComputed = computed(() => {
+    return props.options.map((option: OptionValue | Option) => {
+      if (typeof option === "string" || typeof option === "number") return { value: option, name: option.toString() };
+      else return option;
+    });
+  });
+
+  watch(currentOption, () => {
+    if (currentOption.value) emit("update:modelValue", currentOption.value.value);
+  });
+
+  function setOption(option: Option): void {
+    currentOption.value = option;
+  }
 </script>
 
 <style>
@@ -172,5 +163,11 @@
     height: 100%;
     left: 0;
     cursor: pointer;
+  }
+
+  .ui-radio-fake-disabled-true,
+  .ui-radio:checked + .ui-radio-fake-disabled-true {
+    pointer-events: none;
+    background-color: var(--color-gray-light);
   }
 </style>

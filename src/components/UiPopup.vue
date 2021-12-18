@@ -1,49 +1,45 @@
 <template>
-  <div v-if="modelValue" class="ui-popup-block" @mousedown="hidePopup">
-    <div @mousedown.stop @keydown.esc="hidePopup" class="ui-popup" ref="popup" tabindex="0">
-      <button @click="hidePopup" class="ui-popup-close">×</button>
+  <div v-if="props.modelValue" class="ui-popup-block" @mousedown="closePopup">
+    <div @mousedown.stop @keydown.esc="closePopup" class="ui-popup" ref="popup" tabindex="0">
+      <button @click="closePopup" class="ui-popup-close">×</button>
       <slot></slot>
     </div>
   </div>
 </template>
 
-<script lang="ts">
-  import { defineComponent } from "vue";
+<script setup lang="ts">
+  import { ref, watchEffect, onMounted } from "vue";
 
-  export default /*#__PURE__*/ defineComponent({
-    name: "UiPopup",
+  interface Props {
+    modelValue?: boolean;
+  }
 
-    props: {
-      modelValue: { type: Boolean, default: false },
-    },
+  const props = withDefaults(defineProps<Props>(), {
+    modelValue: false,
+  });
 
-    emits: ["update:modelValue"],
+  const emit = defineEmits(["update:modelValue"]);
 
-    watch: {
-      modelValue() {
-        if (this.modelValue === true) {
-          this.focusAtPopup();
-        }
-      },
-    },
+  const popup = ref();
 
-    methods: {
-      hidePopup(): void {
-        this.$emit("update:modelValue", false);
-      },
+  watchEffect(() => {
+    if (props.modelValue) focusAtPopup();
+  });
 
-      focusAtPopup(): void {
-        setTimeout(() => {
-          (this.$refs.popup as HTMLElement).focus();
-        }, 100);
-      },
-    },
+  function closePopup(): void {
+    emit("update:modelValue", false);
+  }
 
-    mounted() {
-      if (this.modelValue) {
-        this.focusAtPopup();
-      }
-    },
+  function focusAtPopup(): void {
+    setTimeout(() => {
+      popup.value.focus();
+    }, 100);
+  }
+
+  onMounted(() => {
+    if (props.modelValue) {
+      focusAtPopup();
+    }
   });
 </script>
 
