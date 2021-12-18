@@ -1,20 +1,20 @@
 <template>
-  <component :is="type" :class="[`ui-list-direction-${direction}`, `ui-list-design-${design}`]">
+  <component :is="type" :class="[`ui-list-direction-${props.direction}`, `ui-list-design-${props.design}`]">
     <slot></slot>
   </component>
 </template>
 
-<script lang="ts">
-  import { defineComponent } from "vue";
+<script setup lang="ts">
+  interface Props {
+    type?: string;
+    direction?: string;
+    design?: string;
+  }
 
-  export default /*#__PURE__*/ defineComponent({
-    name: "UiList",
-
-    props: {
-      type: { type: String, default: "ul" },
-      direction: { type: String, default: "column" },
-      design: { type: String, default: "regular" },
-    },
+  const props = withDefaults(defineProps<Props>(), {
+    type: "ul",
+    direction: "column",
+    design: "regular",
   });
 </script>
 

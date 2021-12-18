@@ -6,7 +6,6 @@ export { default as Code } from "./Code.vue";
 export { default as CSS } from "./CSS.vue";
 export { default as Field } from "./Field.vue";
 export { default as Form } from "./Form.vue";
-export { default as Icon } from "./Icon.vue";
 export { default as Image } from "./Image.vue";
 export { default as Input } from "./Input.vue";
 export { default as List } from "./List.vue";

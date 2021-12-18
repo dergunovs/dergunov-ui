@@ -12,14 +12,18 @@
       <p class="mb-32"><b>width:</b> если требуется, то можно указать ширину. type: string</p>
 
       <UiTable :headers="headers" width="800">
-        <UiRow v-for="member in staff" :key="member.id" :row="member" />
+        <tr v-for="member in staff" :key="member.id" :row="member">
+          <td class="p-16">{{ member.id }}</td>
+          <td class="p-16">{{ member.name }}</td>
+          <td class="p-16">{{ member.job }}</td>
+        </tr>
       </UiTable>
     </section>
   </div>
 </template>
 
 <script setup lang="ts">
-  import { UiTable, UiRow } from "@/components";
+  import { UiTable } from "@/components";
 
   const headers = ["№", "Имя", "Должность"];
   const staff = [

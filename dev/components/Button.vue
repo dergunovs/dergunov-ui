@@ -12,10 +12,7 @@
       <div class="mb-16"><UiButton fit="regular" active>fit: regular, active: true</UiButton></div>
       <div class="mb-16"><UiButton fit="grow">fit: grow</UiButton></div>
       <div class="mb-16"><UiButton design="link">design: link</UiButton></div>
-      <div class="mb-16">
-        <UiButton><UiIcon title="arrow" type="inverted" class="mr-8" />С иконкой внутри</UiButton>
-      </div>
-      <div class="mb-16">
+      <div>
         <UiButton @click="count">clicks: {{ clicks }}</UiButton>
       </div>
     </section>
@@ -23,7 +20,7 @@
 </template>
 
 <script setup lang="ts">
-  import { UiButton, UiIcon } from "@/components";
+  import { UiButton } from "@/components";
   import { ref } from "vue";
 
   const clicks = ref(0);

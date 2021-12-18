@@ -18,42 +18,26 @@
   </div>
 </template>
 
-<script lang="ts">
-  import { defineComponent } from "vue";
+<script setup lang="ts">
+  import { ref, onMounted } from "vue";
 
-  export default /*#__PURE__*/ defineComponent({
-    name: "UiCode",
+  const copied = ref(false);
+  const code = ref<any>(null);
 
-    data() {
-      return {
-        copied: false,
-      };
-    },
+  function copyToClipboard(): void {
+    navigator.clipboard.writeText(code.value.innerText);
+    copied.value = true;
+    setTimeout(() => {
+      copied.value = false;
+    }, 200);
+  }
 
-    computed: {
-      code(): HTMLElement {
-        return this.$refs.code as HTMLElement;
-      },
-    },
-
-    methods: {
-      copyToClipboard(): void {
-        navigator.clipboard.writeText(this.code.innerText);
-        this.copied = true;
-
-        setTimeout(() => {
-          this.copied = false;
-        }, 200);
-      },
-    },
-
-    mounted() {
-      this.code.innerHTML = this.code.innerHTML
-        .replaceAll("<pre>", "")
-        .replaceAll("</pre>", "")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;");
-    },
+  onMounted(() => {
+    code.value.innerHTML = code.value.innerHTML
+      .replaceAll("<pre>", "")
+      .replaceAll("</pre>", "")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;");
   });
 </script>
 

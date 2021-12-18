@@ -2,54 +2,52 @@
   <label class="ui-checkbox-block">
     <input
       type="checkbox"
-      :value="modelValue"
-      :checked="modelValue"
+      :value="props.modelValue"
+      :checked="!!props.modelValue"
+      :disabled="props.disabled"
       ref="checkbox"
       @change="emitValue"
       class="ui-checkbox"
       :class="`ui-checkbox-design-${design}`"
     />
-    <div class="ui-checkbox-fake" :class="`ui-checkbox-fake-design-${design}`"></div>
+    <div
+      class="ui-checkbox-fake"
+      :class="[`ui-checkbox-fake-design-${design}`, `ui-checkbox-fake-disabled-${props.disabled}`]"
+    ></div>
   </label>
 </template>
 
-<script lang="ts">
-  import { defineComponent } from "vue";
+<script setup lang="ts">
+  import { ref } from "vue";
 
   type Value = boolean | string | number;
 
-  export default /*#__PURE__*/ defineComponent({
-    name: "UiCheckbox",
+  const initialValue = ref<Value>(false);
+  const checkbox = ref<any>(null);
 
-    data() {
-      return {
-        initialValue: "" as Value,
-      };
-    },
+  interface Props {
+    modelValue?: Value;
+    design?: string;
+    disabled?: boolean;
+  }
 
-    props: {
-      modelValue: { type: [Boolean, String, Number] },
-      design: { type: String, default: "none" },
-    },
-
-    computed: {
-      checkbox(): HTMLInputElement {
-        return this.$refs.checkbox as HTMLInputElement;
-      },
-    },
-
-    methods: {
-      emitValue(): void {
-        let valueNotBoolean = this.checkbox.checked ? this.initialValue : false;
-        let valueFormatted = typeof this.initialValue === "boolean" ? this.checkbox.checked : valueNotBoolean;
-        this.$emit("update:modelValue", valueFormatted);
-      },
-    },
-
-    mounted() {
-      this.initialValue = this.modelValue as Value;
-    },
+  const props = withDefaults(defineProps<Props>(), {
+    modelValue: false,
+    design: "none",
+    disabled: false,
   });
+
+  const emit = defineEmits(["update:modelValue"]);
+
+  function emitValue(): void {
+    if (checkbox.value) {
+      const valueNotBoolean = checkbox.value.checked ? initialValue.value : false;
+      const valueFormatted = typeof initialValue.value === "boolean" ? checkbox.value.checked : valueNotBoolean;
+      emit("update:modelValue", valueFormatted);
+    }
+  }
+
+  initialValue.value = props.modelValue;
 </script>
 
 <style>
@@ -133,5 +131,11 @@
   .ui-checkbox:checked + .ui-checkbox-fake-design-switch:before {
     background: var(--color-success);
     transform: translateX(20px);
+  }
+
+  .ui-checkbox-fake-disabled-true,
+  .ui-checkbox:checked + .ui-checkbox-fake-disabled-true {
+    pointer-events: none;
+    background-color: var(--color-gray-light);
   }
 </style>
