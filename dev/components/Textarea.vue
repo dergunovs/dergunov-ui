@@ -15,7 +15,7 @@
   import { UiTextarea } from "@/components";
   import { ref } from "vue";
 
-  const test = ref("test");
+  const test = ref("");
 </script>
 
 <script lang="ts">

@@ -1,7 +1,8 @@
 <template>
   <textarea
     class="ui-textarea"
-    @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
+    :value="props.modelValue"
+    @input="emit('update:modelValue', ($event.target as HTMLInputElement).value)"
   ></textarea>
 </template>
 
