@@ -3,16 +3,19 @@
     class="ui-textarea"
     :value="props.modelValue"
     @input="emit('update:modelValue', ($event.target as HTMLInputElement).value)"
+    :disabled="props.disabled"
   ></textarea>
 </template>
 
 <script setup lang="ts">
   interface Props {
     modelValue?: string;
+    disabled?: boolean;
   }
 
   const props = withDefaults(defineProps<Props>(), {
     modelValue: "",
+    disabled: false,
   });
 
   const emit = defineEmits(["update:modelValue"]);

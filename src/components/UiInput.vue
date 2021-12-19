@@ -6,6 +6,7 @@
     @input="emitValue(($event.target as HTMLInputElement).value)"
     :maxlength="props.type === 'tel' ? '18' : ''"
     ref="input"
+    :disabled="props.disabled"
   />
 </template>
 
