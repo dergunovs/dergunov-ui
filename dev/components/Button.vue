@@ -13,7 +13,7 @@
       <div class="mb-16"><UiButton fit="grow">fit: grow</UiButton></div>
       <div class="mb-16"><UiButton design="link">design: link</UiButton></div>
       <div>
-        <UiButton @click="count">clicks: {{ clicks }}</UiButton>
+        <UiButton @click="count">@click {{ clicks }}</UiButton>
       </div>
     </section>
   </div>

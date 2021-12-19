@@ -8,6 +8,7 @@
       `ui-button-disabled-${props.disabled}`,
     ]"
     :disabled="disabled"
+    @click="emit('click')"
   >
     <slot></slot>
   </button>
@@ -27,6 +28,8 @@
     active: false,
     disabled: false,
   });
+
+  const emit = defineEmits(["click"]);
 </script>
 
 <script lang="ts">
