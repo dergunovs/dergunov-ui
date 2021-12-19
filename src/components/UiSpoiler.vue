@@ -10,7 +10,7 @@
         alt="spoiler"
         loading="lazy"
       />
-      {{ isExpanded ? titleExpanded : title }}
+      {{ isExpanded ? props.titleExpanded : props.title }}
     </button>
 
     <transition name="fade">
@@ -21,36 +21,30 @@
   </div>
 </template>
 
-<script lang="ts">
-  import { defineComponent } from "vue";
+<script setup lang="ts">
+  import { ref, watch } from "vue";
 
-  export default /*#__PURE__*/ defineComponent({
-    name: "UiSpoiler",
+  const isExpanded = ref(false);
 
-    data() {
-      return {
-        isExpanded: false,
-      };
-    },
+  interface Props {
+    modelValue?: boolean;
+    title?: string;
+    titleExpanded?: string;
+  }
 
-    props: {
-      title: { type: String, default: "Раскрыть" },
-      titleExpanded: { type: String, default: "Свернуть" },
-      modelValue: { type: Boolean, default: false },
-    },
-
-    emits: ["update:modelValue"],
-
-    watch: {
-      isExpanded() {
-        this.$emit("update:modelValue", this.isExpanded);
-      },
-    },
-
-    beforeMount() {
-      this.isExpanded = this.modelValue;
-    },
+  const props = withDefaults(defineProps<Props>(), {
+    modelValue: false,
+    title: "Раскрыть",
+    titleExpanded: "Свернуть",
   });
+
+  const emit = defineEmits(["update:modelValue"]);
+
+  watch(isExpanded, () => {
+    emit("update:modelValue", isExpanded.value);
+  });
+
+  isExpanded.value = props.modelValue;
 </script>
 
 <style>

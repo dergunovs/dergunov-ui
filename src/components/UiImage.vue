@@ -4,77 +4,70 @@
       <slot></slot>
     </button>
 
-    <div v-if="isShowImage" @keydown.esc="closeImage" class="ui-image-block" tabindex="0">
+    <div v-if="isShowImage" @keydown.esc="closeImage" class="ui-image-block" ref="imageBlock" tabindex="0">
       <div class="ui-image-panel">
         <button @click="zoomOut" :disabled="currentZoom === 50">Уменьшить</button>
         <button @click="zoomIn" :disabled="isReachedMaxZoom">Увеличить</button>
         <button @click="closeImage" class="ui-image-panel-close">×</button>
       </div>
 
-      <img :src="src" class="ui-image" :class="`ui-image-zoom-${currentZoom}`" />
+      <img :src="props.src" class="ui-image" :class="`ui-image-zoom-${currentZoom}`" ref="image" />
     </div>
   </div>
 </template>
 
-<script lang="ts">
-  import { defineComponent, nextTick } from "vue";
+<script setup lang="ts">
+  import { nextTick, ref } from "vue";
 
-  export default defineComponent({
-    name: "UiImage",
+  const isShowImage = ref(false);
+  const currentZoom = ref(100);
+  const isReachedMaxZoom = ref(false);
+  const imageBlock = ref<HTMLElement>();
+  const image = ref<HTMLElement>();
 
-    data() {
-      return {
-        isShowImage: false,
-        currentZoom: 100,
-        isReachedMaxZoom: false,
-      };
-    },
+  const props = defineProps<{
+    src: string;
+  }>();
 
-    props: {
-      src: { type: String, required: true },
-    },
+  async function showImage(): Promise<void> {
+    isShowImage.value = true;
 
-    methods: {
-      async showImage(): Promise<void> {
-        this.isShowImage = true;
+    await nextTick();
+    checkMaxSize();
+    if (imageBlock.value) imageBlock.value.focus();
+    document.querySelector("body")!.style.overflow = "hidden";
+  }
 
-        await nextTick();
-        let imageBlock = document.querySelector(".ui-image-block") as HTMLElement;
-        imageBlock.focus();
-        this.checkMaxSize();
-      },
+  function zoomOut(): void {
+    if (currentZoom.value > 50) {
+      currentZoom.value = currentZoom.value - 25;
+      checkMaxSize();
+    }
+  }
 
-      zoomOut(): void {
-        if (this.currentZoom > 50) {
-          this.currentZoom = this.currentZoom - 25;
-          this.checkMaxSize();
-        }
-      },
+  function zoomIn(): void {
+    if (currentZoom.value < 200) {
+      currentZoom.value = currentZoom.value + 25;
+      checkMaxSize();
+    }
+  }
 
-      zoomIn(): void {
-        if (this.currentZoom < 200) {
-          this.currentZoom = this.currentZoom + 25;
-          this.checkMaxSize();
-        }
-      },
+  function checkMaxSize(): void {
+    setTimeout(() => {
+      if (image.value) {
+        const imageWidth = ((Number(getComputedStyle(image.value).width.slice(0, -2)) + 1) * currentZoom.value) / 100;
+        const imageHeight = ((Number(getComputedStyle(image.value).height.slice(0, -2)) + 1) * currentZoom.value) / 100;
 
-      checkMaxSize(): void {
-        setTimeout(() => {
-          let image = document.querySelector(".ui-image") as HTMLElement;
+        isReachedMaxZoom.value = imageWidth > window.innerWidth || imageHeight > window.innerHeight ? true : false;
+      }
+    }, 100);
+  }
 
-          let imageWidth = ((Number(getComputedStyle(image).width.slice(0, -2)) + 1) * this.currentZoom) / 100;
-          let imageHeight = ((Number(getComputedStyle(image).height.slice(0, -2)) + 1) * this.currentZoom) / 100;
-
-          this.isReachedMaxZoom = imageWidth > window.innerWidth || imageHeight > window.innerHeight ? true : false;
-        }, 100);
-      },
-
-      closeImage(): void {
-        this.isShowImage = false;
-        this.currentZoom = 100;
-      },
-    },
-  });
+  function closeImage(): void {
+    isShowImage.value = false;
+    currentZoom.value = 100;
+    document.querySelector("body")!.style.overflow = "auto";
+  }
 </script>
 
 <style>

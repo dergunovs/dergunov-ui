@@ -40,8 +40,8 @@
   </div>
 </template>
 
-<script lang="ts">
-  import { defineComponent, PropType } from "vue";
+<script setup lang="ts">
+  import { ref, computed, watch, onMounted, onBeforeUpdate, onBeforeUnmount } from "vue";
 
   interface Option {
     value: string | number;
@@ -50,108 +50,93 @@
 
   type OptionValue = string | number;
 
-  export default /*#__PURE__*/ defineComponent({
-    name: "UiSelect",
+  const isShowOptions = ref(false);
+  const currentOption = ref<Option>({ value: "", name: "" });
+  const optionElements = ref<HTMLElement[]>();
 
-    data() {
-      return {
-        isShowOptions: false,
-        currentOption: {} as Option,
-        optionElements: [] as HTMLElement[],
-      };
-    },
+  const props = defineProps<{
+    modelValue: OptionValue;
+    options: Option[] | OptionValue[];
+  }>();
 
-    props: {
-      modelValue: { type: [String, Number] as PropType<OptionValue> },
-      options: { type: Array, required: true },
-    },
+  const emit = defineEmits(["update:modelValue"]);
 
-    computed: {
-      optionsComputed(): Option[] {
-        return this.options.map((option: any) => {
-          if (typeof option === "string" || typeof option === "number") return { value: option, name: option };
-          if (typeof option === "object") return option;
-        });
-      },
-    },
+  const optionsComputed = computed(() => {
+    return props.options.map((option: OptionValue | Option) => {
+      if (typeof option === "string" || typeof option === "number") return { value: option, name: option.toString() };
+      else return option;
+    });
+  });
 
-    watch: {
-      currentOption() {
-        this.$emit("update:modelValue", this.currentOption.value);
-      },
-    },
+  watch(currentOption, () => {
+    if (currentOption.value) emit("update:modelValue", currentOption.value.value);
+  });
 
-    methods: {
-      openOptions(): void {
-        this.isShowOptions = true;
-        this.focusOnFirstOptionElement();
-      },
+  function hideOptions(): void {
+    isShowOptions.value = false;
+  }
 
-      hideOptions(): void {
-        this.isShowOptions = false;
-      },
+  function toggleOptions(): void {
+    isShowOptions.value = !isShowOptions.value;
+    focusOnFirstOptionElement();
+  }
 
-      toggleOptions(): void {
-        this.isShowOptions = !this.isShowOptions;
-        this.focusOnFirstOptionElement();
-      },
+  function setOption(option: Option): void {
+    currentOption.value = option;
+    hideOptions();
+  }
 
-      setOption(option: Option): void {
-        this.currentOption = option;
-        this.hideOptions();
-      },
+  function focusOnFirstOptionElement(): void {
+    setTimeout(() => {
+      if (optionElements.value?.length) optionElements.value[0].focus();
+    }, 100);
+  }
 
-      focusOnFirstOptionElement(): void {
-        setTimeout(() => {
-          this.optionElements[0].focus();
-        }, 100);
-      },
+  function focusAt(index: number): void {
+    if (optionElements.value) optionElements.value[index].focus();
+  }
 
-      focusAt(index: number): void {
-        this.optionElements[index].focus();
-      },
+  function focusUp(index: number): void {
+    if (index !== 0) {
+      if (optionElements.value) optionElements.value[index - 1].focus();
+    }
+  }
 
-      focusUp(index: number): void {
-        if (index !== 0) {
-          this.optionElements[index - 1].focus();
+  function focusDown(index: number): void {
+    if (optionElements.value && index !== optionElements.value.length - 1) {
+      if (optionElements.value) optionElements.value[index + 1].focus();
+    }
+  }
+
+  function setOptionElementRef(el: any) {
+    if (optionElements.value && el) {
+      optionElements.value.push(el);
+    }
+  }
+
+  onBeforeUpdate(() => {
+    optionElements.value = [];
+  });
+
+  onMounted(() => {
+    setTimeout(() => {
+      if (props.modelValue || props.modelValue === 0) {
+        if (typeof props.options[0] === "string" || typeof props.options[0] === "number") {
+          currentOption.value = { value: props.modelValue, name: props.modelValue.toString() };
         }
-      },
-
-      focusDown(index: number): void {
-        if (index !== this.optionElements.length - 1) {
-          this.optionElements[index + 1].focus();
+        if (typeof props.options[0] === "object") {
+          currentOption.value = (props.options as Option[]).find(
+            (option) => option.value === props.modelValue
+          ) as Option;
         }
-      },
+      }
+    }, 100);
 
-      setOptionElementRef(el: HTMLElement): void {
-        if (el) {
-          this.optionElements.push(el);
-        }
-      },
-    },
+    document.addEventListener("click", hideOptions);
+  });
 
-    beforeUpdate() {
-      this.optionElements = [];
-    },
-
-    mounted() {
-      setTimeout(() => {
-        if (this.modelValue || this.modelValue === 0) {
-          if (typeof this.options[0] === "object") {
-            this.currentOption = this.options.find((option: any) => option.value === this.modelValue) as Option;
-          }
-          if (typeof this.options[0] === "string" || typeof this.options[0] === "number") {
-            this.currentOption = { value: this.modelValue, name: this.modelValue as string };
-          }
-        }
-      }, 100);
-
-      document.addEventListener("click", this.hideOptions);
-    },
-
-    beforeDestroy() {
-      document.removeEventListener("click", this.hideOptions);
-    },
+  onBeforeUnmount(() => {
+    document.removeEventListener("click", hideOptions);
   });
 </script>
 

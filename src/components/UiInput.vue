@@ -3,7 +3,7 @@
     class="ui-input"
     :value="props.modelValue"
     :type="props.type"
-    @input="emitValue($event.target.value)"
+    @input="emitValue(($event.target as HTMLInputElement).value)"
     :maxlength="props.type === 'tel' ? '18' : ''"
     ref="input"
   />
@@ -12,7 +12,7 @@
 <script setup lang="ts">
   import { ref } from "vue";
 
-  const input = ref<any>(null);
+  const input = ref<HTMLInputElement>();
 
   interface Props {
     modelValue?: string;
@@ -33,25 +33,27 @@
   }
 
   function maskToTel(inputValue: string): string {
-    const isLastInputValueDigit = !/[^0-9]/g.test(input.value.value.at(-1));
-    const isAddingSymbol = props.modelValue < input.value.value;
+    if (input.value) {
+      const isLastInputValueDigit = !/[^0-9]/g.test((input.value as any).value.at(-1));
+      const isAddingSymbol = props.modelValue < input.value.value;
 
-    if (isAddingSymbol) {
-      if (isLastInputValueDigit) {
-        const x = inputValue.replace(/[^\d]/g, "").match(/(\d{0,1})(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,2})/);
-        if (x) {
-          return !x[3] ? `+7 (${x[2]}` : `+7 (${x[2]}) ${x[3]}` + (x[4] ? `-${x[4]}` : "") + (x[5] ? `-${x[5]}` : "");
+      if (isAddingSymbol) {
+        if (isLastInputValueDigit) {
+          const x = inputValue.replace(/[^\d]/g, "").match(/(\d{0,1})(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,2})/);
+          if (x) {
+            return !x[3] ? `+7 (${x[2]}` : `+7 (${x[2]}) ${x[3]}` + (x[4] ? `-${x[4]}` : "") + (x[5] ? `-${x[5]}` : "");
+          } else {
+            return "";
+          }
         } else {
-          return "";
+          input.value.value = props.modelValue;
+          return input.value.value;
         }
       } else {
         input.value.value = props.modelValue;
-        return input.value.value;
+        return input.value.value.slice(0, -1);
       }
-    } else {
-      input.value.value = props.modelValue;
-      return input.value.value.slice(0, -1);
-    }
+    } else return "";
   }
 </script>
 

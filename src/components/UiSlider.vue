@@ -68,7 +68,7 @@
 
   const slideCurrent = ref(0);
   const slideWidth = ref(NaN);
-  const sliderWrapper = ref();
+  const sliderWrapper = ref<HTMLElement>();
   const slideElements = ref<any[]>([]);
 
   const props = defineProps<{
@@ -76,8 +76,10 @@
   }>();
 
   function setSlideCurrent(index: number): void {
-    sliderWrapper.value.style.transform = `translate3d(-${index * slideWidth.value}px, 0px, 0px)`;
-    slideCurrent.value = index;
+    if (sliderWrapper.value) {
+      sliderWrapper.value.style.transform = `translate3d(-${index * slideWidth.value}px, 0px, 0px)`;
+      slideCurrent.value = index;
+    }
   }
 
   function prevSlide(): void {
@@ -103,7 +105,9 @@
   }
 
   function updateCoordinatesX(): void {
-    sliderWrapper.value.style.transform = `translate3d(-${slideCurrent.value * slideWidth.value}px, 0px, 0px)`;
+    if (sliderWrapper.value) {
+      sliderWrapper.value.style.transform = `translate3d(-${slideCurrent.value * slideWidth.value}px, 0px, 0px)`;
+    }
   }
 
   onMounted(() => {

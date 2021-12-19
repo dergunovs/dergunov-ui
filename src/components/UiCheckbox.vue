@@ -23,7 +23,7 @@
   type Value = boolean | string | number;
 
   const initialValue = ref<Value>(false);
-  const checkbox = ref<any>(null);
+  const checkbox = ref<HTMLInputElement>();
 
   interface Props {
     modelValue?: Value;

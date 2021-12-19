@@ -20,7 +20,7 @@
 
   const emit = defineEmits(["update:modelValue"]);
 
-  const popup = ref();
+  const popup = ref<HTMLElement>();
 
   watchEffect(() => {
     if (props.modelValue) focusAtPopup();
@@ -32,7 +32,7 @@
 
   function focusAtPopup(): void {
     setTimeout(() => {
-      popup.value.focus();
+      if (popup.value) popup.value.focus();
     }, 100);
   }
 

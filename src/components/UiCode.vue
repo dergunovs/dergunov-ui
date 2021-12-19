@@ -22,22 +22,26 @@
   import { ref, onMounted } from "vue";
 
   const copied = ref(false);
-  const code = ref<any>(null);
+  const code = ref<HTMLElement>();
 
   function copyToClipboard(): void {
-    navigator.clipboard.writeText(code.value.innerText);
-    copied.value = true;
-    setTimeout(() => {
-      copied.value = false;
-    }, 200);
+    if (code.value) {
+      navigator.clipboard.writeText(code.value.innerText);
+      copied.value = true;
+      setTimeout(() => {
+        copied.value = false;
+      }, 200);
+    }
   }
 
   onMounted(() => {
-    code.value.innerHTML = code.value.innerHTML
-      .replaceAll("<pre>", "")
-      .replaceAll("</pre>", "")
-      .replaceAll("<", "&lt;")
-      .replaceAll(">", "&gt;");
+    if (code.value) {
+      code.value.innerHTML = code.value.innerHTML
+        .replaceAll("<pre>", "")
+        .replaceAll("</pre>", "")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;");
+    }
   });
 </script>
 

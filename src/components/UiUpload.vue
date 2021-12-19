@@ -4,8 +4,8 @@
       <input
         type="file"
         ref="upload"
-        :multiple="multiple"
-        @change="updateFiles($event)"
+        :multiple="props.multiple"
+        @change="updateFiles()"
         class="ui-upload-button-hidden"
       />
 
@@ -28,66 +28,60 @@
   </div>
 </template>
 
-<script lang="ts">
-  import { defineComponent } from "vue";
+<script setup lang="ts">
+  import { ref } from "vue";
 
-  export default /*#__PURE__*/ defineComponent({
-    name: "UiUpload",
+  const files = ref<File[]>([]);
+  const filesSize = ref(0);
+  const upload = ref();
 
-    data() {
-      return {
-        files: [] as File[],
-        filesSize: 0,
-      };
-    },
+  interface Props {
+    multiple?: boolean;
+  }
 
-    props: {
-      multiple: { type: Boolean, default: false },
-    },
-
-    emits: ["update:modelValue"],
-
-    methods: {
-      chooseFiles(): void {
-        (this.$refs.upload as HTMLElement).click();
-      },
-
-      updateFiles(event: InputEvent): void {
-        const uploadableFiles: File[] = (event.target as HTMLInputElement).files as any;
-        this.files = [...uploadableFiles];
-
-        this.emitFiles();
-        this.updateFilesSize();
-      },
-
-      updateFilesSize(): void {
-        this.filesSize = 0;
-        this.files.forEach((file: File) => {
-          this.filesSize = this.filesSize + file.size;
-        });
-      },
-
-      removeFile(fileName: string): void {
-        this.files = this.files.filter((file: File) => file.name !== fileName);
-        if (!this.files.length) {
-          (this.$refs.upload as HTMLInputElement).value = "";
-        }
-
-        this.emitFiles();
-        this.updateFilesSize();
-      },
-
-      emitFiles(): void {
-        let files = new DataTransfer();
-
-        this.files.forEach((file: File) => {
-          files.items.add(file);
-        });
-
-        this.$emit("update:modelValue", files);
-      },
-    },
+  const props = withDefaults(defineProps<Props>(), {
+    multiple: false,
   });
+
+  const emit = defineEmits(["update:modelValue"]);
+
+  function chooseFiles(): void {
+    upload.value.click();
+  }
+
+  function updateFiles(): void {
+    files.value = [...upload.value.files];
+
+    emitFiles();
+    updateFilesSize();
+  }
+
+  function updateFilesSize(): void {
+    filesSize.value = 0;
+    files.value.forEach((file: File) => {
+      filesSize.value = filesSize.value + file.size;
+    });
+  }
+
+  function removeFile(fileName: string): void {
+    files.value = files.value.filter((file: File) => file.name !== fileName);
+    if (!files.value.length) {
+      upload.value.value = "";
+    }
+
+    emitFiles();
+    updateFilesSize();
+  }
+
+  function emitFiles(): void {
+    const filesToEmit = new DataTransfer();
+
+    files.value.forEach((file: File) => {
+      filesToEmit.items.add(file);
+    });
+
+    emit("update:modelValue", filesToEmit);
+  }
 </script>
 
 <style>

@@ -1,11 +1,19 @@
 <template>
-  <div class="ui-table-block">
+  <div class="ui-table-block" ref="tableBlock">
     <div v-if="isScrollable" class="ui-table-scroll-message">Можно прокручивать вправо -></div>
 
-    <table class="ui-table" :class="`ui-table-fit-${fit}`" :width="width" cellspacing="0" cellpadding="0" border="0">
+    <table
+      class="ui-table"
+      :class="`ui-table-fit-${props.fit}`"
+      :width="props.width"
+      ref="table"
+      cellspacing="0"
+      cellpadding="0"
+      border="0"
+    >
       <thead class="ui-table-header">
         <tr>
-          <th v-for="(header, index) in headers" :key="`header${index}`">{{ header }}</th>
+          <th v-for="(header, index) in props.headers" :key="`header${index}`">{{ header }}</th>
         </tr>
       </thead>
       <tbody class="ui-table-body">
@@ -15,47 +23,39 @@
   </div>
 </template>
 
-<script lang="ts">
-  import { defineComponent } from "vue";
+<script setup lang="ts">
+  import { ref, onMounted, onBeforeUnmount } from "vue";
 
-  export default /*#__PURE__*/ defineComponent({
-    name: "UiTable",
+  const isScrollable = ref(false);
+  const tableBlock = ref<HTMLElement>();
+  const table = ref<HTMLElement>();
 
-    data() {
-      return {
-        isScrollable: false,
-      };
-    },
+  interface Props {
+    headers: string[];
+    fit?: string;
+    width?: string;
+  }
 
-    props: {
-      headers: { type: Array, required: true },
-      fit: { type: String, default: "regular" },
-      width: { type: String },
-    },
+  const props = withDefaults(defineProps<Props>(), {
+    fit: "regular",
+  });
 
-    methods: {
-      checkTableSize(): void {
-        const tableBlock = document.querySelector(".ui-table-block") as HTMLElement;
-        const table = document.querySelector(".ui-table") as HTMLElement;
+  function checkTableSize(): void {
+    if (tableBlock.value && table.value) {
+      const tableBlockSize = Number(getComputedStyle(tableBlock.value).width.slice(0, -2));
+      const tableSize = Number(getComputedStyle(table.value).width.slice(0, -2));
 
-        if (tableBlock && table) {
-          const tableBlockSize = Number(getComputedStyle(tableBlock).width.slice(0, -2));
-          const tableSize = Number(getComputedStyle(table).width.slice(0, -2));
+      isScrollable.value = tableSize > tableBlockSize ? true : false;
+    }
+  }
 
-          this.isScrollable = tableSize > tableBlockSize ? true : false;
-        }
-      },
-    },
+  onMounted(() => {
+    checkTableSize();
+    window.addEventListener("resize", checkTableSize);
+  });
 
-    mounted() {
-      this.checkTableSize();
-
-      window.addEventListener("resize", this.checkTableSize);
-    },
-
-    beforeUnmount() {
-      window.removeEventListener("resize", this.checkTableSize);
-    },
+  onBeforeUnmount(() => {
+    window.removeEventListener("resize", checkTableSize);
   });
 </script>
 

@@ -41,10 +41,10 @@
   }>();
 
   const breadcrumbs = computed<{ url: string; title: string }[]>(() => {
-    let urls = props.pathUrl.split("/");
+    const urls = props.pathUrl.split("/");
     urls[0] = "/";
 
-    let urlsFormatted = urls.map((url: string, i: number) => {
+    const urlsFormatted = urls.map((url: string, i: number) => {
       if (i === 0) {
         return `${url}`;
       } else if (i === 1) {
@@ -56,9 +56,9 @@
       }
     });
 
-    let titles = props.pathTitles;
+    const titles = props.pathTitles;
 
-    let breadcrumbs = urlsFormatted.map(function (url: string, i: number) {
+    const breadcrumbs = urlsFormatted.map(function (url: string, i: number) {
       return { url: url, title: titles[i] };
     });
 
