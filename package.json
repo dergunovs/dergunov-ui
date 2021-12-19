@@ -13,7 +13,7 @@
     "build": "cross-env NODE_ENV=production rollup --config build/rollup.config.js",
     "book": "vue-cli-service build dev/main.ts",
     "postbuild": "rimraf ./dist/types/dev ./dist/types/src/entry.esm.d.ts",
-    "test": "echo \"Ждём, верим, надеемся.\""
+    "test": "echo \"Скоро\""
   },
   "devDependencies": {
     "@rollup/plugin-alias": "^3.1.8",

@@ -72,6 +72,10 @@
   });
 </script>
 
+<script lang="ts">
+  export default { name: "UiForm" };
+</script>
+
 <style>
   .ui-form-message {
     margin-top: 16px;

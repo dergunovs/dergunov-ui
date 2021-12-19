@@ -29,6 +29,10 @@
   });
 </script>
 
+<script lang="ts">
+  export default { name: "UiButton" };
+</script>
+
 <style>
   .ui-button {
     display: flex;

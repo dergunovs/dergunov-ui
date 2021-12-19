@@ -164,6 +164,10 @@
   });
 </script>
 
+<script lang="ts">
+  export default { name: "UiMultiselect" };
+</script>
+
 <style>
   .ui-multiselect-block {
     position: relative;

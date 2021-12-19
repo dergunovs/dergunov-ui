@@ -41,6 +41,10 @@
   });
 </script>
 
+<script lang="ts">
+  export default { name: "UiPopup" };
+</script>
+
 <style>
   .ui-popup-block {
     background-color: #000a;

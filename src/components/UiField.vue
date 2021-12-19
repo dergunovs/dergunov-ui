@@ -83,7 +83,7 @@
   };
 
   interface Props {
-    field: { __file?: string };
+    field: { name: string };
     type?: string;
     rows?: string;
     modelValue?: string | number | [] | boolean | object;
@@ -145,9 +145,7 @@
   }
 
   const fieldType = computed(() => {
-    const componentNameWithExt = props.field.__file!.split("/");
-    const componentName = componentNameWithExt.at(-1)!.split(".");
-    return componentName[0];
+    return props.field.name;
   });
 
   function handleFocus(): void {
@@ -163,6 +161,10 @@
       if (input.value) input.value.$el.focus();
     }
   }
+</script>
+
+<script lang="ts">
+  export default { name: "UiField" };
 </script>
 
 <style>

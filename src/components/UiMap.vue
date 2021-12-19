@@ -23,3 +23,7 @@
     title: "Карта",
   });
 </script>
+
+<script lang="ts">
+  export default { name: "UiMap" };
+</script>

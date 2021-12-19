@@ -18,6 +18,10 @@
   });
 </script>
 
+<script lang="ts">
+  export default { name: "UiList" };
+</script>
+
 <style>
   .ui-list-direction-row {
     display: flex;

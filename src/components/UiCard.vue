@@ -67,6 +67,10 @@
   });
 </script>
 
+<script lang="ts">
+  export default { name: "UiCard" };
+</script>
+
 <style>
   .ui-card-block {
     display: flex;

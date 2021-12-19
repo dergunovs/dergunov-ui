@@ -127,6 +127,10 @@
   });
 </script>
 
+<script lang="ts">
+  export default { name: "UiSlider" };
+</script>
+
 <style>
   .ui-slider-container {
     position: relative;
