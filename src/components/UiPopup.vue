@@ -37,9 +37,7 @@
   }
 
   onMounted(() => {
-    if (props.modelValue) {
-      focusAtPopup();
-    }
+    if (props.modelValue) focusAtPopup();
   });
 </script>
 

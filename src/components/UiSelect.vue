@@ -97,9 +97,7 @@
   }
 
   function focusUp(index: number): void {
-    if (index !== 0) {
-      if (optionElements.value) optionElements.value[index - 1].focus();
-    }
+    if (index !== 0 && optionElements.value) optionElements.value[index - 1].focus();
   }
 
   function focusDown(index: number): void {
@@ -109,9 +107,7 @@
   }
 
   function setOptionElementRef(el: any) {
-    if (optionElements.value && el) {
-      optionElements.value.push(el);
-    }
+    if (optionElements.value && el) optionElements.value.push(el);
   }
 
   onBeforeUpdate(() => {

@@ -65,9 +65,7 @@
 
   function removeFile(fileName: string): void {
     files.value = files.value.filter((file: File) => file.name !== fileName);
-    if (!files.value.length) {
-      upload.value.value = "";
-    }
+    if (!files.value.length) upload.value.value = "";
 
     emitFiles();
     updateFilesSize();
