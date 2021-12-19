@@ -132,14 +132,14 @@
   const rateOptions = [1, 2, 3, 4, 5];
 
   const selectOptions = [
-    { value: 0, name: "Нет" },
-    { value: 1, name: "Да" },
+    { value: 1, name: "Нет" },
+    { value: 2, name: "Да" },
   ];
 
   const multiselectOptions = [
-    { value: 0, name: "Нет" },
-    { value: 1, name: "Да" },
-    { value: 2, name: "Может быть" },
+    { value: 1, name: "Нет" },
+    { value: 2, name: "Да" },
+    { value: 3, name: "Может быть" },
   ];
 </script>
 

@@ -24,140 +24,145 @@
   </div>
 </template>
 
-<script lang="ts">
-  import { defineComponent, ComponentPublicInstance } from "vue";
-
-  interface InputComponent extends ComponentPublicInstance {
-    openOptions: () => void;
-  }
+<script setup lang="ts">
+  import { ref, ComponentPublicInstance, computed } from "vue";
 
   type InputData = boolean | string | number | (string | number)[] | DataTransfer;
   type InputDataFormatted = string | (string | number)[];
 
-  export default /*#__PURE__*/ defineComponent({
-    name: "UiField",
+  const emailRegexp =
+    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Zа-яёА-ЯЁ\-0-9]+\.)+[a-zA-Zа-яёА-ЯЁ]{2,}))$/;
 
-    data() {
-      let emailRegexp =
-        /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Zа-яёА-ЯЁ\-0-9]+\.)+[a-zA-Zа-яёА-ЯЁ]{2,}))$/;
+  const error = ref(false);
+  const errorMessage = ref("");
+  const input = ref<ComponentPublicInstance>();
 
-      return {
-        error: false,
-        errorMessage: "",
-        rules: {
-          required: {
-            check(data: InputDataFormatted, required: boolean, tel: boolean): boolean {
-              return (required && !data.length) || (required && data === "+7 (" && tel) ? true : false;
-            },
-            message: "Заполните это поле",
-          },
-          min: {
-            check(data: InputDataFormatted, min: number): boolean {
-              return data.length < min ? true : false;
-            },
-            message: "Слишком мало символов",
-          },
-          max: {
-            check(data: InputDataFormatted, max: number): boolean {
-              return data.length > max ? true : false;
-            },
-            message: "Слишком много символов",
-          },
-          email: {
-            check(data: InputDataFormatted, email: boolean): boolean {
-              return data && email && !emailRegexp.test(String(data).toLowerCase()) ? true : false;
-            },
-            message: "Введите корректный email",
-          },
-          tel: {
-            check(data: InputDataFormatted, tel: boolean, value: string): boolean {
-              return tel && data.length < 18 && value.length ? true : false;
-            },
-            message: "Введите корректный телефон",
-          },
-        },
-      };
-    },
-
-    props: {
-      field: { type: [String, Object], required: true },
-      type: { type: String },
-      rows: { type: String },
-      modelValue: { type: [String, Number, Array, Boolean, Object] },
-      value: { type: String },
-      label: { type: String },
-      required: { type: Boolean },
-      min: { type: Number, default: 0 },
-      max: { type: Number, default: Infinity },
-      email: { type: Boolean },
-      tel: { type: Boolean },
-      options: { type: Array },
-      direction: { type: String },
-      multiple: { type: Boolean },
-      design: { type: String },
-    },
-
-    computed: {
-      input(): InputComponent {
-        return this.$refs.input as InputComponent;
+  const rules = {
+    required: {
+      check(data: InputDataFormatted, required?: boolean, tel?: boolean): boolean {
+        return (required && !data.length) || (required && data === "+7 (" && tel) ? true : false;
       },
-
-      fieldType(): string {
-        return typeof this.field === "string" ? this.field : this.field.name;
-      },
+      message: "Заполните это поле",
     },
-
-    methods: {
-      check(data: InputData): void {
-        let dataFormatted = data as InputDataFormatted;
-
-        if (typeof data === "number") {
-          dataFormatted = data.toString();
-        } else if (typeof data === "boolean") {
-          dataFormatted = data === false ? "" : data.toString();
-        } else if (Object.prototype.toString.call(data) === "[object DataTransfer]") {
-          dataFormatted = (data as DataTransfer).items.length ? "got some files" : "";
-        }
-
-        let telInputValue = this.tel ? this.input.$el.value : false;
-
-        this.error =
-          this.rules.required.check(dataFormatted, this.required, this.tel) ||
-          this.rules.min.check(dataFormatted, this.min) ||
-          this.rules.max.check(dataFormatted, this.max) ||
-          this.rules.email.check(dataFormatted, this.email) ||
-          this.rules.tel.check(dataFormatted, this.tel, telInputValue);
-
-        if (this.rules.required.check(dataFormatted, this.required, this.tel)) {
-          this.errorMessage = this.rules.required.message;
-        } else if (this.rules.min.check(dataFormatted, this.min)) {
-          this.errorMessage = this.rules.min.message;
-        } else if (this.rules.max.check(dataFormatted, this.max)) {
-          this.errorMessage = this.rules.max.message;
-        } else if (this.rules.email.check(dataFormatted, this.email)) {
-          this.errorMessage = this.rules.email.message;
-        } else if (this.rules.tel.check(dataFormatted, this.tel, telInputValue)) {
-          this.errorMessage = this.rules.tel.message;
+    min: {
+      check(data: InputDataFormatted, min?: number): boolean {
+        if (min) {
+          return data.length < min ? true : false;
         } else {
-          this.errorMessage = "";
-        }
-
-        this.$emit("update:modelValue", data);
-      },
-
-      handleFocus(): void {
-        if (["UiSelect", "UiMultiselect"].includes(this.fieldType)) {
-          this.input.openOptions();
-        } else if (["UiCheckbox", "UiRadio"].includes(this.fieldType)) {
-          this.input.$el.click();
-        } else if (["UiUpload"].includes(this.fieldType)) {
-          this.input.$el.querySelector("input").click();
-        } else {
-          this.input.$el.focus();
+          return false;
         }
       },
+      message: "Слишком мало символов",
     },
+    max: {
+      check(data: InputDataFormatted, max?: number): boolean {
+        if (max) {
+          return data.length > max ? true : false;
+        } else {
+          return false;
+        }
+      },
+      message: "Слишком много символов",
+    },
+    email: {
+      check(data: InputDataFormatted, email?: boolean): boolean {
+        return data && email && !emailRegexp.test(String(data).toLowerCase()) ? true : false;
+      },
+      message: "Введите корректный email",
+    },
+    tel: {
+      check(data: InputDataFormatted, tel?: boolean, value?: string): boolean {
+        if (tel && value) {
+          return tel && data.length < 18 && value.length ? true : false;
+        } else {
+          return false;
+        }
+      },
+      message: "Введите корректный телефон",
+    },
+  };
+
+  interface Props {
+    field: { __file?: string };
+    type?: string;
+    rows?: string;
+    modelValue?: string | number | [] | boolean | object;
+    value?: string;
+    label?: string;
+    options?: string[] | number[] | { value: string | number; name: string }[];
+    direction?: string;
+    multiple?: boolean;
+    design?: string;
+    required?: boolean;
+    email?: boolean;
+    tel?: boolean;
+    min?: number;
+    max?: number;
+  }
+
+  const props = withDefaults(defineProps<Props>(), {
+    min: 0,
+    max: Infinity,
   });
+
+  const emit = defineEmits(["update:modelValue"]);
+
+  function check(data: InputData): void {
+    let dataFormatted = data as InputDataFormatted;
+
+    if (typeof data === "number") {
+      dataFormatted = data.toString();
+    } else if (typeof data === "boolean") {
+      dataFormatted = data === false ? "" : data.toString();
+    } else if (Object.prototype.toString.call(data) === "[object DataTransfer]") {
+      dataFormatted = (data as DataTransfer).items.length ? "got some files" : "";
+    }
+
+    const telInputValue: string = props.tel ? input.value!.$el.value : false;
+
+    error.value =
+      rules.required.check(dataFormatted, props.required, props.tel) ||
+      rules.min.check(dataFormatted, props.min) ||
+      rules.max.check(dataFormatted, props.max) ||
+      rules.email.check(dataFormatted, props.email) ||
+      rules.tel.check(dataFormatted, props.tel, telInputValue);
+
+    if (rules.required.check(dataFormatted, props.required, props.tel)) {
+      errorMessage.value = rules.required.message;
+    } else if (rules.min.check(dataFormatted, props.min)) {
+      errorMessage.value = rules.min.message;
+    } else if (rules.max.check(dataFormatted, props.max)) {
+      errorMessage.value = rules.max.message;
+    } else if (rules.email.check(dataFormatted, props.email)) {
+      errorMessage.value = rules.email.message;
+    } else if (rules.tel.check(dataFormatted, props.tel, telInputValue)) {
+      errorMessage.value = rules.tel.message;
+    } else {
+      errorMessage.value = "";
+    }
+
+    emit("update:modelValue", data);
+  }
+
+  const fieldType = computed(() => {
+    const componentNameWithExt = props.field.__file!.split("/");
+    const componentName = componentNameWithExt.at(-1)!.split(".");
+    return componentName[0];
+  });
+
+  function handleFocus(): void {
+    if (["UiSelect"].includes(fieldType.value)) {
+      if (input.value) input.value.$el.querySelector(".ui-select-current").click();
+    } else if (["UiMultiselect"].includes(fieldType.value)) {
+      if (input.value) input.value.$el.querySelector(".ui-multiselect-current").click();
+    } else if (["UiCheckbox"].includes(fieldType.value)) {
+      if (input.value) input.value.$el.click();
+    } else if (["UiUpload"].includes(fieldType.value)) {
+      if (input.value) input.value.$el.querySelector("input").click();
+    } else {
+      if (input.value) input.value.$el.focus();
+    }
+  }
 </script>
 
 <style>

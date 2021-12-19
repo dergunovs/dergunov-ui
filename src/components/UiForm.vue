@@ -1,79 +1,74 @@
 <template>
-  <form @submit.prevent>
-    <slot v-if="formStatus !== 'success'"></slot>
+  <form @submit.prevent ref="form">
+    <slot v-if="props.formStatus !== 'success'"></slot>
 
-    <div v-if="formStatus === 'success'" class="ui-form-message">
+    <div v-if="props.formStatus === 'success'" class="ui-form-message">
       Сообщение успешно отправлено.<br />
       Скоро отвечу на почту.
     </div>
 
-    <div v-if="formStatus === 'error'" class="ui-form-message">
+    <div v-if="props.formStatus === 'error'" class="ui-form-message">
       Сообщение не удалось отправить по техническим причинам.<br />
       Попробуйте ещё раз чуть позже.
     </div>
   </form>
 </template>
 
-<script lang="ts">
-  import { defineComponent } from "vue";
+<script setup lang="ts">
+  import { onMounted, onUpdated, ref } from "vue";
 
-  export default /*#__PURE__*/ defineComponent({
-    name: "UiForm",
+  const props = defineProps<{
+    formStatus?: string;
+  }>();
 
-    props: {
-      formStatus: { type: String },
-    },
+  const errorsCount = ref(0);
+  const form = ref<HTMLElement>();
 
-    data() {
-      return {
-        errorsCount: 0,
-      };
-    },
+  const emit = defineEmits(["errors"]);
 
-    methods: {
-      formValidate(): void {
-        this.errorsCount = 0;
+  function formValidate(): void {
+    errorsCount.value = 0;
 
-        this.$el.querySelectorAll(".ui-field-label-block").forEach((element: HTMLElement) => {
-          let inputValue = (element.querySelector(".ui-field-input") as HTMLInputElement).value ? 1 : 0;
+    if (form.value) {
+      form.value.querySelectorAll(".ui-field-label-block").forEach((element: Element) => {
+        const inputValue = (element.querySelector(".ui-field-input") as HTMLInputElement).value ? 1 : 0;
 
-          let selectValue =
-            element.querySelectorAll(".ui-select-current-option").length +
-            element.querySelectorAll(".ui-multiselect-current-option").length;
+        const selectValue =
+          element.querySelectorAll(".ui-select-current-option").length +
+          element.querySelectorAll(".ui-multiselect-current-option").length;
 
-          let checkBoxInput = element.querySelector(".ui-checkbox") as HTMLInputElement;
-          let checkboxValue = checkBoxInput ? Number(checkBoxInput.checked) : 0;
+        const checkBoxInput = element.querySelector(".ui-checkbox") as HTMLInputElement;
+        const checkboxValue = checkBoxInput ? Number(checkBoxInput.checked) : 0;
 
-          let radioValue = 0;
-          (element.querySelectorAll(".ui-radio") as any).forEach((radio: HTMLInputElement) => {
-            radioValue = radioValue + Number(radio.checked);
-          });
-
-          let fileValue = element.querySelectorAll(".ui-file").length;
-
-          let allValues = inputValue + selectValue + checkboxValue + fileValue + radioValue;
-
-          if (
-            (element.querySelector(".ui-field-label-required") && !allValues) ||
-            element.querySelectorAll(".ui-field-error").length
-          ) {
-            this.errorsCount = this.errorsCount + 1;
-          }
+        let radioValue = 0;
+        (element.querySelectorAll(".ui-radio") as any).forEach((radio: HTMLInputElement) => {
+          radioValue = radioValue + Number(radio.checked);
         });
 
-        this.errorsCount > 0 ? this.$emit("errors", true) : this.$emit("errors", false);
-      },
-    },
+        const fileValue = element.querySelectorAll(".ui-file").length;
 
-    mounted() {
-      setTimeout(() => {
-        this.formValidate();
-      }, 100);
-    },
+        const allValues = inputValue + selectValue + checkboxValue + fileValue + radioValue;
 
-    updated() {
-      this.formValidate();
-    },
+        if (
+          (element.querySelector(".ui-field-label-required") && !allValues) ||
+          element.querySelectorAll(".ui-field-error").length
+        ) {
+          errorsCount.value++;
+        }
+      });
+    }
+
+    errorsCount.value > 0 ? emit("errors", true) : emit("errors", false);
+  }
+
+  onMounted(() => {
+    setTimeout(() => {
+      formValidate();
+    }, 100);
+  });
+
+  onUpdated(() => {
+    formValidate();
   });
 </script>
 
