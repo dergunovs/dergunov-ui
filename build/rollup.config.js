@@ -5,7 +5,6 @@ import typescript from "rollup-plugin-typescript2";
 import styles from "rollup-plugin-styles";
 import image from "@rollup/plugin-image";
 import alias from "@rollup/plugin-alias";
-import { terser } from "rollup-plugin-terser";
 
 const files = fs.readdirSync("./src/components");
 const components = files.reduce((obj, component) => {
@@ -15,7 +14,7 @@ const components = files.reduce((obj, component) => {
 
 export default {
   input: components,
-
+  external: ["vue"],
   output: {
     dir: "dist/esm",
     format: "es",
@@ -23,15 +22,11 @@ export default {
     assetFileNames: "assets/[name].[ext]",
     compact: true,
   },
-
-  external: ["vue"],
-
   plugins: [
     alias({ entries: [{ find: "@", replacement: `${path.resolve(path.resolve(__dirname, ".."), "src")}` }] }),
     vue({ defaultLang: { script: "ts" }, css: false, template: { isProduction: true } }),
     styles({ mode: ["extract", "styles.css"], minimize: process.env.NODE_ENV === "production" }),
     image(),
-    terser(),
     typescript({ useTsconfigDeclarationDir: true, emitDeclarationOnly: true }),
   ],
 };

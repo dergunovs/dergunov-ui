@@ -3,6 +3,7 @@
   "version": "0.4.5",
   "description": "ui-kit",
   "type": "module",
+  "main": "dist/esm/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/types/src/components/index.d.ts",
   "files": [
@@ -30,7 +31,6 @@
     "rollup": "^2.61.1",
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-styles": "^3.14.1",
-    "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-typescript2": "^0.31.1",
     "rollup-plugin-vue": "^6.0.0",
     "typescript": "^4.5.4",
