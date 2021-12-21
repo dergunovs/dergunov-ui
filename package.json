@@ -3,8 +3,8 @@
   "version": "0.4.7",
   "description": "ui-kit",
   "type": "module",
-  "main": "dist/esm/index.js",
-  "module": "dist/esm/index.js",
+  "main": "dist/esm/components/index.js",
+  "module": "dist/esm/components/index.js",
   "types": "dist/types/src/components/index.d.ts",
   "files": [
     "dist/*"
