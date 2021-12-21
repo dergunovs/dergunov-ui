@@ -21,6 +21,7 @@ export default {
     exports: "named",
     assetFileNames: "assets/[name].[ext]",
     compact: true,
+    preserveModules: true,
   },
   plugins: [
     alias({ entries: [{ find: "@", replacement: `${path.resolve(path.resolve(__dirname, ".."), "src")}` }] }),
