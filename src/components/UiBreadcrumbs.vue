@@ -8,21 +8,20 @@
       itemscope
       itemtype="https://schema.org/ListItem"
     >
-      <template v-if="index < breadcrumbs.length - 1">
-        <component
-          :is="props.linkType"
-          class="ui-breadcrumb-link"
-          :to="item.url"
-          :itemid="item.url"
-          itemtype="https://schema.org/Thing"
-          itemscope
-          itemprop="item"
-        >
-          <span itemprop="name">{{ item.title }}</span>
-        </component>
+      <component
+        v-if="index < breadcrumbs.length - 1"
+        :is="props.linkType"
+        class="ui-breadcrumb-link"
+        :to="item.url"
+        :itemid="item.url"
+        itemtype="https://schema.org/Thing"
+        itemscope
+        itemprop="item"
+      >
+        <span itemprop="name">{{ item.title }}</span>
+      </component>
 
-        <span class="ui-breadcrumb-arrow">></span>
-      </template>
+      <span v-if="index < breadcrumbs.length - 1" class="ui-breadcrumb-arrow">></span>
 
       <span v-else itemprop="name">{{ item.title }}</span>
 
