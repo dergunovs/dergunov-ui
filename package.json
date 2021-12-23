@@ -1,6 +1,6 @@
 {
   "name": "dergunov-ui",
-  "version": "0.4.9",
+  "version": "0.4.10",
   "description": "ui-kit",
   "type": "module",
   "main": "dist/esm/components/index.js",
