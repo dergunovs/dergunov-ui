@@ -14,4 +14,19 @@
 
 * {
   font-family: "font";
+  font-size: 18px;
+}
+
+h1 {
+  font-weight: 700;
+  font-size: 36px;
+  text-align: center;
+  margin: 32px 0;
+}
+
+h2 {
+  font-weight: 700;
+  font-size: 28px;
+  text-align: center;
+  margin: 28px 0;
 }

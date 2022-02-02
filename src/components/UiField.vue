@@ -9,6 +9,7 @@
       :is="field"
       :modelValue="modelValue"
       @update:modelValue="check"
+      @search="searchHandler"
       ref="input"
       :type="type"
       :rows="rows"
@@ -105,7 +106,11 @@
     max: Infinity,
   });
 
-  const emit = defineEmits(["update:modelValue"]);
+  const emit = defineEmits(["update:modelValue", "search"]);
+
+  function searchHandler(searchQuery: string) {
+    emit("search", searchQuery);
+  }
 
   function check(data: InputData): void {
     let dataFormatted = data as InputDataFormatted;

@@ -46,7 +46,8 @@
   "author": "Aleksandr Dergunov <a@dergunov.com> (https://dergunov.com)",
   "license": "ISC",
   "vue": {
-    "outputDir": "book"
+    "outputDir": "book",
+    "productionSourceMap": false
   },
   "babel": {
     "presets": [
