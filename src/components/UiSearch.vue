@@ -8,7 +8,10 @@
         @keydown.esc="hideOptions"
         ref="searchQueryElement"
         class="ui-search-current"
-        :class="{ 'ui-search-current-active': isShowOptions }"
+        :class="[
+          { 'ui-search-current-active': isShowOptions },
+          { 'ui-search-current-option': currentOption.value !== '' },
+        ]"
         :disabled="currentOption.value !== ''"
       />
       <button v-if="searchQuery" @click="clearSearchQuery" class="ui-search-current-clear">×</button>

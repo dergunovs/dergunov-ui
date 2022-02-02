@@ -18,9 +18,9 @@
       <p class="mb-32"><b>required:</b> обязательное поле, Boolean.</p>
 
       <p><b>Поддержка валидации разными типами полей</b></p>
-      <p><b>text:</b> tel, email, min, max, required.</p>
+      <p><b>input:</b> tel, email, min, max, required.</p>
       <p><b>textarea:</b> min, max, required.</p>
-      <p class="mb-32"><b>select, multiselect, checkbox, radio, upload:</b> required.</p>
+      <p class="mb-32"><b>select, multiselect, search, checkbox, radio, upload:</b> required.</p>
 
       <p class="mb-32">formData: {{ formData }}</p>
 
@@ -42,19 +42,11 @@
           class="w-50 mb-8"
         />
 
-        <UiField
-          :field="UiTextarea"
-          label="Textarea"
-          type="textarea"
-          required
-          v-model="formData.required"
-          class="w-50 mb-8"
-        />
+        <UiField :field="UiTextarea" label="Textarea" required v-model="formData.required" class="w-50 mb-8" />
 
         <UiField
           :field="UiSelect"
           label="Select"
-          type="select"
           v-model="formData.select"
           :options="selectOptions"
           class="w-50 mb-8"
@@ -63,7 +55,6 @@
         <UiField
           :field="UiMultiselect"
           label="Multiselect"
-          type="multiselect"
           required
           v-model="formData.multiselect"
           :options="multiselectOptions"
@@ -73,7 +64,6 @@
         <UiField
           :field="UiCheckbox"
           label="Согласие на обработку персональных данных"
-          type="checkbox"
           v-model="formData.agree"
           required
           class="mb-16"
@@ -82,21 +72,13 @@
         <UiField
           :field="UiRadio"
           label="Оцените эту форму от 1 до 5"
-          type="radio"
           v-model="formData.rate"
           required
           :options="rateOptions"
           class="mb-16"
         />
 
-        <UiField
-          :field="UiUpload"
-          label="Загрузка файлов"
-          type="upload"
-          v-model="formData.files"
-          multiple
-          class="mb-32"
-        />
+        <UiField :field="UiUpload" label="Загрузка файлов" v-model="formData.files" multiple class="mb-32" />
       </UiForm>
     </section>
   </div>

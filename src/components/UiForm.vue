@@ -37,6 +37,8 @@
           element.querySelectorAll(".ui-select-current-option").length +
           element.querySelectorAll(".ui-multiselect-current-option").length;
 
+        const searchValue = element.querySelectorAll(".ui-search-current-option").length;
+
         const checkBoxInput = element.querySelector(".ui-checkbox") as HTMLInputElement;
         const checkboxValue = checkBoxInput ? Number(checkBoxInput.checked) : 0;
 
@@ -47,7 +49,7 @@
 
         const fileValue = element.querySelectorAll(".ui-file").length;
 
-        const allValues = inputValue + selectValue + checkboxValue + fileValue + radioValue;
+        const allValues = inputValue + searchValue + selectValue + checkboxValue + fileValue + radioValue;
 
         if (
           (element.querySelector(".ui-field-label-required") && !allValues) ||

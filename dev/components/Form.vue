@@ -22,20 +22,20 @@
           <UiField :field="UiInput" label="Электронная почта" v-model="formData.email" email class="w-50-8" />
         </div>
 
+        <UiField :field="UiTextarea" label="Сообщение" v-model="formData.message" :min="3" :max="9" class="mb-16" />
+
         <UiField
-          :field="UiTextarea"
-          label="Сообщение"
-          type="textarea"
-          v-model="formData.message"
-          :min="3"
-          :max="9"
-          class="mb-16"
+          :field="UiSearch"
+          label="Поиск"
+          v-model="formData.search"
+          :options="rateOptions"
+          required
+          class="mb-32"
         />
 
         <UiField
           :field="UiSelect"
           label="Нужна обратная связь?"
-          type="select"
           v-model="formData.recall"
           :options="recallOptions"
           required
@@ -45,7 +45,6 @@
         <UiField
           :field="UiMultiselect"
           label="Предпочтительные типы связи"
-          type="multiselect"
           v-model="formData.type"
           :options="typeOptions"
           required
@@ -55,7 +54,6 @@
         <UiField
           :field="UiCheckbox"
           label="Согласие на обработку персональных данных"
-          type="checkbox"
           v-model="formData.agree"
           required
           class="mb-16"
@@ -64,7 +62,6 @@
         <UiField
           :field="UiRadio"
           label="Оцените эту форму от 1 до 5"
-          type="radio"
           v-model="formData.rate"
           required
           :options="rateOptions"
@@ -72,15 +69,7 @@
           class="mb-16"
         />
 
-        <UiField
-          :field="UiUpload"
-          label="Загрузка файлов"
-          type="upload"
-          v-model="formData.files"
-          multiple
-          required
-          class="mb-32"
-        />
+        <UiField :field="UiUpload" label="Загрузка файлов" v-model="formData.files" multiple class="mb-32" />
 
         <UiButton @click="formSubmit" :disabled="formErrors">Отправить сообщение</UiButton>
       </UiForm>
@@ -96,6 +85,7 @@
     UiUpload,
     UiRadio,
     UiCheckbox,
+    UiSearch,
     UiMultiselect,
     UiSelect,
     UiTextarea,
@@ -108,6 +98,7 @@
     email: "",
     message: "",
     recall: "",
+    search: "",
     type: [],
     agree: false,
     rate: "",
