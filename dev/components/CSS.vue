@@ -4,13 +4,10 @@
       <h1>{{ $options.name }}</h1>
 
       <p>Встроенные в библиотеку утилитарные классы и общие стили.</p>
-      <p>
-        * { font-family: "font"; box-sizing: border-box; margin: 0; padding: 0; font-weight: 400; font-size: 18px;
-        line-height: 1.5 }
-      </p>
+      <p>* { box-sizing: border-box; margin: 0; padding: 0; font-weight: 400; line-height: 1.5 }</p>
       <p>section { margin: 64px 0 }</p>
       <p>img { max-width: 100%, height: auto}</p>
-      <p>.center {width: calc(100% - 120px); margin: 0 auto; max-width: 1600px }</p>
+      <p>.center {width: calc(100% - 64px); margin: 0 auto; max-width: 1800px }</p>
     </section>
 
     <section>
@@ -77,6 +74,10 @@
 
       <div class="flex flex-top mb-16">
         <div class="border-gray p-8">flex + flex-top</div>
+      </div>
+
+      <div class="flex flex-middle mb-16">
+        <div class="border-gray p-8">flex + flex-middle</div>
       </div>
 
       <div class="flex flex-bottom mb-16">

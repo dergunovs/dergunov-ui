@@ -13,6 +13,7 @@ export { default as Map } from "./Map.vue";
 export { default as Multiselect } from "./Multiselect.vue";
 export { default as Popup } from "./Popup.vue";
 export { default as Radio } from "./Radio.vue";
+export { default as Search } from "./Search.vue";
 export { default as Select } from "./Select.vue";
 export { default as Slider } from "./Slider.vue";
 export { default as Spoiler } from "./Spoiler.vue";

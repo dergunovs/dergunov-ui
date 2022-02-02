@@ -13,6 +13,7 @@ export { default as UiMap } from "./UiMap.vue";
 export { default as UiMultiselect } from "./UiMultiselect.vue";
 export { default as UiPopup } from "./UiPopup.vue";
 export { default as UiRadio } from "./UiRadio.vue";
+export { default as UiSearch } from "./UiSearch.vue";
 export { default as UiSelect } from "./UiSelect.vue";
 export { default as UiSlider } from "./UiSlider.vue";
 export { default as UiSpoiler } from "./UiSpoiler.vue";
