@@ -15,7 +15,11 @@
     </div>
 
     <ul class="ui-search-dropdown-block" v-show="isShowOptions">
-      <template v-if="searchQuery.length > 2">
+      <li v-if="searchQuery.length < 3" @click="hideOptions" @keydown.esc="hideOptions" class="ui-search-dropdown">
+        Напишите хотя бы 3 символа
+      </li>
+
+      <template v-if="searchQuery.length > 2 && options.length">
         <li
           v-for="(option, index) in optionsComputed"
           :key="`option${index}`"
@@ -32,7 +36,15 @@
           {{ option.name }}
         </li>
       </template>
-      <li v-else @keydown.esc="hideOptions" class="ui-search-dropdown">Напишите хотя бы 3 символа</li>
+
+      <li
+        v-if="searchQuery.length > 2 && !options.length"
+        @click="hideOptions"
+        @keydown.esc="hideOptions"
+        class="ui-search-dropdown"
+      >
+        Нет результатов
+      </li>
     </ul>
   </div>
 </template>
