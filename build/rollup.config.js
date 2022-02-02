@@ -5,6 +5,7 @@ import typescript from "rollup-plugin-typescript2";
 import styles from "rollup-plugin-styles";
 import image from "@rollup/plugin-image";
 import alias from "@rollup/plugin-alias";
+import { terser } from "rollup-plugin-terser";
 
 const files = fs.readdirSync("./src/components");
 const components = files.reduce((obj, component) => {
@@ -29,5 +30,6 @@ export default {
     styles({ mode: ["extract", "styles.css"], minimize: process.env.NODE_ENV === "production" }),
     image(),
     typescript({ useTsconfigDeclarationDir: true, emitDeclarationOnly: true }),
+    terser(),
   ],
 };
