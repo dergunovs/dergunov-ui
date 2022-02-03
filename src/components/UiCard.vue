@@ -54,7 +54,7 @@
     tag?: string | string[];
     theme?: { h1: string };
     views?: number;
-    level?: number;
+    level?: 1 | 2 | 3;
   }
 
   const props = defineProps<{

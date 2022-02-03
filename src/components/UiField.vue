@@ -88,12 +88,11 @@
     type?: string;
     rows?: string;
     modelValue?: string | number | [] | boolean | object;
-    value?: string;
     label?: string;
     options?: string[] | number[] | { value: string | number; name: string }[];
-    direction?: string;
+    direction?: "column" | "row";
     multiple?: boolean;
-    design?: string;
+    design?: "none" | "switch" | "buttons";
     required?: boolean;
     email?: boolean;
     tel?: boolean;

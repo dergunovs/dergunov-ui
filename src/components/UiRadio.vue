@@ -37,9 +37,9 @@
   interface Props {
     modelValue: OptionValue;
     options: OptionValue[] | Option[];
-    direction?: string;
+    direction?: "column" | "row";
+    design?: "none" | "buttons";
     disabled?: boolean;
-    design?: string;
   }
 
   const props = withDefaults(defineProps<Props>(), {

@@ -32,7 +32,7 @@
 
   interface Props {
     headers: string[];
-    fit?: string;
+    fit?: "regular" | "grow";
     width?: string;
   }
 

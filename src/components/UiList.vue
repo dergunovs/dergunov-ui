@@ -6,9 +6,9 @@
 
 <script setup lang="ts">
   interface Props {
-    type?: string;
-    direction?: string;
-    design?: string;
+    type?: "ul" | "ol";
+    direction?: "column" | "row";
+    design?: "regular" | "none" | "styled";
   }
 
   const props = withDefaults(defineProps<Props>(), {

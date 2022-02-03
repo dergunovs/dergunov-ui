@@ -27,7 +27,7 @@
 
   interface Props {
     modelValue?: Value;
-    design?: string;
+    design?: "none" | "switch";
     disabled?: boolean;
   }
 
