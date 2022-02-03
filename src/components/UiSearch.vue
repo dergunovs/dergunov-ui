@@ -138,13 +138,13 @@
       if (props.modelValue || props.modelValue === 0) {
         if (typeof props.options[0] === "string" || typeof props.options[0] === "number") {
           currentOption.value = { value: props.modelValue, name: props.modelValue.toString() };
-          searchQuery.value = props.modelValue.toString();
+          searchQuery.value = props.options[0].toString();
         }
         if (typeof props.options[0] === "object") {
           currentOption.value = (props.options as Option[]).find(
             (option) => option.value === props.modelValue
           ) as Option;
-          searchQuery.value = props.modelValue.toString();
+          searchQuery.value = props.options[0].name;
         }
       }
     }, 100);
