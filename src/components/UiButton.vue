@@ -16,8 +16,8 @@
 
 <script setup lang="ts">
   interface Props {
-    fit?: string;
-    design?: string;
+    fit?: "regular" | "grow";
+    design?: "regular" | "link" | "outline";
     active?: boolean;
     disabled?: boolean;
   }
@@ -67,6 +67,16 @@
 
   .ui-button-design-regular.ui-button-active-true {
     background-color: var(--color-primary-dark);
+  }
+
+  .ui-button-design-outline {
+    background: none;
+    color: var(--color-primary);
+    border: 2px solid;
+  }
+
+  .ui-button-design-outline:hover {
+    color: var(--color-primary-dark);
   }
 
   .ui-button-design-link {

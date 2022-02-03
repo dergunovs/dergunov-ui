@@ -7,7 +7,7 @@
       <p>* { box-sizing: border-box; margin: 0; padding: 0; font-weight: 400; line-height: 1.5 }</p>
       <p>section { margin: 64px 0 }</p>
       <p>img { max-width: 100%, height: auto}</p>
-      <p>.center {width: calc(100% - 64px); margin: 0 auto; max-width: 1800px }</p>
+      <p>.center {width: calc(100% - 128px); margin: 0 auto; max-width: 1800px }</p>
     </section>
 
     <section>
