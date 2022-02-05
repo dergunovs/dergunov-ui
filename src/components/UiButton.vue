@@ -4,6 +4,7 @@
     :class="[
       `ui-button-fit-${props.fit}`,
       `ui-button-design-${props.design}`,
+      `ui-button-color-${props.color}`,
       `ui-button-active-${props.active}`,
       `ui-button-disabled-${props.disabled}`,
     ]"
@@ -18,6 +19,7 @@
   interface Props {
     fit?: "regular" | "grow";
     design?: "regular" | "link" | "outline";
+    color?: "primary" | "success" | "error" | "gray";
     active?: boolean;
     disabled?: boolean;
   }
@@ -25,11 +27,16 @@
   const props = withDefaults(defineProps<Props>(), {
     fit: "regular",
     design: "regular",
+    color: "primary",
     active: false,
     disabled: false,
   });
 
   const emit = defineEmits(["click"]);
+
+  const color = `var(--color-${props.color})`;
+  const colorDark = `var(--color-${props.color}-dark)`;
+  const colorLight = `var(--color-${props.color}-light)`;
 </script>
 
 <script lang="ts">
@@ -42,7 +49,7 @@
     align-items: center;
     text-decoration: none;
     cursor: pointer;
-    background-color: var(--color-primary);
+    background-color: v-bind(color);
     border: none;
     border-radius: 4px;
     color: var(--color-white);
@@ -61,27 +68,24 @@
     width: 100%;
   }
 
-  .ui-button-design-regular:hover {
-    background-color: var(--color-primary-dark);
-  }
-
+  .ui-button-design-regular:hover,
   .ui-button-design-regular.ui-button-active-true {
-    background-color: var(--color-primary-dark);
+    background-color: v-bind(colorDark);
   }
 
   .ui-button-design-outline {
     background: none;
-    color: var(--color-primary);
+    color: v-bind(color);
     border: 2px solid;
   }
 
   .ui-button-design-outline:hover {
-    color: var(--color-primary-dark);
+    color: v-bind(colorDark);
   }
 
   .ui-button-design-link {
     background: none;
-    color: var(--color-primary);
+    color: v-bind(color);
     padding: 0;
     font-weight: 400;
     height: auto;
@@ -89,11 +93,11 @@
   }
 
   .ui-button-design-link:hover {
-    color: var(--color-primary-dark);
+    color: v-bind(colorDark);
   }
 
   .ui-button-disabled-true {
     pointer-events: none;
-    background-color: var(--color-primary-light);
+    background-color: v-bind(colorLight);
   }
 </style>
