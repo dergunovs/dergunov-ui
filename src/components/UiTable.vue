@@ -34,11 +34,15 @@
     headers: string[];
     fit?: "regular" | "grow";
     width?: string;
+    modelValue: boolean;
   }
 
   const props = withDefaults(defineProps<Props>(), {
     fit: "regular",
+    modelValue: false,
   });
+
+  const emit = defineEmits(["reachBottom"]);
 
   function checkTableSize(): void {
     if (tableBlock.value && table.value) {
@@ -49,13 +53,23 @@
     }
   }
 
+  function checkReachingScreenBottom() {
+    if (props.modelValue && table.value) {
+      if (window.innerHeight - (table.value.getBoundingClientRect().y + table.value.scrollHeight) < 100) {
+        emit("reachBottom");
+      }
+    }
+  }
+
   onMounted(() => {
     checkTableSize();
     window.addEventListener("resize", checkTableSize);
+    window.addEventListener("scroll", checkReachingScreenBottom);
   });
 
   onBeforeUnmount(() => {
     window.removeEventListener("resize", checkTableSize);
+    window.removeEventListener("scroll", checkReachingScreenBottom);
   });
 </script>
 

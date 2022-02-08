@@ -1,45 +1,43 @@
 <template>
-  <div>
-    <section>
-      <h1>{{ $options.name }}</h1>
+  <section>
+    <h1>{{ $options.name }}</h1>
 
-      <div class="mb-32">
-        <p>thumbPrefix: префикс для пути до изображения thumb.</p>
-        <p>Основной props - это объект, который состоит из:</p>
-        <p><b>h1:</b> заголовок записи. <b>Обязательное поле.</b></p>
-        <p><b>introtext:</b> вводный текст. <b>Обязательное поле.</b></p>
-        <p><b>thumb:</b> ссылка на изображение. В качестве alt используется h1.</p>
-        <p><b>tag:</b> текстовые теги, string или массив string.</p>
-        <p><b>theme:</b> объект, состоящий из h1 темы записи.</p>
-        <p><b>views:</b> число просмотров.</p>
-        <p><b>level:</b> уровень сложности в виде числа от 1 до 3.</p>
-      </div>
+    <div class="mb-32">
+      <p>thumbPrefix: префикс для пути до изображения thumb.</p>
+      <p>Основной props - это объект, который состоит из:</p>
+      <p><b>h1:</b> заголовок записи. <b>Обязательное поле.</b></p>
+      <p><b>introtext:</b> вводный текст. <b>Обязательное поле.</b></p>
+      <p><b>thumb:</b> ссылка на изображение. В качестве alt используется h1.</p>
+      <p><b>tag:</b> текстовые теги, string или массив string.</p>
+      <p><b>theme:</b> объект, состоящий из h1 темы записи.</p>
+      <p><b>views:</b> число просмотров.</p>
+      <p><b>level:</b> уровень сложности в виде числа от 1 до 3.</p>
+    </div>
 
-      <h2>Блог или кейсы</h2>
-      <div class="flex flex-sb flex-top flex-wrap gap-32 mb-32">
-        <a
-          v-for="blog in blogList"
-          :key="blog.id"
-          :href="blog.url"
-          class="w-33-32 text-no-line color-black no-hover-color"
-        >
-          <UiCard :card="blog" />
-        </a>
-      </div>
+    <h2>Блог или кейсы</h2>
+    <div class="flex flex-sb flex-top flex-wrap gap-32 mb-32">
+      <a
+        v-for="blog in blogList"
+        :key="blog.id"
+        :href="blog.url"
+        class="w-33-32 text-no-line color-black no-hover-color"
+      >
+        <UiCard :card="blog" />
+      </a>
+    </div>
 
-      <h2>Wiki</h2>
-      <div class="flex flex-sb flex-top flex-wrap gap-32">
-        <a
-          v-for="wiki in wikiList"
-          :key="wiki.id"
-          :href="wiki.url"
-          class="w-33-32 text-no-line color-black no-hover-color"
-        >
-          <UiCard :card="wiki" />
-        </a>
-      </div>
-    </section>
-  </div>
+    <h2>Wiki</h2>
+    <div class="flex flex-sb flex-top flex-wrap gap-32">
+      <a
+        v-for="wiki in wikiList"
+        :key="wiki.id"
+        :href="wiki.url"
+        class="w-33-32 text-no-line color-black no-hover-color"
+      >
+        <UiCard :card="wiki" />
+      </a>
+    </div>
+  </section>
 </template>
 
 <script setup lang="ts">

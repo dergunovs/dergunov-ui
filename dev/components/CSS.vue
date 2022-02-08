@@ -1,14 +1,12 @@
 <template>
-  <div>
-    <section>
-      <h1>{{ $options.name }}</h1>
+  <section>
+    <h1>{{ $options.name }}</h1>
 
-      <p>Встроенные в библиотеку утилитарные классы и общие стили.</p>
-      <p>* { box-sizing: border-box; margin: 0; padding: 0; font-weight: 400; line-height: 1.5 }</p>
-      <p>section { margin: 64px 0 }</p>
-      <p>img { max-width: 100%, height: auto}</p>
-      <p>.center {width: calc(100% - 128px); margin: 0 auto; max-width: 1800px }</p>
-    </section>
+    <p>Встроенные в библиотеку утилитарные классы и общие стили.</p>
+    <p>* { box-sizing: border-box; margin: 0; padding: 0; font-weight: 400; line-height: 1.5 }</p>
+    <p>section { margin: 64px 0 }</p>
+    <p>img { max-width: 100%, height: auto}</p>
+    <p>.center {width: calc(100% - 128px); margin: 0 auto; max-width: 1800px }</p>
 
     <section>
       <h1>Цвет</h1>
@@ -167,7 +165,7 @@
         <span class="opacity-25">opacity-25</span>, <span class="opacity-0">opacity-0</span> - тут есть opacity-0
       </p>
     </section>
-  </div>
+  </section>
 </template>
 
 <script lang="ts">

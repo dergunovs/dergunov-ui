@@ -1,42 +1,40 @@
 <template>
-  <div>
-    <section>
-      <h1>{{ $options.name }}</h1>
+  <section>
+    <h1>{{ $options.name }}</h1>
 
-      <div class="mb-16">
-        <p><b>slides:</b> массив слайдов для отображения.</p>
-        <p>Работа со слайдером идёт через scoped slots. Нужно сделать bind элемента в слоте v-slot="client".</p>
-        <p>После это внутри слайда можно использовать данные в вашем шаблоне, например, client.slide.image.</p>
-      </div>
+    <div class="mb-16">
+      <p><b>slides:</b> массив слайдов для отображения.</p>
+      <p>Работа со слайдером идёт через scoped slots. Нужно сделать bind элемента в слоте v-slot="client".</p>
+      <p>После это внутри слайда можно использовать данные в вашем шаблоне, например, client.slide.image.</p>
+    </div>
 
-      <UiSlider :slides="clients" v-slot="client">
-        <div class="flex flex-sb flex-top">
-          <div class="w-40-16">
-            <img
-              :src="`https://dergunov.com/assets/images/${client.slide.logo}`"
-              :alt="`Кейс - ${client.slide.company}`"
-              width="600"
-              height="446"
-              loading="lazy"
-            />
-          </div>
-
-          <div class="w-60-16">
-            <div class="mb-16">
-              <b class="text-big text-underline-bold">{{ client.slide.company }}</b>
-            </div>
-
-            <div class="mb-16">
-              <div><b>Регион:</b> {{ client.slide.region }}</div>
-              <div><b>Начало сотрудничества:</b> {{ client.slide.period }} год</div>
-            </div>
-
-            <div v-html="client.slide.description" class="bg-gray-light p-32"></div>
-          </div>
+    <UiSlider :slides="clients" v-slot="client">
+      <div class="flex flex-sb flex-top">
+        <div class="w-40-16">
+          <img
+            :src="`https://dergunov.com/assets/images/${client.slide.logo}`"
+            :alt="`Кейс - ${client.slide.company}`"
+            width="600"
+            height="446"
+            loading="lazy"
+          />
         </div>
-      </UiSlider>
-    </section>
-  </div>
+
+        <div class="w-60-16">
+          <div class="mb-16">
+            <b class="text-big text-underline-bold">{{ client.slide.company }}</b>
+          </div>
+
+          <div class="mb-16">
+            <div><b>Регион:</b> {{ client.slide.region }}</div>
+            <div><b>Начало сотрудничества:</b> {{ client.slide.period }} год</div>
+          </div>
+
+          <div v-html="client.slide.description" class="bg-gray-light p-32"></div>
+        </div>
+      </div>
+    </UiSlider>
+  </section>
 </template>
 
 <script setup lang="ts">

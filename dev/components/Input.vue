@@ -1,20 +1,18 @@
 <template>
-  <div>
-    <section>
-      <h1>{{ $options.name }}</h1>
+  <section>
+    <h1>{{ $options.name }}</h1>
 
-      <p>Можно дополнить атрибутами инпутов, например, placeholder="test". Высота инпута равна высоте кнопки.</p>
-      <p>Директива v-model добавляет компоненту двустороннее связывание с data.</p>
-      <p class="mb-16">Атрибут type="tel" добавляет маску.</p>
+    <p>Можно дополнить атрибутами инпутов, например, placeholder="test". Высота инпута равна высоте кнопки.</p>
+    <p>Директива v-model добавляет компоненту двустороннее связывание с data.</p>
+    <p class="mb-16">Атрибут type="tel" добавляет маску.</p>
 
-      <UiInput v-model="regular" class="mb-8" />
-      <UiInput v-model="tel" type="tel" placeholder="tel" class="mb-16" />
+    <UiInput v-model="regular" class="mb-8" />
+    <UiInput v-model="tel" type="tel" placeholder="tel" class="mb-16" />
 
-      <div class="flex mb-16">
-        <UiInput placeholder="disabled" disabled class="mr-8" /><UiButton>Одинаковая высота</UiButton>
-      </div>
-    </section>
-  </div>
+    <div class="flex mb-16">
+      <UiInput placeholder="disabled" disabled class="mr-8" /><UiButton>Одинаковая высота</UiButton>
+    </div>
+  </section>
 </template>
 
 <script setup lang="ts">

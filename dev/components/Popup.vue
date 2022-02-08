@@ -1,24 +1,22 @@
 <template>
-  <div>
-    <section>
-      <h1>{{ $options.name }}</h1>
+  <section>
+    <h1>{{ $options.name }}</h1>
 
-      <p>Директива v-model добавляет компоненту двустороннее связывание для управления состоянием popup.</p>
-      <p>При появлении фокус устанавливается на общий div popup.</p>
-      <p class="mb-16">Закрыть popup: через v-model, кнопка х, esc, клик вне области.</p>
+    <p>Директива v-model добавляет компоненту двустороннее связывание для управления состоянием popup.</p>
+    <p>При появлении фокус устанавливается на общий div popup.</p>
+    <p class="mb-16">Закрыть popup: через v-model, кнопка х, esc, клик вне области.</p>
 
-      <p class="mb-16">popup: {{ isShow }}</p>
+    <p class="mb-16">popup: {{ isShow }}</p>
 
-      <UiButton @click="isShow = true">Показать popup</UiButton>
+    <UiButton @click="isShow = true">Показать popup</UiButton>
 
-      <UiPopup v-model="isShow">
-        <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sed dolor itaque incidunt molestias saepe quo
-          eligendi necessitatibus magnam autem corporis sunt, placeat eaque nihil explicabo.
-        </p>
-      </UiPopup>
-    </section>
-  </div>
+    <UiPopup v-model="isShow">
+      <p>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sed dolor itaque incidunt molestias saepe quo eligendi
+        necessitatibus magnam autem corporis sunt, placeat eaque nihil explicabo.
+      </p>
+    </UiPopup>
+  </section>
 </template>
 
 <script setup lang="ts">

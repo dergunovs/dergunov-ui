@@ -1,21 +1,19 @@
 <template>
-  <div>
-    <section>
-      <h1>{{ $options.name }}</h1>
+  <section>
+    <h1>{{ $options.name }}</h1>
 
-      <p>Директива v-model добавляет компоненту двустороннее связывание с data.</p>
-      <p class="mb-16">
-        <b>options:</b> массив состоящий из элементов одного из следующих типов:<br />
-        1. Object [{ <b>value:</b> значение, <b>name:</b> название для отображения }, ...]<br />
-        2. String ["Первый","Второй","Третий"]<br />
-        3. Number [1,2,3]
-      </p>
+    <p>Директива v-model добавляет компоненту двустороннее связывание с data.</p>
+    <p class="mb-16">
+      <b>options:</b> массив состоящий из элементов одного из следующих типов:<br />
+      1. Object [{ <b>value:</b> значение, <b>name:</b> название для отображения }, ...]<br />
+      2. String ["Первый","Второй","Третий"]<br />
+      3. Number [1,2,3]
+    </p>
 
-      <p><UiSelect v-model="currentOption" :options="options" /></p>
+    <p><UiSelect v-model="currentOption" :options="options" /></p>
 
-      <p>currentOption: {{ currentOption }}</p>
-    </section>
-  </div>
+    <p>currentOption: {{ currentOption }}</p>
+  </section>
 </template>
 
 <script setup lang="ts">

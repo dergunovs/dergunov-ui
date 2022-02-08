@@ -1,14 +1,12 @@
 <template>
-  <div>
-    <section>
-      <h1>{{ $options.name }}</h1>
+  <section>
+    <h1>{{ $options.name }}</h1>
 
-      <p class="mb-16">Директива v-model добавляет компоненту input двустороннее связывание с data.</p>
+    <p class="mb-16">Директива v-model добавляет компоненту input двустороннее связывание с data.</p>
 
-      <UiTextarea v-model="test"></UiTextarea>
-      <p class="mb-16">data: {{ test }}</p>
-    </section>
-  </div>
+    <UiTextarea v-model="test"></UiTextarea>
+    <p class="mb-16">data: {{ test }}</p>
+  </section>
 </template>
 
 <script setup lang="ts">
