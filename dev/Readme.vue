@@ -1,7 +1,5 @@
 <template>
   <section>
-    <h1>Библиотека компонентов</h1>
-
     <p>Библиотека компонентов для Nuxt3/Vite/Vue CLI 5. Zero Dependencies. Code Splitting.</p>
     <p>
       22 компонента занимают <b>до 9 кб</b> (gzip) в бандле вашего приложения. <b>4 кб</b> (gzip) занимает весь CSS.
@@ -76,5 +74,5 @@ import { UiButton } from "dergunov-ui"
 </script>
 
 <script lang="ts">
-  export default { name: "Readme" };
+  export default { name: "Библиотека компонентов" };
 </script>

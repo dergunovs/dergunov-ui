@@ -1,7 +1,5 @@
 <template>
   <section>
-    <h1>{{ $options.name }}</h1>
-
     <p>В Nuxt и Vue Router разные компоненты ссылок: NuxtLink и RouterLink.</p>
 
     <p><b>linkType (component):</b> NuxtLink, RouterLink</p>

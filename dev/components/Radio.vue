@@ -1,7 +1,5 @@
 <template>
   <section>
-    <h1>{{ $options.name }}</h1>
-
     <p>Директива v-model добавляет компоненту двустороннее связывание с data.</p>
 
     <p><b>direction:</b> column, row. default: <b>column</b></p>

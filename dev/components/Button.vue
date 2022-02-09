@@ -1,7 +1,5 @@
 <template>
   <section>
-    <h1>{{ $options.name }}</h1>
-
     <p><b>fit:</b> regular, grow. default: <b>regular</b></p>
     <p><b>design:</b> regular, link, outline. default: <b>regular</b></p>
     <p><b>color:</b> primary, success, error, gray. default: <b>primary</b></p>

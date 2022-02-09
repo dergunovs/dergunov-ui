@@ -1,7 +1,5 @@
 <template>
   <section>
-    <h1>{{ $options.name }}</h1>
-
     <div class="mb-16">
       <p><b>slides:</b> массив слайдов для отображения.</p>
       <p>Работа со слайдером идёт через scoped slots. Нужно сделать bind элемента в слоте v-slot="client".</p>

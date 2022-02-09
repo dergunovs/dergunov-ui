@@ -1,7 +1,5 @@
 <template>
   <section>
-    <h1>{{ $options.name }}</h1>
-
     <p>Директива v-model добавляет компоненту двустороннее связывание с data.</p>
     <p>Вместо группы checkbox необходимо использовать компонент Multiselect.</p>
     <p class="mb-16">Тип v-model может быть boolean, string или number.</p>

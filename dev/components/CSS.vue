@@ -1,7 +1,5 @@
 <template>
   <section>
-    <h1>{{ $options.name }}</h1>
-
     <p>Встроенные в библиотеку утилитарные классы и общие стили.</p>
     <p>* { box-sizing: border-box; margin: 0; padding: 0; font-weight: 400; line-height: 1.5 }</p>
     <p>section { margin: 64px 0 }</p>

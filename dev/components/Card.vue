@@ -1,7 +1,5 @@
 <template>
   <section>
-    <h1>{{ $options.name }}</h1>
-
     <div class="mb-32">
       <p>thumbPrefix: префикс для пути до изображения thumb.</p>
       <p>Основной props - это объект, который состоит из:</p>

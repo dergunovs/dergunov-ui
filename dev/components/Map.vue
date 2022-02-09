@@ -1,7 +1,5 @@
 <template>
   <section>
-    <h1>{{ $options.name }}</h1>
-
     <p><b>src:</b> ссылка из iframe, которые генерирует конструктор карт Яндекса или Гугла</p>
     <p><b>height:</b> высота карты в пикселях. default: <b>400</b></p>
     <p class="mb-16"><b>title:</b> название карты. default: <b>Схема проезда</b></p>

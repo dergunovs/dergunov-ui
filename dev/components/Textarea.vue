@@ -1,7 +1,5 @@
 <template>
   <section>
-    <h1>{{ $options.name }}</h1>
-
     <p class="mb-16">Директива v-model добавляет компоненту input двустороннее связывание с data.</p>
 
     <UiTextarea v-model="test"></UiTextarea>

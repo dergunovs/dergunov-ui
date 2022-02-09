@@ -9,7 +9,10 @@
       </div>
     </nav>
 
-    <component :is="currentComponent" class="w-80" />
+    <div class="w-80">
+      <h1>{{ currentComponent.name }}</h1>
+      <component :is="currentComponent" />
+    </div>
   </div>
 </template>
 

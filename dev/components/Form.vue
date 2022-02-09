@@ -1,7 +1,5 @@
 <template>
   <section>
-    <h1>{{ $options.name }}</h1>
-
     <p class="mb-16"><b>formStatus:</b> success, error.</p>
 
     <p>Форма является компонентом слотом, в который нужно добавить поля и кнопки.</p>
