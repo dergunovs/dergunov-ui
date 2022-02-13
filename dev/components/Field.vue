@@ -10,20 +10,25 @@
     <p><b>Виды валидации поля</b></p>
     <p><b>tel:</b> формат номера телефона + маска поля, Boolean.</p>
     <p><b>email:</b> электронная почта, Boolean.</p>
+    <p><b>numeric:</b> только целые числа, Boolean.</p>
     <p><b>min:</b> минимальное количество символов, Number.</p>
     <p><b>max:</b> максимальное количество символов, Number.</p>
     <p class="mb-32"><b>required:</b> обязательное поле, Boolean.</p>
 
     <p><b>Поддержка валидации разными типами полей</b></p>
-    <p><b>input:</b> tel, email, min, max, required.</p>
+    <p><b>input:</b> tel, email, numeric, min, max, required.</p>
     <p><b>textarea:</b> min, max, required.</p>
     <p class="mb-32"><b>select, multiselect, search, checkbox, radio, upload:</b> required.</p>
 
     <p class="mb-32">formData: {{ formData }}</p>
 
     <UiForm class="mb-32">
-      <UiField :field="UiInput" label="Телефон" type="tel" v-model="formData.tel" class="w-50 mb-8" />
+      <UiField :field="UiInput" label="Телефон" tel type="tel" v-model="formData.tel" class="w-50 mb-8" />
+
       <UiField :field="UiInput" label="Электронная почта" email v-model="formData.email" class="w-50 mb-8" />
+
+      <UiField :field="UiInput" label="Цифры" numeric v-model="formData.numeric" class="w-50 mb-8" />
+
       <UiField
         :field="UiInput"
         label="Минимальное количество символов"
@@ -31,6 +36,7 @@
         v-model="formData.min"
         class="w-50 mb-8"
       />
+
       <UiField
         :field="UiInput"
         label="Максимальное количество символов"
@@ -91,6 +97,7 @@
   const formData = ref({
     tel: "",
     email: "",
+    numeric: "",
     min: "",
     max: "",
     required: "",

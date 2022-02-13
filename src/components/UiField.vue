@@ -34,6 +34,8 @@
   const emailRegexp =
     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Zа-яёА-ЯЁ\-0-9]+\.)+[a-zA-Zа-яёА-ЯЁ]{2,}))$/;
 
+  const numericRegexp = /^([0-9]\d*)$/;
+
   const error = ref(false);
   const errorMessage = ref("");
   const input = ref<ComponentPublicInstance>();
@@ -71,10 +73,16 @@
       },
       message: "Введите корректный email",
     },
+    numeric: {
+      check(data: InputDataFormatted, numeric?: boolean): boolean {
+        return data && numeric && !numericRegexp.test(String(data)) ? true : false;
+      },
+      message: "Можно вводить только цифры",
+    },
     tel: {
       check(data: InputDataFormatted, tel?: boolean, value?: string): boolean {
         if (tel && value) {
-          return tel && data.length < 18 && value.length ? true : false;
+          return tel && data.length < 18 && value !== "+" ? true : false;
         } else {
           return false;
         }
@@ -95,6 +103,7 @@
     design?: "none" | "switch" | "buttons";
     required?: boolean;
     email?: boolean;
+    numeric?: boolean;
     tel?: boolean;
     min?: number;
     max?: number;
@@ -129,6 +138,7 @@
       rules.min.check(dataFormatted, props.min) ||
       rules.max.check(dataFormatted, props.max) ||
       rules.email.check(dataFormatted, props.email) ||
+      rules.numeric.check(dataFormatted, props.numeric) ||
       rules.tel.check(dataFormatted, props.tel, telInputValue);
 
     if (rules.required.check(dataFormatted, props.required, props.tel)) {
@@ -139,6 +149,8 @@
       errorMessage.value = rules.max.message;
     } else if (rules.email.check(dataFormatted, props.email)) {
       errorMessage.value = rules.email.message;
+    } else if (rules.numeric.check(dataFormatted, props.numeric)) {
+      errorMessage.value = rules.numeric.message;
     } else if (rules.tel.check(dataFormatted, props.tel, telInputValue)) {
       errorMessage.value = rules.tel.message;
     } else {
