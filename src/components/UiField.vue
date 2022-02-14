@@ -50,7 +50,7 @@
     min: {
       check(data: InputDataFormatted, min?: number): boolean {
         if (min) {
-          return data.length < min ? true : false;
+          return data.length < min && data.length ? true : false;
         } else {
           return false;
         }
@@ -60,7 +60,7 @@
     max: {
       check(data: InputDataFormatted, max?: number): boolean {
         if (max) {
-          return data.length > max ? true : false;
+          return data.length > max && data.length ? true : false;
         } else {
           return false;
         }
@@ -69,13 +69,13 @@
     },
     email: {
       check(data: InputDataFormatted, email?: boolean): boolean {
-        return data && email && !emailRegexp.test(String(data).toLowerCase()) ? true : false;
+        return data.length && email && !emailRegexp.test(String(data).toLowerCase()) ? true : false;
       },
       message: "Введите корректный email",
     },
     numeric: {
       check(data: InputDataFormatted, numeric?: boolean): boolean {
-        return data && numeric && !numericRegexp.test(String(data)) ? true : false;
+        return data.length && numeric && !numericRegexp.test(String(data)) ? true : false;
       },
       message: "Можно вводить только цифры",
     },
