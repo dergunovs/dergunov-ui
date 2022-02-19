@@ -70,10 +70,6 @@
   }
 </script>
 
-<script lang="ts">
-  export default { name: "UiImage" };
-</script>
-
 <style>
   .ui-image-root {
     display: inline-block;

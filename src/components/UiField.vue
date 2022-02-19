@@ -179,10 +179,6 @@
   }
 </script>
 
-<script lang="ts">
-  export default { name: "UiField" };
-</script>
-
 <style>
   .ui-field-label-block {
     display: flex;

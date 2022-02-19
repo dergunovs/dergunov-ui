@@ -65,10 +65,6 @@
   });
 </script>
 
-<script lang="ts">
-  export default { name: "UiBreadcrumbs" };
-</script>
-
 <style>
   .ui-breadcrumbs {
     display: flex;

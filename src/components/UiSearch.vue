@@ -157,10 +157,6 @@
   });
 </script>
 
-<script lang="ts">
-  export default { name: "UiSearch" };
-</script>
-
 <style>
   .ui-search-block {
     position: relative;

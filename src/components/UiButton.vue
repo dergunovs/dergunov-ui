@@ -39,10 +39,6 @@
   const colorLight = `var(--color-${props.color}-light)`;
 </script>
 
-<script lang="ts">
-  export default { name: "UiButton" };
-</script>
-
 <style>
   .ui-button {
     display: flex;

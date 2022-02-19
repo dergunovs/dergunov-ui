@@ -66,10 +66,6 @@
   }
 </script>
 
-<script lang="ts">
-  export default { name: "UiRadio" };
-</script>
-
 <style>
   .ui-radio-direction-column {
     display: flex;

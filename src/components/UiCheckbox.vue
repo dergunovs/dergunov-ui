@@ -50,10 +50,6 @@
   initialValue.value = props.modelValue;
 </script>
 
-<script lang="ts">
-  export default { name: "UiCheckbox" };
-</script>
-
 <style>
   .ui-checkbox-block {
     position: relative;

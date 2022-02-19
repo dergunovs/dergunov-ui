@@ -78,7 +78,3 @@
     background-color: var(--color-gray);
   }
 </style>
-
-<script lang="ts">
-  export default { name: "UiInput" };
-</script>

@@ -21,10 +21,6 @@
   const emit = defineEmits(["update:modelValue"]);
 </script>
 
-<script lang="ts">
-  export default { name: "UiTextarea" };
-</script>
-
 <style>
   .ui-textarea {
     width: 100%;

@@ -136,10 +136,6 @@
   });
 </script>
 
-<script lang="ts">
-  export default { name: "UiSelect" };
-</script>
-
 <style>
   .ui-select-block {
     position: relative;

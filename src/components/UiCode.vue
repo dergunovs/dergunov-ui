@@ -45,10 +45,6 @@
   });
 </script>
 
-<script lang="ts">
-  export default { name: "UiCode" };
-</script>
-
 <style>
   .ui-code-block {
     display: flex;

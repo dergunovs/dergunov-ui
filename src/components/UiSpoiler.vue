@@ -47,10 +47,6 @@
   isExpanded.value = props.modelValue;
 </script>
 
-<script lang="ts">
-  export default { name: "UiSpoiler" };
-</script>
-
 <style>
   .ui-spoler-block {
     display: flex;

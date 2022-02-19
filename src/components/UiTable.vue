@@ -73,10 +73,6 @@
   });
 </script>
 
-<script lang="ts">
-  export default { name: "UiTable" };
-</script>
-
 <style>
   .ui-table-block {
     overflow-x: auto;

@@ -82,10 +82,6 @@
   }
 </script>
 
-<script lang="ts">
-  export default { name: "UiUpload" };
-</script>
-
 <style>
   .ui-upload-block {
     display: flex;
