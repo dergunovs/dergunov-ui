@@ -92,7 +92,7 @@
   };
 
   interface Props {
-    field: { name: string };
+    field: { __file: string };
     type?: string;
     rows?: string;
     modelValue?: string | number | [] | boolean | object;
@@ -161,7 +161,7 @@
   }
 
   const fieldType = computed(() => {
-    return props.field.name;
+    return props.field.__file.split("components/")[1].slice(0, -4);
   });
 
   function handleFocus(): void {
