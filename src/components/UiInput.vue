@@ -56,6 +56,9 @@
       }
     } else return "";
   }
+
+  const fieldType = "UiInput";
+  defineExpose({ fieldType });
 </script>
 
 <style>

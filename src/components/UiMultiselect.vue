@@ -162,6 +162,9 @@
   onBeforeUnmount(() => {
     document.removeEventListener("click", hideOptions);
   });
+
+  const fieldType = "UiMultiselect";
+  defineExpose({ fieldType });
 </script>
 
 <style>

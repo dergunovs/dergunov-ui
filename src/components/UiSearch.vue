@@ -155,6 +155,9 @@
   onBeforeUnmount(() => {
     document.removeEventListener("click", hideOptions);
   });
+
+  const fieldType = "UiSearch";
+  defineExpose({ fieldType });
 </script>
 
 <style>

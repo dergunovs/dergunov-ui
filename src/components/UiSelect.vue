@@ -134,6 +134,9 @@
   onBeforeUnmount(() => {
     document.removeEventListener("click", hideOptions);
   });
+
+  const fieldType = "UiSelect";
+  defineExpose({ fieldType });
 </script>
 
 <style>

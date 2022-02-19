@@ -48,6 +48,9 @@
   }
 
   initialValue.value = props.modelValue;
+
+  const fieldType = "UiCheckbox";
+  defineExpose({ fieldType });
 </script>
 
 <style>

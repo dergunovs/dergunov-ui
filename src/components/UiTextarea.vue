@@ -19,6 +19,9 @@
   });
 
   const emit = defineEmits(["update:modelValue"]);
+
+  const fieldType = "UiTextarea";
+  defineExpose({ fieldType });
 </script>
 
 <style>

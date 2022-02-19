@@ -64,6 +64,9 @@
   function setOption(option: Option): void {
     currentOption.value = option;
   }
+
+  const fieldType = "UiRadio";
+  defineExpose({ fieldType });
 </script>
 
 <style>

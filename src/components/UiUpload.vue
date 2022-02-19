@@ -80,6 +80,9 @@
 
     emit("update:modelValue", filesToEmit);
   }
+
+  const fieldType = "UiUpload";
+  defineExpose({ fieldType });
 </script>
 
 <style>

@@ -26,7 +26,7 @@
 </template>
 
 <script setup lang="ts">
-  import { ref, ComponentPublicInstance, computed } from "vue";
+  import { ref, computed } from "vue";
 
   type InputData = boolean | string | number | (string | number)[] | DataTransfer;
   type InputDataFormatted = string | (string | number)[];
@@ -38,7 +38,7 @@
 
   const error = ref(false);
   const errorMessage = ref("");
-  const input = ref<ComponentPublicInstance>();
+  const input = ref();
 
   const rules = {
     required: {
@@ -92,7 +92,7 @@
   };
 
   interface Props {
-    field: { __file: string };
+    field: {};
     type?: string;
     rows?: string;
     modelValue?: string | number | [] | boolean | object;
@@ -160,9 +160,7 @@
     emit("update:modelValue", data);
   }
 
-  const fieldType = computed(() => {
-    return props.field.__file.split("components/")[1].slice(0, -4);
-  });
+  const fieldType = computed(() => input.value?.fieldType);
 
   function handleFocus(): void {
     if (["UiSelect"].includes(fieldType.value)) {
