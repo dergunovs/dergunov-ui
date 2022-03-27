@@ -13,7 +13,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "echo \"Скоро\""
   },
   "devDependencies": {
     "@babel/types": "^7.17.0",
