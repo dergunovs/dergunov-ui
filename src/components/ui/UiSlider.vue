@@ -9,7 +9,7 @@
         :class="{ 'ui-slide-button-active': slideCurrent !== 0 }"
       >
         <img
-          src="@/assets/icons/arrow.svg"
+          src="../../assets/icons/arrow.svg"
           class="ui-slide-arrow-left"
           width="48"
           height="48"
@@ -41,7 +41,7 @@
         :class="{ 'ui-slide-button-active': slideCurrent !== slides.length - 1 }"
       >
         <img
-          src="@/assets/icons/arrow.svg"
+          src="../../assets/icons/arrow.svg"
           class="ui-slide-arrow-right"
           width="48"
           height="48"

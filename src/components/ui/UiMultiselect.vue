@@ -22,7 +22,7 @@
       </div>
 
       <img
-        src="@/assets/icons/arrow.svg"
+        src="../../assets/icons/arrow.svg"
         class="ui-multiselect-current-arrow"
         width="16"
         height="16"

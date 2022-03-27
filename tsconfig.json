@@ -1,24 +1,16 @@
 {
   "compilerOptions": {
     "target": "esnext",
+    "useDefineForClassFields": true,
     "module": "esnext",
-    "strict": true,
-    "declaration": true,
-    "declarationDir": "dist/types",
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
-    "noImplicitAny": false,
-    "importHelpers": true,
     "moduleResolution": "node",
-    "experimentalDecorators": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "jsx": "preserve",
     "sourceMap": true,
-    "baseUrl": ".",
-    "types": ["node", "vue"],
-    "paths": { "@/*": ["src/*"] },
-    "plugins": [{ "transform": "@zerollup/ts-transform-paths", "exclude": ["*"] }],
-    "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "lib": ["esnext", "dom"]
   },
-  "exclude": ["node_modules", "dist"]
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.vue"],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }

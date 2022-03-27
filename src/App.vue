@@ -18,10 +18,10 @@
 
 <script setup lang="ts">
   import { shallowRef } from "vue";
-  import { UiButton } from "@/components";
+  import { UiButton } from "./components/ui";
 
-  import Readme from "./Readme.vue";
-  import * as components from "./components/index";
+  import Readme from "./components/Readme.vue";
+  import * as components from "./components/book";
 
   const currentComponent = shallowRef(Readme);
 
@@ -33,6 +33,6 @@
 </script>
 
 <style>
-  @import "@/assets/styles.css";
   @import "./assets/styles.css";
+  @import "./assets/book.css";
 </style>

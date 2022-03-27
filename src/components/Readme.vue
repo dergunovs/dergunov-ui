@@ -1,10 +1,7 @@
 <template>
   <section>
     <p>Библиотека компонентов для Vue 3. Zero Dependencies. Code Splitting.</p>
-    <p>
-      22 компонента занимают <b>до 9 кб</b> (gzip) в бандле вашего приложения. <b>4 кб</b> (gzip) занимает весь CSS.
-    </p>
-    <p>Импортируйте только необходимые компоненты, чтобы максимально сократить размар бандла.</p>
+    <p>22 компонента занимают <b>12 кб</b> (gzip) в бандле вашего приложения. <b>4 кб</b> (gzip) занимает весь CSS.</p>
     <p>Компоненты нужно использовать с префиксом Ui. Например, UiForm или UiTable.</p>
 
     <p>
@@ -70,7 +67,7 @@ import { UiButton } from "dergunov-ui"
 </template>
 
 <script setup lang="ts">
-  import { UiCode } from "@/components";
+  import { UiCode } from "./ui";
 </script>
 
 <script lang="ts">
