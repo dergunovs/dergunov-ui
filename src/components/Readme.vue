@@ -14,6 +14,13 @@
       <a href="mailto:a@dergunov.com">Email</a>
     </p>
 
+    <p>
+      Code Splitting поддерживался до версии 0.5.17 (Vue-CLI 5 + кастомный билд на Rollup). Начиная с версии 0.6.0
+      используется Vite + Library mode. Поддержка Code Splitting временно приостановлена, так как в Vite на текущий
+      момент в качестве rollup.input может использоваться только один файл. В версии Vite 3 будет внедрена поддержка
+      массива input файлов, соответственно Code Splitting вернётся в библиотеку компонентов.
+    </p>
+
     <h2>Установка</h2>
     <UiCode>npm i dergunov-ui</UiCode>
 
