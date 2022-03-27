@@ -34,7 +34,7 @@
     headers: string[];
     fit?: "regular" | "grow";
     width?: string;
-    modelValue: boolean;
+    modelValue?: boolean;
   }
 
   const props = withDefaults(defineProps<Props>(), {
