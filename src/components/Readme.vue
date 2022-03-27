@@ -44,7 +44,7 @@ import { UiButton } from "dergunov-ui"
     <p>В своём css файле или секции style корневого компонента подключите общие стили библиотеки:</p>
 
     <UiCode>
-      <pre>@import "dergunov-ui/dist/esm/assets/styles.css";</pre>
+      <pre>@import "dergunov-ui";</pre>
     </UiCode>
 
     <p>В библиотеку компонентов встроены утилитарные классы. Внутри компонентов они не используются.</p>
