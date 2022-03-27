@@ -4,7 +4,7 @@
       <UiButton design="link" @click="setCurrentComponent(Readme)" class="mb-16">Описание</UiButton>
 
       <p><b>Компоненты:</b></p>
-      <div v-for="(component, index) in Object.values(components)" :key="index">
+      <div v-for="component in Object.values(components)" :key="component.name">
         <UiButton design="link" @click="setCurrentComponent(component)">{{ component.name }}</UiButton>
       </div>
     </nav>
@@ -17,19 +17,17 @@
 </template>
 
 <script setup lang="ts">
-  import { shallowRef } from "vue";
+  import { Component as VueComponent, shallowRef } from "vue";
   import { UiButton } from "./components/ui";
 
   import Readme from "./components/Readme.vue";
   import * as components from "./components/book";
 
-  const currentComponent = shallowRef(Readme);
+  const currentComponent = shallowRef<VueComponent>(Readme);
 
-  function setCurrentComponent(component: any) {
+  function setCurrentComponent(component: VueComponent) {
     currentComponent.value = component;
   }
-
-  document.title = "Библиотека компонентов";
 </script>
 
 <style>
