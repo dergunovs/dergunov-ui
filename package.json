@@ -4,6 +4,7 @@
   "description": "ui-kit",
   "author": "Aleksandr Dergunov <a@dergunov.com> (https://dergunov.com)",
   "license": "MIT",
+  "main": "index.js",
   "files": [
     "dist/*"
   ],
