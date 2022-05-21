@@ -55,7 +55,7 @@
 
   function checkReachingScreenBottom() {
     if (props.modelValue && table.value) {
-      if (window.innerHeight - (table.value.getBoundingClientRect().y + table.value.scrollHeight) > -100) {
+      if (window.innerHeight - (table.value.getBoundingClientRect().y + table.value.scrollHeight) > -200) {
         emit("reachBottom");
       }
     }
