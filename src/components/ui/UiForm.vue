@@ -66,7 +66,7 @@
   onMounted(() => {
     setTimeout(() => {
       formValidate();
-    }, 100);
+    }, 300);
   });
 
   onUpdated(() => {
