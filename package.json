@@ -19,13 +19,13 @@
     "test": "echo \"Скоро\""
   },
   "devDependencies": {
-    "@babel/types": "^7.18.4",
-    "@vitejs/plugin-vue": "^3.0.0-beta.0",
+    "@babel/types": "^7.18.8",
+    "@vitejs/plugin-vue": "^3.0.0",
     "typescript": "^4.7.4",
-    "vite": "^3.0.0-beta.2",
-    "vite-plugin-dts": "^1.2.0",
+    "vite": "^3.0.0",
+    "vite-plugin-dts": "^1.3.0",
     "vue": "^3.2.37",
-    "vue-tsc": "^0.38.1"
+    "vue-tsc": "^0.38.5"
   },
   "peerDependencies": {
     "vue": "^3.2.37"
